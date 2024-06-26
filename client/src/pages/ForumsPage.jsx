@@ -1,6 +1,6 @@
 function ForumsPage(){
  return (
-    <h1> coucou </h1>
+    <h1>Forums</h1>
     )
 }
 export default ForumsPage;
