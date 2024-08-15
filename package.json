@@ -1,0 +1,30 @@
+{
+  "name": "deverie",
+  "version": "0.0.1",
+  "description": "",
+  "author": "",
+  "private": true,
+  "license": "UNLICENSED",
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "scripts": {
+    "start:client:dev": "npm run dev --workspace=client",
+    "build:client": "npm run build --workspace=client",
+    "lint:client": "npm run lint --workspace=client",
+    "preview:client": "npm run preview --workspace=client",
+    "build:server": "nest build --workspace=server",
+    "format:server": "npm run format --workspace=server",
+    "start:server": "npm run start --workspace=server",
+    "start:server:dev": "npm run start:dev --workspace=server",
+    "start:server:debug": "npm run start:debug --workspace=server",
+    "start:server:prod": "npm run start:prod --workspace=server",
+    "lint:server": "npm run lint --workspace=server",
+    "test": "npm run test --workspace=server",
+    "test:watch": "npm run test:watch --workspace=server",
+    "test:cov": "npm run test:cov --workspace=server",
+    "test:debug": "npm run test:debug --workspace=server",
+    "test:e2e": "npm run test:e2e --workspace=server"
+  }
+}
