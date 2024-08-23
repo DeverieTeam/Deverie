@@ -1,0 +1,52 @@
+{
+	"welcomeMessage": {
+		"title": {
+			"name": "Titre du message d'accueil",
+			"content": "Bienvenu sur Deverie !"
+		},
+		"description": {
+			"name": "Texte du message d'accueil",
+			"content": "Deverie est un espace communautaire francophone dédié aux développeurs de tous horizons.\nQue vous soyez ici pour découvrir le monde du développement mais aussi ses à côtés, pour demander votre avis sur certaines technologies, pour demandeer un coup de main ou simplement pour dicuter tranquillement... Vous êtes au bon endroit !"
+		}
+	},
+	"shortcutPopUp": {
+		"disconnected": {
+			"message": {
+				"name": "Message de la boîte d'accès rapide",
+				"content": "Pas encore inscrit ?"
+			},
+			"button": {
+				"name": "Texte du bouton d'accès rapide",
+				"content": "Rejoignez-nous !"
+			},
+			"link": {
+				"name": "Page de l'accès rapide",
+				"content": "register"
+			}
+		},
+		"connected": {
+			"message": {
+				"name": "Message de la boîte d'accès rapide",
+				"content": "Bienvenue {username} !"
+			},
+			"button": {
+				"name": "Texte du bouton d'accès rapide",
+				"content": "Mes favoris"
+			},
+			"link": {
+				"name": "Page de l'accès rapide",
+				"content": "favorites"
+			}
+		}
+	},
+	"trends": {
+		"popular": {
+			"name": "Titre du contenu populaire",
+			"content": "Les Postes et Questions les plus populaires"
+		},
+		"recent": {
+			"name": "Titre du contenu récent",
+			"content": "Les Postes et Questions les plus récents"
+		}
+	}
+}
