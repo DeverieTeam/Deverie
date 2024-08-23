@@ -25,6 +25,14 @@
     "test:watch": "npm run test:watch --workspace=server",
     "test:cov": "npm run test:cov --workspace=server",
     "test:debug": "npm run test:debug --workspace=server",
-    "test:e2e": "npm run test:e2e --workspace=server"
+    "test:e2e": "npm run test:e2e --workspace=server",
+    "migration:create": "npm run migration:create --workspace=server",
+    "migration:generate": "npm run migration:generate --workspace=server",
+    "migration:up": "npm run migration:up --workspace=server",
+    "migration:down": "npm run migration:down --workspace=server",
+    "typeorm": "npm run typeorm --workspace=server",
+    "fixtures": "npm run fixtures --workspace=server",
+    "schema:drop": "npm run schema:drop --workspace=server",
+    "resetdb": "npm run resetdb --workspace=server"
   }
 }
