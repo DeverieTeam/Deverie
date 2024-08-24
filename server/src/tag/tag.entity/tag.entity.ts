@@ -1,11 +1,11 @@
-import {
-  Column,
-  Entity,
-  // JoinTable,
-  // ManyToMany,
-  // OneToMany,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { Post } from '../../post/post.entity/post.entity';
+import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
+
+export enum TagFamily {
+  LANGUAGE = 'Language',
+  ENVIRONMENT = 'Environment',
+  TECHNOLOGY = 'Technology',
+}
 
 @Entity()
 export class Tag {
@@ -15,6 +15,8 @@ export class Tag {
   name: string;
   @Column({ type: 'varchar', length: 255 })
   icon: string;
-  @Column({ type: 'varchar', length: 100 })
-  family: 'Language' | 'Environment' | 'Technology';
+  @Column({ type: 'enum', enum: TagFamily })
+  family: TagFamily;
+  @ManyToMany(() => Post, (post) => post.tags)
+  posts: Post[];
 }

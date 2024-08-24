@@ -1,5 +1,5 @@
-import { Post } from 'src/post/post.entity/post.entity';
-import { Rating } from 'src/rating/rating.entity/rating.entity';
+import { Post } from '../../post/post.entity/post.entity';
+import { Rating } from '../../rating/rating.entity/rating.entity';
 import {
   Column,
   CreateDateColumn,
@@ -9,6 +9,22 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+
+export enum MemberRole {
+  MEMBER = 'Member',
+  MODERATOR = 'Moderator',
+  ADMINISTRATOR = 'Administrator',
+}
+
+export enum MemberTheme {
+  LIGHT = 'Light',
+  DARK = 'Dark',
+}
+
+export enum MemberLanguage {
+  FRENCH = 'Français',
+  ENGLISH = 'English',
+}
 
 @Entity()
 export class Member {
@@ -30,20 +46,28 @@ export class Member {
   pronouns: string;
   @Column({ type: 'text', nullable: true })
   description: string;
-  @Column({ type: 'varchar', length: 50 })
-  role: 'Member' | 'Moderator' | 'Administrator';
-  @Column({ type: 'bool' })
+  @Column({ type: 'enum', enum: MemberRole, default: MemberRole.MEMBER })
+  role: MemberRole;
+  @Column({ type: 'bool', default: false })
   is_banned: boolean;
   @Column({ type: 'varchar', length: 100, nullable: true })
   displayed_name: string;
-  @Column({ type: 'varchar', length: 50 })
-  theme: 'Light' | 'Dark';
-  @Column({ type: 'varchar', length: 50 })
-  language: 'French';
-  //   @Column({ type: 'int' })
-  //   post_count: number;
+  @Column({ type: 'enum', enum: MemberTheme, default: MemberTheme.LIGHT })
+  theme: MemberTheme;
+  @Column({
+    type: 'enum',
+    enum: MemberLanguage,
+    default: MemberLanguage.FRENCH,
+  })
+  language: MemberLanguage;
+  @Column({ type: 'int', default: 0 })
+  post_count: number;
   @OneToMany(() => Rating, (rating) => rating.rater)
   ratings: Rating[];
+  @OneToMany(() => Post, (post) => post.author)
+  posts: Rating[];
+  @OneToMany(() => Post, (post) => post.modification_author)
+  modified_posts: Rating[];
   @ManyToMany(() => Post, (post) => post.is_favourited_by)
   @JoinTable({
     name: 'favourite',
