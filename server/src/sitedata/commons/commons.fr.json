@@ -11,7 +11,7 @@
 	},
 	"buttons": {
 		"backButton": {
-			"text" : {
+			"text": {
 				"name": "Texte du bouton retour",
 				"content": "Retour"
 			},
@@ -21,13 +21,23 @@
 			}
 		},
 		"cancelButton": {
-			"text" : {
-				"name": "Texte du bouton annuler",
+			"text": {
+				"name": "Texte du bouton d'annulation",
 				"content": "Annuler"
 			},
-			"hover" : {
-				"name": "Texte du bouton annuler de survol",
+			"hover": {
+				"name": "Texte du bouton d'annulation de survol",
 				"content": "Annuler les choix"
+			}
+		},
+		"confirmButton": {
+			"text": {
+				"name": "Texte du bouton de confirmation",
+				"content": "Confirmer"
+			},
+			"hover": {
+				"name": "Texte du bouton de confirmation de survol",
+				"content": "Confirmer les choix"
 			}
 		}
 	},
@@ -107,7 +117,7 @@
 		"chat": {
 			"main": {
 				"name": "Nom de la section de messagerie instantanée",
-				"content": "Chat"
+				"content": "Chats"
 			}
 		},
 		"favorite": {
@@ -147,6 +157,56 @@
 					"content": "Retirer des favoris"
 				}
 			}
+		}
+	},
+	"searching": {
+		"searchBar": {
+			"text": {
+				"name": "Texte par défaut d'un champ de recherche",
+				"content": "Recherche par mots clefs"
+			}
+		},
+		"tagFilter": {
+			"text": {
+				"name": "Texte de l'onglet de filtre par tags",
+				"content": "Filter par Tags"
+			}
+		},
+		"sortFilter": {
+			"text": {
+				"name": "Texte de l'onglet de tri",
+				"content": "Trier par"
+			},
+			"filters": {
+				"mostRecent": {
+					"name": "Nom du tri par date récente",
+					"content": "Les plus récents"
+				}
+			}
+		}
+	},
+	"pagination": {
+		"resultsOutOf": {
+			"name": "Texte de nombre de résultats",
+			"content": "résultats sur"
+		},
+		"pagesPrefix": {
+			"name": "Texte précédant la page actuelle sur le nombre total",
+			"content": "Page"
+		}
+	},
+	"tagsFamilies": {
+		"languages": {
+			"name": "Nom de la famille de tags des langages",
+			"content": "Langages"
+		},
+		"environments": {
+			"name": "Nom de la famille de tags des environnements",
+			"content": "Environnements"
+		},
+		"technologies": {
+			"name": "Nom de la famille de tags des technologies",
+			"content": "Technologies"
 		}
 	}
 }
