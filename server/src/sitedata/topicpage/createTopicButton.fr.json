@@ -1,0 +1,10 @@
+{
+	"text": {
+		"name": "Texte du bouton de création de poste",
+		"content": "Créer un nouveau sujet de Forum"
+	},
+	"hover": {
+		"name": "Texte bouton de création de poste de survol",
+		"content": "Créer un nouveau poste"
+	}
+}
