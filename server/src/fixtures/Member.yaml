@@ -1,0 +1,127 @@
+entity: Member
+items:
+  member1:
+    name: 'Pierre'
+    hashed_password: 'hduisghifjdql'
+    email: 'barge.pierre@hotmail.fr'
+    is_email_displayed: true
+    inscription_date: '2024, 2, 21'
+    profile_picture: 'https://storage.googleapis.com/quest_editor_uploads/YT6UOoDIjBbPPuU0KcuFrK7BXzXmZaOe.png'
+    pronouns: 'il/lui'
+    description: 'En reconversion professionnelle dans le développement web.'
+    role: 'Administrator'
+    is_banned: false
+    displayed_name: 'pierrelegoat63'
+
+  member2:
+    name: 'emixam113'
+    hashed_password: 'hhueiayde'
+    email: 'maximeroyan03@gmail.com'
+    is_email_displayed: true
+    inscription_date: '2023, 11, 4'
+    profile_picture: 'https://avatars.githubusercontent.com/u/98613290?v=4'
+    pronom: 'il/lui'
+    description: "j'essaye d'apprendre React mais c'est pas simple"
+    role: 'Member'
+    is_banned: false
+    displayed_name: 'maxlamenace03'
+
+  member3:
+    name: 'TruitosTv'
+    hashed_password: 'jflkdqy'
+    email: 'axel.remontpro@gmail.com'
+    is_email_displayed: true
+    inscription_date: '2024, 3, 22'
+    profile_picture: 'https://avatars.githubusercontent.com/u/129195521?v=4'
+    pronom: 'truite'
+    description: 'Bannana Game of the Year'
+    role: 'Moderator'
+    is_banned: false
+    displayed_name: 'frenchBanane'
+
+  member4:
+    name: '5p3c7r4l'
+    hashed_password: 'afejiade'
+    email: '5p3c7r4lyt@gmail.com'
+    is_email_displayed: true
+    inscription_date: '2024, 5, 14'
+    profile_picture: 'https://avatars.githubusercontent.com/u/129195521?v=4'
+    pronom: 'il/lui'
+    description: "Assembly and Python enjoyer and Java is trash. \n Follow on Twitch.tv/ElixirMH"
+    role: 'Administrator'
+    is_banned: false
+    displayed_name: 'MHplayer69'
+
+  member5:
+    name: 'Omicro'
+    hashed_password: 'thfdgdidq'
+    email: 'omicro.fytpowp@gmail.com'
+    is_email_displayed: true
+    inscription_date: '2024, 7, 13'
+    profile_picture: 'https://avatars.akamai.steamstatic.com/f5097c3be0f4c2d63ae4482ea50912b3ae721d80_full.jpg'
+    pronom: 'elle/iel'
+    description: "Who's gonna be a bash and JS specialised developper? Me of course!"
+    role: 'Administrator'
+    is_banned: false
+    displayed_name: 'megaman_player'
+
+  member6:
+    name: 'MasterKafey'
+    hashed_password: 'gmjqkfdofkjsqk'
+    email: 'masterkafey@gmail.com'
+    is_email_displayed: true
+    inscription_date: '2024, 9, 24'
+    profile_picture: 'https://avatars.githubusercontent.com/u/18745183?s=300&v=4'
+    pronom: 'il/lui'
+    description: "Expert PHP Symphony.\nJouez à Outer Wilds."
+    role: 'Moderator'
+    is_banned: false
+    displayed_name: 'MasterKafey'
+
+  member7:
+    name: 'AaroonX'
+    hashed_password: 'qifoefdsjsqfh'
+    email: 'aaroonx@gmail.com'
+    is_email_displayed: true
+    inscription_date: '2024, 11, 15'
+    profile_picture: 'https://cdn.tupperbox.app/pfp/423368783139176449/NVQGRyVFUrW8-XZh.webp'
+    pronom: 'il/lui'
+    description: "Codez en C pour coder aussi rapide que l'éclair !"
+    role: 'Member'
+    is_banned: false
+
+  member8:
+    name: 'dark lord of JAVA'
+    hashed_password: 'fqkjuezaikj'
+    email: 'xxdarkjavalordxx@orange.fr'
+    is_email_displayed: true
+    inscription_date: '2024, 1, 24'
+    profile_picture: null
+    pronom: null
+    description: 'Java >>> autres langages'
+    role: 'Member'
+    is_banned: false
+
+  member9:
+    name: 'Assembly enjoyer'
+    hashed_password: 'qjfdskqfjdu'
+    email: 'karren.warren@gmail.com'
+    is_email_displayed: true
+    inscription: '2024, 10, 20'
+    profile_picture: null
+    pronom: 'ASM/NASM'
+    description: null
+    role: 'Member'
+    is_banned: false
+
+  member10:
+    name: 'Napstablook'
+    hashed_password: 'agkdjslku'
+    email: 'gostly@gmail.com'
+    is_email_displayed: true
+    inscription_date: '2024, 8, 24'
+    profile picture: 'https://i1.sndcdn.com/artworks-kiBctpvdsLSFpuCz-sFfEwQ-t500x500.jpg'
+    pronom: 'elle'
+    description: "La vie n'a pas de sens, autant se faire marcher dessus \n Sinon, Visual Basic c'est fun."
+    role: 'Member'
+    is_banned: false
