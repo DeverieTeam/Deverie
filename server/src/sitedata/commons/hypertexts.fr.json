@@ -1,0 +1,52 @@
+{
+	"contact": {
+		"text": {
+			"name": "Texte d'accès à la page contact",
+			"content": "Contact"
+		},
+		"hover": {
+			"name": "Texte de la page contact de survol",
+			"content": "Contacter l'équipe"
+		}
+	},
+	"termsOfUse": {
+		"text": {
+			"name": "Texte d'accès à la des conditions d'utilisation",
+			"content": "Conditions d'utilisation"
+		},
+		"hover": {
+			"name": "Texte de la page des conditions d'utilisation de survol",
+			"content": "Ouvrir les conditions d'utilisation"
+		}
+	},
+	"legalNotices": {
+		"text": {
+			"name": "Texte d'accès à la page des mentions légales",
+			"content": "Mentions légales"
+		},
+		"hover": {
+			"name": "Texte de la page des mentions légales de survol",
+			"content": "Ouvrir les mentions légales"
+		}
+	},
+	"login": {
+		"text": {
+			"name": "Texte d'accès à la connexion",
+			"content": "Connexion"
+		},
+		"hover": {
+			"name": "Texte de connexion de survol",
+			"content": "Se connecter"
+		}
+	},
+	"profile": {
+		"text": {
+			"name": "Texte d'accès au profil",
+			"content": "Mon profil"
+		},
+		"hover": {
+			"name": "Texte d'accès au profil de survol",
+			"content": "Ouvrir mon profil"
+		}
+	}
+}

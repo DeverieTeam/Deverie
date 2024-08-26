@@ -1,0 +1,10 @@
+{
+	"resultsOutOf": {
+		"name": "Texte de nombre de résultats",
+		"content": "résultats sur"
+	},
+	"pagesPrefix": {
+		"name": "Texte précédant la page actuelle sur le nombre total",
+		"content": "Page"
+	}
+}

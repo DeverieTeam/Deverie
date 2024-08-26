@@ -1,0 +1,28 @@
+{
+	"publishDatePrefix": {
+		"name": "Texte précédant la date d'une publication",
+		"content": "Publié le"
+	},
+	"numberOfResponses": {
+		"name": "Texte précédant le nombre de réponses",
+		"content": "Nombre de réponses"
+	},
+	"lastResponseDatePrefix": {
+		"name": "Texte précédant la date de la dernière réponse d'une publication",
+		"content": "Dernière réponse le"
+	},
+	"favorite": {
+		"add": {
+			"hover": {
+				"name": "Texte d'ajout aux favoris de survol",
+				"content": "Ajouter aux favoris"
+			}
+		},
+		"remove": {
+			"hover": {
+				"name": "Texte de suppression des favoris de survol",
+				"content": "Retirer des favoris"
+			}
+		}
+	}
+}

@@ -1,0 +1,10 @@
+{
+	"hover": {
+		"name": "Nom du logo en survol",
+		"content": "Logo du site"
+	},
+	"alt": {
+		"name": "Texte de remplacement du logo",
+		"content": "Deux chevrons formant les lettres D et V"
+	}
+}

@@ -1,0 +1,32 @@
+{
+	"backButton": {
+		"text": {
+			"name": "Texte du bouton retour",
+			"content": "Retour"
+		},
+		"hover": {
+			"name": "Texte du bouton retour de survol",
+			"content": "Revenir à la page précédente"
+		}
+	},
+	"cancelButton": {
+		"text": {
+			"name": "Texte du bouton d'annulation",
+			"content": "Annuler"
+		},
+		"hover": {
+			"name": "Texte du bouton d'annulation de survol",
+			"content": "Annuler les choix"
+		}
+	},
+	"confirmButton": {
+		"text": {
+			"name": "Texte du bouton de confirmation",
+			"content": "Confirmer"
+		},
+		"hover": {
+			"name": "Texte du bouton de confirmation de survol",
+			"content": "Confirmer les choix"
+		}
+	}
+}
