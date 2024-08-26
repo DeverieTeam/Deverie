@@ -1,0 +1,34 @@
+{
+	"isIdenticalWhenConnected": {
+		"name": "Boîte d'accès rapide identique quand connecté ?",
+		"content": false
+	},
+	"disconnected": {
+		"message": {
+			"name": "Message de la boîte d'accès rapide",
+			"content": "Pas encore inscrit ?"
+		},
+		"button": {
+			"name": "Texte du bouton d'accès rapide",
+			"content": "Rejoignez-nous !"
+		},
+		"link": {
+			"name": "Page de l'accès rapide",
+			"content": "register"
+		}
+	},
+	"connected": {
+		"message": {
+			"name": "Message de la boîte d'accès rapide",
+			"content": "Bienvenue {username} !"
+		},
+		"button": {
+			"name": "Texte du bouton d'accès rapide",
+			"content": "Mes favoris"
+		},
+		"link": {
+			"name": "Page de l'accès rapide",
+			"content": "favorites"
+		}
+	}
+}
