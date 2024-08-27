@@ -11,7 +11,8 @@ items:
     description: 'En reconversion professionnelle dans le développement web.'
     role: 'Administrator'
     is_banned: false
-    displayed_name: 'pierrelegoat63'
+    displayed_name: null
+    post_count: 2
 
   member2:
     name: 'emixam113'
@@ -25,6 +26,7 @@ items:
     role: 'Member'
     is_banned: false
     displayed_name: 'maxlamenace03'
+    post_count: 1
 
   member3:
     name: 'TruitosTv'
@@ -38,6 +40,7 @@ items:
     role: 'Moderator'
     is_banned: false
     displayed_name: 'frenchBanane'
+    post_count: 2
 
   member4:
     name: '5p3c7r4l'
@@ -51,6 +54,7 @@ items:
     role: 'Administrator'
     is_banned: false
     displayed_name: 'MHplayer69'
+    post_count: 6
 
   member5:
     name: 'Omicro'
@@ -64,31 +68,34 @@ items:
     role: 'Administrator'
     is_banned: false
     displayed_name: 'megaman_player'
+    post_count: 3
 
   member6:
     name: 'MasterKafey'
     hashed_password: 'gmjqkfdofkjsqk'
     email: 'masterkafey@gmail.com'
     is_email_displayed: true
-    inscription_date: '2024, 9, 24'
+    inscription_date: '2024, 7, 24'
     profile_picture: 'https://avatars.githubusercontent.com/u/18745183?s=300&v=4'
     pronom: 'il/lui'
     description: "Expert PHP Symphony.\nJouez à Outer Wilds."
     role: 'Moderator'
     is_banned: false
     displayed_name: 'MasterKafey'
+    post_count: 4
 
   member7:
     name: 'AaroonX'
     hashed_password: 'qifoefdsjsqfh'
     email: 'aaroonx@gmail.com'
     is_email_displayed: true
-    inscription_date: '2024, 11, 15'
+    inscription_date: '2024, 6, 15'
     profile_picture: 'https://cdn.tupperbox.app/pfp/423368783139176449/NVQGRyVFUrW8-XZh.webp'
     pronom: 'il/lui'
     description: "Codez en C pour coder aussi rapide que l'éclair !"
     role: 'Member'
     is_banned: false
+    post_count: 1
 
   member8:
     name: 'dark lord of JAVA'
@@ -100,19 +107,21 @@ items:
     pronom: null
     description: 'Java >>> autres langages'
     role: 'Member'
-    is_banned: false
+    is_banned: true
+    post_count: 4
 
   member9:
     name: 'Assembly enjoyer'
     hashed_password: 'qjfdskqfjdu'
     email: 'karren.warren@gmail.com'
     is_email_displayed: true
-    inscription: '2024, 10, 20'
+    inscription: '2024, 2, 20'
     profile_picture: null
     pronom: 'ASM/NASM'
     description: null
     role: 'Member'
     is_banned: false
+    post_count: 3
 
   member10:
     name: 'Napstablook'
@@ -125,3 +134,4 @@ items:
     description: "La vie n'a pas de sens, autant se faire marcher dessus \n Sinon, Visual Basic c'est fun."
     role: 'Member'
     is_banned: false
+    post_count: 7
