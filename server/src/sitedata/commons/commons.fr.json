@@ -1,0 +1,213 @@
+{
+	"logo": {
+		"hover": {
+			"name": "Nom du logo en survol",
+			"content": "Logo du site"
+		},
+		"alt": {
+			"name": "Texte de remplacement du logo",
+			"content": "Deux chevrons formant les lettres D et V"
+		}
+	},
+	"buttons": {
+		"backButton": {
+			"text": {
+				"name": "Texte du bouton retour",
+				"content": "Retour"
+			},
+			"hover": {
+				"name": "Texte du bouton retour de survol",
+				"content": "Revenir à la page précédente"
+			}
+		},
+		"cancelButton": {
+			"text": {
+				"name": "Texte du bouton d'annulation",
+				"content": "Annuler"
+			},
+			"hover": {
+				"name": "Texte du bouton d'annulation de survol",
+				"content": "Annuler les choix"
+			}
+		},
+		"confirmButton": {
+			"text": {
+				"name": "Texte du bouton de confirmation",
+				"content": "Confirmer"
+			},
+			"hover": {
+				"name": "Texte du bouton de confirmation de survol",
+				"content": "Confirmer les choix"
+			}
+		}
+	},
+	"hypertexts": {
+		"contact": {
+			"text": {
+				"name": "Texte d'accès à la page contact",
+				"content": "Contact"
+			},
+			"hover": {
+				"name": "Texte de la page contact de survol",
+				"content": "Contacter l'équipe"
+			}
+		},
+		"termsOfUse": {
+			"text": {
+				"name": "Texte d'accès à la des conditions d'utilisation",
+				"content": "Conditions d'utilisation"
+			},
+			"hover": {
+				"name": "Texte de la page des conditions d'utilisation de survol",
+				"content": "Ouvrir les conditions d'utilisation"
+			}
+		},
+		"legalNotices": {
+			"text": {
+				"name": "Texte d'accès à la page des mentions légales",
+				"content": "Mentions légales"
+			},
+			"hover": {
+				"name": "Texte de la page des mentions légales de survol",
+				"content": "Ouvrir les mentions légales"
+			}
+		},
+		"login": {
+			"text": {
+				"name": "Texte d'accès à la connexion",
+				"content": "Connexion"
+			},
+			"hover": {
+				"name": "Texte de connexion de survol",
+				"content": "Se connecter"
+			}
+		},
+		"profile": {
+			"text": {
+				"name": "Texte d'accès au profil",
+				"content": "Mon profil"
+			},
+			"hover": {
+				"name": "Texte d'accès au profil de survol",
+				"content": "Ouvrir mon profil"
+			}
+		}
+	},
+	"sections": {
+		"topic": {
+			"main": {
+				"name": "Nom de la section d'échanges de sujets spécifiques",
+				"content": "Forum"
+			},
+			"element": {
+				"name": "Nom d'un élément d'échanges de sujets spécifiques",
+				"content": "Poste"
+			}
+		},
+		"question": {
+			"main": {
+				"name": "Nom de la section d'aide entre utilisateurs",
+				"content": "Questions"
+			},
+			"element": {
+				"name": "Nom d'un élément d'aide entre utilisateurs",
+				"content": "Question"
+			},
+		},
+		"chat": {
+			"main": {
+				"name": "Nom de la section de messagerie instantanée",
+				"content": "Chats"
+			}
+		},
+		"favorite": {
+			"main": {
+				"name": "Nom de la section de contenus sauvegardés",
+				"content": "Favoris"
+			},
+			"element": {
+				"name": "Nom d'un élément des contenus sauvegardés",
+				"content": "Favori"
+			}
+		}
+	},
+	"publications": {
+		"publishDatePrefix": {
+			"name": "Texte précédant la date d'une publication",
+			"content": "Publié le"
+		},
+		"numberOfResponses": {
+			"name": "Texte précédant le nombre de réponses",
+			"content": "Nombre de réponses"
+		},
+		"lastResponseDatePrefix": {
+			"name": "Texte précédant la date de la dernière réponse d'une publication",
+			"content": "Dernière réponse le"
+		},
+		"favorite": {
+			"add": {
+				"hover": {
+					"name": "Texte d'ajout aux favoris de survol",
+					"content": "Ajouter aux favoris"
+				}
+			},
+			"remove": {
+				"hover": {
+					"name": "Texte de suppression des favoris de survol",
+					"content": "Retirer des favoris"
+				}
+			}
+		}
+	},
+	"searching": {
+		"searchBar": {
+			"text": {
+				"name": "Texte par défaut d'un champ de recherche",
+				"content": "Recherche par mots clefs"
+			}
+		},
+		"tagFilter": {
+			"text": {
+				"name": "Texte de l'onglet de filtre par tags",
+				"content": "Filter par Tags"
+			}
+		},
+		"sortFilter": {
+			"text": {
+				"name": "Texte de l'onglet de tri",
+				"content": "Trier par"
+			},
+			"filters": {
+				"mostRecent": {
+					"name": "Nom du tri par date récente",
+					"content": "Les plus récents"
+				}
+			}
+		}
+	},
+	"pagination": {
+		"resultsOutOf": {
+			"name": "Texte de nombre de résultats",
+			"content": "résultats sur"
+		},
+		"pagesPrefix": {
+			"name": "Texte précédant la page actuelle sur le nombre total",
+			"content": "Page"
+		}
+	},
+	"tagsFamilies": {
+		"languages": {
+			"name": "Nom de la famille de tags des langages",
+			"content": "Langages"
+		},
+		"environments": {
+			"name": "Nom de la famille de tags des environnements",
+			"content": "Environnements"
+		},
+		"technologies": {
+			"name": "Nom de la famille de tags des technologies",
+			"content": "Technologies"
+		}
+	}
+}
+
