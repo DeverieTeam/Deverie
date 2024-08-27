@@ -6,10 +6,10 @@ export class ApiService {
 
 	getCommons(params: {lang: string, posts: string}) {
 		if (params.lang !== 'default') {
-			let currentLang = {};
+			let currentLangData: any;
 			switch (params.lang) {
 				case 'fr':
-					currentLang = commonsFr;
+					currentLangData = commonsFr;
 					break;
 				default:
 					return ({
@@ -20,13 +20,13 @@ export class ApiService {
 					break;
 			}
 			if (params.posts == 'true') {
-				return (currentLang);
+				return (currentLangData);
 			} else {
 				return ({
-					'logo': currentLang.logo,
-					'buttons': currentLang.buttons,
-					'hypertexts': currentLang.hypertexts,
-					'sections': currentLang.sections
+					'logo': currentLangData.logo,
+					'buttons': currentLangData.buttons,
+					'hypertexts': currentLangData.hypertexts,
+					'sections': currentLangData.sections
 				});
 			}
 		} else if (params.lang === 'default') {
