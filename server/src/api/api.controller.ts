@@ -6,7 +6,10 @@ export class ApiController {
 	constructor(private readonly apiService: ApiService) {}
 	
 	@Get('/commons')
-	getCommonsWebContent(@Query('lang') lang, @Query('posts') posts) {
+	getCommonsWebContent(
+		@Query('lang') lang: string, 
+		@Query('posts') posts: string
+	){
 		if (lang == undefined) {
 			lang = 'default';
 		}
@@ -17,7 +20,9 @@ export class ApiController {
 	}
 
 	@Get('/homepage')
-	getHomepageWebContent(@Query('lang') lang) {
+	getHomepageWebContent(
+		@Query('lang') lang: string
+	){
 		if (lang == undefined) {
 			lang = 'default';
 		}
@@ -25,7 +30,9 @@ export class ApiController {
 	}
 
 	@Get('/topicpage')
-	getTopicPageWebContent(@Query('lang') lang) {
+	getTopicPageWebContent(
+		@Query('lang') lang: string
+	){
 		if (lang == undefined) {
 			lang = 'default';
 		}

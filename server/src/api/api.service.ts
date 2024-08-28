@@ -1,17 +1,17 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import * as commonsFr from '../sitedata/commons/commons.fr.json';
 import * as homepageFr from '../sitedata/homepage/homepage.fr.json';
 import * as topicpageFr from '../sitedata/topicpage/topicpage.fr.json';
 
-const languageNotHandled: {
-							message: string,
-							error: string,
-							statusCode: number
-						} = {
-							message: 'Language not handled',
-							error: 'Not Found',
-							statusCode: 404
-						}
+const languageNotHandled = () => {
+	throw new HttpException({
+		message: 'Language not handled',
+		error: 'Not Found',
+		statusCode: HttpStatus.NOT_FOUND
+	}, HttpStatus.NOT_FOUND, {
+		cause: 'Language not handled'
+	});
+}
 
 @Injectable()
 export class ApiService {
@@ -24,7 +24,7 @@ export class ApiService {
 					currentLangData = commonsFr;
 					break;
 				default:
-					return (languageNotHandled);
+					languageNotHandled();
 					break;
 			}
 			if (params.posts == 'true') {
@@ -67,7 +67,7 @@ export class ApiService {
 					currentLangData = homepageFr;
 					break;
 				default:
-					return (languageNotHandled);
+					languageNotHandled();
 					break;
 			}
 			return (currentLangData);
@@ -86,7 +86,7 @@ export class ApiService {
 				currentLangData = topicpageFr;
 				break;
 			default:
-				return (languageNotHandled);
+				languageNotHandled();
 				break;
 			}
 			return (currentLangData);
