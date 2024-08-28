@@ -1,0 +1,22 @@
+import { Post } from '../../post/post.entity/post.entity';
+import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
+
+export enum TagFamily {
+  LANGUAGE = 'Language',
+  ENVIRONMENT = 'Environment',
+  TECHNOLOGY = 'Technology',
+}
+
+@Entity()
+export class Tag {
+  @PrimaryGeneratedColumn()
+  id: number;
+  @Column({ type: 'varchar', length: 100 })
+  name: string;
+  @Column({ type: 'varchar', length: 255 })
+  icon: string;
+  @Column({ type: 'enum', enum: TagFamily })
+  family: TagFamily;
+  @ManyToMany(() => Post, (post) => post.tags)
+  posts: Post[];
+}
