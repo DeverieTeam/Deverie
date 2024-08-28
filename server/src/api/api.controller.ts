@@ -6,13 +6,21 @@ export class ApiController {
 	constructor(private readonly apiService: ApiService) {}
 	
 	@Get('/commons')
-	getCommons(@Query('lang') lang, @Query('posts') posts) {
+	getCommonsWebContent(@Query('lang') lang, @Query('posts') posts) {
 		if (lang == undefined) {
 			lang = 'default';
 		}
 		if (posts == undefined) {
 			posts = 'default';
 		}
-		return this.apiService.getCommons({lang: lang.toLowerCase(), posts: posts.toLowerCase()});
+		return this.apiService.getCommonsWebContent({lang: lang.toLowerCase(), posts: posts.toLowerCase()});
+	}
+
+	@Get('/homepage')
+	getHomepageWebContent(@Query('lang') lang) {
+		if (lang == undefined) {
+			lang = 'default';
+		}
+		return this.apiService.getHomepageWebContent({lang: lang.toLowerCase()});
 	}
 }

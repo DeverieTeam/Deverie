@@ -1,10 +1,21 @@
 import { Injectable } from '@nestjs/common';
 import * as commonsFr from '../sitedata/commons/commons.fr.json';
+import * as homepageFr from '../sitedata/homepage/homepage.fr.json';
+
+const languageNotHandled: {
+							message: string,
+							error: string,
+							statusCode: number
+						} = {
+							message: 'Language not handled',
+							error: 'Not Found',
+							statusCode: 404
+						}
 
 @Injectable()
 export class ApiService {
 
-	getCommons(params: {lang: string, posts: string}) {
+	getCommonsWebContent(params: {lang: string, posts: string}) {
 		if (params.lang !== 'default') {
 			let currentLangData: any;
 			switch (params.lang) {
@@ -12,11 +23,7 @@ export class ApiService {
 					currentLangData = commonsFr;
 					break;
 				default:
-					return ({
-						'message': 'Language not handled',
-						'error': 'Not Found',
-						'statusCode': 404
-					});
+					return (languageNotHandled);
 					break;
 			}
 			if (params.posts == 'true') {
@@ -29,7 +36,7 @@ export class ApiService {
 					'sections': currentLangData.sections
 				});
 			}
-		} else if (params.lang === 'default') {
+		} else {
 			switch (params.posts) {
 				case 'true':
 					return ({
@@ -48,6 +55,25 @@ export class ApiService {
 					});
 					break;
 			}
+		}
+	}
+
+	getHomepageWebContent(params: {lang: string}) {
+		if (params.lang !== 'default') {
+			let currentLangData: any;
+			switch(params.lang) {
+				case 'fr':
+					currentLangData = homepageFr;
+					break;
+				default:
+					return (languageNotHandled);
+					break;
+			}
+			return (currentLangData);
+		} else {
+			return ({
+				'fr': homepageFr
+			});
 		}
 	}
 }
