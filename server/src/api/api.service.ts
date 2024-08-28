@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import * as commonsFr from '../sitedata/commons/commons.fr.json';
 import * as homepageFr from '../sitedata/homepage/homepage.fr.json';
+import * as topicpageFr from '../sitedata/topicpage/topicpage.fr.json';
 
 const languageNotHandled: {
 							message: string,
@@ -73,6 +74,25 @@ export class ApiService {
 		} else {
 			return ({
 				'fr': homepageFr
+			});
+		}
+	}
+
+	getTopicPageWebContent(params: {lang: string}) {
+		if (params.lang !== 'default') {
+			let currentLangData: any;
+			switch(params.lang) {
+			case 'fr':
+				currentLangData = topicpageFr;
+				break;
+			default:
+				return (languageNotHandled);
+				break;
+			}
+			return (currentLangData);
+		} else {
+			return ({
+				'fr': topicpageFr
 			});
 		}
 	}

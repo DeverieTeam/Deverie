@@ -23,4 +23,12 @@ export class ApiController {
 		}
 		return this.apiService.getHomepageWebContent({lang: lang.toLowerCase()});
 	}
+
+	@Get('/topicpage')
+	getTopicPageWebContent(@Query('lang') lang) {
+		if (lang == undefined) {
+			lang = 'default';
+		}
+		return this.apiService.getTopicPageWebContent({lang: lang.toLowerCase()});
+	}
 }
