@@ -11,6 +11,8 @@ items:
     downvote: null
     modification_date: null
     modification_author: null
+    replies_count: 2
+    last_message_date: '2024, 6, 22'
     tags:
       - '@tag3'
       - '@tag11'
@@ -26,6 +28,8 @@ items:
     downvote: null
     modification_date: '2024, 7, 3'
     modification_author: '@member4'
+    replies_count: 3
+    last_message_date: '2024, 8, 5'
     tags:
       - '@tag7'
 
@@ -66,6 +70,9 @@ items:
     downvote: null
     modification_date: null
     modification_author: null
+    is_readable: false
+    replies_count: 1
+    last_message_date: '2024, 6, 23'
     tags:
       - '@tag11'
       - '@tag1'
@@ -95,11 +102,12 @@ items:
     downvote: null
     modification_date: null
     modification_author: null
+    is_readable: false
     reply_to: '@post1'
 
   post8:
     author: '@member3'
-    title: 'null'
+    title: null
     content: 'Ouais, moi non plus'
     type: 'Comment'
     creation_date: '2024, 6, 23'
@@ -125,7 +133,8 @@ items:
 
   post10:
     author: '@member6'
-    title: "Plongez dans l'univers fascinant de la programmation avec notre guide complet : découvrez les langages incontournables, les meilleures pratiques de codage, des astuces pour débugger efficacement et comment contribuer à des projets open source. Transformez vos compétences et devenez un développeur recherché"
+    title: "Plongez dans l'univers fascinant de la programmation avec notre guide complet : découvrez les langages incontournables, les meilleures pratiques de codage, des astuces pour débugger efficacement et comment contribuer à des projets open source."
+    content: ''
     type: 'Topic'
     creation_date: '2024, 2, 2'
     emergency: null
@@ -133,12 +142,14 @@ items:
     downvote: null
     modification_date: null
     modification_author: null
+    last_message_date: '2024, 2, 2'
     tags:
       - '@tag1'
 
   post11:
     author: '@member9'
     title: "Quelqu'un pourrait-il me dire comment faire pour être organisé dans son code ? "
+    content: ''
     type: 'Topic'
     creation_date: '2024, 2, 2'
     emergency: null
@@ -146,6 +157,8 @@ items:
     downvote: null
     modification_date: null
     modification_author: null
+    replies_count: 1
+    last_message_date: '2024, 4, 10'
     tags:
       - '@tag1'
       - '@tag2'
@@ -153,6 +166,7 @@ items:
   post12:
     author: '@member10'
     title: "Oui, le développement c'est trop cool"
+    content: ''
     type: 'Topic'
     creation_date: '2024, 8, 14'
     emergency: null
@@ -160,6 +174,8 @@ items:
     downvote: null
     modification_date: null
     modification_author: null
+    replies_count: 1
+    last_message_date: '2024, 8, 15'
     tags:
       - '@tag1'
       - '@tag2'
@@ -169,6 +185,7 @@ items:
   post13:
     author: '@member3'
     title: 'Comment faire pour apprendre le développement ?'
+    content: ''
     type: 'Topic'
     creation_date: '2024, 8, 20'
     emergency: null
@@ -176,14 +193,17 @@ items:
     downvote: null
     modification_date: null
     modification_author: null
+    replies_count: 1
+    last_message_date: '2024, 8, 22'
     tags:
-      - '@tag 1'
-      - '@tag 2'
-      - '@tag 11'
+      - '@tag1'
+      - '@tag2'
+      - '@tag11'
 
   post14:
     author: '@member2'
     title: 'Est-ce que python est utile ? Ou faut-il commencer par du développement web ? Je ne sais pas par où commencer...'
+    content: ''
     type: 'Question'
     creation_date: '2024, 1, 22'
     emergency: null
@@ -191,12 +211,15 @@ items:
     downvote: null
     modification_date: null
     modification_author: null
+    replies_count: 1
+    last_message_date: '2024, 2, 16'
     tags:
       - '@tag3'
 
   post15:
     author: '@member8'
     title: "Je veux faire du développement applicatif, comment je pourrais faire pour continuer d'apprendre alors que je suis en formation ? "
+    content: ''
     type: 'Topic'
     creation_date: '2024, 4, 12'
     emergency: null
@@ -204,12 +227,15 @@ items:
     downvote: null
     modification_date: null
     modification_author: null
+    is_readable: false
+    last_message_date: '2024, 4, 12'
     tags:
       - '@tag1'
 
   post16:
-    author: '@member 10'
+    author: '@member10'
     title: "Je voudrais faire appel à une API mais les données ne veulent pas s'afficher !"
+    content: ''
     type: 'Topic'
     creation_date: '2024, 1, 4'
     emergency: null
@@ -217,6 +243,8 @@ items:
     downvote: null
     modification_date: null
     modification_author: null
+    replies_count: 2
+    last_message_date: '2024, 8, 21'
     tags:
       - '@tag11'
       - '@tag2'
@@ -224,6 +252,7 @@ items:
   post17:
     author: '@member10'
     title: "J'ai fait mon site web, mais je ne sais pas comment faire pour le mettre en ligne... Est-ce que quelqu'un pourrais me guider ?"
+    content: ''
     type: 'Topic'
     creation_date: '2024, 1, 20'
     emergency: null
@@ -231,12 +260,15 @@ items:
     downvote: null
     modification_date: null
     modification_author: null
+    replies_count: 1
+    last_message_date: '2024, 5, 21'
     tags:
       - '@tag1'
 
   post18:
     author: '@member5'
     title: "Je suis en autoformation et j'aime la programmation, mais je ne sais pas comment faire un site web et le mettre en ligne"
+    content: ''
     type: 'Topic'
     creation_date: '2024, 2, 25'
     emergency: null
@@ -244,12 +276,15 @@ items:
     downvote: null
     modification_date: null
     modification_author: null
+    replies_count: 1
+    last_message_date: '2024, 5, 20'
     tags:
       - '@tag1'
 
   post19:
     author: '@member4'
     title: 'Est-ce que le No Code est nocif pour la santé ?'
+    content: ''
     type: 'Question'
     creation_date: '2024, 2, 15'
     emergency: null
@@ -257,6 +292,8 @@ items:
     downvote: null
     modification_date: null
     modification_author: null
+    replies_count: 2
+    last_message_date: '2024, 5, 30'
     tags:
       - '@tag2'
 
@@ -336,6 +373,7 @@ items:
     downvote: null
     modification_date: null
     modification_author: null
+    is_readable: false
     reply_to: '@post16'
 
   post26:
@@ -362,7 +400,7 @@ items:
     downvote: null
     modification_date: null
     modification_author: null
-    reply: '@post12'
+    reply_to: '@post12'
 
   post28:
     author: '@member9'
@@ -388,7 +426,7 @@ items:
     downvote: null
     modification_date: null
     modification_author: null
-    reply: '@post14'
+    reply_to: '@post14'
 
   post30:
     author: '@member10'
@@ -401,4 +439,4 @@ items:
     downvote: null
     modification_date: null
     modification_author: null
-    reply: '@post11'
+    reply_to: '@post11'

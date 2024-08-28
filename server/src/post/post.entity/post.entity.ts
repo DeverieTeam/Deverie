@@ -40,10 +40,14 @@ export class Post {
   downvote: number;
   @Column({ type: 'bool', default: true })
   is_opened: boolean;
-  @UpdateDateColumn({ type: 'date' })
+  @UpdateDateColumn({ type: 'date', nullable: true })
   modification_date: Date;
   @Column({ type: 'bool', default: true })
   is_readable: boolean;
+  @Column({ type: 'int', default: 0 })
+  replies_count: number;
+  @CreateDateColumn({ type: 'date' })
+  last_message_date: Date;
   @OneToMany(() => Rating, (rating) => rating.rated_post)
   ratings: Rating[];
   @ManyToMany(() => Member, (member) => member.favourites)

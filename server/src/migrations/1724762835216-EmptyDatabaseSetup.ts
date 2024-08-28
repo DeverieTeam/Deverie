@@ -1,7 +1,7 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
-export class EmptyDatabaseSetup1724505531149 implements MigrationInterface {
-  name = 'EmptyDatabaseSetup1724505531149';
+export class EmptyDatabaseSetup1724762835216 implements MigrationInterface {
+  name = 'EmptyDatabaseSetup1724762835216';
 
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(
@@ -26,7 +26,7 @@ export class EmptyDatabaseSetup1724505531149 implements MigrationInterface {
       `CREATE TYPE "public"."post_type_enum" AS ENUM('Topic', 'Question', 'Comment', 'Answer')`,
     );
     await queryRunner.query(
-      `CREATE TABLE "post" ("id" SERIAL NOT NULL, "title" character varying(255), "creation_date" date NOT NULL DEFAULT now(), "content" text NOT NULL, "type" "public"."post_type_enum" NOT NULL, "emergency" integer, "upvote" integer DEFAULT '0', "downvote" integer DEFAULT '0', "is_opened" boolean NOT NULL DEFAULT true, "modification_date" date NOT NULL DEFAULT now(), "is_readable" boolean NOT NULL DEFAULT true, "authorId" integer, "modificationAuthorId" integer, "replyToId" integer, CONSTRAINT "UQ_e28aa0c4114146bfb1567bfa9ac" UNIQUE ("title"), CONSTRAINT "PK_be5fda3aac270b134ff9c21cdee" PRIMARY KEY ("id"))`,
+      `CREATE TABLE "post" ("id" SERIAL NOT NULL, "title" character varying(255), "creation_date" date NOT NULL DEFAULT now(), "content" text NOT NULL, "type" "public"."post_type_enum" NOT NULL, "emergency" integer, "upvote" integer DEFAULT '0', "downvote" integer DEFAULT '0', "is_opened" boolean NOT NULL DEFAULT true, "modification_date" date DEFAULT now(), "is_readable" boolean NOT NULL DEFAULT true, "replies_count" integer NOT NULL DEFAULT '0', "last_message_date" date NOT NULL DEFAULT now(), "authorId" integer, "modificationAuthorId" integer, "replyToId" integer, CONSTRAINT "UQ_e28aa0c4114146bfb1567bfa9ac" UNIQUE ("title"), CONSTRAINT "PK_be5fda3aac270b134ff9c21cdee" PRIMARY KEY ("id"))`,
     );
     await queryRunner.query(
       `CREATE TYPE "public"."tag_family_enum" AS ENUM('Language', 'Environment', 'Technology')`,
