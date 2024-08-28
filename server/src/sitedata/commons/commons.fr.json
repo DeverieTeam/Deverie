@@ -181,6 +181,18 @@
 				"mostRecent": {
 					"name": "Nom du tri par date récente",
 					"content": "Les plus récents"
+				},
+				"lessRecent": {
+					"name": "Nom du tri par date anciennes",
+					"content": "Les plus anciens"
+				},
+				"mostPopular": {
+					"name": "Nom du tri par les plus populaires",
+					"content": "Les plus populaires"
+				},
+				"lessPopular": {
+					"name": "Nom du tri par les moins populaires",
+					"content": "Les plus discrets"
 				}
 			}
 		}
