@@ -8,6 +8,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { databaseConfig } from './config/database.config';
 import { RatingModule } from './rating/rating.module';
+import { ApiController } from './api/api.controller';
+import { ApiService } from './api/api.service';
 
 @Module({
   imports: [
@@ -21,7 +23,7 @@ import { RatingModule } from './rating/rating.module';
     PostModule,
     RatingModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [AppController, ApiController],
+  providers: [AppService, ApiService]
 })
 export class AppModule {}
