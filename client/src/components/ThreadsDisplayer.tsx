@@ -19,10 +19,7 @@ export default function ThreadsDisplayer({ thread }: Props) {
   }, [thread]);
 
   return (
-    <div className="w-full p-4 text-center flex flex-col">
-      <p className="pb-4 text-2xl font-semibold">
-        Forums et Questions {thread}
-      </p>
+    <div className="w-full px-[5%] py-8 gap-4 flex flex-col">
       {data && data.map((item) => <ThreadsRow key={item.id} post={item} />)}
     </div>
   );

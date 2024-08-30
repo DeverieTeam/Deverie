@@ -6,7 +6,7 @@ export const fakeData1 = [
     tags: [
       {
         id: 1,
-        name: "",
+        name: "Typescript",
         icon: "",
       },
     ],
@@ -23,12 +23,12 @@ export const fakeData1 = [
     tags: [
       {
         id: 1,
-        name: "",
+        name: "Typescript",
         icon: "",
       },
       {
         id: 2,
-        name: "",
+        name: "Typescript",
         icon: "",
       },
     ],
@@ -44,17 +44,17 @@ export const fakeData1 = [
     tags: [
       {
         id: 1,
-        name: "",
+        name: "Typescript",
         icon: "",
       },
       {
         id: 2,
-        name: "",
+        name: "Typescript",
         icon: "",
       },
       {
         id: 3,
-        name: "",
+        name: "Typescript",
         icon: "",
       },
     ],
@@ -70,22 +70,22 @@ export const fakeData1 = [
     tags: [
       {
         id: 1,
-        name: "",
+        name: "Typescript",
         icon: "",
       },
       {
         id: 2,
-        name: "",
+        name: "Typescript",
         icon: "",
       },
       {
         id: 3,
-        name: "",
+        name: "Typescript",
         icon: "",
       },
       {
         id: 4,
-        name: "",
+        name: "Typescript",
         icon: "",
       },
     ],
@@ -101,12 +101,12 @@ export const fakeData1 = [
     tags: [
       {
         id: 1,
-        name: "",
+        name: "Typescript",
         icon: "",
       },
       {
         id: 2,
-        name: "",
+        name: "Typescript",
         icon: "",
       },
     ],
@@ -122,7 +122,7 @@ export const fakeData1 = [
     tags: [
       {
         id: 1,
-        name: "",
+        name: "Typescript",
         icon: "",
       },
     ],
@@ -138,17 +138,17 @@ export const fakeData1 = [
     tags: [
       {
         id: 1,
-        name: "",
+        name: "Typescript",
         icon: "",
       },
       {
         id: 2,
-        name: "",
+        name: "Typescript",
         icon: "",
       },
       {
         id: 3,
-        name: "",
+        name: "Typescript",
         icon: "",
       },
     ],
@@ -167,7 +167,7 @@ export const fakeData2 = [
     tags: [
       {
         id: 1,
-        name: "",
+        name: "Typescript",
         icon: "",
       },
     ],
@@ -183,7 +183,7 @@ export const fakeData2 = [
     tags: [
       {
         id: 1,
-        name: "",
+        name: "Typescript",
         icon: "",
       },
     ],
@@ -199,22 +199,22 @@ export const fakeData2 = [
     tags: [
       {
         id: 1,
-        name: "",
+        name: "Typescript",
         icon: "",
       },
       {
         id: 2,
-        name: "",
+        name: "Typescript",
         icon: "",
       },
       {
         id: 3,
-        name: "",
+        name: "Typescript",
         icon: "",
       },
       {
         id: 4,
-        name: "",
+        name: "Typescript",
         icon: "",
       },
     ],
@@ -231,17 +231,17 @@ export const fakeData2 = [
     tags: [
       {
         id: 1,
-        name: "",
+        name: "Typescript",
         icon: "",
       },
       {
         id: 2,
-        name: "",
+        name: "Typescript",
         icon: "",
       },
       {
         id: 3,
-        name: "",
+        name: "Typescript",
         icon: "",
       },
     ],
@@ -257,22 +257,22 @@ export const fakeData2 = [
     tags: [
       {
         id: 1,
-        name: "",
+        name: "Typescript",
         icon: "",
       },
       {
         id: 2,
-        name: "",
+        name: "Typescript",
         icon: "",
       },
       {
         id: 3,
-        name: "",
+        name: "Typescript",
         icon: "",
       },
       {
         id: 4,
-        name: "",
+        name: "Typescript",
         icon: "",
       },
     ],
@@ -288,12 +288,12 @@ export const fakeData2 = [
     tags: [
       {
         id: 1,
-        name: "",
+        name: "Typescript",
         icon: "",
       },
       {
         id: 2,
-        name: "",
+        name: "Typescript",
         icon: "",
       },
     ],
@@ -309,17 +309,17 @@ export const fakeData2 = [
     tags: [
       {
         id: 1,
-        name: "",
+        name: "Typescript",
         icon: "",
       },
       {
         id: 2,
-        name: "",
+        name: "Typescript",
         icon: "",
       },
       {
         id: 3,
-        name: "",
+        name: "Typescript",
         icon: "",
       },
     ],

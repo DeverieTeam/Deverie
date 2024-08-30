@@ -1,21 +1,67 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export default function Header() {
+  const { pathname } = useLocation();
+
   return (
-    <div className="bg-neutral-50 w-full h-24 lg:h-16 gap-4 lg:gap-0 fixed top-0 z-10 lg:shadow-sm flex">
-      <div className="pl-2 bg-sky-100 flex-1 rounded-br-[90px] lg:rounded-br-none shadow-sm lg:shadow-none flex">
-        <Link to="/" className="flex">
-          <img className="my-auto h-16 lg:h-12 w-16 bg-neutral-100" src="" />
-          <p className="pl-4 my-auto text-3xl lg:text-4xl font-bold text-sky-600">
-            Deverie
-          </p>
+    <div className="bg-neutral-50 w-full h-16 justify-between fixed top-0 z-10 shadow-sm shadow-neutral-4OO flex">
+      <Link
+        to="/"
+        className="pl-2 bg-indigo-500 w-60 rounded-br-[90px] shadow-sm shadow-indigo-800 flex"
+      >
+        <img className="my-auto h-12 w-40 bg-neutral-100" src="" />
+      </Link>
+
+      <div className="bg-indigo-500 rounded-b-[90px] px-[5%] w-[50%] xl:w-[60%] shadow-sm shadow-indigo-800 hidden md:flex">
+        <Link
+          to="/topics"
+          className={
+            pathname === "/topics"
+              ? "m-auto px-4 h-10 gap-2 xl:px-6 xl:h-12 bg-indigo-600 text-white rounded-full shadow-sm shadow-indigo-900 flex"
+              : "m-auto px-4 h-10 gap-2 xl:px-6 xl:h-12 bg-indigo-400 hover:bg-indigo-600 hover:text-white rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900 flex"
+          }
+        >
+          <img
+            className="m-auto h-8 w-8 bg-neutral-100 hidden xl:flex"
+            src=""
+          />
+          <p className="m-auto text-lg xl:text-3xl font-semibold">Forums</p>
+        </Link>
+        <Link
+          to="/questions"
+          className={
+            pathname === "/questions"
+              ? "m-auto px-4 h-10 gap-2 xl:px-6 xl:h-12 bg-indigo-600 text-white rounded-full shadow-md shadow-indigo-900 flex"
+              : "m-auto px-4 h-10 gap-2 xl:px-6 xl:h-12 bg-indigo-400 hover:bg-indigo-600 hover:text-white rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900 flex"
+          }
+        >
+          <img
+            className="m-auto h-8 w-8 bg-neutral-100 hidden xl:flex"
+            src=""
+          />
+          <p className="m-auto text-lg xl:text-3xl font-semibold">Questions</p>
+        </Link>
+        <Link
+          to="/chats"
+          className={
+            pathname === "/chats"
+              ? "m-auto px-4 h-10 gap-2 xl:px-6 xl:h-12 bg-indigo-600 text-white rounded-full shadow-lg shadow-indigo-900 flex"
+              : "m-auto px-4 h-10 gap-2 xl:px-6 xl:h-12 bg-indigo-400 hover:bg-indigo-600 hover:text-white rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900 flex"
+          }
+        >
+          <img
+            className="m-auto h-8 w-8 bg-neutral-100 hidden xl:flex"
+            src=""
+          />
+          <p className="m-auto text-lg xl:text-3xl font-semibold">Chats</p>
         </Link>
       </div>
-      <div className="bg-transparent lg:bg-sky-100 w-24 flex">
-        <div className="m-auto h-20 lg:h-12 w-20 lg:w-12 bg-neutral-100 rounded-full shadow-sm relative flex">
-          <p className="m-auto text-sm lg:text-lg lg:absolute lg:top-1/2 lg:-translate-y-1/2 lg:-translate-x-28">
-            Connexion
-          </p>
+      <div className="bg-transparent w-[72px] flex">
+        <div className="m-auto h-14 w-14 bg-indigo-400 hover:bg-indigo-600 rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900 relative flex">
+          <img
+            className="m-auto h-12 w-12 rounded-full bg-neutral-100"
+            src=""
+          />
         </div>
       </div>
     </div>
