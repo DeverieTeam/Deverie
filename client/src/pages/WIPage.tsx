@@ -18,7 +18,7 @@ export default function WIPage() {
       </p>
       <div className="py-8">
         <Link
-          className="bg-sky-100 text-xl lg:text-3xl font-semibold py-2 px-6 rounded-lg shadow-sm"
+          className="bg-indigo-400 hover:bg-indigo-600 text-xl lg:text-3xl hover:text-white font-semibold py-2 px-6 rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900"
           to="/">
           Retour à la Page d'Accueil
         </Link>

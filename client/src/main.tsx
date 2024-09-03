@@ -4,9 +4,9 @@ import App from "./App.tsx";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/HomePage.tsx";
-import TopicPage from "./pages/TopicPage.tsx";
 import PageNotFound404 from "./pages/PageNotFound404.tsx";
 import WIPage from "./pages/WIPage.tsx";
+import ThreadsPage from "./pages/ThreadsPage.tsx";
 
 const router = createBrowserRouter([
   {
@@ -19,11 +19,11 @@ const router = createBrowserRouter([
       },
       {
         path: "topics",
-        element: <TopicPage />,
+        element: <ThreadsPage threadType="topics" />,
       },
       {
         path: "questions",
-        element: <WIPage />,
+        element: <ThreadsPage threadType="questions" />,
       },
       {
         path: "chats",
