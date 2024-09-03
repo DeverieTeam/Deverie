@@ -1,3 +1,4 @@
+import { Tag } from '../../tag/tag.entity/tag.entity';
 import { Post } from '../../post/post.entity/post.entity';
 import { Rating } from '../../rating/rating.entity/rating.entity';
 import {
@@ -60,8 +61,6 @@ export class Member {
     default: MemberLanguage.FRENCH,
   })
   language: MemberLanguage;
-  @Column({ type: 'int', default: 0 })
-  post_count: number;
   @OneToMany(() => Rating, (rating) => rating.rater)
   ratings: Rating[];
   @OneToMany(() => Post, (post) => post.author)
@@ -73,4 +72,9 @@ export class Member {
     name: 'favourite',
   })
   favourites: Post[];
+  @ManyToMany(() => Tag, (tag) => tag.is_selected_by)
+  @JoinTable({
+    name: 'member_tag',
+  })
+  selected_tags: Tag[];
 }

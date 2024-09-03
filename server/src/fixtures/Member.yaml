@@ -12,7 +12,6 @@ items:
     role: 'Administrator'
     is_banned: false
     displayed_name: null
-    post_count: 2
 
   member2:
     name: 'emixam113'
@@ -26,7 +25,6 @@ items:
     role: 'Member'
     is_banned: false
     displayed_name: 'maxlamenace03'
-    post_count: 1
 
   member3:
     name: 'TruitosTv'
@@ -40,7 +38,6 @@ items:
     role: 'Moderator'
     is_banned: false
     displayed_name: 'frenchBanane'
-    post_count: 2
 
   member4:
     name: '5p3c7r4l'
@@ -54,7 +51,6 @@ items:
     role: 'Administrator'
     is_banned: false
     displayed_name: 'MHplayer69'
-    post_count: 6
 
   member5:
     name: 'Omicro'
@@ -68,7 +64,6 @@ items:
     role: 'Administrator'
     is_banned: false
     displayed_name: 'megaman_player'
-    post_count: 3
 
   member6:
     name: 'MasterKafey'
@@ -82,7 +77,6 @@ items:
     role: 'Moderator'
     is_banned: false
     displayed_name: 'MasterKafey'
-    post_count: 4
 
   member7:
     name: 'AaroonX'
@@ -95,7 +89,6 @@ items:
     description: "Codez en C pour coder aussi rapide que l'éclair !"
     role: 'Member'
     is_banned: false
-    post_count: 1
 
   member8:
     name: 'dark lord of JAVA'
@@ -108,7 +101,6 @@ items:
     description: 'Java >>> autres langages'
     role: 'Member'
     is_banned: true
-    post_count: 4
 
   member9:
     name: 'Assembly enjoyer'
@@ -121,7 +113,6 @@ items:
     description: null
     role: 'Member'
     is_banned: false
-    post_count: 3
 
   member10:
     name: 'Napstablook'
@@ -134,4 +125,3 @@ items:
     description: "La vie n'a pas de sens, autant se faire marcher dessus \n Sinon, Visual Basic c'est fun."
     role: 'Member'
     is_banned: false
-    post_count: 7

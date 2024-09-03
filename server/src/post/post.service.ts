@@ -10,7 +10,16 @@ export class PostService {
     @InjectRepository(Post) private postRepository: Repository<Post>,
   ) {}
 
-  refinePostData(data: Post[]) {
+  getLastMessageDate(postReplies: Post[]) {
+    return postReplies.sort((a, b) => {
+      return (
+        new Date(b.creation_date).getTime() -
+        new Date(a.creation_date).getTime()
+      );
+    })[0].creation_date;
+  }
+
+  refinePostData(data: Post[], length?: number) {
     const refinedData = [];
     for (const post of data) {
       const refinedTags = [];
@@ -31,11 +40,15 @@ export class PostService {
         tags: refinedTags,
         creation_date: post.creation_date,
         title: post.title,
-        replies_count: post.replies_count,
-        last_message_date: post.last_message_date,
+        replies_count: post.replies.length,
+        last_message_date: this.getLastMessageDate(post.replies),
+        results_length: null,
       };
       if (post.author.displayed_name) {
         refinedPost.author.name = post.author.displayed_name;
+      }
+      if (length) {
+        refinedPost.results_length = length;
       }
       refinedData.push(refinedPost);
     }
@@ -43,29 +56,45 @@ export class PostService {
   }
 
   async getPopularOrRecentPosts(max: number, sort: 'recent' | 'popular') {
-    const query = this.postRepository
-      .createQueryBuilder('post')
-      .innerJoinAndSelect('post.author', 'author')
-      .innerJoinAndSelect('post.tags', 'tags');
-
-    if (sort === 'recent') {
-      query.orderBy('post.last_message_date', 'DESC');
-    } else if (sort === 'popular') {
-      query.orderBy('post.replies_count', 'DESC');
-    } else {
-      throw error;
+    if (max < 1 || max > 20) {
+      max = 10;
     }
 
-    let response = await query.getMany();
+    let response = await this.postRepository
+      .createQueryBuilder('post')
+      .innerJoinAndSelect('post.author', 'author')
+      .innerJoinAndSelect('post.tags', 'tags')
+      .innerJoinAndSelect('post.replies', 'replies')
+      .getMany();
 
-    response = response
+    switch (sort) {
+      case 'popular':
+        response.sort((a, b) => {
+          return b.replies.length - a.replies.length;
+        });
+        break;
+      case 'recent':
+      default:
+        response.sort((a, b) => {
+          return (
+            new Date(this.getLastMessageDate(b.replies)).getTime() -
+            new Date(this.getLastMessageDate(a.replies)).getTime()
+          );
+        });
+        break;
+    }
+
+    const filteredResponse = response
       .filter((post) => post.type === 'Topic' || post.type === 'Question')
       .filter((post) => post.is_readable)
       .filter((post) => !post.author.is_banned);
 
-    const limit = response.slice(0, Math.min(response.length, max));
+    const pagedResponse = filteredResponse.slice(
+      0,
+      Math.min(filteredResponse.length, max),
+    );
 
-    return this.refinePostData(limit);
+    return this.refinePostData(pagedResponse);
   }
 
   async getPostsByType(
@@ -76,31 +105,54 @@ export class PostService {
     search: string = '',
     sort: 'recent' | 'popular' | 'ancient' | 'discreet',
   ) {
+    if (max < 1 || max > 20) {
+      max = 10;
+    }
+
     if (typeof tags === 'string') {
       tags = [tags];
     }
 
     search = search.toUpperCase();
 
-    const query = this.postRepository
+    let response = await this.postRepository
       .createQueryBuilder('post')
       .innerJoinAndSelect('post.author', 'author')
-      .innerJoinAndSelect('post.tags', 'tags');
+      .innerJoinAndSelect('post.tags', 'tags')
+      .innerJoinAndSelect('post.replies', 'replies')
+      .getMany();
 
-    if (sort === 'recent') {
-      query.orderBy('post.last_message_date', 'DESC');
-    } else if (sort === 'popular') {
-      query.orderBy('post.replies_count', 'DESC');
-    } else if (sort === 'ancient') {
-      query.orderBy('post.last_message_date', 'ASC');
-    } else if (sort === 'discreet') {
-      query.orderBy('post.replies_count', 'ASC');
-    } else {
-      throw error;
+    switch (sort) {
+      case 'ancient':
+        response.sort((a, b) => {
+          return (
+            new Date(this.getLastMessageDate(a.replies)).getTime() -
+            new Date(this.getLastMessageDate(b.replies)).getTime()
+          );
+        });
+        break;
+      case 'discreet':
+        response.sort((a, b) => {
+          return a.replies.length - b.replies.length;
+        });
+        break;
+      case 'popular':
+        response.sort((a, b) => {
+          return b.replies.length - a.replies.length;
+        });
+        break;
+      case 'recent':
+      default:
+        response.sort((a, b) => {
+          return (
+            new Date(this.getLastMessageDate(b.replies)).getTime() -
+            new Date(this.getLastMessageDate(a.replies)).getTime()
+          );
+        });
+        break;
     }
-    let response = await query.getMany();
 
-    response = response
+    const filteredResponse = response
       .filter((post) => post.type === type)
       .filter((post) => post.is_readable)
       .filter((post) => !post.author.is_banned)
@@ -119,11 +171,13 @@ export class PostService {
         return false;
       });
 
-    const limit = response.slice(
+    const responseLength = filteredResponse.length;
+
+    const pagedResponse = filteredResponse.slice(
       max * page,
-      Math.min(response.length, max * page + max),
+      Math.min(responseLength, max * page + Number(max)),
     );
 
-    return this.refinePostData(limit);
+    return this.refinePostData(pagedResponse, responseLength);
   }
 }
