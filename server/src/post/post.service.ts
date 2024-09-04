@@ -2,7 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Post } from './post.entity/post.entity';
-import { error } from 'console';
 
 @Injectable()
 export class PostService {
@@ -55,9 +54,10 @@ export class PostService {
     return refinedData;
   }
 
-  async getPopularOrRecentPosts(max: number, sort: 'recent' | 'popular') {
-    if (max < 1 || max > 20) {
-      max = 10;
+  async getPopularOrRecentPosts(max: string, sort: 'recent' | 'popular') {
+    let numMax = parseInt(max);
+    if (numMax < 1 || numMax > 20 || Number.isNaN(numMax)) {
+      numMax = 10;
     }
 
     let response = await this.postRepository
@@ -91,7 +91,7 @@ export class PostService {
 
     const pagedResponse = filteredResponse.slice(
       0,
-      Math.min(filteredResponse.length, max),
+      Math.min(filteredResponse.length, numMax),
     );
 
     return this.refinePostData(pagedResponse);
@@ -99,14 +99,21 @@ export class PostService {
 
   async getPostsByType(
     type: 'Topic' | 'Question',
-    max: number,
-    page: number,
+    max: string,
+    page: string,
     tags: string[] | string = [],
     search: string = '',
     sort: 'recent' | 'popular' | 'ancient' | 'discreet',
   ) {
-    if (max < 1 || max > 20) {
-      max = 10;
+    let numMax = parseInt(max);
+    let numPage = parseInt(page) - 1;
+
+    if (numMax < 1 || numMax > 20 || Number.isNaN(numMax)) {
+      numMax = 10;
+    }
+
+    if (numPage < 0 || Number.isNaN(numPage)) {
+      numPage = 0;
     }
 
     if (typeof tags === 'string') {
@@ -173,9 +180,13 @@ export class PostService {
 
     const responseLength = filteredResponse.length;
 
+    if (numPage > Math.floor(responseLength / numMax)) {
+      numPage = Math.floor(responseLength / numMax);
+    }
+
     const pagedResponse = filteredResponse.slice(
-      max * page,
-      Math.min(responseLength, max * page + Number(max)),
+      numMax * numPage,
+      Math.min(responseLength, numMax * numPage + numMax),
     );
 
     return this.refinePostData(pagedResponse, responseLength);

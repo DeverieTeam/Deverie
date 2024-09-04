@@ -24,6 +24,6 @@ import { ApiService } from './api/api.service';
     RatingModule,
   ],
   controllers: [AppController, ApiController],
-  providers: [AppService, ApiService]
+  providers: [AppService, ApiService],
 })
 export class AppModule {}
