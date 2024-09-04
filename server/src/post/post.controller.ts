@@ -7,8 +7,8 @@ export class PostController {
 
   @Get('homepage')
   async getPostsForHomePage(
-    @Query('max') max: number = 10,
-    @Query('sort') sort: 'recent' | 'popular' = 'recent',
+    @Query('max') max: string = '10',
+    @Query('sort') sort: 'recent' | 'popular',
   ) {
     return this.service.getPopularOrRecentPosts(max, sort);
   }
@@ -16,12 +16,12 @@ export class PostController {
   @Get(':type')
   async getPostsForTheirPage(
     @Param('type') type: 'Topic' | 'Question',
-    @Query('max') max: number = 10,
-    @Query('page') page: number = 0,
+    @Query('max') max: string = '10',
+    @Query('page') page: string = '0',
     @Query('filters') tags: string[],
     @Query('search') search: string,
     @Query('sort')
-    sort: 'recent' | 'popular' | 'ancient' | 'discreet' = 'recent',
+    sort: 'recent' | 'popular' | 'ancient' | 'discreet',
   ) {
     return this.service.getPostsByType(type, max, page, tags, search, sort);
   }

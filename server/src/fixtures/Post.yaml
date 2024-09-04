@@ -11,8 +11,6 @@ items:
     downvote: null
     modification_date: null
     modification_author: null
-    replies_count: 2
-    last_message_date: '2024, 6, 22'
     tags:
       - '@tag3'
       - '@tag11'
@@ -28,8 +26,6 @@ items:
     downvote: null
     modification_date: '2024, 7, 3'
     modification_author: '@member4'
-    replies_count: 3
-    last_message_date: '2024, 8, 5'
     tags:
       - '@tag7'
 
@@ -70,9 +66,6 @@ items:
     downvote: null
     modification_date: null
     modification_author: null
-    is_readable: false
-    replies_count: 1
-    last_message_date: '2024, 6, 23'
     tags:
       - '@tag11'
       - '@tag1'
@@ -102,7 +95,6 @@ items:
     downvote: null
     modification_date: null
     modification_author: null
-    is_readable: false
     reply_to: '@post1'
 
   post8:
@@ -142,7 +134,6 @@ items:
     downvote: null
     modification_date: null
     modification_author: null
-    last_message_date: '2024, 2, 2'
     tags:
       - '@tag1'
 
@@ -157,8 +148,6 @@ items:
     downvote: null
     modification_date: null
     modification_author: null
-    replies_count: 1
-    last_message_date: '2024, 4, 10'
     tags:
       - '@tag1'
       - '@tag2'
@@ -174,8 +163,6 @@ items:
     downvote: null
     modification_date: null
     modification_author: null
-    replies_count: 1
-    last_message_date: '2024, 8, 15'
     tags:
       - '@tag1'
       - '@tag2'
@@ -193,8 +180,6 @@ items:
     downvote: null
     modification_date: null
     modification_author: null
-    replies_count: 1
-    last_message_date: '2024, 8, 22'
     tags:
       - '@tag1'
       - '@tag2'
@@ -211,8 +196,6 @@ items:
     downvote: null
     modification_date: null
     modification_author: null
-    replies_count: 1
-    last_message_date: '2024, 2, 16'
     tags:
       - '@tag3'
 
@@ -227,8 +210,6 @@ items:
     downvote: null
     modification_date: null
     modification_author: null
-    is_readable: false
-    last_message_date: '2024, 4, 12'
     tags:
       - '@tag1'
 
@@ -243,8 +224,6 @@ items:
     downvote: null
     modification_date: null
     modification_author: null
-    replies_count: 2
-    last_message_date: '2024, 8, 21'
     tags:
       - '@tag11'
       - '@tag2'
@@ -260,8 +239,6 @@ items:
     downvote: null
     modification_date: null
     modification_author: null
-    replies_count: 1
-    last_message_date: '2024, 5, 21'
     tags:
       - '@tag1'
 
@@ -276,8 +253,7 @@ items:
     downvote: null
     modification_date: null
     modification_author: null
-    replies_count: 1
-    last_message_date: '2024, 5, 20'
+    is_readable: false
     tags:
       - '@tag1'
 
@@ -292,8 +268,6 @@ items:
     downvote: null
     modification_date: null
     modification_author: null
-    replies_count: 2
-    last_message_date: '2024, 5, 30'
     tags:
       - '@tag2'
 
@@ -373,7 +347,6 @@ items:
     downvote: null
     modification_date: null
     modification_author: null
-    is_readable: false
     reply_to: '@post16'
 
   post26:
