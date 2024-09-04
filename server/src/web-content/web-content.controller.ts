@@ -1,9 +1,9 @@
 import { Param, Query, Controller, Get } from '@nestjs/common';
-import { ApiService } from './api.service';
+import { WebContentService } from './web-content.service';
 
-@Controller('api')
-export class ApiController {
-	constructor(private readonly apiService: ApiService) {}
+@Controller('webcontent')
+export class WebContentController {
+	constructor(private readonly webContentService: WebContentService) {}
 	
 	@Get('/commons')
 	getCommonsWebContent(
@@ -16,7 +16,7 @@ export class ApiController {
 		if (posts == undefined) {
 			posts = 'default';
 		}
-		return this.apiService.getCommonsWebContent({lang: lang.toLowerCase(), posts: posts.toLowerCase()});
+		return this.webContentService.getCommonsWebContent({lang: lang.toLowerCase(), posts: posts.toLowerCase()});
 	}
 
 	@Get('/homepage')
@@ -26,7 +26,7 @@ export class ApiController {
 		if (lang == undefined) {
 			lang = 'default';
 		}
-		return this.apiService.getHomepageWebContent({lang: lang.toLowerCase()});
+		return this.webContentService.getHomepageWebContent({lang: lang.toLowerCase()});
 	}
 
 	@Get('/topicpage')
@@ -36,6 +36,6 @@ export class ApiController {
 		if (lang == undefined) {
 			lang = 'default';
 		}
-		return this.apiService.getTopicPageWebContent({lang: lang.toLowerCase()});
+		return this.webContentService.getTopicPageWebContent({lang: lang.toLowerCase()});
 	}
 }

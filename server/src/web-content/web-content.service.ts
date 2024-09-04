@@ -14,7 +14,7 @@ const languageNotHandled = () => {
 }
 
 @Injectable()
-export class ApiService {
+export class WebContentService {
 
 	getCommonsWebContent(params: {lang: string, posts: string}) {
 		if (params.lang !== 'default') {
