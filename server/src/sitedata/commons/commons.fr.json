@@ -20,6 +20,16 @@
 				"content": "Revenir à la page précédente"
 			}
 		},
+		"quitButton": {
+			"text": {
+				"name": "Texte du bouton quitter",
+				"content": "Quitter"
+			},
+			"hover": {
+				"name": "Texte du bouton quitter de survol",
+				"content": "Fermer la fenêtre"
+			}
+		},
 		"cancelButton": {
 			"text": {
 				"name": "Texte du bouton d'annulation",
@@ -179,20 +189,44 @@
 			},
 			"filters": {
 				"mostRecent": {
-					"name": "Nom du tri par date récente",
-					"content": "Les plus récents"
+					"topic": {
+						"name": "Nom du tri par date récente",
+						"content": "Les plus récents"
+					},
+					"question": {
+						"name": "Nom du tri par date récente",
+						"content": "Les plus récentes"
+					}
 				},
 				"lessRecent": {
-					"name": "Nom du tri par date anciennes",
-					"content": "Les plus anciens"
+					"topic": {
+						"name": "Nom du tri par date anciennes",
+						"content": "Les plus anciens"
+					},
+					"question": {
+						"name": "Nom du tri par date anciennes",
+						"content": "Les plus anciennes"
+					}
 				},
 				"mostPopular": {
-					"name": "Nom du tri par les plus populaires",
-					"content": "Les plus populaires"
+					"topic": {
+						"name": "Nom du tri par les plus populaires",
+						"content": "Les plus populaires"
+					},
+					"question": {
+						"name": "Nom du tri par les plus populaires",
+						"content": "Les plus populaires"
+					}
 				},
 				"lessPopular": {
-					"name": "Nom du tri par les moins populaires",
-					"content": "Les plus discrets"
+					"topic": {
+						"name": "Nom du tri par les moins populaires",
+						"content": "Les plus discrets"
+					},
+					"question": {
+						"name": "Nom du tri par les moins populaires",
+						"content": "Les plus discrètes"
+					}
 				}
 			}
 		}

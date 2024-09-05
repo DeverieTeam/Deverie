@@ -29,13 +29,14 @@ export class WebContentController {
 		return this.webContentService.getHomepageWebContent({lang: lang.toLowerCase()});
 	}
 
-	@Get('/topicpage')
-	getTopicPageWebContent(
+	@Get('/trends/:type')
+	getTrendsWebContent(
+		@Param('type') type: string,
 		@Query('lang') lang: string
 	){
 		if (lang == undefined) {
 			lang = 'default';
 		}
-		return this.webContentService.getTopicPageWebContent({lang: lang.toLowerCase()});
+		return this.webContentService.getTrendsWebContent({type: type.toLowerCase(), lang: lang.toLowerCase()});
 	}
 }

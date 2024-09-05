@@ -1,15 +1,15 @@
 import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import * as commonsFr from '../sitedata/commons/commons.fr.json';
 import * as homepageFr from '../sitedata/homepage/homepage.fr.json';
-import * as topicpageFr from '../sitedata/topicpage/topicpage.fr.json';
+import * as trendsFr from '../sitedata/trends/trends.fr.json';
 
-const languageNotHandled = () => {
+const httpError = (customMessage: string) => {
 	throw new HttpException({
-		message: 'Language not handled',
+		message: customMessage,
 		error: 'Not Found',
 		statusCode: HttpStatus.NOT_FOUND
 	}, HttpStatus.NOT_FOUND, {
-		cause: 'Language not handled'
+		cause: customMessage
 	});
 }
 
@@ -24,7 +24,7 @@ export class WebContentService {
 					currentLangData = commonsFr;
 					break;
 				default:
-					languageNotHandled();
+					httpError('Language not handled');
 					break;
 			}
 			if (params.posts == 'true') {
@@ -67,7 +67,7 @@ export class WebContentService {
 					currentLangData = homepageFr;
 					break;
 				default:
-					languageNotHandled();
+					httpError('Language not handled');
 					break;
 			}
 			return (currentLangData);
@@ -78,22 +78,37 @@ export class WebContentService {
 		}
 	}
 
-	getTopicPageWebContent(params: {lang: string}) {
-		if (params.lang !== 'default') {
-			let currentLangData: any;
-			switch(params.lang) {
-			case 'fr':
-				currentLangData = topicpageFr;
-				break;
-			default:
-				languageNotHandled();
-				break;
-			}
-			return (currentLangData);
+	getTrendsWebContent(params: {type: string, lang: string}) {
+		const validTypes: Array<string> = ["topic", "topics", "question", "questions"];
+		if (! validTypes.includes(params.type)) {
+			httpError('Unvalid trends name');
 		} else {
-			return ({
-				'fr': topicpageFr
-			});
+			if (params.lang !== 'default') {
+				let currentLangData: any;
+				switch(params.lang) {
+					case 'fr':
+						if (params.type === 'topic' || params.type === 'topics') {
+							currentLangData = trendsFr.topic;
+						} else {
+							currentLangData = trendsFr.question;
+						}
+						break;
+					default:
+						httpError('Language not handled');
+						break;
+				}
+				return (currentLangData);
+			} else {
+				if (params.type === 'topic' || params.type === 'topics') {
+					return ({
+						'fr': trendsFr.topic
+					});
+				} else {
+					return ({
+						'fr': trendsFr.question
+					});
+				}
+			}
 		}
 	}
 }
