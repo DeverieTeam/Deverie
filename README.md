@@ -20,6 +20,11 @@ $ docker compose up -d
 $ cd ..
 ```
 
+```bash
+# To reset Database to its original state with fixtures
+$ npm run resetdb
+```
+
 ## Running the App
 
 ```bash

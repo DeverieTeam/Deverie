@@ -9,8 +9,14 @@ export class TagService {
 
   async getTagsByFamily(family) {
     return await this.tagRepository.find({
-      select: ['id', 'name', 'icon'],
+      select: ['id', 'name', 'icon', 'family'],
       where: [{ family: family }],
+    });
+  }
+
+  async getAllTagsNames() {
+    return await this.tagRepository.find({
+      select: ['id', 'name', 'family'],
     });
   }
 }

@@ -1,48 +1,125 @@
 import { useEffect, useState } from "react";
-import { fakeTags1, fakeTags2, fakeTags3 } from "../assets/fakedata";
+import TagChecker from "./TagChecker";
 
-export default function TagsDisplayer({ tagFamily }: Props) {
+export default function TagsDisplayer({
+  tagFamily,
+  tempTags,
+  setTempTags,
+  langTags,
+  envTags,
+  technoTags,
+}: Props) {
   const [data, setData] = useState<
     | null
     | {
         id: number;
         name: string;
         icon: string;
+        family: string;
       }[]
   >(null);
 
   useEffect(() => {
+    let family: string;
+
     switch (tagFamily) {
-      case "Langages":
-        setData(fakeTags1);
+      case "Technologies":
+        family = "Technology";
         break;
       case "Environnements":
-        setData(fakeTags2);
+        family = "Environment";
         break;
-      case "Technologies":
-        setData(fakeTags3);
-        break;
+      case "Langages":
       default:
+        family = "Language";
         break;
     }
+
+    fetch(`http://localhost:3000/tag/${family}`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Something went wrong");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setData(data);
+      });
   }, [tagFamily]);
 
+  const handleAddAll = () => {
+    let array: string[];
+
+    switch (tagFamily) {
+      case "Technologies":
+        array = technoTags;
+        break;
+      case "Environnements":
+        array = envTags;
+        break;
+      case "Langages":
+      default:
+        array = langTags;
+        break;
+    }
+    for (const tag of array) {
+      if (!tempTags.includes(tag)) {
+        setTempTags((pv) => pv.concat([tag]));
+      }
+    }
+  };
+
+  const handleRemoveAll = () => {
+    let array: string[];
+
+    switch (tagFamily) {
+      case "Technologies":
+        array = technoTags;
+        break;
+      case "Environnements":
+        array = envTags;
+        break;
+      case "Langages":
+      default:
+        array = langTags;
+        break;
+    }
+
+    for (const tag of array) {
+      if (tempTags.includes(tag)) {
+        setTempTags((pv) => pv.filter((item: string) => item !== tag));
+      }
+    }
+  };
+
   return (
-    <details open={tagFamily === "Langages" ? true : false}>
+    <details className="mb-6" open={tagFamily === "Langages"}>
       <summary className="w-48 md:w-56 md:text-lg py-1 pl-6 bg-neutral-100 hover:bg-white rounded-lg cursor-pointer shadow-sm shadow-neutral-400">
         {tagFamily}
       </summary>
-      <div className="md:px-4 mt-6 mb-4 gap-2 md:gap-4 justify-between flex flex-wrap">
+      <div className="justify-start mt-2 md:mt-4 gap-2 md:gap-4 flex">
+        <button
+          className="text-sm md:text-base px-1 md:px-2 py-1 bg-neutral-100 hover:bg-white rounded-lg cursor-pointer shadow-sm shadow-neutral-400"
+          onClick={handleAddAll}
+        >
+          Ajouter tout
+        </button>
+        <button
+          className="text-sm md:text-base px-2 py-1 bg-neutral-100 hover:bg-white rounded-lg cursor-pointer shadow-sm shadow-neutral-400"
+          onClick={handleRemoveAll}
+        >
+          Enlever tout
+        </button>
+      </div>
+      <div className="md:px-4 mt-6 mb-4 gap-2 md:gap-4 justify-start flex flex-wrap">
         {data !== null &&
           data.map((tag) => (
-            <div key={tag.id} className="w-[120px] md:w-[132px] gap-1 flex">
-              <input type="checkbox" checked />
-              <img
-                className="h-5 w-5 bg-neutral-100 rounded-lg"
-                src={tag.icon}
-              />
-              <p className="text-sm md:text-base">{tag.name}</p>
-            </div>
+            <TagChecker
+              tag={tag}
+              tempTags={tempTags}
+              setTempTags={setTempTags}
+              key={tag.id}
+            />
           ))}
       </div>
     </details>
@@ -50,5 +127,10 @@ export default function TagsDisplayer({ tagFamily }: Props) {
 }
 
 type Props = {
-  tagFamily: "Langages" | "Environnements" | "Technologies";
+  tagFamily: string;
+  tempTags: string[];
+  setTempTags: (arg0: string[] | ((pv: string[]) => string[])) => void;
+  langTags: string[];
+  envTags: string[];
+  technoTags: string[];
 };

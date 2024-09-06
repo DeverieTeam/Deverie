@@ -2,6 +2,27 @@ import { useEffect, useState } from "react";
 import ThreadsDisplayer from "../components/ThreadsDisplayer";
 
 export default function HomePage() {
+  const [data, setData] = useState<
+    | null
+    | {
+        id: number;
+        author: {
+          name: string;
+          profile_picture: string;
+        };
+        tags: {
+          id: number;
+          name: string;
+          icon: string;
+        }[];
+        creation_date: string;
+        title: string;
+        replies_count: number;
+        last_message_date: string;
+        results_length: null | number;
+      }[]
+  >(null);
+
   const [randomThread, setRandomThread] = useState<null | "popular" | "recent">(
     null
   );
@@ -75,7 +96,13 @@ export default function HomePage() {
               ? "Les Forums et Questions les plus populaires"
               : "Les Forums et Questions les plus récent(e)s"}
           </p>
-          {randomThread !== null && <ThreadsDisplayer thread={randomThread} />}
+          {randomThread !== null && (
+            <ThreadsDisplayer
+              thread={randomThread}
+              data={data}
+              setData={setData}
+            />
+          )}
         </div>
         <div className="flex-1 mx-8 hidden lg:flex flex-col">
           <p className="text-indigo-500 mt-4 mb-8 mx-auto text-center text-3xl font-semibold drop-shadow">
@@ -83,7 +110,13 @@ export default function HomePage() {
               ? "Les Forums et Questions les plus populaires"
               : "Les Forums et Questions les plus récent(e)s"}
           </p>
-          {randomThread !== null && <ThreadsDisplayer thread={otherThread()} />}
+          {randomThread !== null && (
+            <ThreadsDisplayer
+              thread={otherThread()}
+              data={data}
+              setData={setData}
+            />
+          )}
         </div>
       </div>
     </div>

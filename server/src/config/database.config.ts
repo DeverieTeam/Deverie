@@ -7,7 +7,7 @@ export const databaseConfig: DataSourceOptions = {
   port: parseInt(process.env.DATABASE_PORT || '3000'),
   username: process.env.DATABASE_USERNAME,
   password: process.env.DATABASE_PASSWORD,
-  database: process.env.DATABASE_DB,
+  database: process.env.DATABASE_USERNAME,
   entities: [__dirname + '/../**/*.entity{.ts,.js}'],
   synchronize: false,
 };
