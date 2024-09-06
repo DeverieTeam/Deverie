@@ -3,6 +3,7 @@ import TagsDisplayer from "./TagsDisplayer";
 export default function TagsWindow({
   isTagButtonClicked,
   setIsTagButtonClicked,
+  webcontent,
 }: Props) {
   const exitTagWindow = () => {
     setIsTagButtonClicked(!isTagButtonClicked);
@@ -20,15 +21,16 @@ export default function TagsWindow({
               e.stopPropagation();
             }}>
             <div className="gap-6 flex flex-col">
-              <TagsDisplayer tagFamily="Langages" />
-              <TagsDisplayer tagFamily="Environnements" />
-              <TagsDisplayer tagFamily="Technologies" />
+              <TagsDisplayer tagFamily="Langages" webcontent={webcontent.tagsFamilies.languages}/>
+              <TagsDisplayer tagFamily="Environnements" webcontent={webcontent.tagsFamilies.environments}/>
+              <TagsDisplayer tagFamily="Technologies" webcontent={webcontent.tagsFamilies.technologies}/>
             </div>
             <div className="flex">
               <button
                 className="mx-auto py-1 px-8 text-center text-lg md:text-xl hover:text-white bg-indigo-400 hover:bg-indigo-600 rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900"
-                onClick={exitTagWindow}>
-                Quitter
+                onClick={exitTagWindow}
+                title={webcontent.buttons.quitButton.hover.content}>
+                {webcontent.buttons.quitButton.text.content}
               </button>
             </div>
           </div>
@@ -41,4 +43,62 @@ export default function TagsWindow({
 type Props = {
   isTagButtonClicked: boolean;
   setIsTagButtonClicked: (arg0: boolean) => void;
+  webcontent: {
+    buttons: {
+      backButton: {
+        text: {
+          name: string,
+          content: string
+        },
+        hover: {
+          name: string,
+          content: string
+        }
+      },
+      quitButton: {
+        text: {
+          name: string,
+          content: string
+        },
+        hover: {
+          name: string,
+          content: string
+        }
+      },
+      cancelButton: {
+        text: {
+          name: string,
+          content: string
+        },
+        hover: {
+          name: string,
+          content: string
+        }
+      },
+      confirmButton: {
+        text: {
+          name: string,
+          content: string
+        },
+        hover: {
+          name: string,
+          content: string
+        }
+      }
+    },
+    tagsFamilies: {
+      languages: {
+        name: string,
+        content: string
+      },
+      environments: {
+        name: string,
+        content: string
+      },
+      technologies: {
+        name: string,
+        content: string
+      }
+    }
+  }
 };

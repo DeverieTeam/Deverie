@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 
-export default function Header() {
+export default function Header({ webcontent }: Props) {
   const { pathname } = useLocation();
 
   return (
@@ -23,7 +23,7 @@ export default function Header() {
             className="m-auto h-8 w-8 bg-neutral-100 hidden xl:flex"
             src=""
           />
-          <p className="m-auto text-lg xl:text-3xl font-semibold">Forums</p>
+          <p className="m-auto text-lg xl:text-3xl font-semibold">{webcontent.sections.topic.main.content}</p>
         </Link>
         <Link
           to="/questions"
@@ -36,7 +36,7 @@ export default function Header() {
             className="m-auto h-8 w-8 bg-neutral-100 hidden xl:flex"
             src=""
           />
-          <p className="m-auto text-lg xl:text-3xl font-semibold">Questions</p>
+          <p className="m-auto text-lg xl:text-3xl font-semibold">{webcontent.sections.question.main.content}</p>
         </Link>
         <Link
           to="/chats"
@@ -49,11 +49,12 @@ export default function Header() {
             className="m-auto h-8 w-8 bg-neutral-100 hidden xl:flex"
             src=""
           />
-          <p className="m-auto text-lg xl:text-3xl font-semibold">Chats</p>
+          <p className="m-auto text-lg xl:text-3xl font-semibold">{webcontent.sections.chat.main.content}</p>
         </Link>
       </div>
       <div className="bg-transparent w-[72px] flex">
-        <button className="m-auto h-14 w-14 bg-indigo-400 hover:bg-indigo-600 rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900 relative flex">
+        <button className="m-auto h-14 w-14 bg-indigo-400 hover:bg-indigo-600 rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900 relative flex"
+                title={webcontent.hypertexts.login.hover.content}>
           <img
             className="m-auto h-12 w-12 rounded-full bg-neutral-100"
             src=""
@@ -63,3 +64,96 @@ export default function Header() {
     </div>
   );
 }
+
+type Props = {
+  sections: {
+    topic: {
+      main: {
+        name: string,
+        content: string
+      },
+      element: {
+        name: string,
+        content: string
+      }
+    },
+    question: {
+      main: {
+        name: string,
+        content: string
+      },
+      element: {
+        name: string,
+        content: string
+      },
+    },
+    chat: {
+      main: {
+        name: string,
+        content: string
+      }
+    },
+    favorite: {
+      main: {
+        name: string,
+        content: string
+      },
+      element: {
+        name: string,
+        content: string
+      }
+    }
+  },
+  hypertexts: {
+    contact: {
+      text: {
+        name: string,
+        content: string
+      },
+      hover: {
+        name: string,
+        content: string
+      }
+    },
+    termsOfUse: {
+      text: {
+        name: string,
+        content: string
+      },
+      hover: {
+        name: string,
+        content: string
+      }
+    },
+    legalNotices: {
+      text: {
+        name: string,
+        content: string
+      },
+      hover: {
+        name: string,
+        content: string
+      }
+    },
+    login: {
+      text: {
+        name: string,
+        content: string
+      },
+      hover: {
+        name: string,
+        content: string
+      }
+    },
+    profile: {
+      text: {
+        name: string,
+        content: string
+      },
+      hover: {
+        name: string,
+        content: string
+      }
+    }
+  }
+};

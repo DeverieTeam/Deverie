@@ -152,7 +152,7 @@
 		},
 		"lastResponseDatePrefix": {
 			"name": "Texte précédant la date de la dernière réponse d'une publication",
-			"content": "Dernière réponse le"
+			"content": "Dernière réponse"
 		},
 		"favorite": {
 			"add": {

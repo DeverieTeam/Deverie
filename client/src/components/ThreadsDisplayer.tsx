@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import ThreadsRow from "./ThreadsRow";
 import { fakeData1, fakeData2 } from "../assets/fakedata";
 
-export default function ThreadsDisplayer({ thread }: Props) {
+export default function ThreadsDisplayer({ thread, webcontent }: Props) {
   const [data, setData] = useState<
     | null
     | {
@@ -41,11 +41,39 @@ export default function ThreadsDisplayer({ thread }: Props) {
   return (
     <div className="w-full md:max-w-[750px] self-center gap-2 md:gap-4 flex flex-col">
       {data !== null &&
-        data.map((post) => <ThreadsRow key={post.id} post={post} />)}
+        data.map((post) => <ThreadsRow key={post.id} post={post} webcontent={webcontent} />)}
     </div>
   );
 }
 
 type Props = {
-  thread: "popular" | "recent" | "topics" | "questions";
+  thread: "popular" | "recent" | "topics" | "questions",
+  webcontent: {
+    publishDatePrefix: {
+      name: string,
+      content: string
+    },
+    numberOfResponses: {
+      name: string,
+      content: string
+    },
+    lastResponseDatePrefix: {
+      name: string,
+      content: string
+    },
+    favorite: {
+      add: {
+        hover: {
+          name: string,
+          content: string
+        }
+      },
+      remove: {
+        hover: {
+          name: string,
+          content: string
+        }
+      }
+    }
+  };
 };

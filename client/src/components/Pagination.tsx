@@ -1,8 +1,8 @@
-export default function Pagination() {
+export default function Pagination({ webcontent }: Props) {
   return (
     <div className="gap-6 flex flex-col">
       <div className="text-center md:text-lg xl:text-xl">
-        10 résultats sur 63110
+        10 {webcontent.resultsOutOf.content} 63110
       </div>
       <div className="mb-12 flex">
         <div className="justify-between flex">
@@ -16,7 +16,7 @@ export default function Pagination() {
           </div>
         </div>
         <div className="flex-1 my-auto text-center md:text-lg xl:text-xl">
-          Page 1/6311
+          {webcontent.pagesPrefix.content} 1/6311
         </div>
         <div className="justify-between flex">
           <div className="gap-4 md:gap-6 flex">
@@ -32,3 +32,16 @@ export default function Pagination() {
     </div>
   );
 }
+
+type Props = {
+  webcontent: {
+    resultsOutOf: {
+      name: string,
+      content: string
+    },
+    pagesPrefix: {
+      name: string,
+      content: string
+    }
+  }
+};
