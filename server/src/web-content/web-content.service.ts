@@ -1,7 +1,7 @@
 import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import * as commonsFr from '../sitedata/commons/commons.fr.json';
 import * as homepageFr from '../sitedata/homepage/homepage.fr.json';
-import * as trendsFr from '../sitedata/trends/trends.fr.json';
+import * as threadsFr from '../sitedata/threads/threads.fr.json';
 
 const httpError = (customMessage: string) => {
 	throw new HttpException({
@@ -78,19 +78,19 @@ export class WebContentService {
 		}
 	}
 
-	getTrendsWebContent(params: {type: string, lang: string}) {
+	getThreadsWebContent(params: {type: string, lang: string}) {
 		const validTypes: Array<string> = ["topic", "topics", "question", "questions"];
 		if (! validTypes.includes(params.type)) {
-			httpError('Unvalid trends name');
+			httpError('Unvalid threads name');
 		} else {
 			if (params.lang !== 'default') {
 				let currentLangData: any;
 				switch(params.lang) {
 					case 'fr':
 						if (params.type === 'topic' || params.type === 'topics') {
-							currentLangData = trendsFr.topic;
+							currentLangData = threadsFr.topic;
 						} else {
-							currentLangData = trendsFr.question;
+							currentLangData = threadsFr.question;
 						}
 						break;
 					default:
@@ -101,11 +101,11 @@ export class WebContentService {
 			} else {
 				if (params.type === 'topic' || params.type === 'topics') {
 					return ({
-						'fr': trendsFr.topic
+						'fr': threadsFr.topic
 					});
 				} else {
 					return ({
-						'fr': trendsFr.question
+						'fr': threadsFr.question
 					});
 				}
 			}

@@ -29,14 +29,14 @@ export class WebContentController {
 		return this.webContentService.getHomepageWebContent({lang: lang.toLowerCase()});
 	}
 
-	@Get('/trends/:type')
-	getTrendsWebContent(
+	@Get('/threads/:type')
+	getThreadsWebContent(
 		@Param('type') type: string,
 		@Query('lang') lang: string
 	){
 		if (lang == undefined) {
 			lang = 'default';
 		}
-		return this.webContentService.getTrendsWebContent({type: type.toLowerCase(), lang: lang.toLowerCase()});
+		return this.webContentService.getThreadsWebContent({type: type.toLowerCase(), lang: lang.toLowerCase()});
 	}
 }

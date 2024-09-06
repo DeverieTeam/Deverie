@@ -16,11 +16,11 @@ async function fetchWebContent(page: string, lang: string, posts?: boolean): JSO
 			break;
 		case 'topic':
 		case 'topics':
-			endpoint = "/trends/topic";
+			endpoint = "/threads/topic";
 			break;
 		case 'question':
 		case 'questions':
-			endpoint = "/trends/question"
+			endpoint = "/threads/question"
 			break;
 		default:
 			return null;
