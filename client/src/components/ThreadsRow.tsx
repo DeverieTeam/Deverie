@@ -1,4 +1,4 @@
-export default function ThreadsRow({ post }: Props) {
+export default function ThreadsRow({ post, webcontent }: Props) {
   return (
     <button className="bg-neutral-100 hover:bg-white gap-2 p-1 md:p-4 rounded-lg shadow-sm shadow-neutral-400 flex">
       <div className="w-[35%] justify-between gap-1 md:gap-2 flex flex-col">
@@ -23,7 +23,7 @@ export default function ThreadsRow({ post }: Props) {
           ))}
         </div>
         <div className="text-center text-xs md:text-base">
-          Posté le : {post.creation_date}
+          {webcontent.publishDatePrefix.content} : {post.creation_date}
         </div>
       </div>
       <div className="flex-1 justify-between gap-1 md:gap-2 flex flex-col">
@@ -33,16 +33,17 @@ export default function ThreadsRow({ post }: Props) {
         <div className="flex">
           <div className="flex-1 justify-between flex flex-col">
             <div className="text-center text-xs md:text-base">
-              Réponses : {post.replies_count}
+              {webcontent.numberOfResponses.content} : {post.replies_count}
             </div>
             <div className="text-center text-xs md:text-base">
-              Dernière réponse le : {post.last_message_date}
+              {webcontent.lastResponseDatePrefix.content} : {post.last_message_date}
             </div>
           </div>
           <div className="m-auto w-6 md:w-10 h-6 md:h-10 flex ">
             <img
               className="m-auto w-5 md:w-8 h-5 md:h-8 bg-neutral-100"
               src=""
+              title={webcontent.favorite.add.hover.content}
             />
           </div>
         </div>
@@ -64,5 +65,33 @@ type Props = {
     title: string;
     replies_count: number;
     last_message_date: string;
+  },
+  webcontent: {
+    publishDatePrefix: {
+      name: string,
+      content: string
+    },
+    numberOfResponses: {
+      name: string,
+      content: string
+    },
+    lastResponseDatePrefix: {
+      name: string,
+      content: string
+    },
+    favorite: {
+      add: {
+        hover: {
+          name: string,
+          content: string
+        }
+      },
+      remove: {
+        hover: {
+          name: string,
+          content: string
+        }
+      }
+    }
   };
 };

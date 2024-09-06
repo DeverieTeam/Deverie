@@ -1,0 +1,14 @@
+{
+	"title": {
+		"name": "Titre d'une page en travaux",
+		"content": "Cette page n'est pas encore prête !"
+	},
+	"description": {
+		"name": "Description d'une page en travaux",
+		"content": "Du contenu bientôt...\nOu pas, ça dépend...\nÇa dépend, ça dépasse...\nMais ça bosse dur (peut-être) !\nEn tout cas, pas grand chose à voir ici."
+	},
+	"imgSrc": {
+		"name": "Source de l'image d'une page en travaux",
+		"content": "WIP.png"
+	}
+}

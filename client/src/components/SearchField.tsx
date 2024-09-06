@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function SearchField({ setSearchField }: Props) {
+export default function SearchField({ setSearchField, webcontent}: Props) {
   const [tempSearch, setTempSearch] = useState<string>("");
   const [timerID, setTimerID] = useState<NodeJS.Timeout>();
 
@@ -18,7 +18,7 @@ export default function SearchField({ setSearchField }: Props) {
       <input
         className="pl-16 py-2 w-72 md:w-96 focus:outline-none active:outline-none md:text-lg shadow-sm shadow-neutral-400 bg-neutral-200 rounded-full"
         type="text"
-        placeholder="Recherche par mots clefs"
+        placeholder={ webcontent.text.content }
         value={tempSearch}
         onChange={handleChange}
       />
@@ -31,4 +31,10 @@ export default function SearchField({ setSearchField }: Props) {
 
 type Props = {
   setSearchField: (arg0: string) => void;
+  webcontent: {
+    text: {
+      name: string,
+      content: string
+    }
+  }
 };

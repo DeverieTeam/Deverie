@@ -9,6 +9,7 @@ export default function TagsWindow({
   langTags,
   envTags,
   technoTags,
+  webcontent
 }: Props) {
   const [tempTags, setTempTags] = useState<string[]>([]);
 
@@ -73,6 +74,7 @@ export default function TagsWindow({
                     langTags={langTags}
                     envTags={envTags}
                     technoTags={technoTags}
+                    webcontent={webcontent.tagsFamilies.languages}
                   />
                 ))}
             </div>
@@ -81,28 +83,32 @@ export default function TagsWindow({
                 <button
                   className="md:text-lg px-1 md:px-2 py-1 bg-neutral-100 hover:bg-white rounded-lg cursor-pointer shadow-sm shadow-neutral-400"
                   onClick={handleAddAll}
+                  title={webcontent.buttons.checkShortcuts.addAll.hover.content}
                 >
-                  Sélectionner tout
+                  {webcontent.buttons.checkShortcuts.addAll.text.content}
                 </button>
                 <button
                   className="md:text-lg px-2 py-1 bg-neutral-100 hover:bg-white rounded-lg cursor-pointer shadow-sm shadow-neutral-400"
                   onClick={handleRemoveAll}
+                  title={webcontent.buttons.checkShortcuts.removeAll.hover.content}
                 >
-                  Désélectionner tout
+                  {webcontent.buttons.checkShortcuts.removeAll.text.content}
                 </button>
               </div>
               <div className="justify-center gap-4 flex">
                 <button
                   className="py-1 px-4 md:px-8 text-center text-lg md:text-xl hover:text-white bg-indigo-400 hover:bg-indigo-600 rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900"
                   onClick={exitTagWindow}
+                  title={webcontent.buttons.cancelButton.hover.content}
                 >
-                  Annuler
+                  {webcontent.buttons.confirmButton.text.content}
                 </button>
                 <button
                   className="py-1 px-4 md:px-8 text-center text-lg md:text-xl hover:text-white bg-indigo-400 hover:bg-indigo-600 rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900"
                   onClick={handleConfirmButton}
+                  title={webcontent.buttons.confirmButton.hover.content}
                 >
-                  Confirmer
+                  {webcontent.buttons.confirmButton.text.content}
                 </button>
               </div>
             </div>
@@ -121,4 +127,104 @@ type Props = {
   langTags: string[];
   envTags: string[];
   technoTags: string[];
+  webcontent: {
+    buttons: {
+      backButton: {
+        text: {
+          name: string,
+          content: string
+        },
+        hover: {
+          name: string,
+          content: string
+        }
+      },
+      quitButton: {
+        text: {
+          name: string,
+          content: string
+        },
+        hover: {
+          name: string,
+          content: string
+        }
+      },
+      cancelButton: {
+        text: {
+          name: string,
+          content: string
+        },
+        hover: {
+          name: string,
+          content: string
+        }
+      },
+      confirmButton: {
+        text: {
+          name: string,
+          content: string
+        },
+        hover: {
+          name: string,
+          content: string
+        }
+      }
+    },
+    tagsFamilies: {
+      languages: {
+        name: string,
+        content: string
+      },
+      environments: {
+        name: string,
+        content: string
+      },
+      technologies: {
+        name: string,
+        content: string
+      },
+      checkShortcuts: {
+			  addEntireSection: {
+			  	text: {
+		  			name: string,
+		  			content: string
+		  		},
+		  		hover: {
+			  		name: string,
+				  	content: string
+	  			}
+		  	},
+			  removeEntireSection: {
+			  	text: {
+		  			name: string,
+		  			content: string
+		  		},
+		  		hover: {
+					  name: string,
+					  content: string
+				  }
+			  },
+			  addAll: {
+				  text: {
+  					name: string,
+	  				content: string
+	  			},
+				  hover: {
+					  name: string,
+					  content: string
+				  }
+        },
+        removeAll: {
+				  text: {
+					  name: string,
+					  content: string
+				  },
+				  hover: {
+					  name: string,
+					  content: string
+				  }
+			  }
+			}
+    }
+  }
 };

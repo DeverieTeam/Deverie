@@ -1,9 +1,11 @@
-export default function Pagination({ data, pagination, setPagination }: Props) {
+
+export default function Pagination({ data, pagination, setPagination, webcontent }: Props) {
   return (
     <div className="gap-6 flex flex-col">
       <div className="text-center md:text-lg xl:text-xl">
         {data !== null && data.length} résultat
-        {data !== null && data.length === 1 ? "" : "s"} sur{" "}
+        {data !== null && data.length === 1 ? "" : "s"}{" "}
+        {webcontent.resultsOutOf.content}{" "}
         {data !== null &&
           data[0].results_length !== null &&
           data[0].results_length}
@@ -32,7 +34,7 @@ export default function Pagination({ data, pagination, setPagination }: Props) {
           </div>
         </div>
         <div className="flex-1 my-auto text-center md:text-lg xl:text-xl">
-          Page {pagination}/
+          {webcontent.pagesPrefix.content} {pagination}/
           {data !== null && data[0].results_length !== null
             ? Math.ceil(data[0].results_length / 10)
             : "????"}
@@ -96,4 +98,14 @@ type Props = {
       }[];
   pagination: number;
   setPagination: (arg0: number) => void;
+  webcontent: {
+    resultsOutOf: {
+      name: string,
+      content: string
+    },
+    pagesPrefix: {
+      name: string,
+      content: string
+    }
+  }
 };

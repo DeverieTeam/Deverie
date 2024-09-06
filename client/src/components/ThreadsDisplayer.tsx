@@ -9,6 +9,7 @@ export default function ThreadsDisplayer({
   sort,
   searchField,
   tags,
+  webcontent
 }: Props) {
   useEffect(() => {
     const queryHandler = () => {
@@ -65,7 +66,7 @@ export default function ThreadsDisplayer({
     <div className="w-full md:max-w-[750px] self-center gap-2 md:gap-4 flex flex-col">
       {data !== null &&
         data.length > 0 &&
-        data.map((post) => <ThreadsRow key={post.id} post={post} />)}
+        data.map((post) => <ThreadsRow key={post.id} post={post} webcontent={webcontent}/>)}
       {data !== null && data.length === 0 && (
         <div className="text-2xl md:text-4xl text-center mt-8 font-semibold text-indigo-500 drop-shadow">
           Aucun résultat !!
@@ -121,4 +122,31 @@ type Props = {
   sort?: string;
   searchField?: string;
   tags: string[];
+  webcontent: {
+    publishDatePrefix: {
+      name: string,
+      content: string
+    },
+    numberOfResponses: {
+      name: string,
+      content: string
+    },
+    lastResponseDatePrefix: {
+      name: string,
+      content: string
+    },
+    favorite: {
+      add: {
+        hover: {
+          name: string,
+          content: string
+        }
+      },
+      remove: {
+        hover: {
+          name: string,
+          content: string
+        }
+      }
+    }
 };

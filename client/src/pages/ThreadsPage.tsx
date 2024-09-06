@@ -1,3 +1,4 @@
+import { useLoaderData } from "react-router-dom";
 import { useEffect, useState } from "react";
 import ThreadsDisplayer from "../components/ThreadsDisplayer";
 import TagsWindow from "../components/TagsWindow";
@@ -35,7 +36,9 @@ export default function ThreadsPage({ threadType }: Props) {
   const [envTags, setEnvTags] = useState<null | string[]>(null);
   const [technoTags, setTechnoTags] = useState<null | string[]>(null);
 
+  const webcontent = useLoaderData();
   const { tags, setTags } = useTags();
+
   const handleTagFilterButton = () => {
     setIsTagButtonClicked(!isTagButtonClicked);
   };
@@ -77,28 +80,26 @@ export default function ThreadsPage({ threadType }: Props) {
     <div className="w-full relative flex flex-col">
       <div className="w-full md:max-w-[750px] md:mx-auto px-1 md:px-0 gap-6 xl:gap-10 flex flex-col">
         <p className="mx-auto mt-4 text-center text-indigo-500 text-4xl md:text-5xl font-bold drop-shadow">
-          {threadType === "topics" ? "Forums" : "Questions"}
+          {webcontent.commons.sections[threadType.toLowerCase().slice(0,-1)].main.content}
         </p>
         <div className="mx-auto w-72 py-2 px-4 bg-neutral-100 gap-4 rounded-lg shadow-sm shadow-neutral-400 flex flex-row">
           <button className="w-12 h-12 bg-indigo-400 hover:bg-indigo-600 self-center hover:text-white text-center text-5xl rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900 font-semibold relative">
             +
           </button>
           <p className="m-auto flex-1 text-center text-lg">
-            {threadType === "topics"
-              ? "Créer un Nouveau Sujet de Forum"
-              : "Créer une Nouvelle Question"}
+              {webcontent.page.createButton.text.content}
           </p>
         </div>
         <div className="gap-6 xl:gap-10 md:justify-between flex flex-col md:flex-row">
-          <SearchField setSearchField={setSearchField} />
+          <SearchField setSearchField={setSearchField} webcontent={webcontent.commons.searching.searchBar}/>
           <div className="gap-6 xl:gap-10 flex flex-col">
             <button
               className="mx-auto w-56 py-1 px-4 text-center text-lg md:text-xl hover:text-white bg-indigo-400 hover:bg-indigo-600 rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900"
               onClick={handleTagFilterButton}
             >
-              Filtrer par Tags
+              {webcontent.commons.searching.tagFilter.text.content}
             </button>
-            <SortSelection threadType={threadType} setSort={setSort} />
+            <SortSelection threadType={threadType} setSort={setSort} webcontent={webcontent.commons.searching.sortFilter}/>
           </div>
         </div>
       </div>
@@ -112,6 +113,7 @@ export default function ThreadsPage({ threadType }: Props) {
             sort={sort}
             searchField={searchField}
             tags={tags}
+            webcontent={webcontent.commons.publications}
           />
         )}
       </div>
@@ -121,6 +123,7 @@ export default function ThreadsPage({ threadType }: Props) {
             data={data}
             pagination={pagination}
             setPagination={setPagination}
+            webcontent={webcontent.commons.pagination}
           />
         )}
       </div>
@@ -137,6 +140,7 @@ export default function ThreadsPage({ threadType }: Props) {
             langTags={langTags}
             envTags={envTags}
             technoTags={technoTags}
+            webcontent={{buttons: webcontent.commons.buttons, tagsFamilies: webcontent.commons.tagsFamilies}}
           />
         )}
     </div>

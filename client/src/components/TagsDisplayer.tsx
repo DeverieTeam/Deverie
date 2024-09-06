@@ -8,6 +8,7 @@ export default function TagsDisplayer({
   langTags,
   envTags,
   technoTags,
+  webcontent
 }: Props) {
   const [data, setData] = useState<
     | null
@@ -95,7 +96,7 @@ export default function TagsDisplayer({
   return (
     <details className="mb-6" open={tagFamily === "Langages"}>
       <summary className="w-48 md:w-56 md:text-lg py-1 pl-6 bg-neutral-100 hover:bg-white rounded-lg cursor-pointer shadow-sm shadow-neutral-400">
-        {tagFamily}
+        {webcontent.content}
       </summary>
       <div className="justify-start mt-2 md:mt-4 gap-2 md:gap-4 flex">
         <button
@@ -133,4 +134,8 @@ type Props = {
   langTags: string[];
   envTags: string[];
   technoTags: string[];
+    webcontent: {
+    name: string,
+    content: string
+  };
 };
