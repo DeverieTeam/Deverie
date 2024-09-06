@@ -60,7 +60,7 @@ export class PostService {
       numMax = 10;
     }
 
-    let response = await this.postRepository
+    const response = await this.postRepository
       .createQueryBuilder('post')
       .innerJoinAndSelect('post.author', 'author')
       .innerJoinAndSelect('post.tags', 'tags')
@@ -122,7 +122,7 @@ export class PostService {
 
     search = search.toUpperCase();
 
-    let response = await this.postRepository
+    const response = await this.postRepository
       .createQueryBuilder('post')
       .innerJoinAndSelect('post.author', 'author')
       .innerJoinAndSelect('post.tags', 'tags')

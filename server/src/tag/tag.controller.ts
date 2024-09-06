@@ -9,4 +9,9 @@ export class TagController {
   async getTags(@Param('family') family: string) {
     return this.service.getTagsByFamily(family);
   }
+
+  @Get()
+  async getAllTags() {
+    return this.service.getAllTagsNames();
+  }
 }

@@ -7,6 +7,7 @@ import HomePage from "./pages/HomePage.tsx";
 import PageNotFound404 from "./pages/PageNotFound404.tsx";
 import WIPage from "./pages/WIPage.tsx";
 import ThreadsPage from "./pages/ThreadsPage.tsx";
+import TagsProvider from "./contexts/TagsProvider.tsx";
 
 const router = createBrowserRouter([
   {
@@ -39,6 +40,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <TagsProvider>
+      <RouterProvider router={router} />
+    </TagsProvider>
   </StrictMode>
 );

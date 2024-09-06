@@ -18,7 +18,7 @@ export class PostController {
     @Param('type') type: 'Topic' | 'Question',
     @Query('max') max: string = '10',
     @Query('page') page: string = '0',
-    @Query('filters') tags: string[],
+    @Query('tags') tags: string[],
     @Query('search') search: string,
     @Query('sort')
     sort: 'recent' | 'popular' | 'ancient' | 'discreet',
