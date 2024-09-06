@@ -8,7 +8,9 @@ export default function Header({ webcontent }: Props) {
       <Link
         to="/"
         className="pl-2 bg-indigo-500 w-60 rounded-br-[90px] shadow-sm shadow-indigo-800 flex">
-        <img className="my-auto h-12 w-40 bg-neutral-100" src="" />
+        <img className="my-auto h-12 w-40 bg-neutral-100" src=""
+        alt={webcontent.logo.alt.content}
+        title={webcontent.hypertexts.home.hover.content}/>
       </Link>
 
       <div className="bg-indigo-500 rounded-b-[90px] px-[5%] w-[50%] xl:w-[60%] shadow-sm shadow-indigo-800 hidden md:flex">
@@ -66,6 +68,16 @@ export default function Header({ webcontent }: Props) {
 }
 
 type Props = {
+  logo: {
+    hover: {
+      name: string,
+      content: string
+    },
+    alt: {
+      name: string,
+      content: string
+    }
+  },
   sections: {
     topic: {
       main: {
@@ -105,6 +117,16 @@ type Props = {
     }
   },
   hypertexts: {
+    home: {
+      text: {
+        name: string,
+        content: string
+      },
+      hover: {
+        name: string,
+        content: string
+      }
+    },
     contact: {
       text: {
         name: string,

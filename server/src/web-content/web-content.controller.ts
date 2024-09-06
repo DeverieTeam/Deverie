@@ -39,4 +39,24 @@ export class WebContentController {
 		}
 		return this.webContentService.getThreadsWebContent({type: type.toLowerCase(), lang: lang.toLowerCase()});
 	}
+
+	@Get('/wip')
+	getWIPageWebContent(
+		@Query('lang') lang: string
+	){
+		if (lang == undefined) {
+			lang = 'default';
+		}
+		return this.webContentService.getWIPageWebContent({lang: lang.toLowerCase()});
+	}
+
+	@Get('/notfound')
+	getNotFoundWebContent(
+		@Query('lang') lang: string
+	){
+		if (lang == undefined) {
+			lang = 'default';
+		}
+		return this.webContentService.getNotFoundWebContent({lang: lang.toLowerCase()});
+	}
 }

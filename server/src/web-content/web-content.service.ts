@@ -2,6 +2,8 @@ import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import * as commonsFr from '../sitedata/commons/commons.fr.json';
 import * as homepageFr from '../sitedata/homepage/homepage.fr.json';
 import * as threadsFr from '../sitedata/threads/threads.fr.json';
+import * as wipageFr from '../sitedata/wipage/wipage.fr.json';
+import * as notFoundFr from '../sitedata/notFound/notFound.fr.json';
 
 const httpError = (customMessage: string) => {
 	throw new HttpException({
@@ -32,6 +34,7 @@ export class WebContentService {
 			} else {
 				return ({
 					'logo': currentLangData.logo,
+					'img': currentLangData.img,
 					'buttons': currentLangData.buttons,
 					'hypertexts': currentLangData.hypertexts,
 					'sections': currentLangData.sections
@@ -49,6 +52,7 @@ export class WebContentService {
 					return ({
 						'fr': {
 							'logo': commonsFr.logo,
+							'img': commonsFr.img,
 							'buttons': commonsFr.buttons,
 							'hypertexts': commonsFr.hypertexts,
 							'sections': commonsFr.sections
@@ -109,6 +113,38 @@ export class WebContentService {
 					});
 				}
 			}
+		}
+	}
+
+	getWIPageWebContent(params: {lang: string}) {
+		if (params.lang !== 'default') {
+			switch(params.lang) {
+				case 'fr':
+					return (wipageFr);
+				default:
+					httpError('Language not handled');
+					break;
+			}
+		} else {
+			return ({
+				'fr': wipageFr
+			});
+		}
+	}
+
+	getNotFoundWebContent(params: {lang: string}) {
+		if (params.lang !== 'default') {
+			switch(params.lang) {
+				case 'fr':
+					return (notFoundFr);
+				default:
+					httpError('Language not handled');
+					break;
+			}
+		} else {
+			return ({
+				'fr': notFoundFr
+			});
 		}
 	}
 }

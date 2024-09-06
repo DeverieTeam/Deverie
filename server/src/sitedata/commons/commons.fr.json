@@ -9,6 +9,12 @@
 			"content": "Deux chevrons formant les lettres D et V"
 		}
 	},
+	"img": {
+		"imgPath": {
+			"name": "Chemin des images du site",
+			"content": "/src/assets/images/"
+		}
+	},
 	"buttons": {
 		"backButton": {
 			"text": {
@@ -18,6 +24,16 @@
 			"hover": {
 				"name": "Texte du bouton retour de survol",
 				"content": "Revenir à la page précédente"
+			}
+		},
+		"backToHomeButton": {
+			"text": {
+				"name": "Texte du bouton de retour à l'accueil",
+				"content": "Retour à la Page d'Accueil"
+			},
+			"hover": {
+				"name": "Texte du bouton de retour à l'accueil de survol",
+				"content": "Retour à l'Accueil"
 			}
 		},
 		"quitButton": {
@@ -49,9 +65,61 @@
 				"name": "Texte du bouton de confirmation de survol",
 				"content": "Confirmer les choix"
 			}
+		},
+		"checkShortcuts": {
+			"addEntireSection": {
+				"text": {
+					"name": "Texte d'ajout de tous les éléments d'une section",
+					"content": "Ajouter tout"
+				},
+				"content": {
+					"name": "Texte d'ajout des éléments d'une section de survol",
+					"content": "Ajouter tous ces éléments"
+				}
+			},
+			"removeEntireSection": {
+				"text": {
+					"name": "Texte de suppression de tous les éléments d'une section",
+					"content": "Enlever tout"
+				},
+				"content": {
+					"name": "Texte de suppression des éléments d'une section de survol",
+					"content": "Enlever tous ces éléments"
+				}
+			},
+			"addAll": {
+				"text": {
+					"name": "Texte d'ajout de tous les éléments",
+					"content": "Tout sélectionner"
+				},
+				"content": {
+					"name": "Texte d'ajout de tous les éléments de survol",
+					"content": "Sélectionner tous les éléments"
+				}
+			},
+			"removeAll": {
+				"text": {
+					"name": "Texte de suppression de tous les éléments",
+					"content": "Tout désélectionner"
+				},
+				"content": {
+					"name": "Texte de suppression des éléments d'une section de survol",
+					"content": "Désélectionner tous ces éléments"
+				}
+			}
 		}
 	},
 	"hypertexts": {
+		"home": {
+			"text": {
+				"name": "Texte d'accès à la page d'accueil",
+				"content": "Accueil"
+			},
+			"hover": {
+				"name": "Texte de la page d'accueil de survol",
+				"content": "Page d'Accueil"
+			}
+		},
 		"contact": {
 			"text": {
 				"name": "Texte d'accès à la page contact",

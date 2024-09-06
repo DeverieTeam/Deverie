@@ -42,12 +42,18 @@ const router = createBrowserRouter([
       {
         path: "chats",
         element: <WIPage />,
+         loader: async () => {
+          return (await fetchWebContent("wip", "fr"));
+        },
       },
     ],
   },
   {
     path: "*",
     element: <PageNotFound404 />,
+     loader: async () => {
+      return (await fetchWebContent("404", "fr"));
+    },
   },
 ]);
 

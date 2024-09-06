@@ -43,6 +43,7 @@ export default function ThreadsRow({ post, webcontent }: Props) {
             <img
               className="m-auto w-5 md:w-8 h-5 md:h-8 bg-neutral-100"
               src=""
+              title={webcontent.favorite.add.hover.content}
             />
           </div>
         </div>

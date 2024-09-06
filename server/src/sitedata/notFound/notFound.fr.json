@@ -1,0 +1,14 @@
+{
+	"title": {
+		"name": "Titre d'une page absente",
+		"content": "Page Not Found"
+	},
+	"description": {
+		"name": "Description d'une page absente",
+		"content": "La classique erreur 404...\nPeut-être la page n'existe-t-elle plus ?\nS'est perdue dans la forêt ?\nOu a disparu dans le vide intersidéral ?\nEn tout cas, pas grand chose à voir ici."
+	},
+	"imgSrc": {
+		"name": "Source de l'image d'une page absente",
+		"content": "error-404.png"
+	}
+}
