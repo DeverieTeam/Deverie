@@ -32,7 +32,7 @@ items:
 
   tag7:
     name: 'OOP'
-    icon: 'https://cdn.icon-icons.com/icons2/2699/PNG/512/numpy_logo_icon_168071.png'
+    icon: 'https://weenesta.com/storage/app/uploads/public/5cf/128/f4a/5cf128f4afbbe880700013.png'
     family: 'Technology'
 
   tag8:
@@ -41,8 +41,8 @@ items:
     family: 'Language'
 
   tag9:
-    name: 'Numphy'
-    icon: 'https://cdn-icons-png.flaticon.com/512/3488/3488782.png'
+    name: 'Numpy'
+    icon: 'https://cdn.icon-icons.com/icons2/2699/PNG/512/numpy_logo_icon_168071.png'
     family: 'Technology'
 
   tag10:
@@ -53,4 +53,29 @@ items:
   tag11:
     name: 'Input'
     icon: 'https://cdn-icons-png.flaticon.com/512/3488/3488782.png'
+    family: 'Technology'
+
+  tag12:
+    name: 'API'
+    icon: 'https://t4.ftcdn.net/jpg/03/22/95/69/360_F_322956978_9ESBVewTYdhSu9G6qf2JazX9tUsdh53g.jpg'
+    family: 'Technology'
+
+  tag13:
+    name: 'JavaScript'
+    icon: 'https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png'
+    family: 'Language'
+
+  tag14:
+    name: 'Symfony'
+    icon: 'https://cdn.icon-icons.com/icons2/2389/PNG/512/symfony_logo_icon_144821.png'
+    family: 'Environment'
+
+  tag15:
+    name: 'Shell'
+    icon: 'https://e7.pngegg.com/pngimages/48/567/png-clipart-bash-shell-script-command-line-interface-z-shell-shell-rectangle-logo-thumbnail.png'
+    family: 'Language'
+
+  tag16:
+    name: 'No code'
+    icon: 'https://cdn-icons-png.freepik.com/512/6214/6214224.png'
     family: 'Technology'

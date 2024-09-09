@@ -6,7 +6,7 @@ items:
     email: 'barge.pierre@hotmail.fr'
     is_email_displayed: true
     inscription_date: '2024, 2, 21'
-    profile_picture: 'https://storage.googleapis.com/quest_editor_uploads/YT6UOoDIjBbPPuU0KcuFrK7BXzXmZaOe.png'
+    profile_picture: 'https://lh4.googleusercontent.com/proxy/ZQ9t3d4jGvYJm4a2xE68sSPZ97H78fnamGe9sremjadhfb77932Q5UBdz-t96bcQQHDSnbLjhtUbBHw'
     pronouns: 'il/lui'
     description: 'En reconversion professionnelle dans le développement web.'
     role: 'Administrator'
@@ -21,7 +21,7 @@ items:
     inscription_date: '2023, 11, 4'
     profile_picture: 'https://avatars.githubusercontent.com/u/98613290?v=4'
     pronom: 'il/lui'
-    description: "j'essaye d'apprendre React mais c'est pas simple"
+    description: "j'essaye d'apprendre React mais c'est pas simple.\nLes autres m'appellent dissident"
     role: 'Member'
     is_banned: false
     displayed_name: 'maxlamenace03'
@@ -32,12 +32,12 @@ items:
     email: 'axel.remontpro@gmail.com'
     is_email_displayed: true
     inscription_date: '2024, 3, 22'
-    profile_picture: 'https://avatars.githubusercontent.com/u/129195521?v=4'
+    profile_picture: 'https://avatars.githubusercontent.com/u/81240236?v=4'
     pronom: 'truite'
     description: 'Bannana Game of the Year'
     role: 'Moderator'
     is_banned: false
-    displayed_name: 'frenchBanane'
+    displayed_name: 'frenchBanana'
 
   member4:
     name: '5p3c7r4l'
@@ -47,10 +47,10 @@ items:
     inscription_date: '2024, 5, 14'
     profile_picture: 'https://avatars.githubusercontent.com/u/129195521?v=4'
     pronom: 'il/lui'
-    description: "Assembly and Python enjoyer and Java is trash. \n Follow on Twitch.tv/ElixirMH"
+    description: "Assembly and Python enjoyer and Java is trash.\nFollow on Twitch.tv/ElixirMH"
     role: 'Administrator'
     is_banned: false
-    displayed_name: 'MHplayer69'
+    displayed_name: null
 
   member5:
     name: 'Omicro'
@@ -63,7 +63,7 @@ items:
     description: "Who's gonna be a bash and JS specialised developper? Me of course!"
     role: 'Administrator'
     is_banned: false
-    displayed_name: 'megaman_player'
+    displayed_name: null
 
   member6:
     name: 'MasterKafey'
@@ -76,10 +76,10 @@ items:
     description: "Expert PHP Symphony.\nJouez à Outer Wilds."
     role: 'Moderator'
     is_banned: false
-    displayed_name: 'MasterKafey'
+    displayed_name: null
 
   member7:
-    name: 'AaroonX'
+    name: 'AaronX'
     hashed_password: 'qifoefdsjsqfh'
     email: 'aaroonx@gmail.com'
     is_email_displayed: true
@@ -89,6 +89,7 @@ items:
     description: "Codez en C pour coder aussi rapide que l'éclair !"
     role: 'Member'
     is_banned: false
+    displayed_name: null
 
   member8:
     name: 'dark lord of JAVA'
@@ -101,6 +102,7 @@ items:
     description: 'Java >>> autres langages'
     role: 'Member'
     is_banned: true
+    displayed_name: null
 
   member9:
     name: 'Assembly enjoyer'
@@ -113,15 +115,17 @@ items:
     description: null
     role: 'Member'
     is_banned: false
+    displayed_name: null
 
   member10:
     name: 'Napstablook'
     hashed_password: 'agkdjslku'
-    email: 'gostly@gmail.com'
+    email: 'ghostly@gmail.com'
     is_email_displayed: true
     inscription_date: '2024, 8, 24'
-    profile picture: 'https://i1.sndcdn.com/artworks-kiBctpvdsLSFpuCz-sFfEwQ-t500x500.jpg'
+    profile picture: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ006-wx53UT-CC_iPIS3ZXbQPcmFhou7ysu01p2o-lOts2hfJLQZWZ_PT5T0h2CymC8xw&usqp=CAU'
     pronom: 'elle'
-    description: "La vie n'a pas de sens, autant se faire marcher dessus \n Sinon, Visual Basic c'est fun."
+    description: "La vie n'a pas de sens, autant se faire marcher dessus...\nSinon, Visual Basic c'est fun."
     role: 'Member'
     is_banned: false
+    displayed_name: 'Ghostly2015'

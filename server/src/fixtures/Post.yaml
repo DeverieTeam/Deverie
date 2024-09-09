@@ -3,8 +3,8 @@ items:
   post1:
     author: '@member10'
     title: 'Comment gérer les arguments en Python'
-    content: "J'ai beau chercher, je ne trouve pas de manière clair de gérer les arguments en Python. Tout ce que je trouve n'est pas assez clair pour moi, est-ce que quelqu'un pourrait m'expliquer le tout?"
-    type: 'Topic'
+    content: "J'ai beau chercher, je ne trouve pas de manière clair de gérer les arguments en Python. Tout ce que je trouve n'est pas assez clair pour moi, est-ce que quelqu'un pourrait m'expliquer le tout ?"
+    type: 'Question'
     creation_date: '2024, 6, 16'
     emergency: null
     upvote: null
@@ -17,10 +17,10 @@ items:
 
   post2:
     author: '@member5'
-    title: 'Est-ce que lua est intéressant à apprendre ?'
-    content: "Je viens de découvrir lua grâce à un ami. J'ai vu que c'était très performant, est-ce que cela serait pertinent de l'apprendre"
+    title: 'Est-ce que Lua est intéressant à apprendre ?'
+    content: "Je viens de découvrir Lua grâce à un ami. J'ai vu que c'était très performant, est-ce que cela serait pertinent de l'apprendre ?"
     type: 'Topic'
-    creation_date: '2024, 7, 3'
+    creation_date: '2024, 6, 17'
     emergency: null
     upvote: null
     downvote: null
@@ -33,23 +33,23 @@ items:
     author: '@member4'
     title: null
     content: "Je t'invite à aller regarder la documentation officielle (https://docs.python.org/fr/3/library/argparse.html).\nSinon tu peux toujours faire appel à argv qui est le tableau des arguments passés lors de l'appel du programme en Python (https://docs.python.org/fr/3/library/sys.html#sys.argv)."
-    type: 'Comment'
-    creation_date: '2024, 6, 16'
+    type: 'Answer'
+    creation_date: '2024, 6, 18'
     emergency: null
-    upvote: null
-    downvote: null
+    upvote: 5
+    downvote: 1
     modification_date: '2024, 6, 24'
     modification_author: '@member4'
     reply_to: '@post1'
 
   post4:
-    author: '@member6'
+    author: '@member4'
     title: null
     content: "Ça peut l'être principalement si tu veux proposer des programmes pour des jeux tels que Roblox ou Computercraft (mod Minecraft). Dans le cas de Roblox, toute la logique du jeu est faite en Lua.\nC'est un language avec une syntaxe très user-friendly se rapprochant du Python tout en ayant un fonctionnement se basant sur des tableaux afin d'accéder à des données plus facilement."
     type: 'Comment'
     creation_date: '2024, 6, 20'
     emergency: null
-    upvote: null
+    upvote: 3
     downvote: null
     modification_date: null
     modification_author: null
@@ -57,8 +57,8 @@ items:
 
   post5:
     author: '@member8'
-    title: 'Topic numéro trois (nom très original)'
-    content: "C'est le topic numéro trois. jépadidé"
+    title: 'Topic2'
+    content: "C'est le topic numéro deux. jépadidé"
     type: 'Topic'
     creation_date: '2024, 6, 21'
     emergency: null
@@ -67,9 +67,9 @@ items:
     modification_date: null
     modification_author: null
     tags:
-      - '@tag11'
-      - '@tag1'
       - '@tag6'
+      - '@tag1'
+      - '@tag16'
 
   post6:
     author: '@member9'
@@ -78,21 +78,21 @@ items:
     type: 'Comment'
     creation_date: '2024, 6, 22'
     emergency: null
-    upvote: null
+    upvote: 7
     downvote: null
-    modification_date: null
-    modification_author: null
+    modification_date: '2024, 6, 25'
+    modification_author: '@member9'
     reply_to: '@post2'
 
   post7:
     author: '@member8'
     title: null
-    content: "Oui, tu as juste à avoir une liste d'arguments et tu scroll dedans. Tu dois avoir un truc à gérer avec ton main où tu y choppe tout un tableau. En tout cas c'est bien pratique en Java."
-    type: 'Comment'
+    content: "Oui, t'as juste à avoir une liste d'arguments et tu scroll dedans. Tu dois avoir un truc à gérer avec ton main où tu y choppe tout un tableau. En tout cas c'est bien pratique en Java."
+    type: 'Answer'
     creation_date: '2024, 6, 22'
     emergency: null
-    upvote: null
-    downvote: null
+    upvote: 2
+    downvote: 3
     modification_date: null
     modification_author: null
     reply_to: '@post1'
@@ -104,7 +104,7 @@ items:
     type: 'Comment'
     creation_date: '2024, 6, 23'
     emergency: null
-    upvote: null
+    upvote: 10
     downvote: null
     modification_date: null
     modification_author: null
@@ -117,80 +117,89 @@ items:
     type: 'Comment'
     creation_date: '2024, 7, 1'
     emergency: null
-    upvote: null
+    upvote: 2
     downvote: null
     modification_date: null
     modification_author: null
     reply_to: '@post8'
 
   post10:
-    author: '@member6'
-    title: "Plongez dans l'univers fascinant de la programmation avec notre guide complet : découvrez les langages incontournables, les meilleures pratiques de codage, des astuces pour débugger efficacement et comment contribuer à des projets open source."
-    content: ''
+    author: '@member8'
+    title: 'Guide de programmation !'
+    content: "Plongez dans l'univers fascinant de la programmation avec notre guide complet : découvrez les langages incontournables, les meilleures pratiques de codage, des astuces pour débugger efficacement et comment contribuer à des projets open source."
     type: 'Topic'
     creation_date: '2024, 2, 2'
     emergency: null
-    upvote: null
-    downvote: null
+    upvote: 1
+    downvote: 4
     modification_date: null
     modification_author: null
     tags:
-      - '@tag1'
+      - '@tag16'
 
   post11:
     author: '@member9'
     title: "Quelqu'un pourrait-il me dire comment faire pour être organisé dans son code ? "
-    content: ''
-    type: 'Topic'
+    content: "Je viens de commencer à coder en C et j'avoue que c'est beaucoup plus rapide qu'en ASM pour à peu près tout. Est-ce que vous aurez des conseils d'organisation pour que n'importe qui ne soit plus perdu dans mon code ?"
+    type: 'Question'
     creation_date: '2024, 2, 2'
     emergency: null
-    upvote: null
+    upvote: 1
     downvote: null
     modification_date: null
     modification_author: null
     tags:
-      - '@tag1'
-      - '@tag2'
+      - '@tag8'
 
   post12:
-    author: '@member10'
-    title: "Oui, le développement c'est trop cool"
-    content: ''
+    author: '@member1'
+    title: "Première approche d'un novice"
+    content: "Je viens de débarquer dans le monde de la programmation web et je dois avouer que je ne pensais pas du tout autant aimer le développement. Tout est extrêment plus simple avec React, Docker est du pain béni bref, je pense que je ne vais pas regréter de m'être lancé dans la programmation.\nJ'aurais une demande cependant, qu'est-ce que vous me conseillerais pour commencer de la programmation non web ? J'ai des bases en objet avec JS et TypeScript mais j'aimerai avoir votre avis."
     type: 'Topic'
     creation_date: '2024, 8, 14'
     emergency: null
-    upvote: null
-    downvote: null
+    upvote: 8
+    downvote: 2
     modification_date: null
     modification_author: null
     tags:
       - '@tag1'
       - '@tag2'
-      - '@tag8'
-      - '@tag10'
+      - '@tag13'
 
   post13:
     author: '@member3'
-    title: 'Comment faire pour apprendre le développement ?'
-    content: ''
-    type: 'Topic'
+    title: 'Par où commencer dans le développement web ?'
+    content: "Jusque là je n'ai fait que du Python quand j'étais en bac pro mais j'aimerai voir comment ça se passe côté internet. Des recommandations de techs pour commencer (À part HTML et CSS bien sûr) ?"
+    type: 'Question'
     creation_date: '2024, 8, 20'
-    emergency: null
-    upvote: null
-    downvote: null
+    emergency: 1
+    upvote: 1
+    downvote: 1
     modification_date: null
     modification_author: null
     tags:
       - '@tag1'
-      - '@tag2'
-      - '@tag11'
 
   post14:
+    author: '@member8'
+    title: null
+    content: 'Pour apprendre le développement web, tu peux aller sur OpenClassroom, sinon tu peux suivre des tuto expliqués ou trouver un site expliquant de quoi tu as besoin'
+    type: 'Answer'
+    creation_date: '2024, 8, 20'
+    emergency: null
+    upvote: 1
+    downvote: 1
+    modification_date: null
+    modification_author: null
+    reply_to: '@post13'
+
+  post15:
     author: '@member2'
     title: 'Est-ce que python est utile ? Ou faut-il commencer par du développement web ? Je ne sais pas par où commencer...'
     content: ''
     type: 'Question'
-    creation_date: '2024, 1, 22'
+    creation_date: '2024, 8, 22'
     emergency: null
     upvote: null
     downvote: null
@@ -198,56 +207,84 @@ items:
     modification_author: null
     tags:
       - '@tag3'
-
-  post15:
-    author: '@member8'
-    title: "Je veux faire du développement applicatif, comment je pourrais faire pour continuer d'apprendre alors que je suis en formation ? "
-    content: ''
-    type: 'Topic'
-    creation_date: '2024, 4, 12'
-    emergency: null
-    upvote: null
-    downvote: null
-    modification_date: null
-    modification_author: null
-    tags:
       - '@tag1'
 
   post16:
     author: '@member10'
-    title: "Je voudrais faire appel à une API mais les données ne veulent pas s'afficher !"
-    content: ''
-    type: 'Topic'
-    creation_date: '2024, 1, 4'
+    title: "Je veux faire du développement applicatif, comment je pourrais faire pour continuer à apprendre alors que je suis en formation ?"
+    content: "Je suis actuellement en formation devops mais j'aimerai apprendre de nouveaux langages qui n'ont rien à voir avec ma formation actuelle. Vous auriez des conseils d'organisation ?"
+    type: 'Question'
+    creation_date: '2024, 8, 24'
     emergency: null
     upvote: null
     downvote: null
     modification_date: null
     modification_author: null
     tags:
-      - '@tag11'
-      - '@tag2'
+      - '@tag7'
 
   post17:
-    author: '@member10'
-    title: "J'ai fait mon site web, mais je ne sais pas comment faire pour le mettre en ligne... Est-ce que quelqu'un pourrais me guider ?"
-    content: ''
-    type: 'Topic'
-    creation_date: '2024, 1, 20'
-    emergency: null
+    author: '@member7'
+    title: "Je voudrais faire appel à une API mais les données ne veulent pas s'afficher !"
+    content: "Je ne sais pas exactement d'où viens mon problème. J'ai utilisé axios et regardé la doc mais rien n'a l'air de fonctionner, ça me retourne toujours un objet HTTP bizarre."
+    type: 'Question'
+    creation_date: '2024, 8, 25'
+    emergency: 2
     upvote: null
     downvote: null
     modification_date: null
     modification_author: null
     tags:
-      - '@tag1'
+      - '@tag12'
+      - '@tag2'
 
   post18:
     author: '@member5'
+    title: null
+    content: "À vrai dire tout dépend ce que tu veux faire. Les deux voies sont envisageable. Pour le coup le web est plus rapidement graphique et tu auras peut-être plus rapidement l'impression d'avancer que si tu codes en Python. Après attention, le HTML et CSS (utilisés dans le web) ne sont pas des langages de programmation et ne requièrent aucune connaissances algorithmiques. Si tu cherches la logique pure comme première approche, je te conseille alors d'aller voir du côté de Python ou JavaScript qui sont de très bonnes portes d'entrée à la programmation."
+    type: 'Answer'
+    creation_date: '2024, 8, 25'
+    emergency: null
+    upvote: 5
+    downvote: 1
+    modification_date: null
+    modification_author: null
+    reply_to: '@post15'
+
+  post19:
+    author: '@member1'
+    title: "Est-ce que quelqu'un pourrait me guider pour mettre mon site en ligne ?"
+    content: "J'ai terminé mon site internet en React et ExpressJS et j'aimerai maintenant savoir comment le mt=ettre en ligne. Est-ce que quelqu'un pourrait me contacter en mp pour en discuter plus en détails ?"
+    type: 'Question'
+    creation_date: '2024, 8, 27'
+    emergency: null
+    upvote: 2
+    downvote: null
+    modification_date: '2024, 8, 31'
+    modification_author: null
+    tags:
+      - '@tag1'
+      - '@tag2'
+
+  post20:
+    author: '@member3'
+    title: null
+    content: "Il faut que tu passes par un hébergeur web pour pouvoir le mettre en ligne, ou passer par un service tierce pour pouvoir avoir un référencement pour d'autres sites"
+    type: 'Comment'
+    creation_date: '2024, 8, 29'
+    emergency: null
+    upvote: null
+    downvote: null
+    modification_date: null
+    modification_author: null
+    reply_to: '@post19'
+
+  post21:
+    author: '@member9'
     title: "Je suis en autoformation et j'aime la programmation, mais je ne sais pas comment faire un site web et le mettre en ligne"
     content: ''
     type: 'Topic'
-    creation_date: '2024, 2, 25'
+    creation_date: '2024, 9, 2'
     emergency: null
     upvote: null
     downvote: null
@@ -257,159 +294,120 @@ items:
     tags:
       - '@tag1'
 
-  post19:
+  post22:
     author: '@member4'
     title: 'Est-ce que le No Code est nocif pour la santé ?'
     content: ''
-    type: 'Question'
-    creation_date: '2024, 2, 15'
+    type: 'Topic'
+    creation_date: '2024, 9, 3'
     emergency: null
     upvote: null
     downvote: null
     modification_date: null
     modification_author: null
     tags:
-      - '@tag2'
+      - '@tag16'
 
-  post20:
-    author: '@member10'
+  post23:
+    author: '@member6'
     title: null
-    content: 'Non le no code va tuer les développeurs'
-    type: 'Answer'
-    creation_date: '2024, 5, 20'
+    content: 'Non le No Code va tuer les développeurs !'
+    type: 'Comment'
+    creation_date: '2024, 9, 4'
     emergency: null
     upvote: null
     downvote: null
-    modification_date: '2024, 5, 20'
-    modification_author: '@member10'
+    modification_date: '2024, 9, 6'
+    modification_author: '@member6'
+    reply_to: '@post22'
+
+  post24:
+    author: '@member6'
+    title: null
+    content: 'Yep, viens en mp.'
+    type: 'Comment'
+    creation_date: '2024, 9, 5'
+    emergency: null
+    upvote: 1
+    downvote: 3
+    modification_date: null
+    modification_author: null
     reply_to: '@post19'
 
-  post21:
-    author: '@member4'
+  post25:
+    author: '@member5'
     title: null
-    content: "Il faut que tu passes par un hébergeur web pour pouvoir le mettre en ligne, ou passer par un service tierce pour pouvoir avoir un référencement pour d'autres sites"
+    content: "Le No Code à des avantages. Le plus flagran est qu'il premet à tout le monde de créer beaucoup de choses. Mais le défaut principale est sa rigidité. Rien qu'à voir comment tous les sites Wordpress se ressemblent, plus jamais j'en ferai si l'on me laisse le choix. Je ne pense pas le No Code risque de tuer les développeurs loin de là mais au contraire va permettre de nouvelles portes d'entrée au développement. Mais de là à être nocif, je pense qu'on a encore du temps."
     type: 'Comment'
-    creation_date: '2024, 5, 21'
+    creation_date: '2024, 9, 8'
     emergency: null
-    upvote: null
+    upvote: 4
+    downvote: 1
+    modification_date: null
+    modification_author: null
+    reply_to: '@post22'
+
+  post26:
+    author: '@member1'
+    title: null
+    content: "Ça à l'air d'être une erreur dans la gestion des promesses. Va voir du côté de la gestion de l'asynchrone d'axios..."
+    type: 'Answer'
+    creation_date: '2024, 9, 10'
+    emergency: null
+    upvote: 2
     downvote: null
     modification_date: null
     modification_author: null
     reply_to: '@post17'
 
-  post22:
-    author: '@member6'
-    title: null
-    content: 'Pour faire un site web, il faut que tu apprennes les langages web, ou sinon tu passes par Wordpress qui propose'
-    type: 'Comment'
-    creation_date: '2024, 5, 20'
-    emergency: null
-    upvote: null
-    downvote: null
-    modification_date: null
-    modification_author: null
-    reply_to: '@post18'
-
-  post23:
+  post27:
     author: '@member5'
     title: null
-    content: 'Je ne suis pas fan pour le no code mais je pense que les développeurs on en a toujours besoin'
+    content: "J'ai trouvé d'où venait mon problème merci beaucoup."
     type: 'Answer'
-    creation_date: '2024, 5, 30'
+    creation_date: '2024, 9, 12'
     emergency: null
     upvote: null
     downvote: null
     modification_date: null
     modification_author: null
-    reply_to: '@post19'
-
-  post24:
-    author: '@member1'
-    title: null
-    content: "Ça dépend du langage qui est utilisé pour l'appel API que tu voudrais faire"
-    type: 'Comment'
-    creation_date: '2024, 8, 21'
-    emergency: null
-    upvote: null
-    downvote: null
-    modification_date: null
-    modification_author: null
-    reply_to: '@post16'
-
-  post25:
-    author: '@member8'
-    title: null
-    content: 'Oui.'
-    type: 'Comment'
-    creation_date: '2024, 8, 21'
-    emergency: null
-    upvote: null
-    downvote: null
-    modification_date: null
-    modification_author: null
-    reply_to: '@post16'
-
-  post26:
+    reply_to: '@post26'
+  
+  post28:
     author: '@member6'
     title: null
-    content: "Ça peut l'être principalement si tu veux proposer des programmes pour des jeux tels que Roblox ou Computercraft (mod Minecraft). Dans le cas de Roblox, toute la logique du jeu est faite en Lua.\nC'est un language avec une syntaxe très user-friendly se rapprochant du Python tout en ayant un fonctionnement se basant sur des tableaux afin d'accéder à des données plus facilement"
+    content: "Tu peux commencer à aller voir du côté de OpenClassroom pour des cours d'introduction. Sinon, il y a de nombreuses formations certifiantes demandées par l'état chaque année. Je t'encourage à regarder lesquelles sont dans ton périmètre, elles sont la plupart du temps abordable par n'importe qui."
     type: 'Comment'
-    creation_date: '2024, 8, 5'
+    creation_date: '2024, 9, 12'
     emergency: null
-    upvote: null
+    upvote: 1
     downvote: null
     modification_date: null
     modification_author: null
-    reply_to: '@post2'
-
-  post27:
-    author: '@member7'
-    title: null
-    content: "Pour continuer à apprendre, soit tu suis des tutos pour les langages à apprendre, soit tu peux faire des formations qui te l'apprendront"
-    type: 'Comment'
-    creation_date: '2024, 8, 15'
-    emergency: null
-    upvote: null
-    downvote: null
-    modification_date: null
-    modification_author: null
-    reply_to: '@post12'
-
-  post28:
-    author: '@member9'
-    title: null
-    content: 'Pour apprendre le développement web, tu peux aller sur openclassroom, sinon tu peux suivre des tuto expliqués ou trouver un site expliquant de quoi tu as besoin'
-    type: 'Comment'
-    creation_date: '2024, 8, 22'
-    emergency: null
-    upvote: null
-    downvote: null
-    modification_date: null
-    modification_author: null
-    reply_to: '@post13'
+    reply_to: '@post21'
 
   post29:
     author: '@member4'
     title: null
-    content: "Pour commencer, je te conseillerais de faire d'abord du développement web, qui est quand meme très différent de Python"
-    type: 'Answer'
-    creation_date: '2024, 2, 16'
+    content: "Pour continuer à apprendre, soit tu suis des tutos pour les langages à apprendre, soit tu peux faire des formations qui te l'apprendront"
+    type: 'Comment'
+    creation_date: '2024, 9, 15'
     emergency: null
     upvote: null
     downvote: null
     modification_date: null
     modification_author: null
-    reply_to: '@post14'
+    reply_to: '@post21'
 
   post30:
-    author: '@member10'
+    author: '@member2'
     title: null
     content: "Pour etre organiser dans ton code, je te conseille de le commenter, parce que c'est d'abord pour toi que tu le fais, et ensuite parce qu'un code documenté c'est plus simple de s'y retrouver"
     type: 'Comment'
-    creation_date: '2024, 4, 10'
+    creation_date: '2024, 9, 17'
     emergency: null
     upvote: null
-    downvote: null
+    downvote: 2
     modification_date: null
     modification_author: null
     reply_to: '@post11'
