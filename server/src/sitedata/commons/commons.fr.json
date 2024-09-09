@@ -72,7 +72,7 @@
 					"name": "Texte d'ajout de tous les éléments d'une section",
 					"content": "Ajouter tout"
 				},
-				"content": {
+				"hover": {
 					"name": "Texte d'ajout des éléments d'une section de survol",
 					"content": "Ajouter tous ces éléments"
 				}
@@ -82,7 +82,7 @@
 					"name": "Texte de suppression de tous les éléments d'une section",
 					"content": "Enlever tout"
 				},
-				"content": {
+				"hover": {
 					"name": "Texte de suppression des éléments d'une section de survol",
 					"content": "Enlever tous ces éléments"
 				}
@@ -92,7 +92,7 @@
 					"name": "Texte d'ajout de tous les éléments",
 					"content": "Tout sélectionner"
 				},
-				"content": {
+				"hover": {
 					"name": "Texte d'ajout de tous les éléments de survol",
 					"content": "Sélectionner tous les éléments"
 				}
@@ -102,7 +102,7 @@
 					"name": "Texte de suppression de tous les éléments",
 					"content": "Tout désélectionner"
 				},
-				"content": {
+				"hover": {
 					"name": "Texte de suppression des éléments d'une section de survol",
 					"content": "Désélectionner tous ces éléments"
 				}

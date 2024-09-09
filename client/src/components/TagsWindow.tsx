@@ -74,7 +74,7 @@ export default function TagsWindow({
                     langTags={langTags}
                     envTags={envTags}
                     technoTags={technoTags}
-                    webcontent={webcontent.tagsFamilies.languages}
+                    webcontent={webcontent}
                   />
                 ))}
             </div>
@@ -101,7 +101,7 @@ export default function TagsWindow({
                   onClick={exitTagWindow}
                   title={webcontent.buttons.cancelButton.hover.content}
                 >
-                  {webcontent.buttons.confirmButton.text.content}
+                  {webcontent.buttons.cancelButton.text.content}
                 </button>
                 <button
                   className="py-1 px-4 md:px-8 text-center text-lg md:text-xl hover:text-white bg-indigo-400 hover:bg-indigo-600 rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900"
