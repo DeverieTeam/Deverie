@@ -1,7 +1,6 @@
 import { Link, useLoaderData } from "react-router-dom";
 
 export default function PageNotFound404() {
-
   const webcontent = useLoaderData();
 
   return (
@@ -10,12 +9,18 @@ export default function PageNotFound404() {
         {webcontent.page.title.content}
       </p>
       <div className="m-auto lg:w-[50%] lg:max-w-[600px]">
-        <img src={webcontent.commons.img.imgPath.content+webcontent.page.imgSrc.content} width="100%" />
+        <img
+          src={
+            webcontent.commons.img.imgPath.content +
+            webcontent.page.imgSrc.content
+          }
+          width="100%"
+        />
       </div>
       <p className="my-8 text-lg lg:text-2xl font-semibold">
         {webcontent.page.description.content
-        .split('\n')
-        .flatMap((line, i) => [line, <br />])}
+          .split("\n")
+          .flatMap((line: string, i: number) => [line, <br key={i} />])}
       </p>
       <div className="py-8">
         <Link

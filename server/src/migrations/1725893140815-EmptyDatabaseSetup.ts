@@ -1,7 +1,7 @@
 import { MigrationInterface, QueryRunner } from "typeorm";
 
-export class EmptyDatabaseSetup1725356250029 implements MigrationInterface {
-    name = 'EmptyDatabaseSetup1725356250029'
+export class EmptyDatabaseSetup1725893140815 implements MigrationInterface {
+    name = 'EmptyDatabaseSetup1725893140815'
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`CREATE TYPE "public"."rating_type_enum" AS ENUM('Up', 'Down')`);
@@ -11,7 +11,7 @@ export class EmptyDatabaseSetup1725356250029 implements MigrationInterface {
         await queryRunner.query(`CREATE TYPE "public"."member_role_enum" AS ENUM('Member', 'Moderator', 'Administrator')`);
         await queryRunner.query(`CREATE TYPE "public"."member_theme_enum" AS ENUM('Light', 'Dark')`);
         await queryRunner.query(`CREATE TYPE "public"."member_language_enum" AS ENUM('Français', 'English')`);
-        await queryRunner.query(`CREATE TABLE "member" ("id" SERIAL NOT NULL, "name" character varying(100) NOT NULL, "hashed_password" character varying(255) NOT NULL, "email" character varying(100) NOT NULL, "is_email_displayed" boolean NOT NULL, "inscription_date" date NOT NULL DEFAULT now(), "profile_picture" character varying(255), "pronouns" character varying(50), "description" text, "role" "public"."member_role_enum" NOT NULL DEFAULT 'Member', "is_banned" boolean NOT NULL DEFAULT false, "displayed_name" character varying(100), "theme" "public"."member_theme_enum" NOT NULL DEFAULT 'Light', "language" "public"."member_language_enum" NOT NULL DEFAULT 'Français', CONSTRAINT "UQ_8174d0498e41d6e7c108b657e79" UNIQUE ("name"), CONSTRAINT "UQ_4678079964ab375b2b31849456c" UNIQUE ("email"), CONSTRAINT "PK_97cbbe986ce9d14ca5894fdc072" PRIMARY KEY ("id"))`);
+        await queryRunner.query(`CREATE TABLE "member" ("id" SERIAL NOT NULL, "name" character varying(100) NOT NULL, "hashed_password" character varying(255) NOT NULL, "email" character varying(100) NOT NULL, "is_email_displayed" boolean NOT NULL, "inscription_date" date NOT NULL DEFAULT now(), "profile_picture" character varying(255) NOT NULL DEFAULT '/images/profile-picture-default.png', "pronouns" character varying(50), "description" text, "role" "public"."member_role_enum" NOT NULL DEFAULT 'Member', "is_banned" boolean NOT NULL DEFAULT false, "displayed_name" character varying(100), "theme" "public"."member_theme_enum" NOT NULL DEFAULT 'Light', "language" "public"."member_language_enum" NOT NULL DEFAULT 'Français', CONSTRAINT "UQ_8174d0498e41d6e7c108b657e79" UNIQUE ("name"), CONSTRAINT "UQ_4678079964ab375b2b31849456c" UNIQUE ("email"), CONSTRAINT "PK_97cbbe986ce9d14ca5894fdc072" PRIMARY KEY ("id"))`);
         await queryRunner.query(`CREATE TYPE "public"."tag_family_enum" AS ENUM('Language', 'Environment', 'Technology')`);
         await queryRunner.query(`CREATE TABLE "tag" ("id" SERIAL NOT NULL, "name" character varying(100) NOT NULL, "icon" character varying(255) NOT NULL, "family" "public"."tag_family_enum" NOT NULL, CONSTRAINT "PK_8e4052373c579afc1471f526760" PRIMARY KEY ("id"))`);
         await queryRunner.query(`CREATE TABLE "post_tag" ("postId" integer NOT NULL, "tagId" integer NOT NULL, CONSTRAINT "PK_7e4fae2ea901c7c38a0e431d2b3" PRIMARY KEY ("postId", "tagId"))`);

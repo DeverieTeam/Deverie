@@ -4,7 +4,7 @@ export default function ThreadsRow({ post, webcontent }: Props) {
       <div className="w-[35%] justify-between gap-1 md:gap-2 flex flex-col">
         <div className="m-auto h-14 md:h-32 w-14 md:w-32 bg-indigo-400 hover:bg-indigo-600 rounded-full shadow-sm shadow-neutral-500 flex">
           <img
-            className="m-auto h-12 md:h-[120px] w-12 md:w-[120px] rounded-full bg-neutral-100"
+            className="m-auto h-12 md:h-[120px] w-12 md:w-[120px] rounded-full bg-transparent"
             src={post.author.profile_picture}
           />
         </div>
@@ -36,13 +36,14 @@ export default function ThreadsRow({ post, webcontent }: Props) {
               {webcontent.numberOfResponses.content} : {post.replies_count}
             </div>
             <div className="text-center text-xs md:text-base">
-              {webcontent.lastResponseDatePrefix.content} : {post.last_message_date}
+              {webcontent.lastResponseDatePrefix.content} :{" "}
+              {post.last_message_date}
             </div>
           </div>
           <div className="m-auto w-6 md:w-10 h-6 md:h-10 flex ">
             <img
-              className="m-auto w-5 md:w-8 h-5 md:h-8 bg-neutral-100"
-              src=""
+              className="m-auto w-5 md:w-8 h-5 md:h-8 bg-transparent"
+              src="/public/icons/favourite.svg"
               title={webcontent.favorite.add.hover.content}
             />
           </div>
@@ -65,33 +66,33 @@ type Props = {
     title: string;
     replies_count: number;
     last_message_date: string;
-  },
+  };
   webcontent: {
     publishDatePrefix: {
-      name: string,
-      content: string
-    },
+      name: string;
+      content: string;
+    };
     numberOfResponses: {
-      name: string,
-      content: string
-    },
+      name: string;
+      content: string;
+    };
     lastResponseDatePrefix: {
-      name: string,
-      content: string
-    },
+      name: string;
+      content: string;
+    };
     favorite: {
       add: {
         hover: {
-          name: string,
-          content: string
-        }
-      },
+          name: string;
+          content: string;
+        };
+      };
       remove: {
         hover: {
-          name: string,
-          content: string
-        }
-      }
-    }
+          name: string;
+          content: string;
+        };
+      };
+    };
   };
 };

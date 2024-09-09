@@ -1,26 +1,26 @@
 {
-	"topic": {
-		"createButton": {
-			"text": {
-				"name": "Texte du bouton de création de poste",
-				"content": "Créer un nouveau sujet de Forum"
-			},
-			"hover": {
-				"name": "Texte bouton de création de poste de survol",
-				"content": "Créer un nouveau poste"
-			}
-		}
-	},
-	"question": {
-		"createButton": {
-			"text": {
-				"name": "Texte du bouton de création de question",
-				"content": "Créer une nouvelle Question"
-			},
-			"hover": {
-				"name": "Texte bouton de création de question de survol",
-				"content": "Créer une nouvelle question"
-			}
-		}
-	}
+  "topic": {
+    "createButton": {
+      "text": {
+        "name": "Texte du bouton de création de post",
+        "content": "Créer un nouveau sujet de Forum"
+      },
+      "hover": {
+        "name": "Texte bouton de création de post de survol",
+        "content": "Créer un nouveau post"
+      }
+    }
+  },
+  "question": {
+    "createButton": {
+      "text": {
+        "name": "Texte du bouton de création de question",
+        "content": "Créer une nouvelle Question"
+      },
+      "hover": {
+        "name": "Texte bouton de création de question de survol",
+        "content": "Créer une nouvelle question"
+      }
+    }
+  }
 }
