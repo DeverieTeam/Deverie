@@ -96,7 +96,6 @@ items:
     email: 'xxdarkjavalordxx@orange.fr'
     is_email_displayed: true
     inscription_date: '2024, 1, 24'
-    profile_picture: null
     pronom: null
     description: 'Java >>> autres langages'
     role: 'Member'
@@ -108,7 +107,6 @@ items:
     email: 'karren.warren@gmail.com'
     is_email_displayed: true
     inscription: '2024, 2, 20'
-    profile_picture: null
     pronom: 'ASM/NASM'
     description: null
     role: 'Member'

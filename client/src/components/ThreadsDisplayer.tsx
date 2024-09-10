@@ -1,16 +1,36 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import ThreadsRow from "./ThreadsRow";
 
 export default function ThreadsDisplayer({
   thread,
-  data,
-  setData,
   pagination,
   sort,
   searchField,
   tags,
-  webcontent
+  webcontent,
+  setDataForPage,
 }: Props) {
+  const [data, setData] = useState<
+    | null
+    | {
+        id: number;
+        author: {
+          name: string;
+          profile_picture: string;
+        };
+        tags: {
+          id: number;
+          name: string;
+          icon: string;
+        }[];
+        creation_date: string;
+        title: string;
+        replies_count: number;
+        last_message_date: string;
+        results_length: null | number;
+      }[]
+  >(null);
+
   useEffect(() => {
     const queryHandler = () => {
       const queryArray = [];
@@ -59,16 +79,21 @@ export default function ThreadsDisplayer({
       })
       .then((data) => {
         setData(data);
+        if (setDataForPage !== undefined) {
+          setDataForPage(data);
+        }
       });
-  }, [thread, setData, pagination, sort, searchField, tags]);
+  }, [thread, setData, setDataForPage, pagination, sort, searchField, tags]);
 
   return (
     <div className="w-full md:max-w-[750px] self-center gap-2 md:gap-4 flex flex-col">
       {data !== null &&
         data.length > 0 &&
-        data.map((post) => <ThreadsRow key={post.id} post={post} webcontent={webcontent}/>)}
+        data.map((post) => (
+          <ThreadsRow key={post.id} post={post} webcontent={webcontent} />
+        ))}
       {data !== null && data.length === 0 && (
-        <div className="text-2xl md:text-4xl text-center mt-8 font-semibold text-indigo-500 drop-shadow">
+        <div className="text-2xl md:text-4xl text-center mt-8 pb-[600px] md:pb-[800px] font-semibold text-indigo-500 drop-shadow">
           Aucun résultat !!
         </div>
       )}
@@ -78,26 +103,7 @@ export default function ThreadsDisplayer({
 
 type Props = {
   thread: "popular" | "recent" | "topics" | "questions";
-  data:
-    | null
-    | {
-        id: number;
-        author: {
-          name: string;
-          profile_picture: string;
-        };
-        tags: {
-          id: number;
-          name: string;
-          icon: string;
-        }[];
-        creation_date: string;
-        title: string;
-        replies_count: number;
-        last_message_date: string;
-        results_length: null | number;
-      }[];
-  setData: (
+  setDataForPage?: (
     arg0:
       | null
       | {
@@ -121,33 +127,33 @@ type Props = {
   pagination?: number;
   sort?: string;
   searchField?: string;
-  tags: string[];
+  tags?: string[];
   webcontent: {
     publishDatePrefix: {
-      name: string,
-      content: string
-    },
+      name: string;
+      content: string;
+    };
     numberOfResponses: {
-      name: string,
-      content: string
-    },
+      name: string;
+      content: string;
+    };
     lastResponseDatePrefix: {
-      name: string,
-      content: string
-    },
+      name: string;
+      content: string;
+    };
     favorite: {
       add: {
         hover: {
-          name: string,
-          content: string
-        }
-      },
+          name: string;
+          content: string;
+        };
+      };
       remove: {
         hover: {
-          name: string,
-          content: string
-        }
-      }
-    }
-  }
+          name: string;
+          content: string;
+        };
+      };
+    };
+  };
 };

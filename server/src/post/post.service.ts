@@ -9,13 +9,17 @@ export class PostService {
     @InjectRepository(Post) private postRepository: Repository<Post>,
   ) {}
 
-  getLastMessageDate(postReplies: Post[]) {
-    return postReplies.sort((a, b) => {
-      return (
-        new Date(b.creation_date).getTime() -
-        new Date(a.creation_date).getTime()
-      );
-    })[0].creation_date;
+  getLastMessageDate(post: Post) {
+    if (post.replies.length > 0) {
+      return post.replies.sort((a, b) => {
+        return (
+          new Date(b.creation_date).getTime() -
+          new Date(a.creation_date).getTime()
+        );
+      })[0].creation_date;
+    } else {
+      return post.creation_date;
+    }
   }
 
   refinePostData(data: Post[], length?: number) {
@@ -40,7 +44,7 @@ export class PostService {
         creation_date: post.creation_date,
         title: post.title,
         replies_count: post.replies.length,
-        last_message_date: this.getLastMessageDate(post.replies),
+        last_message_date: this.getLastMessageDate(post),
         results_length: null,
       };
       if (post.author.displayed_name) {
@@ -64,7 +68,7 @@ export class PostService {
       .createQueryBuilder('post')
       .innerJoinAndSelect('post.author', 'author')
       .innerJoinAndSelect('post.tags', 'tags')
-      .innerJoinAndSelect('post.replies', 'replies')
+      .leftJoinAndSelect('post.replies', 'replies')
       .getMany();
 
     switch (sort) {
@@ -77,8 +81,8 @@ export class PostService {
       default:
         response.sort((a, b) => {
           return (
-            new Date(this.getLastMessageDate(b.replies)).getTime() -
-            new Date(this.getLastMessageDate(a.replies)).getTime()
+            new Date(this.getLastMessageDate(b)).getTime() -
+            new Date(this.getLastMessageDate(a)).getTime()
           );
         });
         break;
@@ -126,15 +130,15 @@ export class PostService {
       .createQueryBuilder('post')
       .innerJoinAndSelect('post.author', 'author')
       .innerJoinAndSelect('post.tags', 'tags')
-      .innerJoinAndSelect('post.replies', 'replies')
+      .leftJoinAndSelect('post.replies', 'replies')
       .getMany();
 
     switch (sort) {
       case 'ancient':
         response.sort((a, b) => {
           return (
-            new Date(this.getLastMessageDate(a.replies)).getTime() -
-            new Date(this.getLastMessageDate(b.replies)).getTime()
+            new Date(this.getLastMessageDate(a)).getTime() -
+            new Date(this.getLastMessageDate(b)).getTime()
           );
         });
         break;
@@ -152,8 +156,8 @@ export class PostService {
       default:
         response.sort((a, b) => {
           return (
-            new Date(this.getLastMessageDate(b.replies)).getTime() -
-            new Date(this.getLastMessageDate(a.replies)).getTime()
+            new Date(this.getLastMessageDate(b)).getTime() -
+            new Date(this.getLastMessageDate(a)).getTime()
           );
         });
         break;

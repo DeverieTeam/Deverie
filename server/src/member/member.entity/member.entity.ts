@@ -41,7 +41,11 @@ export class Member {
   is_email_displayed: boolean;
   @CreateDateColumn({ type: 'date' })
   inscription_date: Date;
-  @Column({ type: 'varchar', length: 255, nullable: true })
+  @Column({
+    type: 'varchar',
+    length: 255,
+    default: '/images/profile-picture-default.png',
+  })
   profile_picture: string;
   @Column({ type: 'varchar', length: 50, nullable: true })
   pronouns: string;

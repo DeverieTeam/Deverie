@@ -1,21 +1,26 @@
 import { Link, useLoaderData } from "react-router-dom";
 
 export default function WIPage() {
-
   const webcontent = useLoaderData();
 
   return (
     <div className="text-center justify-between flex flex-col">
       <p className="my-8 text-xl lg:text-5xl font-bold">
-         {webcontent.page.title.content}
+        {webcontent.page.title.content}
       </p>
       <div className="m-auto lg:w-[50%] lg:max-w-[600px]">
-        <img src={webcontent.commons.img.imgPath.content+webcontent.page.imgSrc.content} width="100%" />
+        <img
+          src={
+            webcontent.commons.img.imgPath.content +
+            webcontent.page.imgSrc.content
+          }
+          width="100%"
+        />
       </div>
       <p className="my-8 text-lg lg:text-2xl font-semibold">
         {webcontent.page.description.content
-        .split('\n')
-        .flatMap((line, i) => [line, <br />])}
+          .split("\n")
+          .flatMap((line: string, i: number) => [line, <br key={i} />])}
       </p>
       <div className="py-8">
         <Link
