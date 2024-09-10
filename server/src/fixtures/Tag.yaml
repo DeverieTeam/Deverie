@@ -79,3 +79,13 @@ items:
     name: 'No code'
     icon: 'https://cdn-icons-png.freepik.com/512/6214/6214224.png'
     family: 'Technology'
+
+  tag17:
+    name: 'MySQL'
+    icon: 'https://banner2.cleanpng.com/20180614/bgj/aa7ffc9id.webp'
+    family: 'Environment'
+
+  tag18:
+    name: 'Docker'
+    icon: 'https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/97_Docker_logo_logos-512.png'
+    family: 'Technology'

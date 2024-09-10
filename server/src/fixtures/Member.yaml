@@ -2,7 +2,7 @@ entity: Member
 items:
   member1:
     name: 'Pierre'
-    hashed_password: 'hduisghifjdql'
+    hashed_password: 'psswrd'
     email: 'barge.pierre@hotmail.fr'
     is_email_displayed: true
     inscription_date: '2024, 2, 21'
@@ -15,7 +15,7 @@ items:
 
   member2:
     name: 'emixam113'
-    hashed_password: 'hhueiayde'
+    hashed_password: 'psswrd'
     email: 'maximeroyan03@gmail.com'
     is_email_displayed: true
     inscription_date: '2023, 11, 4'
@@ -28,7 +28,7 @@ items:
 
   member3:
     name: 'TruitosTv'
-    hashed_password: 'jflkdqy'
+    hashed_password: 'psswrd'
     email: 'axel.remontpro@gmail.com'
     is_email_displayed: true
     inscription_date: '2024, 3, 22'
@@ -41,7 +41,7 @@ items:
 
   member4:
     name: '5p3c7r4l'
-    hashed_password: 'afejiade'
+    hashed_password: 'psswrd'
     email: '5p3c7r4lyt@gmail.com'
     is_email_displayed: true
     inscription_date: '2024, 5, 14'
@@ -54,7 +54,7 @@ items:
 
   member5:
     name: 'Omicro'
-    hashed_password: 'thfdgdidq'
+    hashed_password: 'psswrd'
     email: 'omicro.fytpowp@gmail.com'
     is_email_displayed: true
     inscription_date: '2024, 7, 13'
@@ -67,7 +67,7 @@ items:
 
   member6:
     name: 'MasterKafey'
-    hashed_password: 'gmjqkfdofkjsqk'
+    hashed_password: 'psswrd'
     email: 'masterkafey@gmail.com'
     is_email_displayed: true
     inscription_date: '2024, 7, 24'
@@ -80,7 +80,7 @@ items:
 
   member7:
     name: 'AaronX'
-    hashed_password: 'qifoefdsjsqfh'
+    hashed_password: 'psswrd'
     email: 'aaroonx@gmail.com'
     is_email_displayed: true
     inscription_date: '2024, 6, 15'
@@ -93,11 +93,10 @@ items:
 
   member8:
     name: 'dark lord of JAVA'
-    hashed_password: 'fqkjuezaikj'
+    hashed_password: 'psswrd'
     email: 'xxdarkjavalordxx@orange.fr'
     is_email_displayed: true
     inscription_date: '2024, 1, 24'
-    profile_picture: null
     pronom: null
     description: 'Java >>> autres langages'
     role: 'Member'
@@ -106,11 +105,10 @@ items:
 
   member9:
     name: 'Assembly enjoyer'
-    hashed_password: 'qjfdskqfjdu'
+    hashed_password: 'psswrd'
     email: 'karren.warren@gmail.com'
     is_email_displayed: true
     inscription: '2024, 2, 20'
-    profile_picture: null
     pronom: 'ASM/NASM'
     description: null
     role: 'Member'
@@ -119,7 +117,7 @@ items:
 
   member10:
     name: 'Napstablook'
-    hashed_password: 'agkdjslku'
+    hashed_password: 'psswrd'
     email: 'ghostly@gmail.com'
     is_email_displayed: true
     inscription_date: '2024, 8, 24'

@@ -411,3 +411,228 @@ items:
     modification_date: null
     modification_author: null
     reply_to: '@post11'
+
+  post31:
+    author: '@member1'
+    title: "Comment puis-je optimiser les performances d'une requête SQL complexe ?"
+    content: "J'ai une requête SQL qui interroge plusieurs tables avec des jointures, et elle devient très lente lorsque le volume de données augmente. Quelles sont les meilleures pratiques pour optimiser ce type de requête ?"
+    type: 'Question'
+    creation_date: '2024, 9, 18'
+    emergency: null
+    upvote: null
+    downvote: null
+    modification_date: '2024, 9, 19'
+    modification_author: '@member1'
+    tags:
+      - '@tag17'
+
+  post32:
+    author: '@member7'
+    title: "Quelle est la différence entre let, var et const en JavaScript ?"
+    content: "Je débute en JavaScript et j'ai du mal à comprendre quand utiliser let, var et const. Quelle est la différence entre ces trois mots-clés et dans quelles situations devrais-je les utiliser ?"
+    type: 'Question'
+    creation_date: '2024, 9, 19'
+    emergency: null
+    upvote: null
+    downvote: null
+    modification_date: '2024, 9, 19'
+    modification_author: '@member5'
+    tags:
+      - '@tag13'
+
+  post33:
+    author: '@member5'
+    title: null
+    content: "Il existe les index en sql qui peuvent être à double tranchant. Soit ils ralentissent le temps de réponse, soit ils le réduisent drastiquement si bien fait. C'est comme une pseudo table mettant en commun des données de diverses tables et qui se met à jour automatiquement, idéal pour optimiser des requêtes faisant appel à de nombreuses tables."
+    type: 'Answer'
+    creation_date: '2024, 9, 20'
+    emergency: null
+    upvote: 5
+    downvote: null
+    modification_date: null
+    modification_author: null
+    reply_to: '@post31'
+
+  post34:
+    author: '@member6'
+    title: null
+    content: "Peut-être simplement en y rajoutant les instructions LIMIT et OFFSET afin d'arrêter la requête plus tôt une fois les résultats attendus obtenus."
+    type: 'Answer'
+    creation_date: '2024, 9, 21'
+    emergency: null
+    upvote: 6
+    downvote: 1
+    modification_date: '2024, 9, 24'
+    modification_author: '@member6'
+    reply_to: '@post31'
+
+  post35:
+    author: '@member8'
+    title: null
+    content: "Bah c'est toutes des variables on s'en tape nan ?"
+    type: 'Answer'
+    creation_date: '2024, 9, 22'
+    emergency: null
+    upvote: null
+    downvote: 2
+    modification_date: null
+    modification_author: null
+    reply_to: '@post32'
+
+  post36:
+    author: '@member4'
+    title: null
+    content: "Pas vraiment non, elles ont toutes des spécificitées."
+    type: 'Answer'
+    creation_date: '2024, 9, 22'
+    emergency: null
+    upvote: 1
+    downvote: 1
+    modification_date: null
+    modification_author: null
+    reply_to: '@post35'
+
+  post37:
+    author: '@member1'
+    title: null
+    content: "La différence principale entre var et let est le scope. Les variables var existent dans toute la fonction là où les variables let existent que dans le bloc où elles sont déclarées.\nC'est ce qu'on appelle des variables fonction-scope et block-scope.\nLes variables const quant à elles sont aussi des variables block-scope comme let mais sont immuables, elles ne peuvent pas être changées une fois initialisées."
+    type: 'Answer'
+    creation_date: '2024, 9, 23'
+    emergency: null
+    upvote: 3
+    downvote: null
+    modification_date: null
+    modification_author: null
+    reply_to: '@post32'
+
+  post38:
+    author: '@member10'
+    title: 'Comment résoudre des erreurs CORS dans une application React ?'
+    content: "J'ai une application React qui fait des appels API vers un serveur externe, mais je reçois une erreur CORS dans la console du navigateur. Comment puis-je résoudre cette erreur ?"
+    type: 'Question'
+    creation_date: '2024, 9, 24'
+    emergency: null
+    upvote: null
+    downvote: null
+    modification_date: null
+    modification_author: null
+    tags:
+      - '@tag12'
+      - '@tag2'
+      - '@tag13'
+      - '@tag1'
+
+  post39:
+    author: '@member3'
+    title: 'Quelle est la différence entre Docker et une machine virtuelle (VM) ?'
+    content: "J'essaie de comprendre les avantages de Docker par rapport à l'utilisation d'une machine virtuelle traditionnelle. Pouvez-vous expliquer en quoi Docker est différent et dans quels cas l'utiliser plutôt qu'une VM ?"
+    type: 'Question'
+    creation_date: '2024, 9, 24'
+    emergency: 3
+    upvote: null
+    downvote: null
+    modification_date: '2024, 10, 2'
+    modification_author: '@member4'
+    tags:
+      - '@tag18'
+
+  post40:
+    author: '@member4'
+    title: null
+    content: "Docker et les machines virtuelles (VM) ont des différences fondamentales. Une machine virtuelle virtualise tout un système d'exploitation, ce qui inclut le noyau, alors que Docker utilise le même noyau que le système hôte. Cela signifie que Docker est plus léger et démarre plus rapidement que les VM. Docker permet de créer des conteneurs qui partagent le noyau du système hôte tout en étant isolés. Dans la plupart des cas, Docker est préféré pour déployer des microservices ou des applications isolées, tandis que les VM sont plus adaptées lorsque vous avez besoin d'une isolation complète du système d'exploitation."
+    type: 'Answer'
+    creation_date: '2024, 9, 25'
+    emergency: null
+    upvote: 7
+    downvote: 1
+    modification_date: '2024, 10, 2'
+    modification_author: '@member4'
+    reply_to: '@post39'
+
+  post41:
+    author: '@member9'
+    title: null
+    content: "Docker est simplement une interface graphique pour gérer des machines virtuelles (VM). Tout ce que vous faites avec Docker est exécuté dans une VM cachée. Les conteneurs Docker ne sont donc rien d'autre que des VM déguisées et utilisent toujours des ressources similaires à une VM, comme un système d'exploitation complet. Si vous utilisez Docker, vous ne faites en réalité qu'ajouter une couche supplémentaire de complexité à vos machines virtuelles."
+    type: 'Answer'
+    creation_date: '2024, 9, 27'
+    emergency: null
+    upvote: 1
+    downvote: 8
+    modification_date: null
+    modification_author: null
+    reply_to: '@post39'
+
+  post42:
+    author: '@member5'
+    title: "Comment gérer l'authentification avec JWT dans une API REST ?"
+    content: "Dans le cadre d'un de mes projets (Deverie), je développe une API REST et j'aimerais savoir comment implémenter l'authentification avec des JSON Web Tokens (JWT). Quels sont les concepts clés à comprendre et les meilleures pratiques pour sécuriser mon API ?"
+    type: 'Question'
+    creation_date: '2024, 9, 30'
+    emergency: 5
+    upvote: null
+    downvote: null
+    modification_date: null
+    modification_author: null
+    tags:
+      - '@tag12'
+      - '@tag13'
+      - '@tag1'
+
+  post43:
+    author: '@member6'
+    title: null
+    content: "Il y a plusieures étapes pour la création d'un token JWT :\n- Créer le token avec une clef scrète,\n- Stockqge côté client (local storage ou cookie),\n- Envoyer le token avec les requêtes pour chaque requête faite à l'API,\n- Vérification du token à chaque requête,\n- Expiration et renouvellement"
+    type: 'Question'
+    creation_date: '2024, 10, 1'
+    emergency: null
+    upvote: 3
+    downvote: null
+    modification_date: null
+    modification_author: null
+    reply_to: '@post42'
+
+  post44:
+    author: '@member2'
+    title: 'Quelle est la différence entre le double et triple égale ?'
+    content: "J'ai cru comprendre que le double égale sert à comparer mais dans ce cas, à quoi sert le triple ?"
+    type: 'Question'
+    creation_date: '2024, 10, 3'
+    emergency: null
+    upvote: null
+    downvote: null
+    modification_date: null
+    modification_author: null
+    tags:
+      - '@tag1'
+      - '@tag2'
+      - '@tag13'
+      - '@tag7'
+
+  post45:
+    author: '@member7'
+    title: "Le futur du développement avec l'IA : menace ou opportunité ?"
+    content: "Avec l'essor des technologies basées sur l'intelligence artificielle, de plus en plus d'outils et de frameworks se développent pour faciliter le travail des développeurs. Certains affirment que l'IA va remplacer de nombreuses tâches de programmation, tandis que d'autres pensent qu'elle va simplement aider les développeurs à être plus efficaces.\n\nQue pensez-vous de l'impact de l'IA sur l'avenir du développement ? Va-t-elle réduire la demande de développeurs, ou au contraire, ouvrir de nouvelles perspectives pour l'innovation ? Je suis curieux de connaître vos points de vue sur ce sujet en pleine évolution."
+    type: 'Topic'
+    creation_date: '2024, 10, 3'
+    emergency: null
+    upvote: null
+    downvote: null
+    modification_date: '2024, 10, 6'
+    modification_author: '@member7'
+    tags:
+      - '@tag1'
+      - '@tag16'
+      - '@tag7'
+
+  post46:
+    author: '@member10'
+    title: null
+    content: "Je pense que l'IA représente plus une opportunité qu'une menace pour les développeurs. Certes, certaines tâches répétitives et automatisables seront probablement remplacées, mais cela nous permettra de nous concentrer sur des aspects plus créatifs et complexes du développement.\nLes outils basés sur l'IA peuvent aider à accélérer les processus de débogage, d'optimisation de code et même à proposer des solutions aux problèmes courants. L'IA devient un assistant, mais les développeurs resteront essentiels pour concevoir, guider et implémenter des systèmes à grande échelle. Plutôt qu'une menace, c'est une évolution naturelle qui nous pousse à monter en compétences."
+    type: 'Answer'
+    creation_date: '2024, 10, 5'
+    emergency: null
+    upvote: null
+    downvote: null
+    modification_date: null
+    modification_author: null
+    reply_to: '@post45'
