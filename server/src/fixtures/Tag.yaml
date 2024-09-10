@@ -2,55 +2,90 @@ entity: Tag
 items:
   tag1:
     name: 'Web'
-    icon: 'https://cdn-icons-png.flaticon.com/512/1006/1006771.png'
+    icon: 'icons/tag_web.png'
     family: 'Technology'
 
   tag2:
     name: 'React'
-    icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/2300px-React-icon.svg.png'
+    icon: 'icons/tag_react.png'
     family: 'Environment'
 
   tag3:
     name: 'Python'
-    icon: 'https://banner2.cleanpng.com/20180325/kpq/kisspng-python-logo-programmer-fierce-python-cliparts-5ab7bde1954e21.4104715915219911376116.jpg'
+    icon: 'icons/tag_python.jpg'
     family: 'Language'
 
   tag4:
     name: 'ASM'
-    icon: 'https://static-00.iconduck.com/assets.00/assembly-icon-2048x2048-wspx42mf.png'
+    icon: 'icons/tag_asm.png'
     family: 'Language'
 
   tag5:
     name: 'PHP'
-    icon: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXalRyF7J7QRLkJfMwCMqA47UUDCFdHJ-dFQ&s'
+    icon: 'icons/tag_php.png'
     family: 'Language'
 
   tag6:
     name: 'Java'
-    icon: 'https://cdn-icons-png.flaticon.com/512/226/226777.png'
+    icon: 'icons/tag_java.png'
     family: 'Language'
 
   tag7:
     name: 'OOP'
-    icon: 'https://cdn.icon-icons.com/icons2/2699/PNG/512/numpy_logo_icon_168071.png'
+    icon: 'icons/tag_oop.png'
     family: 'Technology'
 
   tag8:
     name: 'C'
-    icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/C_Programming_Language.svg/1853px-C_Programming_Language.svg.png'
+    icon: 'icons/tag_c.png'
     family: 'Language'
 
   tag9:
-    name: 'Numphy'
-    icon: 'https://cdn-icons-png.flaticon.com/512/3488/3488782.png'
+    name: 'Numpy'
+    icon: 'icons/tag_numpy.png'
     family: 'Technology'
 
   tag10:
     name: 'Tailwind'
-    icon: 'https://w7.pngwing.com/pngs/293/485/png-transparent-tailwind-css-hd-logo.png'
+    icon: 'icons/tag_tailwind.png'
     family: 'Environment'
 
   tag11:
     name: 'Input'
-    icon: 'https://cdn-icons-png.flaticon.com/512/3488/3488782.png'
+    icon: 'icons/tag_input.png'
+    family: 'Technology'
+
+  tag12:
+    name: 'API'
+    icon: 'icons/tag_api.jpg'
+    family: 'Technology'
+
+  tag13:
+    name: 'JavaScript'
+    icon: 'icons/tag_javascript.png'
+    family: 'Language'
+
+  tag14:
+    name: 'Symfony'
+    icon: 'icons/tag_symfony.png'
+    family: 'Environment'
+
+  tag15:
+    name: 'Shell'
+    icon: 'icons/tag_shell.png'
+    family: 'Language'
+
+  tag16:
+    name: 'No code'
+    icon: 'icons/tag_no-code.png'
+    family: 'Technology'
+
+  tag17:
+    name: 'MySQL'
+    icon: 'icons/tag_mysql.webp'
+    family: 'Environment'
+
+  tag18:
+    name: 'Docker'
+    icon: 'icons/tag_docker.webp'
     family: 'Technology'
