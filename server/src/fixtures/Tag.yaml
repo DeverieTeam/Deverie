@@ -3,89 +3,89 @@ items:
   tag1:
     name: 'Web'
     icon: 'icons/tag_web.png'
-    family: 'Technology'
+    family: 'technology'
 
   tag2:
     name: 'React'
     icon: 'icons/tag_react.png'
-    family: 'Environment'
+    family: 'environment'
 
   tag3:
     name: 'Python'
     icon: 'icons/tag_python.jpg'
-    family: 'Language'
+    family: 'language'
 
   tag4:
     name: 'ASM'
     icon: 'icons/tag_asm.png'
-    family: 'Language'
+    family: 'language'
 
   tag5:
     name: 'PHP'
     icon: 'icons/tag_php.png'
-    family: 'Language'
+    family: 'language'
 
   tag6:
     name: 'Java'
     icon: 'icons/tag_java.png'
-    family: 'Language'
+    family: 'language'
 
   tag7:
     name: 'OOP'
     icon: 'icons/tag_oop.png'
-    family: 'Technology'
+    family: 'technology'
 
   tag8:
     name: 'C'
     icon: 'icons/tag_c.png'
-    family: 'Language'
+    family: 'language'
 
   tag9:
     name: 'Numpy'
     icon: 'icons/tag_numpy.png'
-    family: 'Technology'
+    family: 'technology'
 
   tag10:
     name: 'Tailwind'
     icon: 'icons/tag_tailwind.png'
-    family: 'Environment'
+    family: 'environment'
 
   tag11:
     name: 'Input'
     icon: 'icons/tag_input.png'
-    family: 'Technology'
+    family: 'technology'
 
   tag12:
     name: 'API'
     icon: 'icons/tag_api.jpg'
-    family: 'Technology'
+    family: 'technology'
 
   tag13:
     name: 'JavaScript'
     icon: 'icons/tag_javascript.png'
-    family: 'Language'
+    family: 'language'
 
   tag14:
     name: 'Symfony'
     icon: 'icons/tag_symfony.png'
-    family: 'Environment'
+    family: 'environment'
 
   tag15:
     name: 'Shell'
     icon: 'icons/tag_shell.png'
-    family: 'Language'
+    family: 'language'
 
   tag16:
     name: 'No code'
     icon: 'icons/tag_no-code.png'
-    family: 'Technology'
+    family: 'technology'
 
   tag17:
     name: 'MySQL'
     icon: 'icons/tag_mysql.webp'
-    family: 'Environment'
+    family: 'environment'
 
   tag18:
     name: 'Docker'
     icon: 'icons/tag_docker.webp'
-    family: 'Technology'
+    family: 'technology'

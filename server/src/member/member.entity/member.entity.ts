@@ -12,19 +12,19 @@ import {
 } from 'typeorm';
 
 export enum MemberRole {
-  MEMBER = 'Member',
-  MODERATOR = 'Moderator',
-  ADMINISTRATOR = 'Administrator',
+  MEMBER = 'member',
+  MODERATOR = 'moderator',
+  ADMINISTRATOR = 'administrator',
 }
 
 export enum MemberTheme {
-  LIGHT = 'Light',
-  DARK = 'Dark',
+  LIGHT = 'light',
+  DARK = 'dark',
 }
 
 export enum MemberLanguage {
-  FRENCH = 'Français',
-  ENGLISH = 'English',
+  FRENCH = 'french',
+  ENGLISH = 'english',
 }
 
 @Entity()

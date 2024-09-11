@@ -16,35 +16,35 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
     loader: async () => {
-      return (await fetchWebContent("header", "fr"));
+      return await fetchWebContent("header", "fr");
     },
     children: [
       {
         path: "",
         element: <HomePage />,
         loader: async () => {
-          return (await fetchWebContent("homepage", "fr", true));
-        }
+          return await fetchWebContent("homepage", "fr", true);
+        },
       },
       {
-        path: "topics",
-        element: <ThreadsPage threadType="topics" />,
+        path: "topic",
+        element: <ThreadsPage threadType="topic" />,
         loader: async () => {
-          return (await fetchWebContent("topics", "fr", true));
-        }
+          return await fetchWebContent("topic", "fr", true);
+        },
       },
       {
-        path: "questions",
-        element: <ThreadsPage threadType="questions" />,
+        path: "question",
+        element: <ThreadsPage threadType="question" />,
         loader: async () => {
-          return (await fetchWebContent("questions", "fr", true));
-        }
+          return await fetchWebContent("question", "fr", true);
+        },
       },
       {
-        path: "chats",
+        path: "chat",
         element: <WIPage />,
-         loader: async () => {
-          return (await fetchWebContent("wip", "fr"));
+        loader: async () => {
+          return await fetchWebContent("wip", "fr");
         },
       },
     ],
@@ -52,8 +52,8 @@ const router = createBrowserRouter([
   {
     path: "*",
     element: <PageNotFound404 />,
-     loader: async () => {
-      return (await fetchWebContent("404", "fr"));
+    loader: async () => {
+      return await fetchWebContent("404", "fr");
     },
   },
 ]);

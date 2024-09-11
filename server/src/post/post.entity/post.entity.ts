@@ -14,10 +14,10 @@ import {
 } from 'typeorm';
 
 export enum PostType {
-  TOPIC = 'Topic',
-  QUESTION = 'Question',
-  COMMENT = 'Comment',
-  ANSWER = 'Answer',
+  TOPIC = 'topic',
+  QUESTION = 'question',
+  COMMENT = 'comment',
+  ANSWER = 'answer',
 }
 
 @Entity()

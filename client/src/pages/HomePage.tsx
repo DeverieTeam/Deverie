@@ -64,7 +64,10 @@ export default function HomePage() {
           {randomThread !== null && (
             <ThreadsDisplayer
               thread={randomThread}
-              webcontent={webcontent.commons.publications}
+              webcontent={{
+                publications: webcontent.commons.publications,
+                noResult: webcontent.commons.noResult,
+              }}
             />
           )}
         </div>
@@ -77,7 +80,10 @@ export default function HomePage() {
           {randomThread !== null && (
             <ThreadsDisplayer
               thread={randomThread === "recent" ? "popular" : "recent"}
-              webcontent={webcontent.commons.publications}
+              webcontent={{
+                publications: webcontent.commons.publications,
+                noResult: webcontent.commons.noResult,
+              }}
             />
           )}
         </div>

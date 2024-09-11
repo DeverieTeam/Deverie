@@ -3,9 +3,9 @@ import { Post } from '../../post/post.entity/post.entity';
 import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 export enum TagFamily {
-  LANGUAGE = 'Language',
-  ENVIRONMENT = 'Environment',
-  TECHNOLOGY = 'Technology',
+  LANGUAGE = 'language',
+  ENVIRONMENT = 'environment',
+  TECHNOLOGY = 'technology',
 }
 
 @Entity()
