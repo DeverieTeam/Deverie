@@ -1,4 +1,4 @@
-entity: Member
+entity: member
 items:
   member1:
     name: 'Pierre'
@@ -9,7 +9,7 @@ items:
     profile_picture: 'images/member_pierre.jpg'
     pronouns: 'il/lui'
     description: 'En reconversion professionnelle dans le développement web.'
-    role: 'Administrator'
+    role: 'administrator'
     is_banned: false
     displayed_name: null
 
@@ -22,7 +22,7 @@ items:
     profile_picture: 'images/member_emixam113.png'
     pronom: 'il/lui'
     description: "j'essaye d'apprendre React mais c'est pas simple.\nLes autres m'appellent dissident"
-    role: 'Member'
+    role: 'member'
     is_banned: false
     displayed_name: 'maxlamenace03'
 
@@ -35,7 +35,7 @@ items:
     profile_picture: 'images/member_truitostv.png'
     pronom: 'truite'
     description: 'Bannana Game of the Year'
-    role: 'Moderator'
+    role: 'moderator'
     is_banned: false
     displayed_name: 'frenchBanana'
 
@@ -48,7 +48,7 @@ items:
     profile_picture: 'images/member_5p3c7r4l.png'
     pronom: 'il/lui'
     description: "Assembly and Python enjoyer and Java is trash.\nFollow on Twitch.tv/ElixirMH"
-    role: 'Administrator'
+    role: 'administrator'
     is_banned: false
     displayed_name: null
 
@@ -61,7 +61,7 @@ items:
     profile_picture: 'images/member_omicro.jpg'
     pronom: 'elle/iel'
     description: "Who's gonna be a bash and JS specialised developper? Me of course!"
-    role: 'Administrator'
+    role: 'administrator'
     is_banned: false
     displayed_name: null
 
@@ -74,7 +74,7 @@ items:
     profile_picture: 'images/member_masterkafey.png'
     pronom: 'il/lui'
     description: "Expert PHP Symphony.\nJouez à Outer Wilds."
-    role: 'Moderator'
+    role: 'moderator'
     is_banned: false
     displayed_name: null
 
@@ -87,7 +87,7 @@ items:
     profile_picture: 'images/member_aaronx.webp'
     pronom: 'il/lui'
     description: "Codez en C pour coder aussi rapide que l'éclair !"
-    role: 'Member'
+    role: 'member'
     is_banned: false
     displayed_name: null
 
@@ -99,7 +99,7 @@ items:
     inscription_date: '2024, 1, 24'
     pronom: null
     description: 'Java >>> autres langages'
-    role: 'Member'
+    role: 'member'
     is_banned: true
     displayed_name: null
 
@@ -111,7 +111,7 @@ items:
     inscription: '2024, 2, 20'
     pronom: 'ASM/NASM'
     description: null
-    role: 'Member'
+    role: 'member'
     is_banned: false
     displayed_name: null
 
@@ -124,6 +124,6 @@ items:
     profile_picture: 'images/member_napstablook.jpg'
     pronom: 'elle'
     description: "La vie n'a pas de sens, autant se faire marcher dessus...\nSinon, Visual Basic c'est fun."
-    role: 'Member'
+    role: 'member'
     is_banned: false
     displayed_name: 'Ghostly2015'

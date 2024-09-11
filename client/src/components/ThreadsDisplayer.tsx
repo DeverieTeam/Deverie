@@ -55,11 +55,11 @@ export default function ThreadsDisplayer({
 
     let fetchType: string;
     switch (thread) {
-      case "topics":
-        fetchType = "Topic" + queryHandler();
+      case "topic":
+        fetchType = "topic" + queryHandler();
         break;
-      case "questions":
-        fetchType = "Question" + queryHandler();
+      case "question":
+        fetchType = "question" + queryHandler();
         break;
       case "popular":
         fetchType = "homepage?sort=popular";
@@ -90,11 +90,15 @@ export default function ThreadsDisplayer({
       {data !== null &&
         data.length > 0 &&
         data.map((post) => (
-          <ThreadsRow key={post.id} post={post} webcontent={webcontent} />
+          <ThreadsRow
+            key={post.id}
+            post={post}
+            webcontent={webcontent.publications}
+          />
         ))}
       {data !== null && data.length === 0 && (
         <div className="text-2xl md:text-4xl text-center mt-8 pb-[600px] md:pb-[800px] font-semibold text-indigo-500 drop-shadow">
-          Aucun résultat !!
+          {webcontent.noResult.content}
         </div>
       )}
     </div>
@@ -102,7 +106,7 @@ export default function ThreadsDisplayer({
 }
 
 type Props = {
-  thread: "popular" | "recent" | "topics" | "questions";
+  thread: "popular" | "recent" | "topic" | "question";
   setDataForPage?: (
     arg0:
       | null
@@ -129,31 +133,37 @@ type Props = {
   searchField?: string;
   tags?: string[];
   webcontent: {
-    publishDatePrefix: {
-      name: string;
-      content: string;
-    };
-    numberOfResponses: {
-      name: string;
-      content: string;
-    };
-    lastResponseDatePrefix: {
-      name: string;
-      content: string;
-    };
-    favorite: {
-      add: {
-        hover: {
-          name: string;
-          content: string;
+    publications: {
+      publishDatePrefix: {
+        name: string;
+        content: string;
+      };
+      numberOfResponses: {
+        name: string;
+        content: string;
+      };
+      lastResponseDatePrefix: {
+        name: string;
+        content: string;
+      };
+      favorite: {
+        add: {
+          hover: {
+            name: string;
+            content: string;
+          };
+        };
+        remove: {
+          hover: {
+            name: string;
+            content: string;
+          };
         };
       };
-      remove: {
-        hover: {
-          name: string;
-          content: string;
-        };
-      };
+    };
+    noResult: {
+      name: string;
+      content: string;
     };
   };
 };

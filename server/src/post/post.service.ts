@@ -89,7 +89,7 @@ export class PostService {
     }
 
     const filteredResponse = response
-      .filter((post) => post.type === 'Topic' || post.type === 'Question')
+      .filter((post) => post.type === 'topic' || post.type === 'question')
       .filter((post) => post.is_readable)
       .filter((post) => !post.author.is_banned);
 
@@ -102,7 +102,7 @@ export class PostService {
   }
 
   async getPostsByType(
-    type: 'Topic' | 'Question',
+    type: 'topic' | 'question',
     max: string,
     page: string,
     tags: string[] | string = [],

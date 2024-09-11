@@ -15,7 +15,7 @@ export class PostController {
 
   @Get(':type')
   async getPostsForTheirPage(
-    @Param('type') type: 'Topic' | 'Question',
+    @Param('type') type: 'topic' | 'question',
     @Query('max') max: string = '10',
     @Query('page') page: string = '0',
     @Query('tags') tags: string[],

@@ -8,7 +8,7 @@ export default function TagsDisplayer({
   langTags,
   envTags,
   technoTags,
-  webcontent
+  webcontent,
 }: Props) {
   const [data, setData] = useState<
     | null
@@ -20,26 +20,8 @@ export default function TagsDisplayer({
       }[]
   >(null);
 
-  let family: string;
-  let displayFamily: string;
-  switch (tagFamily) {
-    case "Technologies":
-      family = "Technology";
-      displayFamily = "technologies";
-      break;
-    case "Environnements":
-      family = "Environment";
-      displayFamily = "environments";
-      break;
-    case "Langages":
-    default:
-      family = "Language";
-      displayFamily = "languages";
-      break;
-  }
-
   useEffect(() => {
-    fetch(`http://localhost:3000/tag/${family}`)
+    fetch(`http://localhost:3000/tag/${tagFamily}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Something went wrong");
@@ -55,13 +37,13 @@ export default function TagsDisplayer({
     let array: string[];
 
     switch (tagFamily) {
-      case "Technologies":
+      case "technology":
         array = technoTags;
         break;
-      case "Environnements":
+      case "environment":
         array = envTags;
         break;
-      case "Langages":
+      case "language":
       default:
         array = langTags;
         break;
@@ -77,13 +59,13 @@ export default function TagsDisplayer({
     let array: string[];
 
     switch (tagFamily) {
-      case "Technologies":
+      case "technology":
         array = technoTags;
         break;
-      case "Environnements":
+      case "environment":
         array = envTags;
         break;
-      case "Langages":
+      case "language":
       default:
         array = langTags;
         break;
@@ -97,22 +79,26 @@ export default function TagsDisplayer({
   };
 
   return (
-    <details className="mb-6" open={tagFamily === "Langages"}>
+    <details className="mb-6" open={tagFamily === "language"}>
       <summary className="w-48 md:w-56 md:text-lg py-1 pl-6 bg-neutral-100 hover:bg-white rounded-lg cursor-pointer shadow-sm shadow-neutral-400">
-        {webcontent.tagsFamilies[displayFamily].content}
+        {webcontent.tagsFamilies[tagFamily].content}
       </summary>
       <div className="justify-start mt-2 md:mt-4 gap-2 md:gap-4 flex">
         <button
           className="text-sm md:text-base px-1 md:px-2 py-1 bg-neutral-100 hover:bg-white rounded-lg cursor-pointer shadow-sm shadow-neutral-400"
           onClick={handleAddAll}
-          title={webcontent.buttons.checkShortcuts.addEntireSection.hover.content}
+          title={
+            webcontent.buttons.checkShortcuts.addEntireSection.hover.content
+          }
         >
           {webcontent.buttons.checkShortcuts.addEntireSection.text.content}
         </button>
         <button
           className="text-sm md:text-base px-2 py-1 bg-neutral-100 hover:bg-white rounded-lg cursor-pointer shadow-sm shadow-neutral-400"
           onClick={handleRemoveAll}
-          title={webcontent.buttons.checkShortcuts.removeEntireSection.hover.content}
+          title={
+            webcontent.buttons.checkShortcuts.removeEntireSection.hover.content
+          }
         >
           {webcontent.buttons.checkShortcuts.removeEntireSection.text.content}
         </button>
@@ -143,100 +129,100 @@ type Props = {
     buttons: {
       backButton: {
         text: {
-          name: string,
-          content: string
-        },
+          name: string;
+          content: string;
+        };
         hover: {
-          name: string,
-          content: string
-        }
-      },
+          name: string;
+          content: string;
+        };
+      };
       quitButton: {
         text: {
-          name: string,
-          content: string
-        },
+          name: string;
+          content: string;
+        };
         hover: {
-          name: string,
-          content: string
-        }
-      },
+          name: string;
+          content: string;
+        };
+      };
       cancelButton: {
         text: {
-          name: string,
-          content: string
-        },
+          name: string;
+          content: string;
+        };
         hover: {
-          name: string,
-          content: string
-        }
-      },
+          name: string;
+          content: string;
+        };
+      };
       confirmButton: {
         text: {
-          name: string,
-          content: string
-        },
+          name: string;
+          content: string;
+        };
         hover: {
-          name: string,
-          content: string
-        }
-      }
-    },
-    tagsFamilies: {
-      languages: {
-        name: string,
-        content: string
-      },
-      environments: {
-        name: string,
-        content: string
-      },
-      technologies: {
-        name: string,
-        content: string
-      },
+          name: string;
+          content: string;
+        };
+      };
       checkShortcuts: {
         addEntireSection: {
           text: {
-            name: string,
-            content: string
-          },
+            name: string;
+            content: string;
+          };
           hover: {
-            name: string,
-            content: string
-          }
-        },
+            name: string;
+            content: string;
+          };
+        };
         removeEntireSection: {
           text: {
-            name: string,
-            content: string
-          },
+            name: string;
+            content: string;
+          };
           hover: {
-            name: string,
-            content: string
-          }
-        },
+            name: string;
+            content: string;
+          };
+        };
         addAll: {
           text: {
-            name: string,
-            content: string
-          },
+            name: string;
+            content: string;
+          };
           hover: {
-            name: string,
-            content: string
-          }
-        },
+            name: string;
+            content: string;
+          };
+        };
         removeAll: {
           text: {
-            name: string,
-            content: string
-          },
+            name: string;
+            content: string;
+          };
           hover: {
-            name: string,
-            content: string
-          }
-        }
-      }
-    }
-  }
+            name: string;
+            content: string;
+          };
+        };
+      };
+    };
+    tagsFamilies: {
+      language: {
+        name: string;
+        content: string;
+      };
+      environment: {
+        name: string;
+        content: string;
+      };
+      technology: {
+        name: string;
+        content: string;
+      };
+    };
+  };
 };

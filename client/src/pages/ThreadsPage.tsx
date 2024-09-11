@@ -54,21 +54,21 @@ export default function ThreadsPage({ threadType }: Props) {
       .then((data) => {
         const arrayLang: string[] = [];
         data.map((item: { id: number; name: string; family: string }) => {
-          if (item.family === "Language") {
+          if (item.family === "language") {
             arrayLang.push(item.name);
           }
         });
         setLangTags(arrayLang);
         const arrayEnv: string[] = [];
         data.map((item: { id: number; name: string; family: string }) => {
-          if (item.family === "Environment") {
+          if (item.family === "environment") {
             arrayEnv.push(item.name);
           }
         });
         setEnvTags(arrayEnv);
         const arrayTechno: string[] = [];
         data.map((item: { id: number; name: string; family: string }) => {
-          if (item.family === "Technology") {
+          if (item.family === "technology") {
             arrayTechno.push(item.name);
           }
         });
@@ -80,10 +80,7 @@ export default function ThreadsPage({ threadType }: Props) {
     <div className="w-full relative flex flex-col">
       <div className="w-full md:max-w-[750px] md:mx-auto px-1 md:px-0 gap-6 xl:gap-10 flex flex-col">
         <p className="mx-auto mt-4 text-center text-indigo-500 text-4xl md:text-5xl font-bold drop-shadow">
-          {
-            webcontent.commons.sections[threadType.toLowerCase().slice(0, -1)]
-              .main.content
-          }
+          {webcontent.commons.sections[threadType].main.content}
         </p>
         <div className="mx-auto w-72 py-2 px-4 bg-neutral-100 gap-4 rounded-lg shadow-sm shadow-neutral-400 flex flex-row">
           <button className="w-12 h-12 bg-indigo-400 hover:bg-indigo-600 self-center hover:text-white text-center text-5xl rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900 font-semibold relative">
@@ -101,7 +98,8 @@ export default function ThreadsPage({ threadType }: Props) {
           <div className="gap-6 xl:gap-10 flex flex-col">
             <button
               className="mx-auto w-56 py-1 px-4 text-center text-lg md:text-xl hover:text-white bg-indigo-400 hover:bg-indigo-600 rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900"
-              onClick={handleTagFilterButton}>
+              onClick={handleTagFilterButton}
+            >
               {webcontent.commons.searching.tagFilter.text.content}
             </button>
             <SortSelection
@@ -121,7 +119,10 @@ export default function ThreadsPage({ threadType }: Props) {
             sort={sort}
             searchField={searchField}
             tags={tags}
-            webcontent={webcontent.commons.publications}
+            webcontent={{
+              publications: webcontent.commons.publications,
+              noResult: webcontent.commons.noResult,
+            }}
           />
         )}
       </div>
@@ -159,5 +160,5 @@ export default function ThreadsPage({ threadType }: Props) {
 }
 
 type Props = {
-  threadType: "topics" | "questions";
+  threadType: "topic" | "question";
 };

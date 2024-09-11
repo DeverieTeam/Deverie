@@ -310,17 +310,21 @@
     }
   },
   "tagsFamilies": {
-    "languages": {
+    "language": {
       "name": "Nom de la famille de tags des langages",
       "content": "Langages"
     },
-    "environments": {
+    "environment": {
       "name": "Nom de la famille de tags des environnements",
       "content": "Environnements"
     },
-    "technologies": {
+    "technology": {
       "name": "Nom de la famille de tags des technologies",
       "content": "Technologies"
     }
+  },
+  "noResult": {
+    "name": "Texte affiché en cas d'absence de résultat",
+    "content": "Aucun résultat !!"
   }
 }
