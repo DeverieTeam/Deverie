@@ -6,12 +6,12 @@ export class TagController {
   constructor(private service: TagService) {}
 
   @Get(':family')
-  async getTags(@Param('family') family: string) {
+  async getTagsByFamily(@Param('family') family: string) {
     return this.service.getTagsByFamily(family);
   }
 
   @Get()
-  async getAllTags() {
+  async getAllTagsNames() {
     return this.service.getAllTagsNames();
   }
 }
