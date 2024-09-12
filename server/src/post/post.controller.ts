@@ -1,5 +1,14 @@
-import { Controller, Get, Param, Query } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+  Query,
+  UseGuards,
+} from '@nestjs/common';
 import { PostService } from './post.service';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('post')
 export class PostController {
@@ -24,5 +33,20 @@ export class PostController {
     sort: 'recent' | 'popular' | 'ancient' | 'discreet',
   ) {
     return this.service.getPostsByType(type, max, page, tags, search, sort);
+  }
+
+  @UseGuards(AuthGuard('jwt'))
+  @Post('newThread')
+  async createPost(
+    @Body()
+    post: {
+      type: 'topic' | 'question';
+      title: string;
+      content: string;
+      author: number;
+      tags: { id: number }[];
+    },
+  ) {
+    return this.service.createPost(post);
   }
 }

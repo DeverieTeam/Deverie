@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Post } from './post.entity/post.entity';
@@ -194,5 +194,37 @@ export class PostService {
     );
 
     return this.refinePostData(pagedResponse, responseLength);
+  }
+
+  async createPost(post) {
+    const allTitles = await this.postRepository.find({ select: ['title'] });
+
+    let titleTaken = false;
+
+    for (const title of allTitles) {
+      if (title.title === post.title) {
+        titleTaken = true;
+        break;
+      }
+    }
+
+    if (titleTaken) {
+      throw new HttpException(
+        {
+          message: 'Invalid title',
+          error: 'Invalid title',
+          statusCode: HttpStatus.CONFLICT,
+        },
+        HttpStatus.CONFLICT,
+        {
+          cause: 'Invalid title',
+        },
+      );
+    } else {
+      const returnedValue = await this.postRepository.save(post);
+      return {
+        response: `New post successfully created! (Id: ${returnedValue.id})`,
+      };
+    }
   }
 }
