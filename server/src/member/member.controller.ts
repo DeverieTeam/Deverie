@@ -1,18 +1,14 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Controller, Get, UseGuards } from '@nestjs/common';
 import { MemberService } from './member.service';
-import { Member } from './member.entity/member.entity';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('member')
 export class MemberController {
   constructor(private service: MemberService) {}
 
+  @UseGuards(AuthGuard('jwt'))
   @Get()
   async getAllMembers() {
-    return this.service.getMembers();
-  }
-
-  @Post()
-  async newMember(@Body() member: Member) {
-    return this.service.addMember(member);
+    return this.service.getAllMembers();
   }
 }

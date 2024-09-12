@@ -6,7 +6,7 @@ export class PostController {
   constructor(private service: PostService) {}
 
   @Get('homepage')
-  async getPostsForHomePage(
+  async getPopularOrRecentPosts(
     @Query('max') max: string = '10',
     @Query('sort') sort: 'recent' | 'popular',
   ) {
@@ -14,7 +14,7 @@ export class PostController {
   }
 
   @Get(':type')
-  async getPostsForTheirPage(
+  async getPostsByType(
     @Param('type') type: 'topic' | 'question',
     @Query('max') max: string = '10',
     @Query('page') page: string = '0',

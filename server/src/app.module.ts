@@ -9,6 +9,7 @@ import { ConfigModule } from '@nestjs/config';
 import { databaseConfig } from './config/database.config';
 import { RatingModule } from './rating/rating.module';
 import { WebContentModule } from './web-content/web-content.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { WebContentModule } from './web-content/web-content.module';
     PostModule,
     RatingModule,
     WebContentModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
