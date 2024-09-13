@@ -2,7 +2,13 @@ async function fetchWebContent(
   page: string,
   lang: string,
   posts?: boolean
-): Promise<JSON> {
+): Promise<
+  | {
+      commons: JSON;
+      page: JSON;
+    }
+  | JSON
+> {
   const url: string = "http://localhost:3000/webcontent";
   let endpoint: string = "";
   const addPosts: boolean = posts !== undefined && posts === true;
@@ -30,6 +36,9 @@ async function fetchWebContent(
       case "wip":
       case "wipage":
         endpoint = "/wip";
+        break;
+      case "newPost":
+        endpoint = "/newPost";
         break;
       case "404":
       case "notfound":

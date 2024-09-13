@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import TagsDisplayer from "./TagsDisplayer";
+import TagFilterDisplayer from "./TagFilterDisplayer";
+import { tagfilterwindowWebcontentType } from "../types/tagfilterwindowWebcontentType";
 
-export default function TagsWindow({
+export default function TagFilterWindow({
   isTagButtonClicked,
   setIsTagButtonClicked,
   tags,
@@ -65,18 +66,26 @@ export default function TagsWindow({
           >
             <div className="flex flex-col">
               {tempTags !== null &&
-                ["language", "environment", "technology"].map((family) => (
-                  <TagsDisplayer
-                    key={family}
-                    tagFamily={family}
-                    tempTags={tempTags}
-                    setTempTags={setTempTags}
-                    langTags={langTags}
-                    envTags={envTags}
-                    technoTags={technoTags}
-                    webcontent={webcontent}
-                  />
-                ))}
+                ["language", "environment", "technology"].map((family) => {
+                  if (
+                    family === "language" ||
+                    family === "environment" ||
+                    family === "technology"
+                  ) {
+                    return (
+                      <TagFilterDisplayer
+                        key={family}
+                        tagFamily={family}
+                        tempTags={tempTags}
+                        setTempTags={setTempTags}
+                        langTags={langTags}
+                        envTags={envTags}
+                        technoTags={technoTags}
+                        webcontent={webcontent}
+                      />
+                    );
+                  }
+                })}
             </div>
             <div className="gap-4 md:gap-6 flex flex-col">
               <div className="justify-center mt-2 md:mt-4 gap-2 md:gap-4 flex">
@@ -129,104 +138,5 @@ type Props = {
   langTags: string[];
   envTags: string[];
   technoTags: string[];
-  webcontent: {
-    buttons: {
-      backButton: {
-        text: {
-          name: string;
-          content: string;
-        };
-        hover: {
-          name: string;
-          content: string;
-        };
-      };
-      quitButton: {
-        text: {
-          name: string;
-          content: string;
-        };
-        hover: {
-          name: string;
-          content: string;
-        };
-      };
-      cancelButton: {
-        text: {
-          name: string;
-          content: string;
-        };
-        hover: {
-          name: string;
-          content: string;
-        };
-      };
-      confirmButton: {
-        text: {
-          name: string;
-          content: string;
-        };
-        hover: {
-          name: string;
-          content: string;
-        };
-      };
-      checkShortcuts: {
-        addEntireSection: {
-          text: {
-            name: string;
-            content: string;
-          };
-          hover: {
-            name: string;
-            content: string;
-          };
-        };
-        removeEntireSection: {
-          text: {
-            name: string;
-            content: string;
-          };
-          hover: {
-            name: string;
-            content: string;
-          };
-        };
-        addAll: {
-          text: {
-            name: string;
-            content: string;
-          };
-          hover: {
-            name: string;
-            content: string;
-          };
-        };
-        removeAll: {
-          text: {
-            name: string;
-            content: string;
-          };
-          hover: {
-            name: string;
-            content: string;
-          };
-        };
-      };
-    };
-    tagsFamilies: {
-      language: {
-        name: string;
-        content: string;
-      };
-      environment: {
-        name: string;
-        content: string;
-      };
-      technology: {
-        name: string;
-        content: string;
-      };
-    };
-  };
+  webcontent: tagfilterwindowWebcontentType;
 };
