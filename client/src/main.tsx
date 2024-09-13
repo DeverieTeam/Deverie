@@ -47,6 +47,13 @@ const router = createBrowserRouter([
           return await fetchWebContent("wip", "fr");
         },
       },
+      {
+        path: "register",
+        element: <WIPage />,
+        loader: async () => {
+          return await fetchWebContent("wip", "fr");
+        },
+      },
     ],
   },
   {

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import ThreadsDisplayer from "../components/ThreadsDisplayer";
 
 export default function HomePage() {
@@ -47,9 +47,11 @@ export default function HomePage() {
               <p className="m-auto text-center text-md md:text-xl">
                 {webcontent.page.shortcutPopUp.disconnected.message.content}
               </p>
-              <button className="bg-indigo-400 hover:bg-indigo-600 hover:text-white text-center text-md md:text-xl rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900 px-8 py-2 font-semibold">
-                {webcontent.page.shortcutPopUp.disconnected.button.content}
-              </button>
+              <Link to={webcontent.page.shortcutPopUp.disconnected.link.content}>
+                <button className="bg-indigo-400 hover:bg-indigo-600 hover:text-white text-center text-md md:text-xl rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900 px-8 py-2 font-semibold">
+                  {webcontent.page.shortcutPopUp.disconnected.button.content}
+                </button>
+              </Link>
             </div>
           </div>
         </div>
