@@ -66,13 +66,62 @@ export default function NewPostPage({ threadType }: Props) {
     }
   };
 
-  const handleConfirmButton = (e: React.MouseEvent) => {
+  const handleSubmit = async (e: React.BaseSyntheticEvent) => {
     e.preventDefault();
+
+    let body: {
+      type: string;
+      title: string;
+      content: string;
+      author: number;
+      tags?: { id: number }[];
+      emergency?: number;
+    } = {
+      type: threadType,
+      title: title,
+      content: content,
+      author: 1,
+    };
+
+    if (tags) {
+      const bodyTags = [];
+      for (const tag of tags) {
+        bodyTags.push({ id: tag.id });
+      }
+      body = { ...body, tags: bodyTags };
+    }
+
+    if (typeof emergency === "number" && emergency >= 1 && emergency <= 7) {
+      body = { ...body, emergency: emergency };
+    }
+
+    try {
+      const response = await fetch("http://localhost:3000/post/newThread", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        console.log(result);
+        navigate(`/${threadType}`);
+      } else {
+        console.error("Une erreur s'est produite");
+      }
+    } catch (error) {
+      console.error("Une erreur s'est produite: ", error);
+    }
   };
 
   return (
     <div className="w-full relative flex flex-col">
-      <form className="w-full md:max-w-[750px] md:mx-auto px-4 pb-12 md:px-0 gap-2 xl:gap-4 flex flex-col">
+      <form
+        className="w-full md:max-w-[750px] md:mx-auto px-4 pb-12 md:px-0 gap-2 xl:gap-4 flex flex-col"
+        onSubmit={handleSubmit}>
         <p className="mx-auto my-4 text-center text-indigo-500 text-4xl md:text-5xl font-bold drop-shadow">
           {webcontent.page.title[threadType].content}
         </p>
@@ -99,8 +148,7 @@ export default function NewPostPage({ threadType }: Props) {
         />
         <button
           className="w-64 md:w-72 py-1 px-4 text-center text-lg md:text-xl hover:text-white bg-indigo-400 hover:bg-indigo-600 rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900"
-          onClick={handleTagSelectionButton}
-        >
+          onClick={handleTagSelectionButton}>
           {webcontent.page.tagsButton.content}
         </button>
         <div className="px-6 py-4 mt-2 mb-4 w-full h-20 md:h-14 justify-center shadow-sm shadow-neutral-400 bg-neutral-200 rounded-xl flex flex-wrap">
@@ -108,10 +156,9 @@ export default function NewPostPage({ threadType }: Props) {
             tags.map((tag) => (
               <div
                 key={tag.id}
-                className="w-[120px] md:w-[132px] justify-center gap-1 flex"
-              >
+                className="w-[120px] md:w-[132px] justify-center gap-1 flex">
                 <img
-                  className="h-5 w-5 bg-neutral-100 rounded-lg"
+                  className="my-auto h-5 w-5 bg-neutral-100 rounded-lg"
                   src={tag.icon}
                 />
                 <p className="md:text-lg">{tag.name}</p>
@@ -124,7 +171,7 @@ export default function NewPostPage({ threadType }: Props) {
               {webcontent.page.emergency.content}
             </p>
             <input
-              className="h-8 w-16 px-4 py-2 focus:outline-none active:outline-none md:text-lg shadow-sm shadow-neutral-400 bg-neutral-200 rounded-xl"
+              className="h-8 w-16 pl-4 pr-2 py-2 focus:outline-none active:outline-none md:text-lg shadow-sm shadow-neutral-400 bg-neutral-200 rounded-xl"
               type="number"
               min={1}
               max={7}
@@ -137,18 +184,16 @@ export default function NewPostPage({ threadType }: Props) {
           <button
             className="py-1 px-4 md:px-8 text-center text-lg md:text-xl hover:text-white bg-indigo-400 hover:bg-indigo-600 rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900"
             onClick={handleReturnButton}
-            title={webcontent.commons.buttons.backButton.hover.content}
-          >
+            title={webcontent.commons.buttons.backButton.hover.content}>
             {webcontent.commons.buttons.backButton.text.content}
           </button>
-          <button
+          <input
             className="py-1 px-4 md:px-8 text-center text-lg md:text-xl enabled:hover:text-white bg-indigo-400 enabled:hover:bg-indigo-600 rounded-full shadow-sm shadow-indigo-700 enabled:hover:shadow-indigo-900 disabled:opacity-50"
-            onClick={handleConfirmButton}
             disabled={buttonState()}
+            type="submit"
             title={webcontent.commons.buttons.confirmButton.hover.content}
-          >
-            {webcontent.commons.buttons.confirmButton.text.content}
-          </button>
+            value={webcontent.commons.buttons.confirmButton.text.content}
+          />
         </div>
       </form>
       {isTagButtonClicked && (

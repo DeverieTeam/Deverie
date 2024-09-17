@@ -49,14 +49,14 @@ const router = createBrowserRouter([
         },
       },
       {
-        path: "newPost/topic",
+        path: "newTopic",
         element: <NewPostPage threadType="topic" />,
         loader: async () => {
           return await fetchWebContent("newPost", "fr", true);
         },
       },
       {
-        path: "newPost/question",
+        path: "newQuestion",
         element: <NewPostPage threadType="question" />,
         loader: async () => {
           return await fetchWebContent("newPost", "fr", true);

@@ -48,7 +48,14 @@ export default function ThreadsPage({ threadType }: Props) {
   };
 
   const handleNewPostButton = () => {
-    navigate(`/newPost/${threadType}`);
+    switch (threadType) {
+      case "topic":
+        navigate(`/newTopic`);
+        break;
+      case "question":
+        navigate(`/newQuestion`);
+        break;
+    }
   };
 
   useEffect(() => {
@@ -93,8 +100,7 @@ export default function ThreadsPage({ threadType }: Props) {
         <div className="mx-auto w-72 py-2 px-4 bg-neutral-100 gap-4 rounded-lg shadow-sm shadow-neutral-400 flex flex-row">
           <button
             className="w-12 h-12 bg-indigo-400 hover:bg-indigo-600 self-center hover:text-white text-center text-5xl rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900 font-semibold relative"
-            onClick={handleNewPostButton}
-          >
+            onClick={handleNewPostButton}>
             +
           </button>
           <p className="m-auto flex-1 text-center text-lg">
@@ -109,8 +115,7 @@ export default function ThreadsPage({ threadType }: Props) {
           <div className="gap-6 xl:gap-10 flex flex-col">
             <button
               className="mx-auto w-56 py-1 px-4 text-center text-lg md:text-xl hover:text-white bg-indigo-400 hover:bg-indigo-600 rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900"
-              onClick={handleTagFilterButton}
-            >
+              onClick={handleTagFilterButton}>
               {webcontent.commons.searching.tagFilter.text.content}
             </button>
             <SortSelection
