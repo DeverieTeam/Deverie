@@ -75,4 +75,14 @@ export class WebContentController {
       lang: lang.toLowerCase(),
     });
   }
+
+  @Get('/register')
+  getRegisterPageWebContent(@Query('lang') lang: string) {
+    if (lang === undefined) {
+      lang = 'default';
+    }
+    return this.webContentService.getRegisterPageWebContent({
+      lang: lang.toLowerCase(),
+    });
+  }
 }

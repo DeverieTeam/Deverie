@@ -11,6 +11,7 @@ import WIPage from "./pages/WIPage.tsx";
 import ThreadsPage from "./pages/ThreadsPage.tsx";
 import TagsProvider from "./contexts/TagsProvider.tsx";
 import NewPostPage from "./pages/NewPostPage.tsx";
+import RegisterPage from "./pages/RegisterPage.tsx";
 
 const router = createBrowserRouter([
   {
@@ -50,9 +51,9 @@ const router = createBrowserRouter([
       },
       {
         path: "register",
-        element: <WIPage />,
+        element: <RegisterPage />,
         loader: async () => {
-          return await fetchWebContent("wip", "fr");
+          return await fetchWebContent("register", "fr");
         },
       },
       {    
