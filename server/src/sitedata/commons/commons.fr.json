@@ -151,14 +151,14 @@
       }
     },
     "joinUs": {
-    	"text": {
-    		"name": "Texte d'accès à la page d'inscription",
-    		"content": "Rejoignez-nous !"
-    	},
-    	"hover": {
-    		"text": "Texte d'inscription de survol",
-    		"content": "S'inscrire"
-    	}
+      "text": {
+        "name": "Texte d'accès à la page d'inscription",
+        "content": "Rejoignez-nous !"
+      },
+      "hover": {
+        "name": "Texte d'inscription de survol",
+        "content": "S'inscrire"
+      }
     },
     "login": {
       "text": {
@@ -220,32 +220,32 @@
     }
   },
   "connection": {
-  	"title": {
-  		"connectionPage": {
-	  		"name": "Titre du formulaire de connexion",
-	  		"content": "Connexion"
-	  	},
-	  	"connectionNeeded": {
-	  		"name": "Titre de l'avertissement de connexion nécessaire",
-	  		"content": "Connexion nécessaire"
-	  	}
-  	},
-  	"fields": {
-  		"username": {
-  			"name": "Label du champ d'identifiant utilisateur",
-  			"content": "Nom d'utilisateur"
-  		},
-  		"password": {
-  			"name": "Label du champ mot de passe",
-  			"content": "Mot de passe"
-  		}
-  	},
-  	"unregistered": {
-  		"prefix": {
-  			"name": "Texte précédant le lien vers l'inscription",
-  			"content": "Pas encore inscrit ?"
-  		}
-  	}
+    "title": {
+      "connectionPage": {
+        "name": "Titre du formulaire de connexion",
+        "content": "Connexion"
+      },
+      "connectionNeeded": {
+        "name": "Titre de l'avertissement de connexion nécessaire",
+        "content": "Connexion nécessaire"
+      }
+    },
+    "fields": {
+      "username": {
+        "name": "Label du champ d'identifiant utilisateur",
+        "content": "Nom d'utilisateur"
+      },
+      "password": {
+        "name": "Label du champ mot de passe",
+        "content": "Mot de passe"
+      }
+    },
+    "unregistered": {
+      "prefix": {
+        "name": "Texte précédant le lien vers l'inscription",
+        "content": "Pas encore inscrit ?"
+      }
+    }
   },
   "publications": {
     "publishDatePrefix": {
