@@ -42,6 +42,7 @@ export class WebContentService {
           buttons: currentLangData.buttons,
           hypertexts: currentLangData.hypertexts,
           sections: currentLangData.sections,
+          connection: currentLangData.connection,
         };
       }
     } else {
@@ -60,6 +61,7 @@ export class WebContentService {
               buttons: commonsFr.buttons,
               hypertexts: commonsFr.hypertexts,
               sections: commonsFr.sections,
+              connection: commonsFr.connection,
             },
           };
           break;

@@ -8,7 +8,12 @@ const webcontent = useLoaderData();
 
   return (
     <div className="bg-neutral-50 w-screen relative">
-      <Header webcontent={{logo: webcontent.logo, sections: webcontent.sections, hypertexts: webcontent.hypertexts}}/>
+      <Header webcontent={{logo: webcontent.logo,
+                          sections: webcontent.sections,
+                          hypertexts: webcontent.hypertexts,
+                          buttons: webcontent.buttons,
+                          connection: webcontent.connection}}
+      />
       <MobileNavbar />
       <div className="mt-16 mb-16 md:mb-0">
         <Outlet />

@@ -1,10 +1,19 @@
+import { useState } from 'react';
 import { Link, useLocation } from "react-router-dom";
+import ConnectionWindow from "../components/userAccount/ConnectionWindow";
 import { headerWebcontentType } from "../types/headerWebcontentType";
 
 export default function Header({ webcontent }: Props) {
-  const { pathname } = useLocation();
+  const [isConnectionWindowDisplayed, setIsConnectionWindowDisplayed] = useState<boolean>(false);
 
+  const handleConnectionWindowDisplayer = () => {
+    setIsConnectionWindowDisplayed(!isConnectionWindowDisplayed);
+  }
+  
+  const { pathname } = useLocation();
+  
   return (
+    <>
     <div className="bg-neutral-50 w-full h-16 justify-between fixed top-0 z-10 shadow-sm shadow-neutral-4OO flex">
       <Link
         to="/"
@@ -99,6 +108,7 @@ export default function Header({ webcontent }: Props) {
         <button
           className="m-auto h-14 w-14 bg-indigo-400 hover:bg-indigo-600 rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900 relative flex"
           title={webcontent.hypertexts.login.hover.content}
+          onClick={handleConnectionWindowDisplayer}
         >
           <img
             className="m-auto h-12 w-12 rounded-full bg-transparent"
@@ -107,6 +117,13 @@ export default function Header({ webcontent }: Props) {
         </button>
       </div>
     </div>
+    {isConnectionWindowDisplayed && (
+      <ConnectionWindow
+        setIsConnectionWindowDisplayed={setIsConnectionWindowDisplayed}
+        webcontent={{hypertexts: webcontent.hypertexts, buttons: webcontent.buttons, connection: webcontent.connection}}
+      />
+    )}
+    </>
   );
 }
 

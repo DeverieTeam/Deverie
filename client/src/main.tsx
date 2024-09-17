@@ -49,6 +49,13 @@ const router = createBrowserRouter([
         },
       },
       {
+        path: "register",
+        element: <WIPage />,
+        loader: async () => {
+          return await fetchWebContent("wip", "fr");
+        },
+      },
+      {    
         path: "newTopic",
         element: <NewPostPage threadType="topic" />,
         loader: async () => {
