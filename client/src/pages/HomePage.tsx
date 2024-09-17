@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useLoaderData, useNavigate } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import ThreadsDisplayer from "../components/ThreadsDisplayer";
 import { homepageWebcontentType } from "../types/homepageWebcontentType";
 
@@ -14,7 +14,7 @@ export default function HomePage() {
 
   const handleRegistrationButton = () => {
     navigate(webcontent.page.shortcutPopUp.disconnected.link.content);
-  }
+  };
 
   useEffect(() => {
     const random = Math.floor(Math.random() * 2);
@@ -55,8 +55,8 @@ export default function HomePage() {
                 {webcontent.page.shortcutPopUp.disconnected.message.content}
               </p>
               <button
-              className="bg-indigo-400 hover:bg-indigo-600 hover:text-white text-center text-md md:text-xl rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900 px-8 py-2 font-semibold"
-              onClick={handleRegistrationButton}>
+                className="bg-indigo-400 hover:bg-indigo-600 hover:text-white text-center text-md md:text-xl rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900 px-8 py-2 font-semibold"
+                onClick={handleRegistrationButton}>
                 {webcontent.page.shortcutPopUp.disconnected.button.content}
               </button>
             </div>

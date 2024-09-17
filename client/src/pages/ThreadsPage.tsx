@@ -1,4 +1,7 @@
-import { useLoaderData, useNavigate } from "react-router-dom";
+import {
+  useLoaderData,
+  // useNavigate
+} from "react-router-dom";
 import { useEffect, useState } from "react";
 import ThreadsDisplayer from "../components/ThreadsDisplayer";
 import TagFilterWindow from "../components/TagFilterWindow";
@@ -11,8 +14,10 @@ import { useTags } from "../contexts/useTags";
 import { threadspageWebcontentType } from "../types/threadspageWebcontentType";
 
 export default function ThreadsPage({ threadType }: Props) {
-  const [isConnectionNeededClicked, setIsConnectionNeededClicked] = useState<boolean>(false);
-  const [isConnectionWindowDisplayed, setIsConnectionWindowDisplayed] = useState<boolean>(false);
+  const [isConnectionNeededClicked, setIsConnectionNeededClicked] =
+    useState<boolean>(false);
+  const [isConnectionWindowDisplayed, setIsConnectionWindowDisplayed] =
+    useState<boolean>(false);
   const [isTagButtonClicked, setIsTagButtonClicked] = useState<boolean>(false);
   const [dataForPage, setDataForPage] = useState<
     | null
@@ -45,29 +50,26 @@ export default function ThreadsPage({ threadType }: Props) {
 
   const { tags, setTags } = useTags();
 
-  const handleConnectionWindowDisplayer = () => {
-    setIsConnectionWindowDisplayed(!isConnectionWindowDisplayed);
-  }
   const handleConnectionNeededAlert = () => {
     setIsConnectionNeededClicked(!isConnectionNeededClicked);
-  }
-  
-  const navigate = useNavigate();
+  };
+
+  // const navigate = useNavigate();
 
   const handleTagFilterButton = () => {
     setIsTagButtonClicked(!isTagButtonClicked);
   };
 
-  const handleNewPostButton = () => {
-    switch (threadType) {
-      case "topic":
-        navigate(`/newTopic`);
-        break;
-      case "question":
-        navigate(`/newQuestion`);
-        break;
-    }
-  };
+  // const handleNewPostButton = () => {
+  //   switch (threadType) {
+  //     case "topic":
+  //       navigate(`/newTopic`);
+  //       break;
+  //     case "question":
+  //       navigate(`/newQuestion`);
+  //       break;
+  //   }
+  // };
 
   useEffect(() => {
     fetch(`http://localhost:3000/tag`)
@@ -113,7 +115,7 @@ export default function ThreadsPage({ threadType }: Props) {
             className="w-12 h-12 bg-indigo-400 hover:bg-indigo-600 self-center hover:text-white text-center text-5xl rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900 font-semibold relative"
             onClick={handleConnectionNeededAlert}
             //onClick={handleNewPostButton}
-            >
+          >
             +
           </button>
           <p className="m-auto flex-1 text-center text-lg">
@@ -168,14 +170,21 @@ export default function ThreadsPage({ threadType }: Props) {
       {isConnectionWindowDisplayed && (
         <ConnectionWindow
           setIsConnectionWindowDisplayed={setIsConnectionWindowDisplayed}
-          webcontent={{hypertexts: webcontent.commons.hypertexts, buttons: webcontent.commons.buttons, connection: webcontent.commons.connection}}
+          webcontent={{
+            hypertexts: webcontent.commons.hypertexts,
+            buttons: webcontent.commons.buttons,
+            connection: webcontent.commons.connection,
+          }}
         />
       )}
       {isConnectionNeededClicked && (
         <ConnectionNeeded
           setIsConnectionNeededClicked={setIsConnectionNeededClicked}
           setIsConnectionWindowDisplayed={setIsConnectionWindowDisplayed}
-          webcontent={{hypertexts: webcontent.commons.hypertexts, connection: webcontent.commons.connection}}
+          webcontent={{
+            hypertexts: webcontent.commons.hypertexts,
+            connection: webcontent.commons.connection,
+          }}
         />
       )}
       {isTagButtonClicked &&
