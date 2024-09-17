@@ -223,7 +223,7 @@ export class PostService {
     } else {
       const returnedValue = await this.postRepository.save(post);
       return {
-        response: `New post successfully created! (Id: ${returnedValue.id})`,
+        id: returnedValue.id,
       };
     }
   }

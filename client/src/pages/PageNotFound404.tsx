@@ -1,7 +1,8 @@
 import { Link, useLoaderData } from "react-router-dom";
+import { wipand404pageWebcontentType } from "../types/wipand404pageWebcontentType";
 
 export default function PageNotFound404() {
-  const webcontent = useLoaderData();
+  const webcontent = useLoaderData() as wipand404pageWebcontentType;
 
   return (
     <div className="text-center justify-between flex flex-col">
@@ -26,7 +27,8 @@ export default function PageNotFound404() {
         <Link
           className="bg-indigo-400 hover:bg-indigo-600 text-xl lg:text-3xl hover:text-white font-semibold py-2 px-6 rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900"
           to="/"
-          title={webcontent.commons.buttons.backToHomeButton.hover.content}>
+          title={webcontent.commons.buttons.backToHomeButton.hover.content}
+        >
           {webcontent.commons.buttons.backToHomeButton.text.content}
         </Link>
       </div>

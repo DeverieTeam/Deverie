@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import ThreadsDisplayer from "../components/ThreadsDisplayer";
+import { homepageWebcontentType } from "../types/homepageWebcontentType";
 
 export default function HomePage() {
   const [randomThread, setRandomThread] = useState<null | "popular" | "recent">(
     null
   );
 
-  const webcontent = useLoaderData();
+  const webcontent = useLoaderData() as homepageWebcontentType;
 
   useEffect(() => {
     const random = Math.floor(Math.random() * 2);

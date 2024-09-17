@@ -2,7 +2,7 @@ entity: member
 items:
   member1:
     name: 'Pierre'
-    hashed_password: 'psswrd'
+    hashed_password: 'ec856b063f8f251cacd72fcf0e309b10c49680ebaca1528cea0e3369e8df1dd9'
     email: 'barge.pierre@hotmail.fr'
     is_email_displayed: true
     inscription_date: '2024, 2, 21'
@@ -28,7 +28,7 @@ items:
 
   member3:
     name: 'TruitosTv'
-    hashed_password: 'psswrd'
+    hashed_password: '5058b189bcf92debd80eb2cc7210fa3c93166d2924bd58ce8d1ba3cc69a28701'
     email: 'axel.remontpro@gmail.com'
     is_email_displayed: true
     inscription_date: '2024, 3, 22'

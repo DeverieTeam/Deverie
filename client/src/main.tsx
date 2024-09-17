@@ -10,6 +10,7 @@ import PageNotFound404 from "./pages/PageNotFound404.tsx";
 import WIPage from "./pages/WIPage.tsx";
 import ThreadsPage from "./pages/ThreadsPage.tsx";
 import TagsProvider from "./contexts/TagsProvider.tsx";
+import NewPostPage from "./pages/NewPostPage.tsx";
 
 const router = createBrowserRouter([
   {
@@ -45,6 +46,20 @@ const router = createBrowserRouter([
         element: <WIPage />,
         loader: async () => {
           return await fetchWebContent("wip", "fr");
+        },
+      },
+      {
+        path: "newTopic",
+        element: <NewPostPage threadType="topic" />,
+        loader: async () => {
+          return await fetchWebContent("newPost", "fr", true);
+        },
+      },
+      {
+        path: "newQuestion",
+        element: <NewPostPage threadType="question" />,
+        loader: async () => {
+          return await fetchWebContent("newPost", "fr", true);
         },
       },
     ],

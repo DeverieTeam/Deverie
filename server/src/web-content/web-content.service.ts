@@ -4,6 +4,7 @@ import * as homepageFr from '../sitedata/homepage/homepage.fr.json';
 import * as threadsFr from '../sitedata/threads/threads.fr.json';
 import * as wipageFr from '../sitedata/wipage/wipage.fr.json';
 import * as notFoundFr from '../sitedata/notFound/notFound.fr.json';
+import * as newPostPageFr from '../sitedata/newPost/newPost.fr.json';
 
 const httpError = (customMessage: string) => {
   throw new HttpException(
@@ -152,6 +153,22 @@ export class WebContentService {
     } else {
       return {
         fr: notFoundFr,
+      };
+    }
+  }
+
+  getNewPostPageWebContent(params: { lang: string }) {
+    if (params.lang !== 'default') {
+      switch (params.lang) {
+        case 'fr':
+          return newPostPageFr;
+        default:
+          httpError('Language not handled');
+          break;
+      }
+    } else {
+      return {
+        fr: newPostPageFr,
       };
     }
   }
