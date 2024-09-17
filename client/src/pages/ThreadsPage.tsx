@@ -154,12 +154,14 @@ export default function ThreadsPage({ threadType }: Props) {
       {isConnectionWindowDisplayed && (
         <ConnectionWindow
           setIsConnectionWindowDisplayed={setIsConnectionWindowDisplayed}
+          webcontent={{hypertexts: webcontent.commons.hypertexts, buttons: webcontent.commons.buttons, connection: webcontent.commons.connection}}
         />
       )}
       {isConnectionNeededClicked && (
         <ConnectionNeeded
           setIsConnectionNeededClicked={setIsConnectionNeededClicked}
           setIsConnectionWindowDisplayed={setIsConnectionWindowDisplayed}
+          webcontent={{hypertexts: webcontent.commons.hypertexts, connection: webcontent.commons.connection}}
         />
       )}
       {isTagButtonClicked &&

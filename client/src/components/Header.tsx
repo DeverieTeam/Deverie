@@ -119,6 +119,7 @@ export default function Header({ webcontent }: Props) {
     {isConnectionWindowDisplayed && (
       <ConnectionWindow
         setIsConnectionWindowDisplayed={setIsConnectionWindowDisplayed}
+        webcontent={{hypertexts: webcontent.hypertexts, buttons: webcontent.buttons, connection: webcontent.connection}}
       />
     )}
     </>
@@ -216,6 +217,16 @@ type Props = {
           content: string;
         };
       };
+      joinUs: {
+        text: {
+          name: string;
+          content: string;
+        };
+        hover: {
+          name: string;
+          content: string;
+        };
+      };
       login: {
         text: {
           name: string;
@@ -232,6 +243,122 @@ type Props = {
           content: string;
         };
         hover: {
+          name: string;
+          content: string;
+        };
+      };
+    };
+    buttons: {
+      backButton: {
+        text: {
+          name: string;
+          content: string;
+        };
+        hover: {
+          name: string;
+          content: string;
+        };
+      };
+      backToHomeButton: {
+        text: {
+          name: string;
+          content: string;
+        };
+        hover: {
+          name: string;
+          content: string;
+        };
+      };
+      quitButton: {
+        text: {
+          name: string;
+          content: string;
+        };
+        hover: {
+          name: string;
+          content: string;
+        };
+      };
+      cancelButton: {
+        text: {
+          name: string;
+          content: string;
+        };
+        hover: {
+          name: string;
+          content: string;
+        };
+      };
+      confirmButton: {
+        text: {
+          name: string;
+          content: string;
+        };
+        hover: {
+          name: string;
+          content: string;
+        };
+      };
+      checkShortcuts: {
+        addEntireSection: {
+          text: {
+            name: string;
+            content: string;
+          };
+          hover: {
+            name: string;
+            content: string;
+          };
+        };
+        removeEntireSection: {
+          text: {
+            name: string;
+            content: string;
+          };
+          hover: {
+            name: string;
+            content: string;
+          };
+        };
+        addAll: {
+          text: {
+            name: string;
+            content: string;
+          };
+          hover: {
+            name: string;
+            content: string;
+          };
+        };
+        removeAll: {
+          text: {
+            name: string;
+            content: string;
+          };
+          hover: {
+            name: string;
+            content: string;
+          };
+        };
+      };
+    };
+    connection: {
+      title: {
+        name: string;
+        content: string;
+      };
+      fields: {
+        username: {
+          name: string;
+          content: string;
+        };
+        password: {
+          name: string;
+          content: string;
+        };
+      };
+      unregistered: {
+        prefix: {
           name: string;
           content: string;
         };

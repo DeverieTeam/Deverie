@@ -1,9 +1,11 @@
 import { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import ConnectionWindow from "../components/ConnectionWindow";
 
 export default function ConnectionNeeded({
 	setIsConnectionNeededClicked,
 	setIsConnectionWindowDisplayed,
+	webcontent,
 }: Props) {
 	const exitConnectionNeeded = () => {
 		setIsConnectionNeededClicked(false);
@@ -12,6 +14,12 @@ export default function ConnectionNeeded({
 	const handleIndirectConnectionWindowDisplayer = () => {
 		setIsConnectionWindowDisplayed(true);
 		setIsConnectionNeededClicked(false);
+	}
+
+	const navigate = useNavigate();
+
+	const handleRegistrationButton = () => {
+		navigate("/register");
 	}
 
 	return (
@@ -28,22 +36,23 @@ export default function ConnectionNeeded({
 					}}
 					>
 						<p className="text-center text-indigo-500 text-xl md:text-2xl font-semibold drop-shadow">
-							Connexion nécessaire
+							{webcontent.connection.title.connectionNeeded.content}
 						</p>
 						<div
 						className="flex justify-center gap-4 w-[100%]">
 							<button
 							className="py-1 px-4 md:px-8 text-center text-lg md:text-xl hover:text-white bg-indigo-400 hover:bg-indigo-600 rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900"
-							title="S'inscrire"
+							title={webcontent.hypertexts.joinUs.text.content}
+							onClick={handleRegistrationButton}
 							>
-							S'inscrire
+							{webcontent.hypertexts.joinUs.hover.content}
 							</button>
 							<button
 							className="py-1 px-4 md:px-8 text-center text-lg md:text-xl hover:text-white bg-indigo-400 hover:bg-indigo-600 rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900"
-							title="Se connecter"
+							title={webcontent.hypertexts.login.text.content}
 							onClick={handleIndirectConnectionWindowDisplayer}
 							>
-							Se connecter
+							{webcontent.hypertexts.login.hover.content}
 							</button>
 						</div>
 					</div>
@@ -56,4 +65,5 @@ export default function ConnectionNeeded({
 type Props = {
 	setIsConnectionNeededClicked: (arg0: boolean) => void;
 	setIsConnectionWindowDisplayed: (arg0: boolean) => void;
+	webcontent: Object;
 }
