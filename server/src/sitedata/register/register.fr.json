@@ -1,0 +1,66 @@
+{
+	"title": {
+		"name": "Titre de la page d'inscription",
+		"content": "M'inscrire sur Deverie"
+	},
+	"form": {
+		"generalInformations": {
+			"main": {
+				"name": "Titre de la section d'informations générales",
+				"content": "Informations générales"
+			},
+			"fields": {
+				"username": {
+				  "name": "Label du champ du nom de compte utilisateur",
+				  "content": "Nom d'utilisateur"
+				},
+				"password": {
+				  "name": "Label du champ de mot de passe",
+				  "content": "Mot de passe"
+				},
+				"confirmPassword": {
+				  "name": "Label du champ de confirmation de mot de passe",
+				  "content": "Confirmer le mot de passe"
+				},
+				"email": {
+				  "name": "Label du champ d'adresse email'",
+				  "content": "Adresse email"
+				}
+			}
+		},
+		"complementaryInformations": {
+			"main": {
+				"name": "Titre de la section d'informations facultatives",
+				"content": "Informations complémentaires"
+			},
+			"fields": {
+				"pronouns": {
+				  "name": "Label du champ de pronoms",
+				  "content": "Pronoms"
+				},
+				"showEmail": {
+				  "name": "Label du champ d'affichage d'adresse email",
+				  "content": "Afficher l'adresse email ?"
+				},
+				"description": {
+				  "name": "Label du champ de description",
+				  "content": "Message de description"
+				}
+			}
+		},
+		"obligatoryFieldsMessage": {
+			"name": "Texte d'indication des champs obbligatoires",
+			"content": "Champs obligatoires"
+		}
+	},
+	"submitButton": {
+		"text": {
+			"name": "Texte du bouton d'envoie d'inscription",
+			"content": "Envoyer"
+		},
+		"hover": {
+			"name": "Texte bouton d'envoie d'inscription de survol",
+			"content": "Envoyer les informations saisis"
+		}
+	}
+}
