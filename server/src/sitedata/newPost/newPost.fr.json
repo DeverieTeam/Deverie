@@ -1,0 +1,40 @@
+{
+  "title": {
+    "topic": {
+      "name": "Titre de la page de création de post",
+      "content": "Nouveau sujet de Forum"
+    },
+    "question": {
+      "name": "Titre de la page de création de post",
+      "content": "Nouvelle Question"
+    }
+  },
+  "postTitle": {
+    "name": "Texte associé au champ de saisie du titre du post",
+    "content": "Titre du post :"
+  },
+  "postTitlePlaceholder": {
+    "name": "Placeholder du champ de saisie du titre du post",
+    "content": "Titre de votre post"
+  },
+  "postContent": {
+    "name": "Texte associé au champ de saisie du contenu du post",
+    "content": "Contenu :"
+  },
+  "postContentPlaceholder": {
+    "name": "Placeholder du champ de saisie du contenu du post",
+    "content": "Contenu de votre post"
+  },
+  "tagsButton": {
+    "name": "Texte du bouton de sélection des tags",
+    "content": "Choisir les tags associés"
+  },
+  "emergency": {
+    "name": "Texte associé au champ de saisie de l'urgence d'une question",
+    "content": "Urgence de la question (facultatif) :"
+  },
+  "tagNumberDisclaimer": {
+    "name": "Texte d'invitation à sélectionner le bon nombre de tags",
+    "content": "Veuillez sélectionner de 1 à 4 Tags"
+  }
+}

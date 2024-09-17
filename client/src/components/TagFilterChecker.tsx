@@ -1,4 +1,8 @@
-export default function TagChecker({ tag, tempTags, setTempTags }: Props) {
+export default function TagFilterChecker({
+  tag,
+  tempTags,
+  setTempTags,
+}: Props) {
   const handleChecked = () => {
     return tempTags.includes(tag.name);
   };

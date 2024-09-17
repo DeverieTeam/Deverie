@@ -1,13 +1,14 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import ThreadsDisplayer from "../components/ThreadsDisplayer";
-import TagsWindow from "../components/TagsWindow";
+import TagFilterWindow from "../components/TagFilterWindow";
 import Pagination from "../components/Pagination";
 import SortSelection from "../components/SortSelection";
 import SearchField from "../components/SearchField";
 import ConnectionNeeded from "../components/userAccount/ConnectionNeeded";
 import ConnectionWindow from "../components/userAccount/ConnectionWindow";
 import { useTags } from "../contexts/useTags";
+import { threadspageWebcontentType } from "../types/threadspageWebcontentType";
 
 export default function ThreadsPage({ threadType }: Props) {
   const [isConnectionNeededClicked, setIsConnectionNeededClicked] = useState<boolean>(false);
@@ -40,19 +41,32 @@ export default function ThreadsPage({ threadType }: Props) {
   const [envTags, setEnvTags] = useState<null | string[]>(null);
   const [technoTags, setTechnoTags] = useState<null | string[]>(null);
 
-  const webcontent = useLoaderData();
+  const webcontent = useLoaderData() as threadspageWebcontentType;
+
   const { tags, setTags } = useTags();
 
   const handleConnectionWindowDisplayer = () => {
     setIsConnectionWindowDisplayed(!isConnectionWindowDisplayed);
   }
-
   const handleConnectionNeededAlert = () => {
     setIsConnectionNeededClicked(!isConnectionNeededClicked);
   }
+  
+  const navigate = useNavigate();
 
   const handleTagFilterButton = () => {
     setIsTagButtonClicked(!isTagButtonClicked);
+  };
+
+  const handleNewPostButton = () => {
+    switch (threadType) {
+      case "topic":
+        navigate(`/newTopic`);
+        break;
+      case "question":
+        navigate(`/newQuestion`);
+        break;
+    }
   };
 
   useEffect(() => {
@@ -96,9 +110,10 @@ export default function ThreadsPage({ threadType }: Props) {
         </p>
         <div className="mx-auto w-72 py-2 px-4 bg-neutral-100 gap-4 rounded-lg shadow-sm shadow-neutral-400 flex flex-row">
           <button
-          className="w-12 h-12 bg-indigo-400 hover:bg-indigo-600 self-center hover:text-white text-center text-5xl rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900 font-semibold relative"
-          onClick={handleConnectionNeededAlert}
-          >
+            className="w-12 h-12 bg-indigo-400 hover:bg-indigo-600 self-center hover:text-white text-center text-5xl rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900 font-semibold relative"
+            onClick={handleConnectionNeededAlert}
+            //onClick={handleNewPostButton}
+            >
             +
           </button>
           <p className="m-auto flex-1 text-center text-lg">
@@ -113,8 +128,7 @@ export default function ThreadsPage({ threadType }: Props) {
           <div className="gap-6 xl:gap-10 flex flex-col">
             <button
               className="mx-auto w-56 py-1 px-4 text-center text-lg md:text-xl hover:text-white bg-indigo-400 hover:bg-indigo-600 rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900"
-              onClick={handleTagFilterButton}
-            >
+              onClick={handleTagFilterButton}>
               {webcontent.commons.searching.tagFilter.text.content}
             </button>
             <SortSelection
@@ -169,7 +183,7 @@ export default function ThreadsPage({ threadType }: Props) {
         langTags !== null &&
         envTags !== null &&
         technoTags !== null && (
-          <TagsWindow
+          <TagFilterWindow
             isTagButtonClicked={isTagButtonClicked}
             setIsTagButtonClicked={setIsTagButtonClicked}
             tags={tags}

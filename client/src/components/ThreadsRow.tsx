@@ -1,3 +1,5 @@
+import { threadsrowWebcontentType } from "../types/threadsrowWebcontentType";
+
 export default function ThreadsRow({ post, webcontent }: Props) {
   return (
     <button className="bg-neutral-100 hover:bg-white gap-2 p-1 md:p-4 rounded-lg shadow-sm shadow-neutral-400 flex">
@@ -67,32 +69,5 @@ type Props = {
     replies_count: number;
     last_message_date: string;
   };
-  webcontent: {
-    publishDatePrefix: {
-      name: string;
-      content: string;
-    };
-    numberOfResponses: {
-      name: string;
-      content: string;
-    };
-    lastResponseDatePrefix: {
-      name: string;
-      content: string;
-    };
-    favorite: {
-      add: {
-        hover: {
-          name: string;
-          content: string;
-        };
-      };
-      remove: {
-        hover: {
-          name: string;
-          content: string;
-        };
-      };
-    };
-  };
+  webcontent: threadsrowWebcontentType;
 };

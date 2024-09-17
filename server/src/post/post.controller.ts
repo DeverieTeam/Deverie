@@ -5,10 +5,10 @@ import {
   Param,
   Post,
   Query,
-  UseGuards,
+  // UseGuards,
 } from '@nestjs/common';
 import { PostService } from './post.service';
-import { AuthGuard } from '@nestjs/passport';
+// import { AuthGuard } from '@nestjs/passport';
 
 @Controller('post')
 export class PostController {
@@ -35,7 +35,7 @@ export class PostController {
     return this.service.getPostsByType(type, max, page, tags, search, sort);
   }
 
-  @UseGuards(AuthGuard('jwt'))
+  // @UseGuards(AuthGuard('jwt'))
   @Post('newThread')
   async createPost(
     @Body()

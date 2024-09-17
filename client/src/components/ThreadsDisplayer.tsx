@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import ThreadsRow from "./ThreadsRow";
+import { threadsdisplayerWebcontentType } from "../types/threadsdisplayerWebcontentType";
 
 export default function ThreadsDisplayer({
   thread,
@@ -132,38 +133,5 @@ type Props = {
   sort?: string;
   searchField?: string;
   tags?: string[];
-  webcontent: {
-    publications: {
-      publishDatePrefix: {
-        name: string;
-        content: string;
-      };
-      numberOfResponses: {
-        name: string;
-        content: string;
-      };
-      lastResponseDatePrefix: {
-        name: string;
-        content: string;
-      };
-      favorite: {
-        add: {
-          hover: {
-            name: string;
-            content: string;
-          };
-        };
-        remove: {
-          hover: {
-            name: string;
-            content: string;
-          };
-        };
-      };
-    };
-    noResult: {
-      name: string;
-      content: string;
-    };
-  };
+  webcontent: threadsdisplayerWebcontentType;
 };
