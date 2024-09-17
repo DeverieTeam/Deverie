@@ -2,11 +2,14 @@ import { useState } from "react";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { newpostpageWebcontentType } from "../types/newpostpageWebcontentType";
 import TagSelectionWindow from "../components/TagSelectionWindow";
+import Cookies from "universal-cookie";
+import { useAuth } from "../contexts/useAuth";
 
 export default function NewPostPage({ threadType }: Props) {
   const webcontent = useLoaderData() as newpostpageWebcontentType;
 
   const navigate = useNavigate();
+  const { auth } = useAuth();
   const [title, setTitle] = useState<string>("");
   const [content, setContent] = useState<string>("");
   const [tags, setTags] = useState<
@@ -53,6 +56,8 @@ export default function NewPostPage({ threadType }: Props) {
 
   const buttonState = () => {
     if (
+      auth &&
+      auth.role !== "client" &&
       title.length > 3 &&
       title.length <= 255 &&
       content.length > 3 &&
@@ -69,51 +74,58 @@ export default function NewPostPage({ threadType }: Props) {
   const handleSubmit = async (e: React.BaseSyntheticEvent) => {
     e.preventDefault();
 
-    let body: {
-      type: string;
-      title: string;
-      content: string;
-      author: number;
-      tags?: { id: number }[];
-      emergency?: number;
-    } = {
-      type: threadType,
-      title: title,
-      content: content,
-      author: 1,
-    };
+    if (auth && auth.id) {
+      let body: {
+        type: string;
+        title: string;
+        content: string;
+        author: number;
+        tags?: { id: number }[];
+        emergency?: number;
+      } = {
+        type: threadType,
+        title: title,
+        content: content,
+        author: auth.id,
+      };
 
-    if (tags) {
-      const bodyTags = [];
-      for (const tag of tags) {
-        bodyTags.push({ id: tag.id });
+      if (tags) {
+        const bodyTags = [];
+        for (const tag of tags) {
+          bodyTags.push({ id: tag.id });
+        }
+        body = { ...body, tags: bodyTags };
       }
-      body = { ...body, tags: bodyTags };
-    }
 
-    if (typeof emergency === "number" && emergency >= 1 && emergency <= 7) {
-      body = { ...body, emergency: emergency };
-    }
-
-    try {
-      const response = await fetch("http://localhost:3000/post/newThread", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(body),
-      });
-
-      if (response.ok) {
-        const result = await response.json();
-        console.log(result);
-        navigate(`/${threadType}`);
-      } else {
-        console.error("Une erreur s'est produite");
+      if (typeof emergency === "number" && emergency >= 1 && emergency <= 7) {
+        body = { ...body, emergency: emergency };
       }
-    } catch (error) {
-      console.error("Une erreur s'est produite: ", error);
+
+      try {
+        const cookies = new Cookies(null, {
+          path: "/",
+        });
+        const jwt = cookies.get("JWT");
+        const response = await fetch("http://localhost:3000/post/newThread", {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${jwt}`,
+          },
+          body: JSON.stringify(body),
+        });
+
+        if (response.ok) {
+          const result = await response.json();
+          console.log(result);
+          navigate(`/${threadType}`);
+        } else {
+          console.error("Une erreur s'est produite");
+        }
+      } catch (error) {
+        console.error("Une erreur s'est produite: ", error);
+      }
     }
   };
 

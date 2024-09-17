@@ -2,13 +2,22 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import ConnectionWindow from "../components/userAccount/ConnectionWindow";
 import { headerWebcontentType } from "../types/headerWebcontentType";
+import { useAuth } from "../contexts/useAuth";
 
 export default function Header({ webcontent }: Props) {
   const [isConnectionWindowDisplayed, setIsConnectionWindowDisplayed] =
     useState<boolean>(false);
+  const { auth } = useAuth();
 
   const handleConnectionWindowDisplayer = () => {
     setIsConnectionWindowDisplayed(!isConnectionWindowDisplayed);
+  };
+
+  const profilePictureSetter = () => {
+    if (auth !== undefined && auth.role !== "client") {
+      return auth.profile_picture;
+    }
+    return "/icons/profile-picture.png";
   };
 
   const { pathname } = useLocation();
@@ -105,7 +114,7 @@ export default function Header({ webcontent }: Props) {
             onClick={handleConnectionWindowDisplayer}>
             <img
               className="m-auto h-12 w-12 rounded-full bg-transparent"
-              src="/icons/profile-picture.png"
+              src={profilePictureSetter()}
             />
           </button>
         </div>

@@ -14,8 +14,8 @@ export class AuthService {
     return crypto.createHmac('sha256', password).digest('hex');
   }
 
-  async validate(email: string) {
-    return this.memberService.getMemberByEmail(email);
+  async validate(id: number) {
+    return this.memberService.getMemberById(id);
   }
 
   public async registerMember(member: {
@@ -105,14 +105,14 @@ export class AuthService {
     const allLogs = await this.memberService.getAllMemberLogs();
 
     let hashToCheck: string = '';
-    let payload: string = '';
+    let payload: { id: number };
     let memberFound: boolean = false;
 
     for (const log of allLogs) {
       if (log.name === member.login || log.email === member.login) {
         memberFound = true;
         hashToCheck = log.hashed_password;
-        payload = log.email;
+        payload = { id: log.id };
         break;
       }
     }

@@ -34,11 +34,14 @@ export class MemberService {
 
   async getAllMemberLogs() {
     return await this.memberRepository.find({
-      select: ['name', 'email', 'hashed_password'],
+      select: ['id', 'name', 'email', 'hashed_password'],
     });
   }
 
-  async getMemberByEmail(email: string) {
-    return this.memberRepository.findOneBy({ email: email });
+  async getMemberById(id: number) {
+    return this.memberRepository.findOne({
+      select: ['id', 'name', 'profile_picture', 'role'],
+      where: { id: id },
+    });
   }
 }
