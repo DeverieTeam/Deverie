@@ -70,6 +70,27 @@ const router = createBrowserRouter([
           return await fetchWebContent("newPost", "fr", true);
         },
       },
+      {
+        path: "favourites",
+        element: <WIPage />,
+        loader: async () => {
+          return await fetchWebContent("wip", "fr");
+        },
+      },
+      {
+        path: "profile",
+        element: <WIPage />,
+        loader: async () => {
+          return await fetchWebContent("wip", "fr");
+        },
+      },
+      {
+        path: "backoffice",
+        element: <WIPage />,
+        loader: async () => {
+          return await fetchWebContent("wip", "fr");
+        },
+      },
     ],
   },
   {

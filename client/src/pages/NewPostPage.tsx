@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { newpostpageWebcontentType } from "../types/newpostpageWebcontentType";
 import TagSelectionWindow from "../components/TagSelectionWindow";
@@ -21,8 +21,14 @@ export default function NewPostPage({ threadType }: Props) {
         family: string;
       }[]
   >(null);
-  const [emergency, setEmergency] = useState<"" | number>("");
+  const [emergency, setEmergency] = useState<string>("0");
   const [isTagButtonClicked, setIsTagButtonClicked] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (auth && auth.role && auth.role === "client") {
+      navigate("/");
+    }
+  }, [auth, navigate]);
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setTitle(e.target.value);
@@ -33,14 +39,20 @@ export default function NewPostPage({ threadType }: Props) {
   };
 
   const handleEmergencyChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (typeof parseInt(e.target.value) === "number") {
+    if (
+      typeof parseInt(e.target.value) === "number" &&
+      !isNaN(parseInt(e.target.value))
+    ) {
       if (parseInt(e.target.value) > 7) {
-        setEmergency(7);
-      } else if (parseInt(e.target.value) < 1) {
-        setEmergency(1);
+        setEmergency("7");
+      } else if (parseInt(e.target.value) < 0) {
+        setEmergency("0");
       } else {
-        setEmergency(parseInt(e.target.value));
+        setEmergency(e.target.value);
       }
+    } else {
+      setEmergency("0");
+      e.target.value = "0";
     }
   };
 
@@ -97,8 +109,12 @@ export default function NewPostPage({ threadType }: Props) {
         body = { ...body, tags: bodyTags };
       }
 
-      if (typeof emergency === "number" && emergency >= 1 && emergency <= 7) {
-        body = { ...body, emergency: emergency };
+      if (
+        typeof parseInt(emergency) === "number" &&
+        parseInt(emergency) >= 1 &&
+        parseInt(emergency) <= 7
+      ) {
+        body = { ...body, emergency: parseInt(emergency) };
       }
 
       try {
@@ -133,7 +149,8 @@ export default function NewPostPage({ threadType }: Props) {
     <div className="w-full relative flex flex-col">
       <form
         className="w-full md:max-w-[750px] md:mx-auto px-4 pb-12 md:px-0 gap-2 xl:gap-4 flex flex-col"
-        onSubmit={handleSubmit}>
+        onSubmit={handleSubmit}
+      >
         <p className="mx-auto my-4 text-center text-indigo-500 text-4xl md:text-5xl font-bold drop-shadow">
           {webcontent.page.title[threadType].content}
         </p>
@@ -160,7 +177,8 @@ export default function NewPostPage({ threadType }: Props) {
         />
         <button
           className="w-64 md:w-72 py-1 px-4 text-center text-lg md:text-xl hover:text-white bg-indigo-400 hover:bg-indigo-600 rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900"
-          onClick={handleTagSelectionButton}>
+          onClick={handleTagSelectionButton}
+        >
           {webcontent.page.tagsButton.content}
         </button>
         <div className="px-6 py-4 mt-2 mb-4 w-full h-20 md:h-14 justify-center shadow-sm shadow-neutral-400 bg-neutral-200 rounded-xl flex flex-wrap">
@@ -168,7 +186,8 @@ export default function NewPostPage({ threadType }: Props) {
             tags.map((tag) => (
               <div
                 key={tag.id}
-                className="w-[120px] md:w-[132px] justify-center gap-1 flex">
+                className="w-[120px] md:w-[132px] justify-center gap-1 flex"
+              >
                 <img
                   className="my-auto h-5 w-5 bg-neutral-100 rounded-lg"
                   src={tag.icon}
@@ -185,7 +204,7 @@ export default function NewPostPage({ threadType }: Props) {
             <input
               className="h-8 w-16 pl-4 pr-2 py-2 focus:outline-none active:outline-none md:text-lg shadow-sm shadow-neutral-400 bg-neutral-200 rounded-xl"
               type="number"
-              min={1}
+              min={0}
               max={7}
               value={emergency}
               onChange={handleEmergencyChange}
@@ -196,7 +215,8 @@ export default function NewPostPage({ threadType }: Props) {
           <button
             className="py-1 px-4 md:px-8 text-center text-lg md:text-xl hover:text-white bg-indigo-400 hover:bg-indigo-600 rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900"
             onClick={handleReturnButton}
-            title={webcontent.commons.buttons.backButton.hover.content}>
+            title={webcontent.commons.buttons.backButton.hover.content}
+          >
             {webcontent.commons.buttons.backButton.text.content}
           </button>
           <input

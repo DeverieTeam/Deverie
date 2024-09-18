@@ -233,7 +233,7 @@
     "fields": {
       "username": {
         "name": "Label du champ d'identifiant utilisateur",
-        "content": "Nom d'utilisateur"
+        "content": "Nom d'utilisateur ou adresse mail"
       },
       "password": {
         "name": "Label du champ mot de passe",
@@ -245,6 +245,10 @@
         "name": "Texte précédant le lien vers l'inscription",
         "content": "Pas encore inscrit ?"
       }
+    },
+    "warning": {
+      "name": "Texte d'avertissement en cas d'erreur d'identifiant ou de mot de passe",
+      "content": "Votre identifiant et votre mot de passe ne correspondent pas. Veuillez réessayer."
     }
   },
   "publications": {
@@ -364,5 +368,23 @@
   "noResult": {
     "name": "Texte affiché en cas d'absence de résultat",
     "content": "Aucun résultat !!"
+  },
+  "dropDownMenu": {
+    "profile": {
+      "name": "Nom de l'item du menu déroulant menant à la page de profil",
+      "content": "Mon Profil"
+    },
+    "favourites": {
+      "name": "Nom de l'item du menu déroulant menant aux favoris",
+      "content": "Mes Favoris"
+    },
+    "backoffice": {
+      "name": "Nom de l'item du menu déroulant menant au backoffice",
+      "content": "Accéder au Backoffice"
+    },
+    "logout": {
+      "name": "Nom de l'item du menu déroulant permettant de se déconnecter",
+      "content": "Se Déconnecter"
+    }
   }
 }

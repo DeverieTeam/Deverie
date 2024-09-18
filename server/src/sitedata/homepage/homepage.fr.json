@@ -31,7 +31,7 @@
     "connected": {
       "message": {
         "name": "Message de la boîte d'accès rapide",
-        "content": "Bienvenue {username} !"
+        "content": "Bienvenue, {username} !"
       },
       "button": {
         "name": "Texte du bouton d'accès rapide",
@@ -39,7 +39,7 @@
       },
       "link": {
         "name": "Page de l'accès rapide",
-        "content": "favorites"
+        "content": "favourites"
       }
     }
   },

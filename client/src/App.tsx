@@ -15,6 +15,7 @@ export default function App() {
           hypertexts: webcontent.hypertexts,
           buttons: webcontent.buttons,
           connection: webcontent.connection,
+          dropDownMenu: webcontent.dropDownMenu,
         }}
       />
       <MobileNavbar />

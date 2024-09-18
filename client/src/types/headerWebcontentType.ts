@@ -240,5 +240,27 @@ export type headerWebcontentType = {
         content: string;
       };
     };
+    warning: {
+      name: string;
+      content: string;
+    };
+  };
+  dropDownMenu: {
+    profile: {
+      name: string;
+      content: string;
+    };
+    favourites: {
+      name: string;
+      content: string;
+    };
+    backoffice: {
+      name: string;
+      content: string;
+    };
+    logout: {
+      name: string;
+      content: string;
+    };
   };
 };

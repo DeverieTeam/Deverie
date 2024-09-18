@@ -15,7 +15,7 @@ items:
 
   member2:
     name: 'emixam113'
-    hashed_password: 'psswrd'
+    hashed_password: '96ce79e2836e202864c83104fc32309d1082be99356810287d5933111342c34e'
     email: 'maximeroyan03@gmail.com'
     is_email_displayed: true
     inscription_date: '2023, 11, 4'
