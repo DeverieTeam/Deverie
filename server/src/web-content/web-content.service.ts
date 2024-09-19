@@ -43,6 +43,7 @@ export class WebContentService {
           hypertexts: currentLangData.hypertexts,
           sections: currentLangData.sections,
           connection: currentLangData.connection,
+          dropDownMenu: currentLangData.dropDownMenu,
         };
       }
     } else {
@@ -62,6 +63,7 @@ export class WebContentService {
               hypertexts: commonsFr.hypertexts,
               sections: commonsFr.sections,
               connection: commonsFr.connection,
+              dropDownMenu: commonsFr.dropDownMenu,
             },
           };
           break;

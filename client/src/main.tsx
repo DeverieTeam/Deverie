@@ -11,6 +11,7 @@ import WIPage from "./pages/WIPage.tsx";
 import ThreadsPage from "./pages/ThreadsPage.tsx";
 import TagsProvider from "./contexts/TagsProvider.tsx";
 import NewPostPage from "./pages/NewPostPage.tsx";
+import AuthProvider from "./contexts/AuthProvider.tsx";
 
 const router = createBrowserRouter([
   {
@@ -55,7 +56,7 @@ const router = createBrowserRouter([
           return await fetchWebContent("wip", "fr");
         },
       },
-      {    
+      {
         path: "newTopic",
         element: <NewPostPage threadType="topic" />,
         loader: async () => {
@@ -67,6 +68,27 @@ const router = createBrowserRouter([
         element: <NewPostPage threadType="question" />,
         loader: async () => {
           return await fetchWebContent("newPost", "fr", true);
+        },
+      },
+      {
+        path: "favourites",
+        element: <WIPage />,
+        loader: async () => {
+          return await fetchWebContent("wip", "fr");
+        },
+      },
+      {
+        path: "profile",
+        element: <WIPage />,
+        loader: async () => {
+          return await fetchWebContent("wip", "fr");
+        },
+      },
+      {
+        path: "backoffice",
+        element: <WIPage />,
+        loader: async () => {
+          return await fetchWebContent("wip", "fr");
         },
       },
     ],
@@ -82,8 +104,10 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <TagsProvider>
-      <RouterProvider router={router} />
-    </TagsProvider>
+    <AuthProvider>
+      <TagsProvider>
+        <RouterProvider router={router} />
+      </TagsProvider>
+    </AuthProvider>
   </StrictMode>
 );

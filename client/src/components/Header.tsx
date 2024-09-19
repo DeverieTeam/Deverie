@@ -2,13 +2,29 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import ConnectionWindow from "../components/userAccount/ConnectionWindow";
 import { headerWebcontentType } from "../types/headerWebcontentType";
+import { useAuth } from "../contexts/useAuth";
+import DropDownMenu from "./userAccount/DropDownMenu";
 
 export default function Header({ webcontent }: Props) {
   const [isConnectionWindowDisplayed, setIsConnectionWindowDisplayed] =
     useState<boolean>(false);
+  const [isDropDownMenuClicked, setIsDropDownMenuClicked] =
+    useState<boolean>(false);
+  const { auth } = useAuth();
 
   const handleConnectionWindowDisplayer = () => {
-    setIsConnectionWindowDisplayed(!isConnectionWindowDisplayed);
+    if (auth !== undefined && auth.role !== "client") {
+      setIsDropDownMenuClicked(!isDropDownMenuClicked);
+    } else {
+      setIsConnectionWindowDisplayed(!isConnectionWindowDisplayed);
+    }
+  };
+
+  const profilePictureSetter = () => {
+    if (auth !== undefined && auth.role !== "client") {
+      return auth.profile_picture;
+    }
+    return "/icons/profile-picture.png";
   };
 
   const { pathname } = useLocation();
@@ -18,7 +34,8 @@ export default function Header({ webcontent }: Props) {
       <div className="bg-neutral-50 w-full h-16 justify-between fixed top-0 z-10 shadow-sm shadow-neutral-4OO flex">
         <Link
           to="/"
-          className="pl-2 bg-indigo-500 w-60 rounded-br-[90px] shadow-sm shadow-indigo-800 flex">
+          className="pl-2 bg-indigo-500 w-60 rounded-br-[90px] shadow-sm shadow-indigo-800 flex"
+        >
           <img
             className="my-auto h-12 w-40 bg-neutral-100"
             src=""
@@ -34,13 +51,15 @@ export default function Header({ webcontent }: Props) {
               pathname === "/topic"
                 ? "m-auto px-4 h-10 gap-2 xl:px-6 xl:h-12 bg-indigo-600 text-white fill-white rounded-full shadow-sm shadow-indigo-900 flex"
                 : "m-auto px-4 h-10 gap-2 xl:px-6 xl:h-12 bg-indigo-400 hover:bg-indigo-600 hover:text-white hover:fill-white rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900 flex"
-            }>
+            }
+          >
             <svg
               width="800px"
               height="800px"
               className="m-auto h-8 w-8 bg-transparent hidden xl:flex"
               viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg">
+              xmlns="http://www.w3.org/2000/svg"
+            >
               <g>
                 <path fill="none" d="M0 0h24v24H0z" />
                 <path d="M6.455 19L2 22.5V4a1 1 0 0 1 1-1h18a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H6.455zm-.692-2H20V5H4v13.385L5.763 17zM11 10h2v2h-2v-2zm-4 0h2v2H7v-2zm8 0h2v2h-2v-2z" />
@@ -56,13 +75,15 @@ export default function Header({ webcontent }: Props) {
               pathname === "/question"
                 ? "m-auto px-4 h-10 gap-2 xl:px-6 xl:h-12 bg-indigo-600 text-white fill-white rounded-full shadow-sm shadow-indigo-900 flex"
                 : "m-auto px-4 h-10 gap-2 xl:px-6 xl:h-12 bg-indigo-400 hover:bg-indigo-600 hover:text-white hover:fill-white rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900 flex"
-            }>
+            }
+          >
             <svg
               width="800px"
               height="800px"
               className="m-auto h-8 w-8 bg-transparent hidden xl:flex"
               viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg">
+              xmlns="http://www.w3.org/2000/svg"
+            >
               <g>
                 <path fill="none" d="M0 0h24v24H0z" />
                 <path
@@ -81,13 +102,15 @@ export default function Header({ webcontent }: Props) {
               pathname === "/chat"
                 ? "m-auto px-4 h-10 gap-2 xl:px-6 xl:h-12 bg-indigo-600 text-white fill-white rounded-full shadow-sm shadow-indigo-900 flex"
                 : "m-auto px-4 h-10 gap-2 xl:px-6 xl:h-12 bg-indigo-400 hover:bg-indigo-600 hover:text-white hover:fill-white rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900 flex"
-            }>
+            }
+          >
             <svg
               width="800px"
               height="800px"
               className="m-auto h-8 w-8 bg-transparent hidden xl:flex"
               viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg">
+              xmlns="http://www.w3.org/2000/svg"
+            >
               <g>
                 <path fill="none" d="M0 0h24v24H0z" />
                 <path d="M5.455 15L1 18.5V3a1 1 0 0 1 1-1h15a1 1 0 0 1 1 1v12H5.455zm-.692-2H16V4H3v10.385L4.763 13zM8 17h10.237L20 18.385V8h1a1 1 0 0 1 1 1v13.5L17.545 19H9a1 1 0 0 1-1-1v-1z" />
@@ -102,10 +125,11 @@ export default function Header({ webcontent }: Props) {
           <button
             className="m-auto h-14 w-14 bg-indigo-400 hover:bg-indigo-600 rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900 relative flex"
             title={webcontent.hypertexts.login.hover.content}
-            onClick={handleConnectionWindowDisplayer}>
+            onClick={handleConnectionWindowDisplayer}
+          >
             <img
               className="m-auto h-12 w-12 rounded-full bg-transparent"
-              src="/icons/profile-picture.png"
+              src={profilePictureSetter()}
             />
           </button>
         </div>
@@ -118,6 +142,13 @@ export default function Header({ webcontent }: Props) {
             buttons: webcontent.buttons,
             connection: webcontent.connection,
           }}
+        />
+      )}
+      {isDropDownMenuClicked && (
+        <DropDownMenu
+          isDropDownMenuClicked={isDropDownMenuClicked}
+          setIsDropDownMenuClicked={setIsDropDownMenuClicked}
+          webcontent={webcontent.dropDownMenu}
         />
       )}
     </>

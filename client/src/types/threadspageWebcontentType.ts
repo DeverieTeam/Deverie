@@ -247,6 +247,10 @@ export type threadspageWebcontentType = {
           content: string;
         };
       };
+      warning: {
+        name: string;
+        content: string;
+      };
     };
     publications: {
       publishDatePrefix: {

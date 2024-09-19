@@ -1,7 +1,4 @@
-import {
-  useLoaderData,
-  // useNavigate
-} from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import ThreadsDisplayer from "../components/ThreadsDisplayer";
 import TagFilterWindow from "../components/TagFilterWindow";
@@ -12,6 +9,7 @@ import ConnectionNeeded from "../components/userAccount/ConnectionNeeded";
 import ConnectionWindow from "../components/userAccount/ConnectionWindow";
 import { useTags } from "../contexts/useTags";
 import { threadspageWebcontentType } from "../types/threadspageWebcontentType";
+import { useAuth } from "../contexts/useAuth";
 
 export default function ThreadsPage({ threadType }: Props) {
   const [isConnectionNeededClicked, setIsConnectionNeededClicked] =
@@ -48,28 +46,28 @@ export default function ThreadsPage({ threadType }: Props) {
 
   const webcontent = useLoaderData() as threadspageWebcontentType;
 
+  const navigate = useNavigate();
   const { tags, setTags } = useTags();
-
-  const handleConnectionNeededAlert = () => {
-    setIsConnectionNeededClicked(!isConnectionNeededClicked);
-  };
-
-  // const navigate = useNavigate();
+  const { auth } = useAuth();
 
   const handleTagFilterButton = () => {
     setIsTagButtonClicked(!isTagButtonClicked);
   };
 
-  // const handleNewPostButton = () => {
-  //   switch (threadType) {
-  //     case "topic":
-  //       navigate(`/newTopic`);
-  //       break;
-  //     case "question":
-  //       navigate(`/newQuestion`);
-  //       break;
-  //   }
-  // };
+  const handleNewPostButton = () => {
+    if (auth !== undefined && auth.role !== "client") {
+      switch (threadType) {
+        case "topic":
+          navigate(`/newTopic`);
+          break;
+        case "question":
+          navigate(`/newQuestion`);
+          break;
+      }
+    } else {
+      setIsConnectionNeededClicked(!isConnectionNeededClicked);
+    }
+  };
 
   useEffect(() => {
     fetch(`http://localhost:3000/tag`)
@@ -113,9 +111,7 @@ export default function ThreadsPage({ threadType }: Props) {
         <div className="mx-auto w-72 py-2 px-4 bg-neutral-100 gap-4 rounded-lg shadow-sm shadow-neutral-400 flex flex-row">
           <button
             className="w-12 h-12 bg-indigo-400 hover:bg-indigo-600 self-center hover:text-white text-center text-5xl rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900 font-semibold relative"
-            onClick={handleConnectionNeededAlert}
-            //onClick={handleNewPostButton}
-          >
+            onClick={handleNewPostButton}>
             +
           </button>
           <p className="m-auto flex-1 text-center text-lg">
