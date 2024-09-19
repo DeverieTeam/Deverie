@@ -62,5 +62,25 @@
       "name": "Texte bouton d'envoie d'inscription de survol",
       "content": "Envoyer les informations saisis"
     }
+  },
+  "warningMessages": {
+    "unvalidField": {
+      "tooShort": {
+        "name": "Texte d'avertissement d'un un champ trop court",
+        "content": "{field} trop court (4 caractères minimum)"
+      },
+      "tooLong": {
+        "name": "Texte d'avertissement d'un un champ trop long",
+        "content": "{field} trop long ({max} caractères minimum)"
+      }
+    },
+    "passwordsNotMatching": {
+      "name": "Texte d'avertisement d'erreur de confirmation de mot de passe",
+      "content": "Les deux mots de passe doivent être identiques"
+    },
+    "emailNotMatching": {
+      "name": "Texte d'avertissement d'erreur de correspondance d'adresse email",
+      "content": "Veuillez saisir une adresse e-mail valide"
+    }
   }
 }
