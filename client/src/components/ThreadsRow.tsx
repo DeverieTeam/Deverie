@@ -34,6 +34,11 @@ export default function ThreadsRow({ post, webcontent }: Props) {
         </div>
         <div className="flex">
           <div className="flex-1 justify-between flex flex-col">
+            {!post.is_opened && (
+              <div className="text-center text-xs md:text-base">
+                {webcontent.closureText[post.type].content}
+              </div>
+            )}
             <div className="text-center text-xs md:text-base">
               {webcontent.numberOfResponses.content} : {post.replies_count}
             </div>
@@ -65,6 +70,8 @@ type Props = {
       icon: string;
     }[];
     creation_date: string;
+    type: "topic" | "question";
+    is_opened: boolean;
     title: string;
     replies_count: number;
     last_message_date: string;

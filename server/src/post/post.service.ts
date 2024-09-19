@@ -42,6 +42,8 @@ export class PostService {
         },
         tags: refinedTags,
         creation_date: post.creation_date,
+        type: post.type,
+        is_opened: post.is_opened,
         title: post.title,
         replies_count: post.replies.length,
         last_message_date: this.getLastMessageDate(post),
