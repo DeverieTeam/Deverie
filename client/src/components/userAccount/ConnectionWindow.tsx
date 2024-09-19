@@ -76,7 +76,7 @@ export default function ConnectionWindow({
         }, 3000);
       }
     } catch (error) {
-      console.error("Une erreur s'est produite: ", error);
+      console.error("Something went wrong: ", error);
     }
   };
 

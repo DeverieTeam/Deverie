@@ -368,5 +368,9 @@ export type newpostpageWebcontentType = {
       name: string;
       content: string;
     };
+    titleConflict: {
+      name: string;
+      content: string;
+    };
   };
 };

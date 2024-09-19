@@ -23,6 +23,7 @@ export default function NewPostPage({ threadType }: Props) {
   >(null);
   const [emergency, setEmergency] = useState<string>("0");
   const [isTagButtonClicked, setIsTagButtonClicked] = useState<boolean>(false);
+  const [isTitleConflictOn, setIsTitleConflictOn] = useState<boolean>(false);
 
   useEffect(() => {
     if (auth && auth.role && auth.role === "client") {
@@ -137,10 +138,14 @@ export default function NewPostPage({ threadType }: Props) {
           console.log(result);
           navigate(`/${threadType}`);
         } else {
-          console.error("Une erreur s'est produite");
+          setIsTitleConflictOn(true);
+          setTitle("");
+          setTimeout(() => {
+            setIsTitleConflictOn(false);
+          }, 3000);
         }
       } catch (error) {
-        console.error("Une erreur s'est produite: ", error);
+        console.error("Something went wrong: ", error);
       }
     }
   };
@@ -192,7 +197,7 @@ export default function NewPostPage({ threadType }: Props) {
                   className="my-auto h-5 w-5 bg-neutral-100 rounded-lg"
                   src={tag.icon}
                 />
-                <p className="md:text-lg">{tag.name}</p>
+                <p className="md:text-lg self-center">{tag.name}</p>
               </div>
             ))}
         </div>
@@ -209,6 +214,11 @@ export default function NewPostPage({ threadType }: Props) {
               value={emergency}
               onChange={handleEmergencyChange}
             />
+          </div>
+        )}
+        {isTitleConflictOn && (
+          <div className="w-[100%] text-center text-sm md:text-lg md:text-base text-red-700 justify-center items-center">
+            {webcontent.page.titleConflict.content}
           </div>
         )}
         <div className="mt-6 justify-center gap-8 flex">
