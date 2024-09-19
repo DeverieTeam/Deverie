@@ -25,6 +25,8 @@ export default function ThreadsDisplayer({
           icon: string;
         }[];
         creation_date: string;
+        type: "topic" | "question";
+        is_opened: boolean;
         title: string;
         replies_count: number;
         last_message_date: string;

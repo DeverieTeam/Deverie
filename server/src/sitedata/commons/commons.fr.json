@@ -264,6 +264,16 @@
       "name": "Texte précédant la date de la dernière réponse d'une publication",
       "content": "Dernière réponse"
     },
+    "closureText": {
+      "topic": {
+        "name": "Texte annonçant qu'un sujet de forum est clos",
+        "content": "[Sujet clos]"
+      },
+      "question": {
+        "name": "Texte annonçant qu'un sujet de forum est clos",
+        "content": "[Question close]"
+      }
+    },
     "favorite": {
       "add": {
         "hover": {

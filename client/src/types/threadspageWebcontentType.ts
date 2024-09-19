@@ -265,6 +265,16 @@ export type threadspageWebcontentType = {
         name: string;
         content: string;
       };
+      closureText: {
+        topic: {
+          name: string;
+          content: string;
+        };
+        question: {
+          name: string;
+          content: string;
+        };
+      };
       favorite: {
         add: {
           hover: {
