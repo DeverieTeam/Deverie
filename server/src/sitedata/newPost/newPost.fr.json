@@ -36,5 +36,9 @@
   "tagNumberDisclaimer": {
     "name": "Texte d'invitation à sélectionner le bon nombre de tags",
     "content": "Veuillez sélectionner de 1 à 4 Tags"
+  },
+  "titleConflict": {
+    "name": "Texte d'avertissement concernant un conflit de titre de post",
+    "content": "Un autre post possède déjà le même titre. Veuillez en rédiger un autre."
   }
 }
