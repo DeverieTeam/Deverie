@@ -34,10 +34,6 @@ export class Post {
   type: PostType;
   @Column({ type: 'int', nullable: true })
   emergency: number;
-  @Column({ type: 'int', nullable: true, default: 0 })
-  upvote: number;
-  @Column({ type: 'int', nullable: true, default: 0 })
-  downvote: number;
   @Column({ type: 'bool', default: true })
   is_opened: boolean;
   @UpdateDateColumn({ type: 'date', nullable: true })
