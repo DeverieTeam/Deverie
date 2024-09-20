@@ -6,11 +6,6 @@ items:
     content: "J'ai beau chercher, je ne trouve pas de manière clair de gérer les arguments en Python. Tout ce que je trouve n'est pas assez clair pour moi, est-ce que quelqu'un pourrait m'expliquer le tout ?"
     type: 'question'
     creation_date: '2024, 6, 16'
-    emergency: null
-    upvote: null
-    downvote: null
-    modification_date: null
-    modification_author: null
     tags:
       - '@tag3'
       - '@tag11'
@@ -21,9 +16,6 @@ items:
     content: "Je viens de découvrir Lua grâce à un ami. J'ai vu que c'était très performant, est-ce que cela serait pertinent de l'apprendre ?"
     type: 'topic'
     creation_date: '2024, 6, 17'
-    emergency: null
-    upvote: null
-    downvote: null
     is_opened: false
     modification_date: '2024, 7, 3'
     modification_author: '@member4'
@@ -32,28 +24,18 @@ items:
 
   post3:
     author: '@member4'
-    title: null
     content: "Je t'invite à aller regarder la documentation officielle (https://docs.python.org/fr/3/library/argparse.html).\nSinon tu peux toujours faire appel à argv qui est le tableau des arguments passés lors de l'appel du programme en Python (https://docs.python.org/fr/3/library/sys.html#sys.argv)."
     type: 'answer'
     creation_date: '2024, 6, 18'
-    emergency: null
-    upvote: 5
-    downvote: 1
     modification_date: '2024, 6, 24'
     modification_author: '@member4'
     reply_to: '@post1'
 
   post4:
     author: '@member4'
-    title: null
     content: "Ça peut l'être principalement si tu veux proposer des programmes pour des jeux tels que Roblox ou Computercraft (mod Minecraft). Dans le cas de Roblox, toute la logique du jeu est faite en Lua.\nC'est un language avec une syntaxe très user-friendly se rapprochant du Python tout en ayant un fonctionnement se basant sur des tableaux afin d'accéder à des données plus facilement."
     type: 'comment'
     creation_date: '2024, 6, 20'
-    emergency: null
-    upvote: 3
-    downvote: null
-    modification_date: null
-    modification_author: null
     reply_to: '@post2'
 
   post5:
@@ -62,11 +44,6 @@ items:
     content: "C'est le topic numéro deux. jépadidé"
     type: 'topic'
     creation_date: '2024, 6, 21'
-    emergency: null
-    upvote: null
-    downvote: null
-    modification_date: null
-    modification_author: null
     tags:
       - '@tag6'
       - '@tag1'
@@ -74,54 +51,32 @@ items:
 
   post6:
     author: '@member9'
-    title: null
     content: "Lua est très performant en effet. Si tu as des bases en C, tu vas aimer puisqu'il est facilement implémentable dans ce langage (de même qu'avec l'assembly). Donc si tu cherches de la simplicité syntaxique avec un langage performant, t'as sonné à la bonne porte"
     type: 'comment'
     creation_date: '2024, 6, 22'
-    emergency: null
-    upvote: 7
-    downvote: null
     modification_date: '2024, 6, 25'
     modification_author: '@member9'
     reply_to: '@post2'
 
   post7:
     author: '@member8'
-    title: null
     content: "Oui, t'as juste à avoir une liste d'arguments et tu scroll dedans. Tu dois avoir un truc à gérer avec ton main où tu y choppe tout un tableau. En tout cas c'est bien pratique en Java."
     type: 'answer'
     creation_date: '2024, 6, 22'
-    emergency: null
-    upvote: 2
-    downvote: 3
-    modification_date: null
-    modification_author: null
     reply_to: '@post1'
 
   post8:
     author: '@member3'
-    title: null
     content: 'Ouais, moi non plus'
     type: 'comment'
     creation_date: '2024, 6, 23'
-    emergency: null
-    upvote: 10
-    downvote: null
-    modification_date: null
-    modification_author: null
     reply_to: '@post5'
 
   post9:
     author: '@member1'
-    title: null
     content: 'Dommage pour toi'
     type: 'comment'
     creation_date: '2024, 7, 1'
-    emergency: null
-    upvote: 2
-    downvote: null
-    modification_date: null
-    modification_author: null
     reply_to: '@post8'
 
   post10:
@@ -130,11 +85,6 @@ items:
     content: "Plongez dans l'univers fascinant de la programmation avec notre guide complet : découvrez les langages incontournables, les meilleures pratiques de codage, des astuces pour débugger efficacement et comment contribuer à des projets open source."
     type: 'topic'
     creation_date: '2024, 2, 2'
-    emergency: null
-    upvote: 1
-    downvote: 4
-    modification_date: null
-    modification_author: null
     tags:
       - '@tag16'
 
@@ -144,11 +94,6 @@ items:
     content: "Je viens de commencer à coder en C et j'avoue que c'est beaucoup plus rapide qu'en ASM pour à peu près tout. Est-ce que vous aurez des conseils d'organisation pour que n'importe qui ne soit plus perdu dans mon code ?"
     type: 'question'
     creation_date: '2024, 2, 2'
-    emergency: null
-    upvote: 1
-    downvote: null
-    modification_date: null
-    modification_author: null
     tags:
       - '@tag8'
 
@@ -158,11 +103,6 @@ items:
     content: "Je viens de débarquer dans le monde de la programmation web et je dois avouer que je ne pensais pas du tout autant aimer le développement. Tout est extrêment plus simple avec React, Docker est du pain béni bref, je pense que je ne vais pas regréter de m'être lancé dans la programmation.\nJ'aurais une demande cependant, qu'est-ce que vous me conseillerais pour commencer de la programmation non web ? J'ai des bases en objet avec JS et TypeScript mais j'aimerai avoir votre avis."
     type: 'topic'
     creation_date: '2024, 8, 14'
-    emergency: null
-    upvote: 8
-    downvote: 2
-    modification_date: null
-    modification_author: null
     tags:
       - '@tag1'
       - '@tag2'
@@ -175,37 +115,22 @@ items:
     type: 'question'
     creation_date: '2024, 8, 20'
     emergency: 1
-    upvote: 1
-    downvote: 1
-    modification_date: null
-    modification_author: null
     tags:
       - '@tag1'
 
   post14:
     author: '@member8'
-    title: null
     content: 'Pour apprendre le développement web, tu peux aller sur OpenClassroom, sinon tu peux suivre des tuto expliqués ou trouver un site expliquant de quoi tu as besoin'
     type: 'answer'
     creation_date: '2024, 8, 20'
-    emergency: null
-    upvote: 1
-    downvote: 1
-    modification_date: null
-    modification_author: null
     reply_to: '@post13'
 
   post15:
     author: '@member2'
     title: 'Est-ce que python est utile ? Ou faut-il commencer par du développement web ? Je ne sais pas par où commencer...'
-    content: ''
+    content: 'Adlib'
     type: 'question'
     creation_date: '2024, 8, 22'
-    emergency: null
-    upvote: null
-    downvote: null
-    modification_date: null
-    modification_author: null
     tags:
       - '@tag3'
       - '@tag1'
@@ -216,11 +141,6 @@ items:
     content: "Je suis actuellement en formation devops mais j'aimerai apprendre de nouveaux langages qui n'ont rien à voir avec ma formation actuelle. Vous auriez des conseils d'organisation ?"
     type: 'question'
     creation_date: '2024, 8, 24'
-    emergency: null
-    upvote: null
-    downvote: null
-    modification_date: null
-    modification_author: null
     tags:
       - '@tag7'
 
@@ -231,25 +151,15 @@ items:
     type: 'question'
     creation_date: '2024, 8, 25'
     emergency: 2
-    upvote: null
-    downvote: null
-    modification_date: null
-    modification_author: null
     tags:
       - '@tag12'
       - '@tag2'
 
   post18:
     author: '@member5'
-    title: null
     content: "À vrai dire tout dépend ce que tu veux faire. Les deux voies sont envisageable. Pour le coup le web est plus rapidement graphique et tu auras peut-être plus rapidement l'impression d'avancer que si tu codes en Python. Après attention, le HTML et CSS (utilisés dans le web) ne sont pas des langages de programmation et ne requièrent aucune connaissances algorithmiques. Si tu cherches la logique pure comme première approche, je te conseille alors d'aller voir du côté de Python ou JavaScript qui sont de très bonnes portes d'entrée à la programmation."
     type: 'answer'
     creation_date: '2024, 8, 25'
-    emergency: null
-    upvote: 5
-    downvote: 1
-    modification_date: null
-    modification_author: null
     reply_to: '@post15'
 
   post19:
@@ -258,40 +168,24 @@ items:
     content: "J'ai terminé mon site internet en React et ExpressJS et j'aimerai maintenant savoir comment le mt=ettre en ligne. Est-ce que quelqu'un pourrait me contacter en mp pour en discuter plus en détails ?"
     type: 'question'
     creation_date: '2024, 8, 27'
-    emergency: null
-    upvote: 2
-    downvote: null
     is_opened: false
-    modification_date: '2024, 8, 31'
-    modification_author: null
     tags:
       - '@tag1'
       - '@tag2'
 
   post20:
     author: '@member3'
-    title: null
     content: "Il faut que tu passes par un hébergeur web pour pouvoir le mettre en ligne, ou passer par un service tierce pour pouvoir avoir un référencement pour d'autres sites"
     type: 'comment'
     creation_date: '2024, 8, 29'
-    emergency: null
-    upvote: null
-    downvote: null
-    modification_date: null
-    modification_author: null
     reply_to: '@post19'
 
   post21:
     author: '@member9'
     title: "Je suis en autoformation et j'aime la programmation, mais je ne sais pas comment faire un site web et le mettre en ligne"
-    content: ''
+    content: 'Oui.'
     type: 'topic'
     creation_date: '2024, 9, 2'
-    emergency: null
-    upvote: null
-    downvote: null
-    modification_date: null
-    modification_author: null
     is_readable: false
     tags:
       - '@tag1'
@@ -299,119 +193,68 @@ items:
   post22:
     author: '@member4'
     title: 'Est-ce que le No Code est nocif pour la santé ?'
-    content: ''
+    content: 'Parce que moi je déteste le No Code, pas vous ?'
     type: 'topic'
     creation_date: '2024, 9, 3'
-    emergency: null
-    upvote: null
-    downvote: null
-    modification_date: null
-    modification_author: null
     tags:
       - '@tag16'
 
   post23:
     author: '@member6'
-    title: null
     content: 'Non le No Code va tuer les développeurs !'
     type: 'comment'
     creation_date: '2024, 9, 4'
-    emergency: null
-    upvote: null
-    downvote: null
     modification_date: '2024, 9, 6'
     modification_author: '@member6'
     reply_to: '@post22'
 
   post24:
     author: '@member6'
-    title: null
     content: 'Yep, viens en mp.'
     type: 'comment'
     creation_date: '2024, 9, 5'
-    emergency: null
-    upvote: 1
-    downvote: 3
-    modification_date: null
-    modification_author: null
     reply_to: '@post19'
 
   post25:
     author: '@member5'
-    title: null
     content: "Le No Code à des avantages. Le plus flagran est qu'il premet à tout le monde de créer beaucoup de choses. Mais le défaut principale est sa rigidité. Rien qu'à voir comment tous les sites Wordpress se ressemblent, plus jamais j'en ferai si l'on me laisse le choix. Je ne pense pas le No Code risque de tuer les développeurs loin de là mais au contraire va permettre de nouvelles portes d'entrée au développement. Mais de là à être nocif, je pense qu'on a encore du temps."
     type: 'comment'
     creation_date: '2024, 9, 8'
-    emergency: null
-    upvote: 4
-    downvote: 1
-    modification_date: null
-    modification_author: null
     reply_to: '@post22'
 
   post26:
     author: '@member1'
-    title: null
     content: "Ça à l'air d'être une erreur dans la gestion des promesses. Va voir du côté de la gestion de l'asynchrone d'axios..."
     type: 'answer'
     creation_date: '2024, 9, 10'
-    emergency: null
-    upvote: 2
-    downvote: null
-    modification_date: null
-    modification_author: null
     reply_to: '@post17'
 
   post27:
     author: '@member5'
-    title: null
     content: "J'ai trouvé d'où venait mon problème merci beaucoup."
     type: 'answer'
     creation_date: '2024, 9, 12'
-    emergency: null
-    upvote: null
-    downvote: null
-    modification_date: null
-    modification_author: null
     reply_to: '@post26'
 
   post28:
     author: '@member6'
-    title: null
     content: "Tu peux commencer à aller voir du côté de OpenClassroom pour des cours d'introduction. Sinon, il y a de nombreuses formations certifiantes demandées par l'état chaque année. Je t'encourage à regarder lesquelles sont dans ton périmètre, elles sont la plupart du temps abordable par n'importe qui."
     type: 'comment'
     creation_date: '2024, 9, 12'
-    emergency: null
-    upvote: 1
-    downvote: null
-    modification_date: null
-    modification_author: null
     reply_to: '@post21'
 
   post29:
     author: '@member4'
-    title: null
     content: "Pour continuer à apprendre, soit tu suis des tutos pour les langages à apprendre, soit tu peux faire des formations qui te l'apprendront"
     type: 'comment'
     creation_date: '2024, 9, 15'
-    emergency: null
-    upvote: null
-    downvote: null
-    modification_date: null
-    modification_author: null
     reply_to: '@post21'
 
   post30:
     author: '@member2'
-    title: null
     content: "Pour etre organiser dans ton code, je te conseille de le commenter, parce que c'est d'abord pour toi que tu le fais, et ensuite parce qu'un code documenté c'est plus simple de s'y retrouver"
     type: 'comment'
     creation_date: '2024, 9, 17'
-    emergency: null
-    upvote: null
-    downvote: 2
-    modification_date: null
-    modification_author: null
     reply_to: '@post11'
 
   post31:
@@ -420,9 +263,6 @@ items:
     content: "J'ai une requête SQL qui interroge plusieurs tables avec des jointures, et elle devient très lente lorsque le volume de données augmente. Quelles sont les meilleures pratiques pour optimiser ce type de requête ?"
     type: 'question'
     creation_date: '2024, 9, 18'
-    emergency: null
-    upvote: null
-    downvote: null
     modification_date: '2024, 9, 19'
     modification_author: '@member1'
     tags:
@@ -434,9 +274,6 @@ items:
     content: "Je débute en JavaScript et j'ai du mal à comprendre quand utiliser let, var et const. Quelle est la différence entre ces trois mots-clés et dans quelles situations devrais-je les utiliser ?"
     type: 'question'
     creation_date: '2024, 9, 19'
-    emergency: null
-    upvote: null
-    downvote: null
     modification_date: '2024, 9, 19'
     modification_author: '@member5'
     tags:
@@ -444,67 +281,39 @@ items:
 
   post33:
     author: '@member5'
-    title: null
     content: "Il existe les index en sql qui peuvent être à double tranchant. Soit ils ralentissent le temps de réponse, soit ils le réduisent drastiquement si bien fait. C'est comme une pseudo table mettant en commun des données de diverses tables et qui se met à jour automatiquement, idéal pour optimiser des requêtes faisant appel à de nombreuses tables."
     type: 'answer'
     creation_date: '2024, 9, 20'
-    emergency: null
-    upvote: 5
-    downvote: null
-    modification_date: null
-    modification_author: null
     reply_to: '@post31'
 
   post34:
     author: '@member6'
-    title: null
     content: "Peut-être simplement en y rajoutant les instructions LIMIT et OFFSET afin d'arrêter la requête plus tôt une fois les résultats attendus obtenus."
     type: 'answer'
     creation_date: '2024, 9, 21'
-    emergency: null
-    upvote: 6
-    downvote: 1
     modification_date: '2024, 9, 24'
     modification_author: '@member6'
     reply_to: '@post31'
 
   post35:
     author: '@member8'
-    title: null
     content: "Bah c'est toutes des variables on s'en tape nan ?"
     type: 'answer'
     creation_date: '2024, 9, 22'
-    emergency: null
-    upvote: null
-    downvote: 2
-    modification_date: null
-    modification_author: null
     reply_to: '@post32'
 
   post36:
     author: '@member4'
-    title: null
     content: 'Pas vraiment non, elles ont toutes des spécificitées.'
     type: 'answer'
     creation_date: '2024, 9, 22'
-    emergency: null
-    upvote: 1
-    downvote: 1
-    modification_date: null
-    modification_author: null
     reply_to: '@post35'
 
   post37:
     author: '@member1'
-    title: null
     content: "La différence principale entre var et let est le scope. Les variables var existent dans toute la fonction là où les variables let existent que dans le bloc où elles sont déclarées.\nC'est ce qu'on appelle des variables fonction-scope et block-scope.\nLes variables const quant à elles sont aussi des variables block-scope comme let mais sont immuables, elles ne peuvent pas être changées une fois initialisées."
     type: 'answer'
     creation_date: '2024, 9, 23'
-    emergency: null
-    upvote: 3
-    downvote: null
-    modification_date: null
-    modification_author: null
     reply_to: '@post32'
 
   post38:
@@ -513,11 +322,6 @@ items:
     content: "J'ai une application React qui fait des appels API vers un serveur externe, mais je reçois une erreur CORS dans la console du navigateur. Comment puis-je résoudre cette erreur ?"
     type: 'question'
     creation_date: '2024, 9, 24'
-    emergency: null
-    upvote: null
-    downvote: null
-    modification_date: null
-    modification_author: null
     tags:
       - '@tag12'
       - '@tag2'
@@ -531,8 +335,6 @@ items:
     type: 'question'
     creation_date: '2024, 9, 24'
     emergency: 3
-    upvote: null
-    downvote: null
     modification_date: '2024, 10, 2'
     modification_author: '@member4'
     tags:
@@ -540,28 +342,18 @@ items:
 
   post40:
     author: '@member4'
-    title: null
     content: "Docker et les machines virtuelles (VM) ont des différences fondamentales. Une machine virtuelle virtualise tout un système d'exploitation, ce qui inclut le noyau, alors que Docker utilise le même noyau que le système hôte. Cela signifie que Docker est plus léger et démarre plus rapidement que les VM. Docker permet de créer des conteneurs qui partagent le noyau du système hôte tout en étant isolés. Dans la plupart des cas, Docker est préféré pour déployer des microservices ou des applications isolées, tandis que les VM sont plus adaptées lorsque vous avez besoin d'une isolation complète du système d'exploitation."
     type: 'answer'
     creation_date: '2024, 9, 25'
-    emergency: null
-    upvote: 7
-    downvote: 1
     modification_date: '2024, 10, 2'
     modification_author: '@member4'
     reply_to: '@post39'
 
   post41:
     author: '@member9'
-    title: null
     content: "Docker est simplement une interface graphique pour gérer des machines virtuelles (VM). Tout ce que vous faites avec Docker est exécuté dans une VM cachée. Les conteneurs Docker ne sont donc rien d'autre que des VM déguisées et utilisent toujours des ressources similaires à une VM, comme un système d'exploitation complet. Si vous utilisez Docker, vous ne faites en réalité qu'ajouter une couche supplémentaire de complexité à vos machines virtuelles."
     type: 'answer'
     creation_date: '2024, 9, 27'
-    emergency: null
-    upvote: 1
-    downvote: 8
-    modification_date: null
-    modification_author: null
     reply_to: '@post39'
 
   post42:
@@ -571,10 +363,6 @@ items:
     type: 'question'
     creation_date: '2024, 9, 30'
     emergency: 5
-    upvote: null
-    downvote: null
-    modification_date: null
-    modification_author: null
     tags:
       - '@tag12'
       - '@tag13'
@@ -582,15 +370,9 @@ items:
 
   post43:
     author: '@member6'
-    title: null
     content: "Il y a plusieures étapes pour la création d'un token JWT :\n- Créer le token avec une clef scrète,\n- Stockqge côté client (local storage ou cookie),\n- Envoyer le token avec les requêtes pour chaque requête faite à l'API,\n- Vérification du token à chaque requête,\n- Expiration et renouvellement"
     type: 'question'
     creation_date: '2024, 10, 1'
-    emergency: null
-    upvote: 3
-    downvote: null
-    modification_date: null
-    modification_author: null
     reply_to: '@post42'
 
   post44:
@@ -599,11 +381,6 @@ items:
     content: "J'ai cru comprendre que le double égale sert à comparer mais dans ce cas, à quoi sert le triple ?"
     type: 'question'
     creation_date: '2024, 10, 3'
-    emergency: null
-    upvote: null
-    downvote: null
-    modification_date: null
-    modification_author: null
     tags:
       - '@tag1'
       - '@tag2'
@@ -616,9 +393,6 @@ items:
     content: "Avec l'essor des technologies basées sur l'intelligence artificielle, de plus en plus d'outils et de frameworks se développent pour faciliter le travail des développeurs. Certains affirment que l'IA va remplacer de nombreuses tâches de programmation, tandis que d'autres pensent qu'elle va simplement aider les développeurs à être plus efficaces.\n\nQue pensez-vous de l'impact de l'IA sur l'avenir du développement ? Va-t-elle réduire la demande de développeurs, ou au contraire, ouvrir de nouvelles perspectives pour l'innovation ? Je suis curieux de connaître vos points de vue sur ce sujet en pleine évolution."
     type: 'topic'
     creation_date: '2024, 10, 3'
-    emergency: null
-    upvote: null
-    downvote: null
     modification_date: '2024, 10, 6'
     modification_author: '@member7'
     tags:
@@ -628,13 +402,7 @@ items:
 
   post46:
     author: '@member10'
-    title: null
     content: "Je pense que l'IA représente plus une opportunité qu'une menace pour les développeurs. Certes, certaines tâches répétitives et automatisables seront probablement remplacées, mais cela nous permettra de nous concentrer sur des aspects plus créatifs et complexes du développement.\nLes outils basés sur l'IA peuvent aider à accélérer les processus de débogage, d'optimisation de code et même à proposer des solutions aux problèmes courants. L'IA devient un assistant, mais les développeurs resteront essentiels pour concevoir, guider et implémenter des systèmes à grande échelle. Plutôt qu'une menace, c'est une évolution naturelle qui nous pousse à monter en compétences."
     type: 'answer'
     creation_date: '2024, 10, 5'
-    emergency: null
-    upvote: null
-    downvote: null
-    modification_date: null
-    modification_author: null
     reply_to: '@post45'
