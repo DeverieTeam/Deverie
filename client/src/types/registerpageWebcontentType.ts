@@ -83,6 +83,20 @@ export type registerpageWebcontentType = {
         name: string;
         content: string;
       };
+      conflicts: {
+        unvalidNameAndEmail: {
+          name: string;
+          content: string;
+        };
+        unvalidName: {
+          name: string;
+          content: string;
+        };
+        unvalidEmail: {
+          name: string;
+          content: string;
+        };
+      };
     };
   };
 };

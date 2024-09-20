@@ -81,6 +81,20 @@
     "emailNotMatching": {
       "name": "Texte d'avertissement d'erreur de correspondance d'adresse email",
       "content": "Veuillez saisir une adresse e-mail valide"
+    },
+    "conflicts": {
+      "unvalidNameAndEmail": {
+        "name": "Texte d'avertissement de nom et email déjà existant",
+        "content": "Le nom et l'e-mail existent déjà"
+      },
+      "unvalidName": {
+        "name": "Texte d'avertissement de nom déjà existant",
+        "content": "Le compte \"{username}\" existe déjà"
+      },
+      "unvalidEmail": {
+        "name": "Texte d'avertissement d'email déjà existant",
+        "content": "Un compte avec cet e-mail existe déjà"
+      }
     }
   }
 }
