@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
-import { useLoaderData, useNavigate } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import AutoFormField from "../components/AutoFormField";
 import { registerpageWebcontentType } from "../types/registerpageWebcontentType";
+import RegistrationValidationWindow from "../components/RegistrationValidationWindow";
 
 export default function RegisterPage() {
   const webcontent = useLoaderData() as registerpageWebcontentType;
-  const navigate = useNavigate();
+
+  const [isRegisterWindowOpened, SetIsRegisterWindowOpened] = useState(false);
 
   const minimumFieldLength: number = 4;
   const maximumFieldLength: number = 100;
@@ -29,7 +31,7 @@ export default function RegisterPage() {
         setFrontWarningMessage(passwordWarningMessage);
       } else if (passwordConfirmWarningMessage !== "") {
         setFrontWarningMessage(passwordConfirmWarningMessage);
-      } else if(emailWarningMessage !== "") {
+      } else if (emailWarningMessage !== "") {
         setFrontWarningMessage(emailWarningMessage);
       }
     }
@@ -205,7 +207,7 @@ export default function RegisterPage() {
       return;
     }
 
-    let body: {
+    const body: {
       name: string;
       password: string;
       email: string;
@@ -237,19 +239,30 @@ export default function RegisterPage() {
       });
 
       if (response.ok) {
-        const result = await response.json();
-        console.log(result);
+        // const result = await response.json();
+        // console.log(result);
+        SetIsRegisterWindowOpened(true);
       } else {
         const result = await response.json();
-        switch (result.message){
-          case 'Invalid name and email':
-            defineFrontWarningMessage(webcontent.page.warningMessages.conflicts.unvalidNameAndEmail.content);
+        switch (result.message) {
+          case "Invalid name and email":
+            defineFrontWarningMessage(
+              webcontent.page.warningMessages.conflicts.unvalidNameAndEmail
+                .content
+            );
             return;
-          case 'Invalid name':
-            defineFrontWarningMessage(webcontent.page.warningMessages.conflicts.unvalidName.content.replace("{username}", usernameFieldData));
+          case "Invalid name":
+            defineFrontWarningMessage(
+              webcontent.page.warningMessages.conflicts.unvalidName.content.replace(
+                "{username}",
+                usernameFieldData
+              )
+            );
             return;
-          case 'Invalid email':
-            defineFrontWarningMessage(webcontent.page.warningMessages.conflicts.unvalidEmail.content);
+          case "Invalid email":
+            defineFrontWarningMessage(
+              webcontent.page.warningMessages.conflicts.unvalidEmail.content
+            );
             return;
           default:
             return;
@@ -258,8 +271,6 @@ export default function RegisterPage() {
     } catch (error) {
       console.error("Something went wrong: ", error);
     }
-
-    navigate(-1);
   };
 
   useEffect(() => {
@@ -269,7 +280,7 @@ export default function RegisterPage() {
   }, [frontWarningMessage, isWarningMessageShowed]);
 
   return (
-    <div className="w-full relative flex flex-col">
+    <div className="w-full relative pb-24 flex flex-col">
       <p className="mx-auto my-4 text-center text-indigo-500 text-3xl md:text-4xl font-bold drop-shadow">
         {webcontent.page.title.content}
       </p>
@@ -392,6 +403,12 @@ export default function RegisterPage() {
           </div>
         </div>
       </form>
+      {isRegisterWindowOpened && (
+        <RegistrationValidationWindow
+          usernameFieldData={usernameFieldData}
+          webcontent={webcontent.page.validationWindow}
+        />
+      )}
     </div>
   );
 }

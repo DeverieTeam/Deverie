@@ -134,7 +134,7 @@ export default function NewPostPage({ threadType }: Props) {
         });
 
         if (response.ok) {
-          const result = await response.json();
+          // const result = await response.json();
           navigate(`/${threadType}`);
         } else {
           setIsTitleConflictOn(true);
