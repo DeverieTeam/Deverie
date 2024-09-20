@@ -192,5 +192,9 @@ export type connectionwindowWebcontentType = {
         content: string;
       };
     };
+    warning: {
+      name: string;
+      content: string;
+    };
   };
 };

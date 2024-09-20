@@ -247,6 +247,10 @@ export type threadspageWebcontentType = {
           content: string;
         };
       };
+      warning: {
+        name: string;
+        content: string;
+      };
     };
     publications: {
       publishDatePrefix: {
@@ -260,6 +264,16 @@ export type threadspageWebcontentType = {
       lastResponseDatePrefix: {
         name: string;
         content: string;
+      };
+      closureText: {
+        topic: {
+          name: string;
+          content: string;
+        };
+        question: {
+          name: string;
+          content: string;
+        };
       };
       favorite: {
         add: {

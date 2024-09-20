@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import ThreadsDisplayer from "../components/ThreadsDisplayer";
 import { homepageWebcontentType } from "../types/homepageWebcontentType";
+import { useAuth } from "../contexts/useAuth";
 
 export default function HomePage() {
   const [randomThread, setRandomThread] = useState<null | "popular" | "recent">(
@@ -11,9 +12,14 @@ export default function HomePage() {
   const webcontent = useLoaderData() as homepageWebcontentType;
 
   const navigate = useNavigate();
+  const { auth } = useAuth();
 
-  const handleRegistrationButton = () => {
-    navigate(webcontent.page.shortcutPopUp.disconnected.link.content);
+  const handleWelcomeButton = () => {
+    if (auth !== undefined && auth.role !== "client") {
+      navigate(webcontent.page.shortcutPopUp.connected.link.content);
+    } else {
+      navigate(webcontent.page.shortcutPopUp.disconnected.link.content);
+    }
   };
 
   useEffect(() => {
@@ -52,12 +58,20 @@ export default function HomePage() {
           <div className="py-8 flex">
             <div className="mx-auto py-4 px-8 bg-neutral-100 gap-4 md:gap-8 rounded-lg shadow-sm shadow-neutral-400 flex flex-col md:flex-row">
               <p className="m-auto text-center text-md md:text-xl">
-                {webcontent.page.shortcutPopUp.disconnected.message.content}
+                {auth !== undefined && auth.role !== "client"
+                  ? webcontent.page.shortcutPopUp.connected.message.content.replace(
+                      "{username}",
+                      `${auth.name}`
+                    )
+                  : webcontent.page.shortcutPopUp.disconnected.message.content}
               </p>
               <button
                 className="bg-indigo-400 hover:bg-indigo-600 hover:text-white text-center text-md md:text-xl rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900 px-8 py-2 font-semibold"
-                onClick={handleRegistrationButton}>
-                {webcontent.page.shortcutPopUp.disconnected.button.content}
+                onClick={handleWelcomeButton}
+              >
+                {auth !== undefined && auth.role !== "client"
+                  ? webcontent.page.shortcutPopUp.connected.button.content
+                  : webcontent.page.shortcutPopUp.disconnected.button.content}
               </button>
             </div>
           </div>

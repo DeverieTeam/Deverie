@@ -24,6 +24,7 @@ items:
     emergency: null
     upvote: null
     downvote: null
+    is_opened: false
     modification_date: '2024, 7, 3'
     modification_author: '@member4'
     tags:
@@ -260,6 +261,7 @@ items:
     emergency: null
     upvote: 2
     downvote: null
+    is_opened: false
     modification_date: '2024, 8, 31'
     modification_author: null
     tags:
