@@ -33,12 +33,15 @@ async function fetchWebContent(
       case "questions":
         endpoint = "/threads/question";
         break;
+      case "register":
+      	endpoint = "/register";
+      	break;
+      case "newPost":
+        endpoint = "/newPost";
+        break;
       case "wip":
       case "wipage":
         endpoint = "/wip";
-        break;
-      case "newPost":
-        endpoint = "/newPost";
         break;
       case "404":
       case "notfound":
