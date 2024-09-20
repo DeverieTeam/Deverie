@@ -170,7 +170,7 @@ export type commonsWebcontentType = {
         content: string;
       };
     };
-    profile: {
+    userMenu: {
       text: {
         name: string;
         content: string;

@@ -124,7 +124,9 @@ export default function Header({ webcontent }: Props) {
         <div className="bg-transparent w-[72px] flex">
           <button
             className="m-auto h-14 w-14 bg-indigo-400 hover:bg-indigo-600 rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900 relative flex"
-            title={webcontent.hypertexts.login.hover.content}
+            title={auth && auth.role && auth.role !== "client"
+                    ? webcontent.hypertexts.userMenu.hover.content
+                    : webcontent.hypertexts.login.hover.content}
             onClick={handleConnectionWindowDisplayer}
           >
             <img

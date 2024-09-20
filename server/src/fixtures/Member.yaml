@@ -54,7 +54,7 @@ items:
 
   member5:
     name: 'Omicro'
-    hashed_password: 'psswrd'
+    hashed_password: '5c8b4ee4b3ebe7593211461e04c6e152f80fb44a715761001644e08e5793b7fe'
     email: 'omicro.fytpowp@gmail.com'
     is_email_displayed: true
     inscription_date: '2024, 7, 13'
@@ -67,7 +67,7 @@ items:
 
   member6:
     name: 'MasterKafey'
-    hashed_password: 'psswrd'
+    hashed_password: '44b8399b95836723f6af53b2758ec8c523d10b8cd8761bc4885945378aee0872'
     email: 'masterkafey@gmail.com'
     is_email_displayed: true
     inscription_date: '2024, 7, 24'
@@ -80,7 +80,7 @@ items:
 
   member7:
     name: 'AaronX'
-    hashed_password: 'psswrd'
+    hashed_password: '82a1af175152950745dd0e9595bd7219089789b31973acbe6242a1248ef2594e'
     email: 'aaroonx@gmail.com'
     is_email_displayed: true
     inscription_date: '2024, 6, 15'

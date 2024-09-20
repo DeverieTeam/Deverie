@@ -170,14 +170,14 @@
         "content": "Se connecter"
       }
     },
-    "profile": {
+    "userMenu": {
       "text": {
-        "name": "Texte d'accès au profil",
-        "content": "Mon profil"
+        "name": "Texte d'accès au menu déroulant",
+        "content": "Menu utilisateur"
       },
       "hover": {
-        "name": "Texte d'accès au profil de survol",
-        "content": "Ouvrir mon profil"
+        "name": "Texte d'accès au menu déroulant de survol",
+        "content": "Ouvrir le menu utilisateur"
       }
     }
   },

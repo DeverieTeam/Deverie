@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
-import { useLoaderData } from "react-router-dom";
-import AutoFormField from "../components/AutoFormField";
+import { useLoaderData, useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/useAuth";
 import { registerpageWebcontentType } from "../types/registerpageWebcontentType";
+import AutoFormField from "../components/AutoFormField";
 import RegistrationValidationWindow from "../components/RegistrationValidationWindow";
 
 export default function RegisterPage() {
   const webcontent = useLoaderData() as registerpageWebcontentType;
-
-  const [isRegisterWindowOpened, SetIsRegisterWindowOpened] = useState(false);
+  const navigate = useNavigate();
+  const { auth } = useAuth();
 
   const minimumFieldLength: number = 4;
   const maximumFieldLength: number = 100;
@@ -15,8 +16,8 @@ export default function RegisterPage() {
   const emailRegex =
     /^[a-zA-Z0-9]([.-]?[a-zA-Z0-9])*@[a-zA-Z]([_-]?[a-zA-Z])*\.[a-zA-Z]{2,4}$/;
 
-  const [isWarningMessageShowed, setIsWarningMessageShowed] =
-    useState<boolean>(false);
+  const [isRegisterWindowOpened, SetIsRegisterWindowOpened] = useState<boolean>(false);
+  const [isWarningMessageShowed, setIsWarningMessageShowed] = useState<boolean>(false);
 
   const [frontWarningMessage, setFrontWarningMessage] = useState<string>("");
 
@@ -123,24 +124,6 @@ export default function RegisterPage() {
     if (passwordFieldData != e) {
       setPasswordConfirmWarningMessage(
         webcontent.page.warningMessages.passwordsNotMatching.content
-      );
-    } else if (e.length < minimumFieldLength) {
-      setPasswordConfirmWarningMessage(
-        webcontent.page.warningMessages.unvalidField.tooShort.content.replace(
-          "{field}",
-          webcontent.page.form.generalInformations.fields.confirmPassword
-            .content
-        )
-      );
-    } else if (e.length > maximumPasswordFieldLength) {
-      setPasswordConfirmWarningMessage(
-        webcontent.page.warningMessages.unvalidField.tooLong.content
-          .replace(
-            "{field}",
-            webcontent.page.form.generalInformations.fields.confirmPassword
-              .content
-          )
-          .replace("{max}", maximumPasswordFieldLength.toString())
       );
     } else {
       setPasswordConfirmWarningMessage("");
@@ -278,6 +261,12 @@ export default function RegisterPage() {
       setIsWarningMessageShowed(false);
     }, 3000);
   }, [frontWarningMessage, isWarningMessageShowed]);
+
+  useEffect(() => {
+    if (auth && auth.role && auth.role !== "client") {
+      navigate("/");
+    }
+  }, [auth, navigate]);
 
   return (
     <div className="w-full relative pb-24 flex flex-col">
