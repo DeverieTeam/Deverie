@@ -4,118 +4,193 @@ import AutoFormField from "../components/AutoFormField";
 import { registerpageWebcontentType } from "../types/registerpageWebcontentType";
 
 export default function RegisterPage() {
-  const webcontent = useLoaderData() as RegisterpageWebcontentType;
+  const webcontent = useLoaderData() as registerpageWebcontentType;
   const navigate = useNavigate();
 
   const minimumFieldLength: number = 4;
   const maximumFieldLength: number = 100;
   const maximumPasswordFieldLength: number = 25;
-  const emailRegex = /^[a-zA-Z0-9]([\.-]?[a-zA-Z0-9])*@[a-zA-Z]([_-]?[a-zA-Z])*\.[a-zA-Z]{2,4}$/;
-  
-  const [isWarningMessageShowed, setIsWarningMessageShowed] = useState<boolean>(false);
+  const emailRegex =
+    /^[a-zA-Z0-9]([.-]?[a-zA-Z0-9])*@[a-zA-Z]([_-]?[a-zA-Z])*\.[a-zA-Z]{2,4}$/;
+
+  const [isWarningMessageShowed, setIsWarningMessageShowed] =
+    useState<boolean>(false);
 
   const [isUsernameValid, setIsUsernameValid] = useState<boolean>(true);
   const [isPasswordValid, setIsPasswordValid] = useState<boolean>(true);
   const [isPasswordsMatching, setIsPasswordsMatching] = useState<boolean>(true);
   const [isEmailValid, setIsEmailValid] = useState<boolean>(true);
 
-  const [usernameWarningMessage, setUsernameWarningMessage] = useState<string>("");
-  const [passwordWarningMessage, setPasswordWarningMessage] = useState<string>("");
-  const [passwordConfirmWarningMessage, setPasswordConfirmWarningMessage] = useState<string>("");
+  const [usernameWarningMessage, setUsernameWarningMessage] =
+    useState<string>("");
+  const [passwordWarningMessage, setPasswordWarningMessage] =
+    useState<string>("");
+  const [passwordConfirmWarningMessage, setPasswordConfirmWarningMessage] =
+    useState<string>("");
   const [emailWarningMessage, setEmailWarningMessage] = useState<string>("");
 
-  const [usernameFieldData, setUsernameFieldData] = useState<String>("");
-  const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const [usernameFieldData, setUsernameFieldData] = useState<string>("");
+  const handleUsernameChange = (e: string) => {
     setUsernameFieldData(e);
-    setIsUsernameValid((e.length >= minimumFieldLength && e.length <= maximumFieldLength) || e === "");
-    
+    setIsUsernameValid(
+      (e.length >= minimumFieldLength && e.length <= maximumFieldLength) ||
+        e === ""
+    );
+
     if (e.length < minimumFieldLength) {
-      setUsernameWarningMessage(webcontent.page.warningMessages.unvalidField.tooShort.content.replace("{field}", webcontent.page.form.generalInformations.fields.username.content));
+      setUsernameWarningMessage(
+        webcontent.page.warningMessages.unvalidField.tooShort.content.replace(
+          "{field}",
+          webcontent.page.form.generalInformations.fields.username.content
+        )
+      );
     } else if (e.length > maximumFieldLength) {
-      setUsernameWarningMessage(webcontent.page.warningMessages.unvalidField.tooLong.content.replace("{field}", webcontent.page.form.generalInformations.fields.username.content).replace("{max}", maximumFieldLength));
+      setUsernameWarningMessage(
+        webcontent.page.warningMessages.unvalidField.tooLong.content
+          .replace(
+            "{field}",
+            webcontent.page.form.generalInformations.fields.username.content
+          )
+          .replace("{max}", maximumFieldLength.toString())
+      );
     } else {
       setUsernameWarningMessage("");
     }
-  }
+  };
 
-  const [passwordFieldData, setPasswordFieldData] = useState<String>("");
-  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const [passwordFieldData, setPasswordFieldData] = useState<string>("");
+  const handlePasswordChange = (e: string) => {
     setPasswordFieldData(e);
-    setIsPasswordValid((e.length >= minimumFieldLength && e.length <= maximumPasswordFieldLength) || e === "");
+    setIsPasswordValid(
+      (e.length >= minimumFieldLength &&
+        e.length <= maximumPasswordFieldLength) ||
+        e === ""
+    );
     setIsPasswordsMatching(e == passwordConfirmFieldData);
-    
+
     if (e.length < minimumFieldLength) {
-      setPasswordWarningMessage(webcontent.page.warningMessages.unvalidField.tooShort.content.replace("{field}", webcontent.page.form.generalInformations.fields.password.content));
+      setPasswordWarningMessage(
+        webcontent.page.warningMessages.unvalidField.tooShort.content.replace(
+          "{field}",
+          webcontent.page.form.generalInformations.fields.password.content
+        )
+      );
     } else if (e.length > maximumPasswordFieldLength) {
-      setPasswordWarningMessage(webcontent.page.warningMessages.unvalidField.tooLong.content.replace("{field}", webcontent.page.form.generalInformations.fields.password.content).replace("{max}", maximumPasswordFieldLength));
-    } else if (e != passwordConfirmFieldData || e === ""){
-      setPasswordWarningMessage(webcontent.page.warningMessages.passwordsNotMatching.content);
+      setPasswordWarningMessage(
+        webcontent.page.warningMessages.unvalidField.tooLong.content
+          .replace(
+            "{field}",
+            webcontent.page.form.generalInformations.fields.password.content
+          )
+          .replace("{max}", maximumPasswordFieldLength.toString())
+      );
+    } else if (e != passwordConfirmFieldData || e === "") {
+      setPasswordWarningMessage(
+        webcontent.page.warningMessages.passwordsNotMatching.content
+      );
     } else {
       setPasswordWarningMessage("");
     }
-  }
+  };
 
-  const [passwordConfirmFieldData, setPasswordConfirmFieldData] = useState<String>("");
-  const handlePasswordConfirmChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const [passwordConfirmFieldData, setPasswordConfirmFieldData] =
+    useState<string>("");
+  const handlePasswordConfirmChange = (e: string) => {
     setPasswordConfirmFieldData(e);
     setIsPasswordsMatching(passwordFieldData == e);
-    
-    if (passwordFieldData != e){
-      setPasswordConfirmWarningMessage(webcontent.page.warningMessages.passwordsNotMatching.content);
+
+    if (passwordFieldData != e) {
+      setPasswordConfirmWarningMessage(
+        webcontent.page.warningMessages.passwordsNotMatching.content
+      );
     } else if (e.length < minimumFieldLength) {
-      setPasswordConfirmWarningMessage(webcontent.page.warningMessages.unvalidField.tooShort.content.replace("{field}", webcontent.page.form.generalInformations.fields.confirmPassword.content));
+      setPasswordConfirmWarningMessage(
+        webcontent.page.warningMessages.unvalidField.tooShort.content.replace(
+          "{field}",
+          webcontent.page.form.generalInformations.fields.confirmPassword
+            .content
+        )
+      );
     } else if (e.length > maximumPasswordFieldLength) {
-      setPasswordConfirmWarningMessage(webcontent.page.warningMessages.unvalidField.tooLong.content.replace("{field}", webcontent.page.form.generalInformations.fields.confirmPassword.content).replace("{max}", maximumPasswordFieldLength));
+      setPasswordConfirmWarningMessage(
+        webcontent.page.warningMessages.unvalidField.tooLong.content
+          .replace(
+            "{field}",
+            webcontent.page.form.generalInformations.fields.confirmPassword
+              .content
+          )
+          .replace("{max}", maximumPasswordFieldLength.toString())
+      );
     } else {
       setPasswordConfirmWarningMessage("");
     }
-  }
+  };
 
-  const [emailFieldData, setEmailFieldData] = useState<String>("");
-  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const [emailFieldData, setEmailFieldData] = useState<string>("");
+  const handleEmailChange = (e: string) => {
     setEmailFieldData(e);
-    setIsEmailValid((emailRegex.test(e) && e.length >= minimumFieldLength && e.length <= maximumFieldLength) || e === "");
+    setIsEmailValid(
+      (emailRegex.test(e) &&
+        e.length >= minimumFieldLength &&
+        e.length <= maximumFieldLength) ||
+        e === ""
+    );
 
     if (!emailRegex.test(e)) {
-      setEmailWarningMessage(webcontent.page.warningMessages.emailNotMatching.content);
+      setEmailWarningMessage(
+        webcontent.page.warningMessages.emailNotMatching.content
+      );
     } else if (e.length > maximumFieldLength) {
-      setEmailWarningMessage(webcontent.page.warningMessages.unvalidField.tooLong.content.replace("{field}", webcontent.page.form.generalInformations.fields.email.content).replace("{max}", maximumFieldLength));
+      setEmailWarningMessage(
+        webcontent.page.warningMessages.unvalidField.tooLong.content
+          .replace(
+            "{field}",
+            webcontent.page.form.generalInformations.fields.email.content
+          )
+          .replace("{max}", maximumFieldLength.toString())
+      );
     } else {
       setEmailWarningMessage("");
     }
-  }
+  };
 
-
-  const [pronounsFieldData, setPronounsFieldData] = useState<String>("");
-  const handlePronounsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const [pronounsFieldData, setPronounsFieldData] = useState<string>("");
+  const handlePronounsChange = (e: string) => {
     setPronounsFieldData(e);
-  }
+  };
 
   const [showEmailFieldData, setShowEmailFieldData] = useState<boolean>(false);
-  const handleShowEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleShowEmailChange = () => {
     setShowEmailFieldData(!showEmailFieldData);
-  }
+  };
 
-  const [descriptionFieldData, setDescriptionFieldData] = useState<String>("");
-  const handleDescriptionChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const [descriptionFieldData, setDescriptionFieldData] = useState<string>("");
+  const handleDescriptionChange = (e: string) => {
     setDescriptionFieldData(e);
-  }
+  };
 
   const handleSubmit = async (e: React.BaseSyntheticEvent) => {
-      e.preventDefault();
+    e.preventDefault();
 
-      if (usernameFieldData === "" || passwordFieldData === "" ||
-          passwordConfirmFieldData === "" || emailFieldData === "" ||
-          !isUsernameValid || !isPasswordValid || !isPasswordsMatching || !isEmailValid) {
-        setIsWarningMessageShowed(true);
-        setTimeout(() => {
-          setIsWarningMessageShowed(false);
-        }, 3000);
-        return;
-      }
+    if (
+      usernameFieldData === "" ||
+      passwordFieldData === "" ||
+      passwordConfirmFieldData === "" ||
+      emailFieldData === "" ||
+      !isUsernameValid ||
+      !isPasswordValid ||
+      !isPasswordsMatching ||
+      !isEmailValid
+    ) {
+      setIsWarningMessageShowed(true);
+      setTimeout(() => {
+        setIsWarningMessageShowed(false);
+      }, 3000);
+      return;
+    }
 
-      navigate(-1);
-  }
+    navigate(-1);
+  };
 
   return (
     <div className="w-full relative flex flex-col">
@@ -124,18 +199,19 @@ export default function RegisterPage() {
       </p>
       <form
         className="xl:max-w-[90%] mx-2 xl:mx-auto my-6 flex flex-col xl:flex-row flex-wrap gap-12"
-        onSubmit={handleSubmit}>
-        <div
-          className="flex-1 mx-auto">
+        onSubmit={handleSubmit}
+      >
+        <div className="flex-1 mx-auto">
           <p className="text-lg md:text-xl xl:text-2xl mr-4 mb-8">
             {webcontent.page.form.generalInformations.main.content}
           </p>
-          <div
-            className="flex flex-col gap-4 md:gap-6 xl:gap-8">
+          <div className="flex flex-col gap-4 md:gap-6 xl:gap-8">
             <AutoFormField
               type="text"
               id="usernameField"
-              title={webcontent.page.form.generalInformations.fields.username.content}
+              title={
+                webcontent.page.form.generalInformations.fields.username.content
+              }
               state={usernameFieldData}
               handleChange={handleUsernameChange}
               isObligatory={true}
@@ -145,7 +221,9 @@ export default function RegisterPage() {
             <AutoFormField
               type="password"
               id="passwordField"
-              title={webcontent.page.form.generalInformations.fields.password.content}
+              title={
+                webcontent.page.form.generalInformations.fields.password.content
+              }
               state={passwordFieldData}
               handleChange={handlePasswordChange}
               isObligatory={true}
@@ -155,7 +233,10 @@ export default function RegisterPage() {
             <AutoFormField
               type="password"
               id="confirmPasswordField"
-              title={webcontent.page.form.generalInformations.fields.confirmPassword.content}
+              title={
+                webcontent.page.form.generalInformations.fields.confirmPassword
+                  .content
+              }
               state={passwordConfirmFieldData}
               handleChange={handlePasswordConfirmChange}
               isObligatory={true}
@@ -165,7 +246,9 @@ export default function RegisterPage() {
             <AutoFormField
               type="email"
               id="emailField"
-              title={webcontent.page.form.generalInformations.fields.email.content}
+              title={
+                webcontent.page.form.generalInformations.fields.email.content
+              }
               state={emailFieldData}
               handleChange={handleEmailChange}
               isObligatory={true}
@@ -174,49 +257,57 @@ export default function RegisterPage() {
             />
           </div>
         </div>
-        <div
-          className="flex-1 mx-auto">
+        <div className="flex-1 mx-auto">
           <p className="text-lg md:text-xl xl:text-2xl mr-4 mb-8">
             {webcontent.page.form.complementaryInformations.main.content}
           </p>
-          <div
-            className="flex flex-col gap-2 xl:gap-4">
+          <div className="flex flex-col gap-2 xl:gap-4">
             <AutoFormField
               type="text"
               id="pronounsField"
-              title={webcontent.page.form.complementaryInformations.fields.pronouns.content}
+              title={
+                webcontent.page.form.complementaryInformations.fields.pronouns
+                  .content
+              }
               state={pronounsFieldData}
               handleChange={handlePronounsChange}
             />
             <AutoFormField
               type="checkbox"
               id="showEmailField"
-              title={webcontent.page.form.complementaryInformations.fields.showEmail.content}
+              title={
+                webcontent.page.form.complementaryInformations.fields.showEmail
+                  .content
+              }
               state={showEmailFieldData}
               handleChange={handleShowEmailChange}
             />
             <AutoFormField
               type="textarea"
               id="descriptionField"
-              title={webcontent.page.form.complementaryInformations.fields.description.content}
+              title={
+                webcontent.page.form.complementaryInformations.fields
+                  .description.content
+              }
               state={descriptionFieldData}
               handleChange={handleDescriptionChange}
             />
           </div>
         </div>
         <div className="mx-auto w-full max-w-[90%] flex-2 flex flex-col gap-4">
-          {isWarningMessageShowed ?
+          {isWarningMessageShowed ? (
             <p className="text-red-700 mx-auto text-sm md:text-lg">
-              {usernameWarningMessage !== "" ?
-                usernameWarningMessage :
-                passwordWarningMessage !== "" ?
-                passwordWarningMessage :
-                passwordConfirmWarningMessage !== "" ?
-                passwordConfirmWarningMessage :
-                emailWarningMessage}
+              {usernameWarningMessage !== ""
+                ? usernameWarningMessage
+                : passwordWarningMessage !== ""
+                ? passwordWarningMessage
+                : passwordConfirmWarningMessage !== ""
+                ? passwordConfirmWarningMessage
+                : emailWarningMessage}
             </p>
-          :
-            <></>}
+          ) : (
+            <></>
+          )}
           <div className="mx-auto w-full flex justify-evenly xl:justify-between">
             <p className="text-xs md:text-sm xl:text-base">
               <span className="text-red-600">*</span>
