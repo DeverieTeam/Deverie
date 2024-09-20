@@ -18,12 +18,20 @@ export default function TagFilterChecker({
   return (
     <div className="w-[120px] md:w-[132px] gap-1 flex">
       <input
+        id={`tag_${tag.id}`}
         type="checkbox"
         checked={handleChecked()}
+        className="hover:cursor-pointer"
         onChange={handleChange}
       />
-      <img className="h-5 w-5 bg-neutral-100 rounded-lg" src={tag.icon} />
-      <p className="text-sm md:text-base">{tag.name}</p>
+      <label
+        for={`tag_${tag.id}`}
+        className="text-sm md:text-base gap-1 flex hover:cursor-pointer">
+        <img
+          className="h-5 w-5 bg-neutral-100 rounded-lg hover:cursor-pointer"
+          src={tag.icon} />
+        {tag.name}
+      </label>
     </div>
   );
 }
