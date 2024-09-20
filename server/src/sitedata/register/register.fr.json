@@ -96,5 +96,19 @@
         "content": "Un compte avec cet e-mail existe déjà"
       }
     }
+  },
+  "validationWindow": {
+    "welcomeTitle": {
+      "name": "Titre de la fenêtre de validation d'inscription",
+      "content": "Bienvenue, {username}"
+    },
+    "mainText": {
+      "name": "Texte de bienvenue parmi les membres du site",
+      "content": "Félicitations, vous faites désormais partie des membres de Deverie ! Vous pouvez dès maintenant vous connecter pour participer activement à notre communauté de développeurs francophones."
+    },
+    "exitButton": {
+      "name": "Texte du bouton de fermeture de la fenêtre",
+      "content": "Retour à la page d'accueil"
+    }
   }
 }
