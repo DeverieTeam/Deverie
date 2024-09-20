@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import AutoFormField from "../components/AutoFormField";
 import { registerpageWebcontentType } from "../types/registerpageWebcontentType";
@@ -16,10 +16,24 @@ export default function RegisterPage() {
   const [isWarningMessageShowed, setIsWarningMessageShowed] =
     useState<boolean>(false);
 
-  const [isUsernameValid, setIsUsernameValid] = useState<boolean>(true);
-  const [isPasswordValid, setIsPasswordValid] = useState<boolean>(true);
-  const [isPasswordsMatching, setIsPasswordsMatching] = useState<boolean>(true);
-  const [isEmailValid, setIsEmailValid] = useState<boolean>(true);
+  const [frontWarningMessage, setFrontWarningMessage] = useState<string>("");
+
+  function defineFrontWarningMessage(content?: string) {
+    setIsWarningMessageShowed(true);
+    if (content !== undefined) {
+      setFrontWarningMessage(content);
+    } else {
+      if (usernameWarningMessage !== "") {
+        setFrontWarningMessage(usernameWarningMessage);
+      } else if (passwordWarningMessage !== "") {
+        setFrontWarningMessage(passwordWarningMessage);
+      } else if (passwordConfirmWarningMessage !== "") {
+        setFrontWarningMessage(passwordConfirmWarningMessage);
+      } else if(emailWarningMessage !== "") {
+        setFrontWarningMessage(emailWarningMessage);
+      }
+    }
+  }
 
   const [usernameWarningMessage, setUsernameWarningMessage] =
     useState<string>("");
@@ -28,6 +42,11 @@ export default function RegisterPage() {
   const [passwordConfirmWarningMessage, setPasswordConfirmWarningMessage] =
     useState<string>("");
   const [emailWarningMessage, setEmailWarningMessage] = useState<string>("");
+
+  const [isUsernameValid, setIsUsernameValid] = useState<boolean>(true);
+  const [isPasswordValid, setIsPasswordValid] = useState<boolean>(true);
+  const [isPasswordsMatching, setIsPasswordsMatching] = useState<boolean>(true);
+  const [isEmailValid, setIsEmailValid] = useState<boolean>(true);
 
   const [usernameFieldData, setUsernameFieldData] = useState<string>("");
   const handleUsernameChange = (e: string) => {
@@ -84,7 +103,7 @@ export default function RegisterPage() {
           )
           .replace("{max}", maximumPasswordFieldLength.toString())
       );
-    } else if (e != passwordConfirmFieldData || e === "") {
+    } else if (e != passwordConfirmFieldData) {
       setPasswordWarningMessage(
         webcontent.page.warningMessages.passwordsNotMatching.content
       );
@@ -182,15 +201,72 @@ export default function RegisterPage() {
       !isPasswordsMatching ||
       !isEmailValid
     ) {
-      setIsWarningMessageShowed(true);
-      setTimeout(() => {
-        setIsWarningMessageShowed(false);
-      }, 3000);
+      defineFrontWarningMessage();
       return;
+    }
+
+    let body: {
+      name: string;
+      password: string;
+      email: string;
+      is_email_displayed: boolean;
+      pronouns?: string;
+      description?: string;
+    } = {
+      name: usernameFieldData,
+      password: passwordFieldData,
+      email: emailFieldData,
+      is_email_displayed: showEmailFieldData,
+    };
+
+    if (pronounsFieldData) {
+      body.pronouns = pronounsFieldData;
+    }
+    if (descriptionFieldData) {
+      body.description = descriptionFieldData;
+    }
+
+    try {
+      const response = await fetch("http://localhost:3000/auth/register", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        console.log(result);
+      } else {
+        const result = await response.json();
+        switch (result.message){
+          case 'Invalid name and email':
+            defineFrontWarningMessage(webcontent.page.warningMessages.conflicts.unvalidNameAndEmail.content);
+            return;
+          case 'Invalid name':
+            defineFrontWarningMessage(webcontent.page.warningMessages.conflicts.unvalidName.content.replace("{username}", usernameFieldData));
+            return;
+          case 'Invalid email':
+            defineFrontWarningMessage(webcontent.page.warningMessages.conflicts.unvalidEmail.content);
+            return;
+          default:
+            return;
+        }
+      }
+    } catch (error) {
+      console.error("Something went wrong: ", error);
     }
 
     navigate(-1);
   };
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsWarningMessageShowed(false);
+    }, 3000);
+  }, [frontWarningMessage, isWarningMessageShowed]);
 
   return (
     <div className="w-full relative flex flex-col">
@@ -297,13 +373,7 @@ export default function RegisterPage() {
         <div className="mx-auto w-full max-w-[90%] flex-2 flex flex-col gap-4">
           {isWarningMessageShowed ? (
             <p className="text-red-700 mx-auto text-sm md:text-lg">
-              {usernameWarningMessage !== ""
-                ? usernameWarningMessage
-                : passwordWarningMessage !== ""
-                ? passwordWarningMessage
-                : passwordConfirmWarningMessage !== ""
-                ? passwordConfirmWarningMessage
-                : emailWarningMessage}
+              {frontWarningMessage}
             </p>
           ) : (
             <></>
