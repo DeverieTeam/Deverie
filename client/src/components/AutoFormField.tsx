@@ -11,16 +11,18 @@ export default function AutoFormField({
   return (
     <div
       className={
-        "mx-auto " +
         (isObligatory ? "text-center " : "") +
         (type === "textarea" ? "h-36 xl:h-48" : "h-8 md:h-10") +
-        " w-[90%] max-w-sm flex " +
+        " w-full flex " +
         (type === "textarea" ? "flex-col" : "flex-row") +
-        " gap-1 " +
+        " gap-2 " +
         (type === "textarea" ? "" : "items-center justify-between")
-      }
-    >
-      <label htmlFor={id} className="flex-1 md:text-lg xl:text-xl">
+      }>
+      <label
+        htmlFor={id}
+        className={
+          (isObligatory ? "" : "pl-4 md:pl-8 ") + "flex-1 md:text-lg xl:text-xl"
+        }>
         {title}
         {isObligatory ? <span className="text-red-600">*</span> : ""}
       </label>
@@ -28,7 +30,7 @@ export default function AutoFormField({
       {type === "textarea" ? (
         <textarea
           id={id}
-          className="px-2 py-2 h-full w-full resize-none focus:outline-none active:outline-none shadow-sm shadow-neutral-400 bg-neutral-200 rounded-xl"
+          className="px-2 py-2 h-full md:w-[90%] md:mx-auto resize-none focus:outline-none active:outline-none shadow-sm shadow-neutral-400 bg-neutral-200 rounded-xl"
           onChange={(e) => handleChange(e.target.value)}
         />
       ) : (

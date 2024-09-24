@@ -204,6 +204,7 @@ export class PostService {
       .innerJoinAndSelect('post.author', 'author')
       .innerJoinAndSelect('post.tags', 'tags')
       .leftJoinAndSelect('post.replies', 'replies')
+      .leftJoinAndSelect('replies.author', 'replyAuthor')
       .getMany();
 
     switch (sort) {
@@ -227,6 +228,14 @@ export class PostService {
       .filter((post) => post.type === 'topic' || post.type === 'question')
       .filter((post) => post.is_readable)
       .filter((post) => !post.author.is_banned);
+
+    for (const post of filteredResponse) {
+      if (post.replies && post.replies.length > 0) {
+        post.replies = post.replies
+          .filter((post) => post.is_readable)
+          .filter((post) => !post.author.is_banned);
+      }
+    }
 
     const pagedResponse = filteredResponse.slice(
       0,
@@ -266,6 +275,7 @@ export class PostService {
       .innerJoinAndSelect('post.author', 'author')
       .innerJoinAndSelect('post.tags', 'tags')
       .leftJoinAndSelect('post.replies', 'replies')
+      .leftJoinAndSelect('replies.author', 'replyAuthor')
       .getMany();
 
     switch (sort) {
@@ -316,6 +326,14 @@ export class PostService {
         }
         return false;
       });
+
+    for (const post of filteredResponse) {
+      if (post.replies && post.replies.length > 0) {
+        post.replies = post.replies
+          .filter((post) => post.is_readable)
+          .filter((post) => !post.author.is_banned);
+      }
+    }
 
     const responseLength = filteredResponse.length;
 

@@ -55,7 +55,7 @@ export default function RepliesRow({ id, sort, webcontent }: Props) {
                 {data.author.name}
               </div>
               <div className="md:pr-2 flex-1 justify-center md:justify-end gap-1 md:gap-2 flex flex-col md:flex-row">
-                <button className="px-1 mr-3 md:mr-0 w-14 h-6 md:h-8 bg-green-400 self-end md:self-center gap-1 hover:text-white justify-center text-center rounded-full shadow-sm shadow-green-700 flex">
+                <div className="px-1 mr-3 md:mr-0 w-14 h-6 md:h-8 bg-green-400 self-end md:self-center gap-1 hover:text-white justify-center text-center rounded-full shadow-sm shadow-green-700 flex">
                   <svg
                     width="800px"
                     height="800px"
@@ -72,8 +72,8 @@ export default function RepliesRow({ id, sort, webcontent }: Props) {
                     />
                   </svg>
                   <p className="my-auto">33</p>
-                </button>
-                <button className="px-1 mr-3 md:mr-0 w-14 h-6 md:h-8 bg-red-400 self-end md:self-center gap-1 hover:text-white justify-center text-center rounded-full shadow-sm shadow-red-700 flex">
+                </div>
+                <div className="px-1 mr-3 md:mr-0 w-14 h-6 md:h-8 bg-red-400 self-end md:self-center gap-1 hover:text-white justify-center text-center rounded-full shadow-sm shadow-red-700 flex">
                   <svg
                     width="800px"
                     height="800px"
@@ -90,7 +90,7 @@ export default function RepliesRow({ id, sort, webcontent }: Props) {
                     />
                   </svg>
                   <p className="my-auto">10</p>
-                </button>
+                </div>
               </div>
             </button>
             <div className="justify-between gap-1 flex">

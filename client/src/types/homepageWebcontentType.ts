@@ -223,6 +223,16 @@ export type homepageWebcontentType = {
         name: string;
         content: string;
       };
+      closureText: {
+        topic: {
+          name: string;
+          content: string;
+        };
+        question: {
+          name: string;
+          content: string;
+        };
+      };
       favourite: {
         add: {
           hover: {
