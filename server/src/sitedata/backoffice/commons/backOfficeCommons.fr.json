@@ -1,0 +1,54 @@
+{
+	"sections": {
+    "home": {
+      "text": {
+        "name": "Texte d'accès à l'accueil du panneau administrateurs",
+        "content": "Accueil"
+      },
+      "hover": {
+        "name": "Texte d'accès à l'accueil du panneau administrateurs de survol",
+        "content": "Accueil du panneau administrateurs"
+      }
+    },
+    "chats": {
+      "text": {
+        "name": "Texte d'accès à la gestion des chats",
+        "content": "Gestion des chats"
+      },
+      "hover": {
+        "name": "Texte d'accès à la gestion des chats de survol",
+        "content": "Panneau de gestion des chats"
+      }
+    },
+    "tags": {
+      "text": {
+        "name": "Texte d'accès à la gestion des tags",
+        "content": "Gestion des tags"
+      },
+      "hover": {
+        "name": "Texte d'accès à la gestion des tags de survol",
+        "content": "Panneau de gestion des tags"
+      }
+    },
+    "moderation": {
+      "text": {
+        "name": "Texte d'accès à la gestion des modérateurs",
+        "content": "Gestion de la modération"
+      },
+      "hover": {
+        "name": "Texte d'accès à la gestion des modérateurs de survol",
+        "content": "Panneau de gestion des modérateurs"
+      }
+    },
+    "interface": {
+      "text": {
+        "name": "Texte d'accès à la gestion de l'interface",
+        "content": "Gestion de l'interface"
+      },
+      "hover": {
+        "name": "Texte d'accès à la gestion de l'interface de survol",
+        "content": "Panneau de gestion du web content"
+      }
+    }
+  }
+}

@@ -3,7 +3,7 @@ import Header from "./components/Header";
 import MobileNavbar from "./components/MobileNavbar";
 import { commonsWebcontentType } from "./types/commonsWebcontentType";
 
-export default function App() {
+export default function App({ isHeaderDisplayed }: Props) {
   const webcontent = useLoaderData() as commonsWebcontentType;
 
   return (
@@ -17,11 +17,20 @@ export default function App() {
           connection: webcontent.connection,
           dropDownMenu: webcontent.dropDownMenu,
         }}
+        isHeaderDisplayed={isHeaderDisplayed}
       />
-      <MobileNavbar />
+      {isHeaderDisplayed === false ?
+        <></>
+      :
+        <MobileNavbar />
+      }
       <div className="mt-16 mb-16 md:mb-0">
         <Outlet />
       </div>
     </div>
   );
 }
+
+type Props = {
+  isHeaderDisplayed?: string;
+};

@@ -1,7 +1,10 @@
 async function fetchWebContent(
-  page: string,
-  lang: string,
-  posts?: boolean
+  args: {
+    page: string,
+    lang: string,
+    hasPosts?: boolean,
+    isBackOffice?: boolean,
+  }
 ): Promise<
   | {
       commons: JSON;
@@ -10,46 +13,47 @@ async function fetchWebContent(
   | JSON
 > {
   const url: string = "http://localhost:3000/webcontent";
-  let endpoint: string = "";
-  const addPosts: boolean = posts !== undefined && posts === true;
+  let endpoint: string = (args.isBackOffice ? '/backoffice' : '');
+  const addPosts: boolean = args.hasPosts !== undefined && args.hasPosts === true;
 
   const fetchCommonsPromise = fetch(
-    `${url}/commons?lang=${lang}${addPosts ? "&posts=true" : ""}`
+    `${url}${endpoint}/commons?lang=${args.lang}${addPosts ? "&posts=true" : ""}`
   ).then((response) => {
     return response;
   });
 
-  if (page !== "header") {
-    switch (page) {
+  if (args.page !== "header") {
+    switch (args.page) {
       case "home":
       case "homepage":
-        endpoint = "/homepage";
+        endpoint += "/homepage";
         break;
       case "topic":
       case "topics":
-        endpoint = "/threads/topic";
+        endpoint += "/threads/topic";
         break;
       case "question":
       case "questions":
-        endpoint = "/threads/question";
+        endpoint += "/threads/question";
         break;
       case "register":
-      	endpoint = "/register";
+      	endpoint += "/register";
       	break;
       case "newPost":
-        endpoint = "/newPost";
+        endpoint += "/newPost";
         break;
       case "wip":
       case "wipage":
-        endpoint = "/wip";
+        endpoint += "/wip";
         break;
       case "404":
       case "notfound":
       default:
-        endpoint = "/notfound";
+        endpoint += "/notfound";
         break;
     }
-    const fetchPagePromise = fetch(`${url}${endpoint}?lang=${lang}`).then(
+
+    const fetchPagePromise = fetch(`${url}${endpoint}?lang=${args.lang}`).then(
       (response) => {
         return response;
       }
@@ -66,7 +70,8 @@ async function fetchWebContent(
       commons: dataCommons,
       page: dataPage,
     };
-  } else {
+  }
+  else {
     const responseCommons = await fetchCommonsPromise;
     const dataCommons = await responseCommons.json();
     return dataCommons;

@@ -1,0 +1,44 @@
+{
+  "title": {
+    "name": "Titre de la page d'accueil du panneau administrateurs",
+    "content": "Administration de Deverie"
+  },
+  "statistics": {
+    "title": {
+      "name": "Nom de la section des statistiques de Deverie",
+      "content": "Deverie en chiffres"
+    },
+    "publicationsNumberPrefix": {
+      "name": "Texte précédant le nombre de publications",
+      "content": "Nombre de publications"
+    },
+    "questionsNumberPrefix": {
+      "name": "Texte précédant le nombre de questions",
+      "content": "Nombre de questions"
+    },
+    "closedQuestionsNumberPrefix": {
+      "name": "Texte précédant le nombre de questions closes",
+      "content": "Nombre de questions closes"
+    },
+    "topicsNumberPrefix": {
+      "name": "Texte précédant le nombre de sujets de forum",
+      "content": "Nombre de sujets de forum"
+    },
+    "usersNumberPrefix": {
+      "name": "Texte précédant le nombre de comptes",
+      "content": "Nombre d'utilisateurs de Deverie"
+    },
+    "membersNumberPrefix": {
+      "name": "Texte précédant le nombre de membres",
+      "content": "Nombre de membres"
+    },
+    "moderatorsNumberPrefix": {
+      "name": "Texte précédant le nombre de modérateurs",
+      "content": "Nombre de modérateurs"
+    },
+    "administratorsNumberPrefix": {
+      "name": "Texte précédant le nombre d'administrateurs",
+      "content": "Nombre d'administrateurs"
+    }
+  }
+}
