@@ -1,8 +1,16 @@
+import { useNavigate } from "react-router-dom";
 import { threadsrowWebcontentType } from "../types/threadsrowWebcontentType";
 
 export default function ThreadsRow({ post, webcontent }: Props) {
+  const navigate = useNavigate();
+  const handleRowClick = () => {
+    navigate({ pathname: "/postView", search: `?id=${post.id}` });
+  };
+
   return (
-    <button className="bg-neutral-100 hover:bg-white gap-2 p-1 md:p-4 rounded-lg shadow-sm shadow-neutral-400 flex">
+    <button
+      className="bg-neutral-100 hover:bg-white gap-2 p-1 md:p-4 rounded-lg shadow-sm shadow-neutral-400 flex"
+      onClick={handleRowClick}>
       <div className="w-[35%] justify-between gap-1 md:gap-2 flex flex-col">
         <div className="m-auto h-14 md:h-32 w-14 md:w-32 bg-indigo-400 hover:bg-indigo-600 rounded-full shadow-sm shadow-neutral-500 flex">
           <img
@@ -51,7 +59,7 @@ export default function ThreadsRow({ post, webcontent }: Props) {
             <img
               className="m-auto w-5 md:w-8 h-5 md:h-8 bg-transparent"
               src="/icons/notFavourite.svg"
-              title={webcontent.favorite.add.hover.content}
+              title={webcontent.favourite.add.hover.content}
             />
           </div>
         </div>

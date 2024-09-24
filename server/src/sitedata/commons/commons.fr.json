@@ -208,7 +208,7 @@
         "content": "Chats"
       }
     },
-    "favorite": {
+    "favourite": {
       "main": {
         "name": "Nom de la section de contenus sauvegardés",
         "content": "Favoris"
@@ -274,7 +274,7 @@
         "content": "[Question close]"
       }
     },
-    "favorite": {
+    "favourite": {
       "add": {
         "hover": {
           "name": "Texte d'ajout aux favoris de survol",
@@ -352,9 +352,17 @@
     }
   },
   "pagination": {
-    "resultsOutOf": {
+    "result": {
       "name": "Texte de nombre de résultats",
-      "content": "résultats sur"
+      "content": "résultat"
+    },
+    "answer": {
+      "name": "Texte de nombre de réponses",
+      "content": "réponse"
+    },
+    "outOf": {
+      "name": "Texte de suffixe du nombre de résultats",
+      "content": "sur"
     },
     "pagesPrefix": {
       "name": "Texte précédant la page actuelle sur le nombre total",

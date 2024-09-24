@@ -60,6 +60,139 @@ export class PostService {
     return refinedData;
   }
 
+  refineSinglePostData(data: Post, length?: number) {
+    const refinedTags = [];
+    for (const tag of data.tags) {
+      refinedTags.push({
+        id: tag.id,
+        name: tag.name,
+        icon: tag.icon,
+      });
+    }
+
+    const refinedReplies = [];
+    if (data.replies.length > 0) {
+      for (const reply of data.replies) {
+        refinedReplies.push({
+          id: reply.id,
+        });
+      }
+    }
+
+    const refinedData: {
+      id: number;
+      author: {
+        id: number;
+        name: string;
+        profile_picture: string;
+        is_banned: boolean;
+      };
+      tags: {
+        id: number;
+        name: string;
+        icon: string;
+      }[];
+      creation_date: Date;
+      type: string;
+      title: string;
+      content: string;
+      is_opened: boolean;
+      is_readable: boolean;
+      modification_date: Date;
+      modification_author: null | string;
+      emergency: null | number;
+      results_length: null | number;
+      replies: null | { id: number }[];
+    } = {
+      id: data.id,
+      author: {
+        id: data.author.id,
+        name: data.author.name,
+        profile_picture: data.author.profile_picture,
+        is_banned: data.author.is_banned,
+      },
+      tags: refinedTags,
+      creation_date: data.creation_date,
+      type: data.type,
+      title: data.title,
+      content: data.content,
+      is_opened: data.is_opened,
+      is_readable: data.is_readable,
+      modification_date: data.modification_date,
+      modification_author: null,
+      emergency: null,
+      results_length: null,
+      replies: null,
+    };
+
+    if (data.author.displayed_name) {
+      refinedData.author.name = data.author.displayed_name;
+    }
+    if (data.modification_author) {
+      refinedData.modification_author = data.modification_author.name;
+    }
+    if (data.emergency) {
+      refinedData.emergency = data.emergency;
+    }
+    if (length) {
+      refinedData.results_length = length;
+    }
+    if (data.replies.length > 0) {
+      refinedData.replies = refinedReplies;
+    }
+
+    return refinedData;
+  }
+
+  refineReplyData(data: Post) {
+    const refinedReplies = [];
+    if (data.replies.length > 0) {
+      for (const reply of data.replies) {
+        refinedReplies.push({
+          id: reply.id,
+        });
+      }
+    }
+
+    const refinedData: {
+      id: number;
+      author: {
+        id: number;
+        name: string;
+        profile_picture: string;
+      };
+      creation_date: Date;
+      content: string;
+      modification_date: Date;
+      modification_author: null | string;
+      replies: null | { id: number }[];
+    } = {
+      id: data.id,
+      author: {
+        id: data.author.id,
+        name: data.author.name,
+        profile_picture: data.author.profile_picture,
+      },
+      creation_date: data.creation_date,
+      content: data.content,
+      modification_date: data.modification_date,
+      modification_author: null,
+      replies: null,
+    };
+
+    if (data.author.displayed_name) {
+      refinedData.author.name = data.author.displayed_name;
+    }
+    if (data.modification_author) {
+      refinedData.modification_author = data.modification_author.name;
+    }
+    if (data.replies.length > 0) {
+      refinedData.replies = refinedReplies;
+    }
+
+    return refinedData;
+  }
+
   async getPopularOrRecentPosts(max: string, sort: 'recent' | 'popular') {
     let numMax = parseInt(max);
     if (numMax < 1 || numMax > 20 || Number.isNaN(numMax)) {
@@ -228,5 +361,142 @@ export class PostService {
         id: returnedValue.id,
       };
     }
+  }
+
+  async getPostById(
+    id: number,
+    max: string,
+    page: string,
+    sort: 'chrono' | 'recent' | 'rate',
+  ) {
+    let numMax = parseInt(max);
+    let numPage = parseInt(page) - 1;
+
+    if (numMax < 1 || numMax > 20 || Number.isNaN(numMax)) {
+      numMax = 10;
+    }
+
+    if (numPage < 0 || Number.isNaN(numPage)) {
+      numPage = 0;
+    }
+
+    const response = await this.postRepository
+      .createQueryBuilder('post')
+      .where('post.id = :id', { id: id })
+      .innerJoinAndSelect('post.author', 'author')
+      .leftJoinAndSelect('post.tags', 'tags')
+      .leftJoinAndSelect('post.replies', 'replies')
+      .leftJoinAndSelect('post.modification_author', 'modification_author')
+      .leftJoinAndSelect('replies.author', 'replyAuthor')
+      .getOne();
+
+    if (response.type === 'answer' || response.type === 'comment') {
+      throw new HttpException(
+        {
+          message: 'Invalid thread id',
+          error: 'Invalid thread id',
+          statusCode: HttpStatus.BAD_REQUEST,
+        },
+        HttpStatus.BAD_REQUEST,
+        {
+          cause: 'Invalid thread id',
+        },
+      );
+    }
+
+    if (response.replies) {
+      switch (sort) {
+        case 'recent':
+          response.replies.sort((a, b) => {
+            return (
+              new Date(b.creation_date).getTime() -
+              new Date(a.creation_date).getTime()
+            );
+          });
+          break;
+        case 'rate':
+        case 'chrono':
+        default:
+          response.replies.sort((a, b) => {
+            return (
+              new Date(a.creation_date).getTime() -
+              new Date(b.creation_date).getTime()
+            );
+          });
+          break;
+      }
+    }
+
+    response.replies = response.replies
+      .filter((post) => post.is_readable)
+      .filter((post) => !post.author.is_banned);
+
+    const responseLength = response.replies.length;
+
+    if (numPage > Math.floor(responseLength / numMax)) {
+      numPage = Math.floor(responseLength / numMax);
+    }
+
+    response.replies = response.replies.slice(
+      numMax * numPage,
+      Math.min(responseLength, numMax * numPage + numMax),
+    );
+
+    return this.refineSinglePostData(response, responseLength);
+  }
+
+  async getReplyById(id: number, sort: 'chrono' | 'recent' | 'rate') {
+    const response = await this.postRepository
+      .createQueryBuilder('post')
+      .where('post.id = :id', { id: id })
+      .innerJoinAndSelect('post.author', 'author')
+      .leftJoinAndSelect('post.tags', 'tags')
+      .leftJoinAndSelect('post.replies', 'replies')
+      .leftJoinAndSelect('post.modification_author', 'modification_author')
+      .leftJoinAndSelect('replies.author', 'replyAuthor')
+      .getOne();
+
+    if (response.type === 'topic' || response.type === 'question') {
+      throw new HttpException(
+        {
+          message: 'Invalid reply id',
+          error: 'Invalid reply id',
+          statusCode: HttpStatus.BAD_REQUEST,
+        },
+        HttpStatus.BAD_REQUEST,
+        {
+          cause: 'Invalid reply id',
+        },
+      );
+    }
+
+    if (response.replies) {
+      switch (sort) {
+        case 'recent':
+          response.replies.sort((a, b) => {
+            return (
+              new Date(b.creation_date).getTime() -
+              new Date(a.creation_date).getTime()
+            );
+          });
+          break;
+        case 'rate':
+        case 'chrono':
+        default:
+          response.replies.sort((a, b) => {
+            return (
+              new Date(a.creation_date).getTime() -
+              new Date(b.creation_date).getTime()
+            );
+          });
+          break;
+      }
+    }
+
+    response.replies = response.replies
+      .filter((post) => post.is_readable)
+      .filter((post) => !post.author.is_banned);
+
+    return this.refineReplyData(response);
   }
 }

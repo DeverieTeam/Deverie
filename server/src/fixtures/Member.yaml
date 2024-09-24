@@ -93,7 +93,7 @@ items:
 
   member8:
     name: 'dark lord of JAVA'
-    hashed_password: 'psswrd'
+    hashed_password: '8b05b10ed13361f80a81c77eb8b7af8cb0565465537a484d7dd2ad0745d26bbf'
     email: 'xxdarkjavalordxx@orange.fr'
     is_email_displayed: true
     inscription_date: '2024, 1, 24'
