@@ -2,8 +2,8 @@ import { useLoaderData, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import ThreadsDisplayer from "../components/ThreadsDisplayer";
 import TagFilterWindow from "../components/TagFilterWindow";
-import Pagination from "../components/Pagination";
-import SortSelection from "../components/SortSelection";
+import ThreadsPagination from "../components/ThreadsPagination";
+import ThreadsSortSelection from "../components/ThreadsSortSelection";
 import SearchField from "../components/SearchField";
 import ConnectionNeeded from "../components/userAccount/ConnectionNeeded";
 import ConnectionWindow from "../components/userAccount/ConnectionWindow";
@@ -129,7 +129,7 @@ export default function ThreadsPage({ threadType }: Props) {
               onClick={handleTagFilterButton}>
               {webcontent.commons.searching.tagFilter.text.content}
             </button>
-            <SortSelection
+            <ThreadsSortSelection
               threadType={threadType}
               setSort={setSort}
               webcontent={webcontent.commons.searching.sortFilter}
@@ -155,7 +155,7 @@ export default function ThreadsPage({ threadType }: Props) {
       </div>
       <div className="w-full px-1 md:px-0 md:max-w-[750px] md:mx-auto flex flex-col">
         {dataForPage !== null && dataForPage.length > 0 && (
-          <Pagination
+          <ThreadsPagination
             dataForPage={dataForPage}
             pagination={pagination}
             setPagination={setPagination}

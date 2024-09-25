@@ -406,3 +406,239 @@ items:
     type: 'answer'
     creation_date: '2024, 10, 5'
     reply_to: '@post45'
+
+  post47:
+    author: '@member1'
+    title: "Voici comment j'ai créé une web-API avec Nest qui permet d'afficher les réponses de réponses de réponses de réponses de réponses de réponses de réponses de..."
+    content: "Et bien, c'est très simple : Pour cela il suffit de"
+    type: 'topic'
+    creation_date: '2024, 9, 21'
+    tags:
+      - '@tag12'
+      - '@tag13'
+
+  post48:
+    author: '@member6'
+    content: 'ptdr'
+    type: 'comment'
+    creation_date: '2024, 9, 22'
+    reply_to: '@post47'
+
+  post49:
+    author: '@member2'
+    content: "Je ne suis pas sûr, mais je crois que techniquement, il manque peut-être la fin du message (désolé si j'ai mal compris)"
+    type: 'comment'
+    creation_date: '2024, 9, 23'
+    reply_to: '@post47'
+
+  post50:
+    author: '@member1'
+    content: "Ne sois pas désolé, c'est parfaitement compréhensible. Ce que je voulais dire, c'est simplement"
+    type: 'comment'
+    creation_date: '2024, 9, 24'
+    reply_to: '@post49'
+
+  post51:
+    author: '@member5'
+    content: 'Prière de ne pas nourrir les trolls. Merci.'
+    type: 'comment'
+    creation_date: '2024, 9, 25'
+    reply_to: '@post49'
+
+  post52:
+    author: '@member6'
+    content: "Je ne vois pas de quoi tu parles ! Ce thread est le meilleur que j'ai lu depuis longtemps !"
+    type: 'comment'
+    creation_date: '2024, 9, 26'
+    reply_to: '@post51'
+
+  post53:
+    author: '@member3'
+    content: 'Il se passe quoi ici ?'
+    type: 'comment'
+    creation_date: '2024, 9, 27'
+    reply_to: '@post47'
+
+  post54:
+    author: '@member1'
+    content: "Rien de spécial, on parle de développement, et je partage un peu de ma petite expérience. D'ailleurs, n'hésite pas à"
+    type: 'comment'
+    creation_date: '2024, 9, 28'
+    reply_to: '@post53'
+
+  post55:
+    author: '@member3'
+    content: '???'
+    type: 'comment'
+    creation_date: '2024, 9, 29'
+    reply_to: '@post54'
+
+  post56:
+    author: '@member1'
+    content: "Je ne suis pas sûr que ces trois points d'interrogations soient très efficaces en terme de code, mais je ne connais pas tous les"
+    type: 'comment'
+    creation_date: '2024, 9, 30'
+    reply_to: '@post55'
+
+  post57:
+    author: '@member4'
+    content: 'Ok. Pfff. Cloture ?'
+    type: 'comment'
+    creation_date: '2024, 10, 1'
+    reply_to: '@post47'
+
+  post58:
+    author: '@member6'
+    content: 'Arrête, arrête, tu te fais du mal...'
+    type: 'comment'
+    creation_date: '2024, 10, 2'
+    reply_to: '@post57'
+
+  post59:
+    author: '@member10'
+    content: "Merci pour ce retour très intéressant, j'ai eu à peu près les mêmes problèmes, et j'en suis arrivé aux mêmes conclusions."
+    type: 'comment'
+    creation_date: '2024, 10, 3'
+    reply_to: '@post47'
+
+  post60:
+    author: '@member3'
+    content: 'Attends, quoi ?'
+    type: 'comment'
+    creation_date: '2024, 10, 4'
+    reply_to: '@post59'
+
+  post61:
+    author: '@member2'
+    content: "Je crois que j'ai eu des soucis pour lire le message de base, comment tu as fait ? Au pire tu peux me le dire en mp (enfin, si tu veux)..."
+    type: 'comment'
+    creation_date: '2024, 10, 5'
+    reply_to: '@post59'
+
+  post62:
+    author: '@member6'
+    content: 'ptdr'
+    type: 'comment'
+    creation_date: '2024, 10, 6'
+    reply_to: '@post59'
+
+  post63:
+    author: '@member5'
+    content: "La fonction de messages privées n'est pas encore active sur le site, pour le reste, j'ai pas les mots..."
+    type: 'comment'
+    creation_date: '2024, 10, 7'
+    reply_to: '@post61'
+
+  post64:
+    author: '@member1'
+    content: "Si tu as des problèmes avec la visualisation des publications, c'est certainement un problème d'interface chaise/clavier ! Ça arrive souvent ! En général il suffit de"
+    type: 'comment'
+    creation_date: '2024, 10, 8'
+    reply_to: '@post61'
+
+  post65:
+    author: '@member2'
+    content: "Le pire, c'est que c'est juste la fin de certains messages qui n'apparaissent pas, du coup je n'ai pas pu lire ta solution, c'est rageant !"
+    type: 'comment'
+    creation_date: '2024, 10, 9'
+    reply_to: '@post64'
+
+  post66:
+    author: '@member1'
+    content: "Dans ce cas-là, ce que tu peux faire, c'est"
+    type: 'comment'
+    creation_date: '2024, 10, 10'
+    reply_to: '@post65'
+
+  post67:
+    author: '@member2'
+    content: "Excuse-moi, mais tu peux encore répéter, je n'ai toujours pas la fin !"
+    type: 'comment'
+    creation_date: '2024, 10, 11'
+    reply_to: '@post66'
+
+  post68:
+    author: '@member6'
+    content: "J'ai la rage ! mdrrr"
+    type: 'comment'
+    creation_date: '2024, 10, 12'
+    reply_to: '@post65'
+
+  post69:
+    author: '@member7'
+    content: 'Tu vois pas que tout le monde se fout de ta gueule ? (#ref)'
+    type: 'comment'
+    creation_date: '2024, 10, 13'
+    is_readable: false
+    reply_to: '@post67'
+
+  post70:
+    author: '@member9'
+    content: "Je crois qu'il se prend encore pour le chevalier du lionnet..."
+    type: 'comment'
+    creation_date: '2024, 10, 14'
+    reply_to: '@post47'
+
+  post71:
+    author: '@member4'
+    content: "J'ai pas la ref, mais bon troll nonobstant"
+    type: 'comment'
+    creation_date: '2024, 10, 15'
+    reply_to: '@post70'
+
+  post72:
+    author: '@member8'
+    content: 'Dla deumer, ce post'
+    type: 'comment'
+    creation_date: '2024, 10, 16'
+    reply_to: '@post47'
+
+  post73:
+    author: '@member3'
+    content: "Ok, c'est vraiment le pire troll que j'ai jamais vu, et pourtant je suis un expert en la matière..."
+    type: 'comment'
+    is_readable: false
+    creation_date: '2024, 10, 17'
+    reply_to: '@post47'
+
+  post74:
+    author: '@member5'
+    content: 'Mais...'
+    type: 'comment'
+    creation_date: '2024, 9, 25'
+    reply_to: '@post47'
+
+  post75:
+    author: '@member3'
+    content: "Mais... Qu'est-ce que !! (Je suis Snake)"
+    type: 'comment'
+    creation_date: '2024, 10, 10'
+    reply_to: '@post47'
+
+  post76:
+    author: '@member7'
+    content: 'Meilleur post du site (statistiquement)'
+    type: 'comment'
+    creation_date: '2024, 10, 13'
+    reply_to: '@post47'
+
+  post77:
+    author: '@member2'
+    content: "Désolé, mais je n'arrive toujours pas à lire le post de base, et pourtant, vu le nombre de réponses, il a l'air ultra intéressant..."
+    type: 'comment'
+    creation_date: '2024, 10, 8'
+    reply_to: '@post47'
+
+  post78:
+    author: '@member2'
+    content: "Je n'ai toujours pas résolu mon problème, quelqu'un pourrait m'aider svp ?"
+    type: 'comment'
+    creation_date: '2024, 10, 18'
+    reply_to: '@post47'
+
+  post79:
+    author: '@member6'
+    content: 'PTDR'
+    type: 'comment'
+    creation_date: '2024, 10, 19'
+    reply_to: '@post47'

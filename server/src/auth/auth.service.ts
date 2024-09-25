@@ -107,10 +107,12 @@ export class AuthService {
     let hashToCheck: string = '';
     let payload: { id: number };
     let memberFound: boolean = false;
+    let memberBanned: boolean;
 
     for (const log of allLogs) {
       if (log.name === member.login || log.email === member.login) {
         memberFound = true;
+        memberBanned = log.is_banned;
         hashToCheck = log.hashed_password;
         payload = { id: log.id };
         break;
@@ -140,6 +142,18 @@ export class AuthService {
           HttpStatus.BAD_REQUEST,
           {
             cause: 'Password is incorrect',
+          },
+        );
+      } else if (memberBanned) {
+        throw new HttpException(
+          {
+            message: 'Member is banned',
+            error: 'Member is banned',
+            statusCode: HttpStatus.BAD_REQUEST,
+          },
+          HttpStatus.BAD_REQUEST,
+          {
+            cause: 'Member is banned',
           },
         );
       } else {

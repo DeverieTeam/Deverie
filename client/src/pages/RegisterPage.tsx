@@ -16,8 +16,10 @@ export default function RegisterPage() {
   const emailRegex =
     /^[a-zA-Z0-9]([.-]?[a-zA-Z0-9])*@[a-zA-Z]([_-]?[a-zA-Z])*\.[a-zA-Z]{2,4}$/;
 
-  const [isRegisterWindowOpened, SetIsRegisterWindowOpened] = useState<boolean>(false);
-  const [isWarningMessageShowed, setIsWarningMessageShowed] = useState<boolean>(false);
+  const [isRegisterWindowOpened, setIsRegisterWindowOpened] =
+    useState<boolean>(false);
+  const [isWarningMessageShowed, setIsWarningMessageShowed] =
+    useState<boolean>(false);
 
   const [frontWarningMessage, setFrontWarningMessage] = useState<string>("");
 
@@ -110,8 +112,12 @@ export default function RegisterPage() {
       setPasswordWarningMessage(
         webcontent.page.warningMessages.passwordsNotMatching.content
       );
+      setPasswordConfirmWarningMessage(
+        webcontent.page.warningMessages.passwordsNotMatching.content
+      );
     } else {
       setPasswordWarningMessage("");
+      setPasswordConfirmWarningMessage("");
     }
   };
 
@@ -122,10 +128,14 @@ export default function RegisterPage() {
     setIsPasswordsMatching(passwordFieldData == e);
 
     if (passwordFieldData != e) {
+      setPasswordWarningMessage(
+        webcontent.page.warningMessages.passwordsNotMatching.content
+      );
       setPasswordConfirmWarningMessage(
         webcontent.page.warningMessages.passwordsNotMatching.content
       );
     } else {
+      setPasswordWarningMessage("");
       setPasswordConfirmWarningMessage("");
     }
   };
@@ -224,7 +234,7 @@ export default function RegisterPage() {
       if (response.ok) {
         // const result = await response.json();
         // console.log(result);
-        SetIsRegisterWindowOpened(true);
+        setIsRegisterWindowOpened(true);
       } else {
         const result = await response.json();
         switch (result.message) {
@@ -269,19 +279,18 @@ export default function RegisterPage() {
   }, [auth, navigate]);
 
   return (
-    <div className="w-full relative pb-24 flex flex-col">
+    <div className="w-full relative pb-60 flex flex-col">
       <p className="mx-auto my-4 text-center text-indigo-500 text-3xl md:text-4xl font-bold drop-shadow">
         {webcontent.page.title.content}
       </p>
       <form
-        className="xl:max-w-[90%] mx-2 xl:mx-auto my-6 flex flex-col xl:flex-row flex-wrap gap-12"
-        onSubmit={handleSubmit}
-      >
-        <div className="flex-1 mx-auto">
-          <p className="text-lg md:text-xl xl:text-2xl mr-4 mb-8">
+        className="md:mx-auto md:w-[600px] xl:w-[1100px] mx-2 xl:mx-auto my-6 gap-12 xl:gap-20 flex flex-col xl:flex-row xl:flex-wrap"
+        onSubmit={handleSubmit}>
+        <div className="xl:flex-1 flex flex-col">
+          <p className="text-lg md:text-xl xl:text-2xl mb-4">
             {webcontent.page.form.generalInformations.main.content}
           </p>
-          <div className="flex flex-col gap-4 md:gap-6 xl:gap-8">
+          <div className="gap-4 md:gap-6 xl:gap-8 flex flex-col">
             <AutoFormField
               type="text"
               id="usernameField"
@@ -333,11 +342,11 @@ export default function RegisterPage() {
             />
           </div>
         </div>
-        <div className="flex-1 mx-auto">
-          <p className="text-lg md:text-xl xl:text-2xl mr-4 mb-8">
+        <div className="xl:flex-1 flex flex-col">
+          <p className="text-lg md:text-xl xl:text-2xl mb-4">
             {webcontent.page.form.complementaryInformations.main.content}
           </p>
-          <div className="flex flex-col gap-2 xl:gap-4">
+          <div className="gap-2 xl:gap-4 flex flex-col">
             <AutoFormField
               type="text"
               id="pronounsField"
@@ -370,7 +379,7 @@ export default function RegisterPage() {
             />
           </div>
         </div>
-        <div className="mx-auto w-full max-w-[90%] flex-2 flex flex-col gap-4">
+        <div className="mx-auto w-[90%] gap-4 xl:flex-2 flex flex-col">
           {isWarningMessageShowed ? (
             <p className="text-red-700 mx-auto text-sm md:text-lg">
               {frontWarningMessage}
@@ -378,7 +387,7 @@ export default function RegisterPage() {
           ) : (
             <></>
           )}
-          <div className="mx-auto w-full flex justify-evenly xl:justify-between">
+          <div className="mx-auto w-full flex justify-between xl:justify-between">
             <p className="text-xs md:text-sm xl:text-base">
               <span className="text-red-600">*</span>
               {webcontent.page.form.obligatoryFieldsMessage.content}

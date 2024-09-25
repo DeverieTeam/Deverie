@@ -208,7 +208,7 @@ export type commonsWebcontentType = {
         content: string;
       };
     };
-    favorite: {
+    favourite: {
       main: {
         name: string;
         content: string;
@@ -264,7 +264,7 @@ export type commonsWebcontentType = {
       name: string;
       content: string;
     };
-    favorite: {
+    favourite: {
       add: {
         hover: {
           name: string;
@@ -342,7 +342,15 @@ export type commonsWebcontentType = {
     };
   };
   pagination: {
-    resultsOutOf: {
+    result: {
+      name: string;
+      content: string;
+    };
+    answer: {
+      name: string;
+      content: string;
+    };
+    outOf: {
       name: string;
       content: string;
     };

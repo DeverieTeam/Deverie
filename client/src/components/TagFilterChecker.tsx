@@ -25,11 +25,12 @@ export default function TagFilterChecker({
         onChange={handleChange}
       />
       <label
-        for={`tag_${tag.id}`}
+        htmlFor={`tag_${tag.id}`}
         className="text-sm md:text-base gap-1 flex hover:cursor-pointer">
         <img
           className="h-5 w-5 bg-neutral-100 rounded-lg hover:cursor-pointer"
-          src={tag.icon} />
+          src={tag.icon}
+        />
         {tag.name}
       </label>
     </div>

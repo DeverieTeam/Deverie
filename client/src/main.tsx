@@ -14,6 +14,7 @@ import NewPostPage from "./pages/NewPostPage.tsx";
 import RegisterPage from "./pages/RegisterPage.tsx";
 
 import AuthProvider from "./contexts/AuthProvider.tsx";
+import PostViewPage from "./pages/PostViewPage.tsx";
 
 const router = createBrowserRouter([
   {
@@ -70,6 +71,13 @@ const router = createBrowserRouter([
         element: <NewPostPage threadType="question" />,
         loader: async () => {
           return await fetchWebContent("newPost", "fr", true);
+        },
+      },
+      {
+        path: "postView",
+        element: <PostViewPage />,
+        loader: async () => {
+          return await fetchWebContent("postView", "fr", true);
         },
       },
       {

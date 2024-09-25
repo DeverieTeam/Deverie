@@ -21,7 +21,7 @@ export type threadsrowWebcontentType = {
       content: string;
     };
   };
-  favorite: {
+  favourite: {
     add: {
       hover: {
         name: string;

@@ -2,15 +2,7 @@ import { useEffect, useState } from "react";
 import { TagsContext } from "./TagsContext";
 
 export default function TagsProvider({ children }: Props) {
-  const [tags, setTags] = useState<null | string[]>(() => {
-    const storedTags = localStorage.getItem("Tags");
-
-    if (storedTags) {
-      return storedTags.split("&");
-    } else {
-      return null;
-    }
-  });
+  const [tags, setTags] = useState<null | string[]>(null);
 
   useEffect(() => {
     if (tags === null) {
@@ -26,7 +18,14 @@ export default function TagsProvider({ children }: Props) {
           data.map((item: { id: number; name: string; family: string }) => {
             tagArray.push(item.name);
           });
-          setTags(tagArray);
+          const storageChecked = localStorage.getItem("Tags");
+          if (storageChecked) {
+            let storedTags = storageChecked.split("&");
+            storedTags = storedTags.filter((tag) => tagArray.includes(tag));
+            setTags(storedTags);
+          } else {
+            setTags(tagArray);
+          }
         });
     }
   }, [tags]);

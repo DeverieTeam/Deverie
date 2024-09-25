@@ -199,7 +199,7 @@ export type newpostpageWebcontentType = {
           content: string;
         };
       };
-      favorite: {
+      favourite: {
         main: {
           name: string;
           content: string;
@@ -223,7 +223,7 @@ export type newpostpageWebcontentType = {
         name: string;
         content: string;
       };
-      favorite: {
+      favourite: {
         add: {
           hover: {
             name: string;

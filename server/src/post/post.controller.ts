@@ -22,6 +22,26 @@ export class PostController {
     return this.service.getPopularOrRecentPosts(max, sort);
   }
 
+  @Get('detailed/:id')
+  async getPostById(
+    @Param('id') id: number,
+    @Query('max') max: string = '10',
+    @Query('page') page: string = '0',
+    @Query('sort')
+    sort: 'chrono' | 'recent' | 'rate',
+  ) {
+    return this.service.getPostById(id, max, page, sort);
+  }
+
+  @Get('reply/:id')
+  async getReplyById(
+    @Param('id') id: number,
+    @Query('sort')
+    sort: 'chrono' | 'recent' | 'rate',
+  ) {
+    return this.service.getReplyById(id, sort);
+  }
+
   @Get(':type')
   async getPostsByType(
     @Param('type') type: 'topic' | 'question',

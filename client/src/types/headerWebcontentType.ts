@@ -36,7 +36,7 @@ export type headerWebcontentType = {
         content: string;
       };
     };
-    favorite: {
+    favourite: {
       main: {
         name: string;
         content: string;

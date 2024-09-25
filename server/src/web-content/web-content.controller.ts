@@ -85,4 +85,14 @@ export class WebContentController {
       lang: lang.toLowerCase(),
     });
   }
+
+  @Get('/postView')
+  getPostViewPageWebContent(@Query('lang') lang: string) {
+    if (lang == undefined) {
+      lang = 'default';
+    }
+    return this.webContentService.getPostViewPageWebContent({
+      lang: lang.toLowerCase(),
+    });
+  }
 }

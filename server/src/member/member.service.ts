@@ -34,7 +34,7 @@ export class MemberService {
 
   async getAllMemberLogs() {
     return await this.memberRepository.find({
-      select: ['id', 'name', 'email', 'hashed_password'],
+      select: ['id', 'name', 'email', 'hashed_password', 'is_banned'],
     });
   }
 

@@ -5,6 +5,7 @@ import * as threadsFr from '../sitedata/threads/threads.fr.json';
 import * as wipageFr from '../sitedata/wipage/wipage.fr.json';
 import * as notFoundFr from '../sitedata/notFound/notFound.fr.json';
 import * as newPostPageFr from '../sitedata/newPost/newPost.fr.json';
+import * as postViewPageFr from '../sitedata/postView/postView.fr.json';
 import * as registerPageFr from '../sitedata/register/register.fr.json';
 
 const httpError = (customMessage: string) => {
@@ -190,6 +191,22 @@ export class WebContentService {
     } else {
       return {
         fr: registerPageFr,
+      };
+    }
+  }
+
+  getPostViewPageWebContent(params: { lang: string }) {
+    if (params.lang !== 'default') {
+      switch (params.lang) {
+        case 'fr':
+          return postViewPageFr;
+        default:
+          httpError('Language not handled');
+          break;
+      }
+    } else {
+      return {
+        fr: postViewPageFr,
       };
     }
   }

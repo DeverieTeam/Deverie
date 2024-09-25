@@ -199,7 +199,7 @@ export type homepageWebcontentType = {
           content: string;
         };
       };
-      favorite: {
+      favourite: {
         main: {
           name: string;
           content: string;
@@ -223,7 +223,17 @@ export type homepageWebcontentType = {
         name: string;
         content: string;
       };
-      favorite: {
+      closureText: {
+        topic: {
+          name: string;
+          content: string;
+        };
+        question: {
+          name: string;
+          content: string;
+        };
+      };
+      favourite: {
         add: {
           hover: {
             name: string;

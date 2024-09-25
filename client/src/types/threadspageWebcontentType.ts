@@ -209,7 +209,7 @@ export type threadspageWebcontentType = {
           content: string;
         };
       };
-      favorite: {
+      favourite: {
         main: {
           name: string;
           content: string;
@@ -275,7 +275,7 @@ export type threadspageWebcontentType = {
           content: string;
         };
       };
-      favorite: {
+      favourite: {
         add: {
           hover: {
             name: string;
@@ -353,7 +353,15 @@ export type threadspageWebcontentType = {
       };
     };
     pagination: {
-      resultsOutOf: {
+      result: {
+        name: string;
+        content: string;
+      };
+      answer: {
+        name: string;
+        content: string;
+      };
+      outOf: {
         name: string;
         content: string;
       };
