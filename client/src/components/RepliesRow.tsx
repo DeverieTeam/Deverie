@@ -3,7 +3,14 @@ import { useAuth } from "../contexts/useAuth";
 import RepliesDisplayer from "./RepliesDisplayer";
 import { postviewpageWebcontentType } from "../types/postviewpageWebcontentType";
 
-export default function RepliesRow({ id, sort, webcontent }: Props) {
+export default function RepliesRow({
+  id,
+  sort,
+  setSourcePostId,
+  setIsNewReplyWindowOpened,
+  setIsConnectionNeededClicked,
+  webcontent,
+}: Props) {
   const [data, setData] = useState<null | {
     id: number;
     author: {
@@ -41,6 +48,15 @@ export default function RepliesRow({ id, sort, webcontent }: Props) {
     setAreDetailsOpened(!areDetailsOpened);
   };
 
+  const handleReplyButton = () => {
+    if (data && auth !== undefined && auth.role !== "client") {
+      setSourcePostId(data.id);
+      setIsNewReplyWindowOpened(true);
+    } else {
+      setIsConnectionNeededClicked(true);
+    }
+  };
+
   return (
     <div>
       <div className="w-full py-2 md:px-0 self-center gap-2 md:gap-4 flex flex-col">
@@ -62,7 +78,8 @@ export default function RepliesRow({ id, sort, webcontent }: Props) {
                     className="my-auto w-5 md:w-6 h-5 md:h-6 bg-transparent"
                     viewBox="0 0 24 24"
                     fill="none"
-                    xmlns="http://www.w3.org/2000/svg">
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
                     <path
                       d="M15 11L12 8M12 8L9 11M12 8V16M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
                       stroke="currentColor"
@@ -80,7 +97,8 @@ export default function RepliesRow({ id, sort, webcontent }: Props) {
                     className="my-auto w-5 md:w-6 h-5 md:h-6 bg-transparent"
                     viewBox="0 0 24 24"
                     fill="none"
-                    xmlns="http://www.w3.org/2000/svg">
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
                     <path
                       d="M9 13L12 16M12 16L15 13M12 16V8M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
                       stroke="currentColor"
@@ -100,7 +118,9 @@ export default function RepliesRow({ id, sort, webcontent }: Props) {
               </div>
             </div>
             <div className="md:py-2 text-justify text-base md:text-xl">
-              {data.content}
+              {data.content
+                .split("\n")
+                .flatMap((line: string, i: number) => [line, <br key={i} />])}
             </div>
             <div className="justify-between flex">
               {data.modification_author !== null && (
@@ -124,7 +144,8 @@ export default function RepliesRow({ id, sort, webcontent }: Props) {
                         className="m-auto w-5 md:w-6 h-5 md:h-6 bg-transparent"
                         viewBox="0 0 24 24"
                         fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
                         <path
                           d="M12 3.99997H6C4.89543 3.99997 4 4.8954 4 5.99997V18C4 19.1045 4.89543 20 6 20H18C19.1046 20 20 19.1045 20 18V12M18.4142 8.41417L19.5 7.32842C20.281 6.54737 20.281 5.28104 19.5 4.5C18.7189 3.71895 17.4526 3.71895 16.6715 4.50001L15.5858 5.58575M18.4142 8.41417L12.3779 14.4505C12.0987 14.7297 11.7431 14.9201 11.356 14.9975L8.41422 15.5858L9.00257 12.6441C9.08001 12.2569 9.27032 11.9013 9.54951 11.6221L15.5858 5.58575M18.4142 8.41417L15.5858 5.58575"
                           stroke="currentColor"
@@ -140,7 +161,8 @@ export default function RepliesRow({ id, sort, webcontent }: Props) {
                         height="800px"
                         className="m-auto w-5 md:w-6 h-5 md:h-6 bg-transparent"
                         viewBox="0 0 1024 1024"
-                        xmlns="http://www.w3.org/2000/svg">
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
                         <path
                           fill="currentColor"
                           d="M160 256H96a32 32 0 0 1 0-64h256V95.936a32 32 0 0 1 32-32h256a32 32 0 0 1 32 32V192h256a32 32 0 1 1 0 64h-64v672a32 32 0 0 1-32 32H192a32 32 0 0 1-32-32V256zm448-64v-64H416v64h192zM224 896h576V256H224v640zm192-128a32 32 0 0 1-32-32V416a32 32 0 0 1 64 0v320a32 32 0 0 1-32 32zm192 0a32 32 0 0 1-32-32V416a32 32 0 0 1 64 0v320a32 32 0 0 1-32 32z"
@@ -156,7 +178,10 @@ export default function RepliesRow({ id, sort, webcontent }: Props) {
       {data !== null && (
         <div className="px-1 justify-between gap-2 md:px-0 md:max-w-[750px] md:mx-auto flex flex-col">
           <div className="justify-start gap-2 flex">
-            <button className="px-4 py-0.5 bg-indigo-400 hover:bg-indigo-600 self-center hover:text-white text-center text-base md:text-lg rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900">
+            <button
+              className="px-4 py-0.5 bg-indigo-400 hover:bg-indigo-600 self-center hover:text-white text-center text-base md:text-lg rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900"
+              onClick={handleReplyButton}
+            >
               {webcontent.page.answerButton.content}
             </button>
           </div>
@@ -164,7 +189,8 @@ export default function RepliesRow({ id, sort, webcontent }: Props) {
             <details className="w-full mb-4 items-end flex flex-col">
               <summary
                 className="w-60 md:w-72 md:text-lg py-1 pl-4 bg-neutral-100 hover:bg-white rounded-lg cursor-pointer shadow-sm shadow-neutral-400"
-                onClick={handleDetailsClick}>
+                onClick={handleDetailsClick}
+              >
                 {areDetailsOpened
                   ? `${webcontent.page.hideAnswers.content} (${data.replies.length})`
                   : `${webcontent.page.displayAnswers.content} (${data.replies.length})`}
@@ -173,6 +199,9 @@ export default function RepliesRow({ id, sort, webcontent }: Props) {
                 <RepliesDisplayer
                   repliesId={data.replies}
                   sort={sort}
+                  setSourcePostId={setSourcePostId}
+                  setIsNewReplyWindowOpened={setIsNewReplyWindowOpened}
+                  setIsConnectionNeededClicked={setIsConnectionNeededClicked}
                   webcontent={webcontent}
                 />
               </div>
@@ -187,5 +216,8 @@ export default function RepliesRow({ id, sort, webcontent }: Props) {
 type Props = {
   id: number;
   sort: string;
+  setSourcePostId: (arg0: number) => void;
+  setIsNewReplyWindowOpened: (arg0: boolean) => void;
+  setIsConnectionNeededClicked: (arg0: boolean) => void;
   webcontent: postviewpageWebcontentType;
 };

@@ -432,5 +432,13 @@ export type postviewpageWebcontentType = {
       name: string;
       content: string;
     };
+    postContent: {
+      name: string;
+      content: string;
+    };
+    postContentPlaceholder: {
+      name: string;
+      content: string;
+    };
   };
 };

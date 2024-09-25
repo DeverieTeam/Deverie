@@ -7,8 +7,11 @@ import { useAuth } from "../contexts/useAuth";
 import PostPagination from "../components/PostPagination";
 import RepliesDisplayer from "../components/RepliesDisplayer";
 import { postviewpageWebcontentType } from "../types/postviewpageWebcontentType";
+import NewReplyWindow from "../components/NewReplyWindow";
 
 export default function PostViewPage() {
+  const [isNewReplyWindowOpened, setIsNewReplyWindowOpened] =
+    useState<boolean>(false);
   const [isConnectionNeededClicked, setIsConnectionNeededClicked] =
     useState<boolean>(false);
   const [isConnectionWindowDisplayed, setIsConnectionWindowDisplayed] =
@@ -40,6 +43,7 @@ export default function PostViewPage() {
   }>(null);
   const [pagination, setPagination] = useState<number>(1);
   const [sort, setSort] = useState<string>("popular");
+  const [sourcePostId, setSourcePostId] = useState<null | number>(null);
 
   const webcontent = useLoaderData() as postviewpageWebcontentType;
 
@@ -47,6 +51,15 @@ export default function PostViewPage() {
   const query = new URLSearchParams(location.search).get("id");
   const navigate = useNavigate();
   const { auth } = useAuth();
+
+  const handleReplyButton = () => {
+    if (data && auth !== undefined && auth.role !== "client") {
+      setSourcePostId(data.id);
+      setIsNewReplyWindowOpened(true);
+    } else {
+      setIsConnectionNeededClicked(true);
+    }
+  };
 
   useEffect(() => {
     if (query !== null) {
@@ -125,7 +138,8 @@ export default function PostViewPage() {
                 bg-transparent"
                     viewBox="0 0 24 24"
                     fill="none"
-                    xmlns="http://www.w3.org/2000/svg">
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
                     <path
                       d="M12 3.99997H6C4.89543 3.99997 4 4.8954 4 5.99997V18C4 19.1045 4.89543 20 6 20H18C19.1046 20 20 19.1045 20 18V12M18.4142 8.41417L19.5 7.32842C20.281 6.54737 20.281 5.28104 19.5 4.5C18.7189 3.71895 17.4526 3.71895 16.6715 4.50001L15.5858 5.58575M18.4142 8.41417L12.3779 14.4505C12.0987 14.7297 11.7431 14.9201 11.356 14.9975L8.41422 15.5858L9.00257 12.6441C9.08001 12.2569 9.27032 11.9013 9.54951 11.6221L15.5858 5.58575M18.4142 8.41417L15.5858 5.58575"
                       stroke="currentColor"
@@ -184,7 +198,9 @@ export default function PostViewPage() {
               )}
             </div>
             <div className="md:py-2 text-justify text-base md:text-xl">
-              {data.content}
+              {data.content
+                .split("\n")
+                .flatMap((line: string, i: number) => [line, <br key={i} />])}
             </div>
             <div className="justify-between flex">
               {data.modification_author !== null && (
@@ -208,7 +224,8 @@ export default function PostViewPage() {
                         className="m-auto w-5 md:w-6 h-5 md:h-6 bg-transparent"
                         viewBox="0 0 24 24"
                         fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
                         <path
                           d="M12 3.99997H6C4.89543 3.99997 4 4.8954 4 5.99997V18C4 19.1045 4.89543 20 6 20H18C19.1046 20 20 19.1045 20 18V12M18.4142 8.41417L19.5 7.32842C20.281 6.54737 20.281 5.28104 19.5 4.5C18.7189 3.71895 17.4526 3.71895 16.6715 4.50001L15.5858 5.58575M18.4142 8.41417L12.3779 14.4505C12.0987 14.7297 11.7431 14.9201 11.356 14.9975L8.41422 15.5858L9.00257 12.6441C9.08001 12.2569 9.27032 11.9013 9.54951 11.6221L15.5858 5.58575M18.4142 8.41417L15.5858 5.58575"
                           stroke="currentColor"
@@ -224,7 +241,8 @@ export default function PostViewPage() {
                         height="800px"
                         className="m-auto w-5 md:w-6 h-5 md:h-6 bg-transparent"
                         viewBox="0 0 1024 1024"
-                        xmlns="http://www.w3.org/2000/svg">
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
                         <path
                           fill="currentColor"
                           d="M160 256H96a32 32 0 0 1 0-64h256V95.936a32 32 0 0 1 32-32h256a32 32 0 0 1 32 32V192h256a32 32 0 1 1 0 64h-64v672a32 32 0 0 1-32 32H192a32 32 0 0 1-32-32V256zm448-64v-64H416v64h192zM224 896h576V256H224v640zm192-128a32 32 0 0 1-32-32V416a32 32 0 0 1 64 0v320a32 32 0 0 1-32 32zm192 0a32 32 0 0 1-32-32V416a32 32 0 0 1 64 0v320a32 32 0 0 1-32 32z"
@@ -257,7 +275,10 @@ export default function PostViewPage() {
               </button>
             )}
           <div className="flex-1 justify-end gap-2 flex">
-            <button className="px-4 py-0.5 bg-indigo-400 hover:bg-indigo-600 self-center hover:text-white text-center text-base md:text-lg rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900">
+            <button
+              className="px-4 py-0.5 bg-indigo-400 hover:bg-indigo-600 self-center hover:text-white text-center text-base md:text-lg rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900"
+              onClick={handleReplyButton}
+            >
               {webcontent.page.answerButton.content}
             </button>
           </div>
@@ -269,6 +290,9 @@ export default function PostViewPage() {
             <RepliesDisplayer
               repliesId={data.replies}
               sort={sort}
+              setSourcePostId={setSourcePostId}
+              setIsNewReplyWindowOpened={setIsNewReplyWindowOpened}
+              setIsConnectionNeededClicked={setIsConnectionNeededClicked}
               webcontent={webcontent}
             />
           </div>
@@ -283,6 +307,14 @@ export default function PostViewPage() {
             webcontent={webcontent.commons.pagination}
           />
         </div>
+      )}
+      {data && sourcePostId && isNewReplyWindowOpened && (
+        <NewReplyWindow
+          setIsNewReplyWindowOpened={setIsNewReplyWindowOpened}
+          sourcePostType={data.type}
+          sourcePostId={sourcePostId}
+          webcontent={webcontent}
+        />
       )}
       {isConnectionWindowDisplayed && (
         <ConnectionWindow

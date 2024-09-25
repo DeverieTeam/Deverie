@@ -517,4 +517,11 @@ export class PostService {
 
     return this.refineReplyData(response);
   }
+
+  async createReply(post) {
+    const returnedValue = await this.postRepository.save(post);
+    return {
+      id: returnedValue.id,
+    };
+  }
 }

@@ -40,5 +40,13 @@
   "hideAnswers": {
     "name": "Texte du bouton permettant de masquer les réponses à un message",
     "content": "Masquer les réponses"
+  },
+  "postContent": {
+    "name": "Texte associé au champ de saisie du contenu du post",
+    "content": "Contenu :"
+  },
+  "postContentPlaceholder": {
+    "name": "Placeholder du champ de saisie du contenu du post",
+    "content": "Contenu de votre post"
   }
 }

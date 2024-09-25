@@ -69,4 +69,18 @@ export class PostController {
   ) {
     return this.service.createPost(post);
   }
+
+  @UseGuards(AuthGuard('jwt'))
+  @Post('newReply')
+  async createReply(
+    @Body()
+    post: {
+      type: 'comment' | 'answer';
+      content: string;
+      author: number;
+      reply_to: number;
+    },
+  ) {
+    return this.service.createReply(post);
+  }
 }
