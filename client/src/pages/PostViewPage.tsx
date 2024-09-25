@@ -10,11 +10,14 @@ import { postviewpageWebcontentType } from "../types/postviewpageWebcontentType"
 import NewReplyWindow from "../components/NewReplyWindow";
 import PostEditWindow from "../components/PostEditWindow";
 import TagEditWindow from "../components/TagEditWindow";
+import PostDeletionWindow from "../components/PostDeletionWindow";
 
 export default function PostViewPage() {
   const [isNewReplyWindowOpened, setIsNewReplyWindowOpened] =
     useState<boolean>(false);
   const [isPostEditWindowOpened, setIsPostEditWindowOpened] =
+    useState<boolean>(false);
+  const [isPostDeletionWindowOpened, setIsPostDeletionWindowOpened] =
     useState<boolean>(false);
   const [isTagEditWindowOpened, setIsTagEditWindowOpened] =
     useState<boolean>(false);
@@ -52,6 +55,7 @@ export default function PostViewPage() {
   const [sourcePostId, setSourcePostId] = useState<null | number>(null);
   const [postId, setPostId] = useState<null | number>(null);
   const [postContent, setPostContent] = useState<null | string>(null);
+  const [postType, setPostType] = useState<null | string>(null);
 
   const webcontent = useLoaderData() as postviewpageWebcontentType;
 
@@ -101,6 +105,14 @@ export default function PostViewPage() {
     if (data && auth !== undefined && auth.role !== "client") {
       setPostId(data.id);
       setIsTagEditWindowOpened(true);
+    }
+  };
+
+  const handleDeleteButton = () => {
+    if (data && auth !== undefined && auth.role !== "client") {
+      setPostId(data.id);
+      setPostType("thread");
+      setIsPostDeletionWindowOpened(true);
     }
   };
 
@@ -284,7 +296,10 @@ export default function PostViewPage() {
                         />
                       </svg>
                     </button>
-                    <button className="w-7 md:w-8 h-7 md:h-8 bg-indigo-400 hover:bg-indigo-600 self-center hover:text-white text-center rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900">
+                    <button
+                      className="w-7 md:w-8 h-7 md:h-8 bg-indigo-400 hover:bg-indigo-600 self-center hover:text-white text-center rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900"
+                      onClick={handleDeleteButton}
+                    >
                       <svg
                         width="800px"
                         height="800px"
@@ -345,6 +360,8 @@ export default function PostViewPage() {
               setPostId={setPostId}
               setPostContent={setPostContent}
               setIsPostEditWindowOpened={setIsPostEditWindowOpened}
+              setPostType={setPostType}
+              setIsPostDeletionWindowOpened={setIsPostDeletionWindowOpened}
               webcontent={webcontent}
             />
           </div>
@@ -373,6 +390,14 @@ export default function PostViewPage() {
           setIsPostEditWindowOpened={setIsPostEditWindowOpened}
           postId={postId}
           previousContent={postContent}
+          webcontent={webcontent}
+        />
+      )}
+      {postId && postType && isPostDeletionWindowOpened && (
+        <PostDeletionWindow
+          setIsPostDeletionWindowOpened={setIsPostDeletionWindowOpened}
+          postType={postType}
+          postId={postId}
           webcontent={webcontent}
         />
       )}

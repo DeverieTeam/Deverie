@@ -56,5 +56,13 @@
   "tagNumberDisclaimer": {
     "name": "Texte d'invitation à sélectionner le bon nombre de tags",
     "content": "Veuillez sélectionner de 1 à 4 Tags"
+  },
+  "deletionTitle": {
+    "name": "Titre de la fenêtre de suppression de post",
+    "content": "Supprimer un post"
+  },
+  "deletionConfirmMessage": {
+    "name": "Texte de confirmation de suppression de post",
+    "content": "Le message sera supprimé définitivement ! Etes-vous certain de vouloir continuer ?"
   }
 }

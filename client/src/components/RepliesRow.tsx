@@ -12,6 +12,8 @@ export default function RepliesRow({
   setPostId,
   setPostContent,
   setIsPostEditWindowOpened,
+  setPostType,
+  setIsPostDeletionWindowOpened,
   webcontent,
 }: Props) {
   const [data, setData] = useState<null | {
@@ -65,6 +67,14 @@ export default function RepliesRow({
       setPostId(data.id);
       setPostContent(data.content);
       setIsPostEditWindowOpened(true);
+    }
+  };
+
+  const handleDeleteButton = () => {
+    if (data && auth !== undefined && auth.role !== "client") {
+      setPostId(data.id);
+      setPostType("reply");
+      setIsPostDeletionWindowOpened(true);
     }
   };
 
@@ -169,7 +179,10 @@ export default function RepliesRow({
                         />
                       </svg>
                     </button>
-                    <button className="w-7 md:w-8 h-7 md:h-8 bg-indigo-400 hover:bg-indigo-600 self-center hover:text-white text-center rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900">
+                    <button
+                      className="w-7 md:w-8 h-7 md:h-8 bg-indigo-400 hover:bg-indigo-600 self-center hover:text-white text-center rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900"
+                      onClick={handleDeleteButton}
+                    >
                       <svg
                         width="800px"
                         height="800px"
@@ -219,6 +232,8 @@ export default function RepliesRow({
                   setPostId={setPostId}
                   setPostContent={setPostContent}
                   setIsPostEditWindowOpened={setIsPostEditWindowOpened}
+                  setPostType={setPostType}
+                  setIsPostDeletionWindowOpened={setIsPostDeletionWindowOpened}
                   webcontent={webcontent}
                 />
               </div>
@@ -239,5 +254,7 @@ type Props = {
   setPostId: (arg0: number) => void;
   setPostContent: (arg0: string) => void;
   setIsPostEditWindowOpened: (arg0: boolean) => void;
+  setPostType: (arg0: string) => void;
+  setIsPostDeletionWindowOpened: (arg0: boolean) => void;
   webcontent: postviewpageWebcontentType;
 };

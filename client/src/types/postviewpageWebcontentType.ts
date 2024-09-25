@@ -448,5 +448,13 @@ export type postviewpageWebcontentType = {
       name: string;
       content: string;
     };
+    deletionTitle: {
+      name: string;
+      content: string;
+    };
+    deletionConfirmMessage: {
+      name: string;
+      content: string;
+    };
   };
 };
