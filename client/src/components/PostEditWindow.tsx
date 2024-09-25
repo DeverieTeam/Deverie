@@ -3,23 +3,23 @@ import { postviewpageWebcontentType } from "../types/postviewpageWebcontentType"
 import { useAuth } from "../contexts/useAuth";
 import Cookies from "universal-cookie";
 
-export default function NewReplyWindow({
-  setIsNewReplyWindowOpened,
-  sourcePostType,
-  sourcePostId,
+export default function PostEditWindow({
+  setIsPostEditWindowOpened,
+  postId,
+  previousContent,
   webcontent,
 }: Props) {
-  const [content, setContent] = useState<string>("");
+  const [content, setContent] = useState<string>(previousContent);
   const { auth } = useAuth();
 
   useEffect(() => {
     if (auth && auth.role && auth.role === "client") {
-      setIsNewReplyWindowOpened(false);
+      setIsPostEditWindowOpened(false);
     }
-  }, [auth, setIsNewReplyWindowOpened]);
+  }, [auth, setIsPostEditWindowOpened]);
 
   const exitTagWindow = () => {
-    setIsNewReplyWindowOpened(false);
+    setIsPostEditWindowOpened(false);
   };
 
   const handleContentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -37,26 +37,14 @@ export default function NewReplyWindow({
   const handleSubmit = async (e: React.BaseSyntheticEvent) => {
     e.preventDefault();
     if (auth && auth.id) {
-      let bodyType: "comment" | "answer";
-      switch (sourcePostType) {
-        case "topic":
-          bodyType = "comment";
-          break;
-        case "question":
-          bodyType = "answer";
-          break;
-      }
-
       const body: {
-        type: string;
+        id: number;
         content: string;
-        author: number;
-        reply_to: number;
+        modification_author: number;
       } = {
-        type: bodyType,
+        id: postId,
         content: content,
-        author: auth.id,
-        reply_to: sourcePostId,
+        modification_author: auth.id,
       };
 
       try {
@@ -64,8 +52,8 @@ export default function NewReplyWindow({
           path: "/",
         });
         const jwt = cookies.get("JWT");
-        const response = await fetch("http://localhost:3000/post/newReply", {
-          method: "POST",
+        const response = await fetch("http://localhost:3000/post", {
+          method: "PUT",
           headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
@@ -100,7 +88,7 @@ export default function NewReplyWindow({
             onSubmit={handleSubmit}
           >
             <p className="text-center px-8 text-indigo-500 text-3xl md:text-4xl font-bold drop-shadow">
-              {webcontent.page.answerButton.content}
+              {webcontent.page.editTitle.content}
             </p>
             <div className="flex flex-col">
               <p className="text-lg md:text-2xl">
@@ -138,8 +126,8 @@ export default function NewReplyWindow({
 }
 
 type Props = {
-  setIsNewReplyWindowOpened: (arg0: boolean) => void;
-  sourcePostType: "topic" | "question";
-  sourcePostId: number;
+  setIsPostEditWindowOpened: (arg0: boolean) => void;
+  postId: number;
+  previousContent: string;
   webcontent: postviewpageWebcontentType;
 };

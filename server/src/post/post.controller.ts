@@ -4,6 +4,7 @@ import {
   Get,
   Param,
   Post,
+  Put,
   Query,
   UseGuards,
 } from '@nestjs/common';
@@ -82,5 +83,19 @@ export class PostController {
     },
   ) {
     return this.service.createReply(post);
+  }
+
+  @UseGuards(AuthGuard('jwt'))
+  @Put()
+  async updatePost(
+    @Body()
+    post: {
+      id: number;
+      content?: string;
+      modification_author: number;
+      tags?: { id: number }[];
+    },
+  ) {
+    return this.service.updatePost(post);
   }
 }

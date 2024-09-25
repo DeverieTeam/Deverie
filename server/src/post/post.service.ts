@@ -524,4 +524,11 @@ export class PostService {
       id: returnedValue.id,
     };
   }
+
+  async updatePost(post) {
+    const returnedValue = await this.postRepository.save(post);
+    return {
+      id: returnedValue.id,
+    };
+  }
 }

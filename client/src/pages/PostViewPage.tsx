@@ -8,9 +8,12 @@ import PostPagination from "../components/PostPagination";
 import RepliesDisplayer from "../components/RepliesDisplayer";
 import { postviewpageWebcontentType } from "../types/postviewpageWebcontentType";
 import NewReplyWindow from "../components/NewReplyWindow";
+import PostEditWindow from "../components/PostEditWindow";
 
 export default function PostViewPage() {
   const [isNewReplyWindowOpened, setIsNewReplyWindowOpened] =
+    useState<boolean>(false);
+  const [isPostEditWindowOpened, setIsPostEditWindowOpened] =
     useState<boolean>(false);
   const [isConnectionNeededClicked, setIsConnectionNeededClicked] =
     useState<boolean>(false);
@@ -44,6 +47,8 @@ export default function PostViewPage() {
   const [pagination, setPagination] = useState<number>(1);
   const [sort, setSort] = useState<string>("popular");
   const [sourcePostId, setSourcePostId] = useState<null | number>(null);
+  const [postId, setPostId] = useState<null | number>(null);
+  const [postContent, setPostContent] = useState<null | string>(null);
 
   const webcontent = useLoaderData() as postviewpageWebcontentType;
 
@@ -58,6 +63,14 @@ export default function PostViewPage() {
       setIsNewReplyWindowOpened(true);
     } else {
       setIsConnectionNeededClicked(true);
+    }
+  };
+
+  const handleEditButton = () => {
+    if (data && auth !== undefined && auth.role !== "client") {
+      setPostId(data.id);
+      setPostContent(data.content);
+      setIsPostEditWindowOpened(true);
     }
   };
 
@@ -101,7 +114,7 @@ export default function PostViewPage() {
   }, [pagination, sort, query, navigate]);
 
   return (
-    <div className="w-full relative flex flex-col">
+    <div className="w-full relative flex flex-col pb-48">
       <div className="w-full md:max-w-[750px] md:mx-auto px-1 md:px-0 gap-6 xl:gap-10 flex flex-col">
         <p className="mx-auto mt-4 text-center text-indigo-500 text-xl md:text-3xl font-bold drop-shadow">
           {data && data.title}
@@ -217,7 +230,10 @@ export default function PostViewPage() {
                   auth.role === "moderator" ||
                   auth.role === "administrator") && (
                   <div className="flex-1 justify-end gap-2 flex">
-                    <button className="w-7 md:w-8 h-7 md:h-8 bg-indigo-400 hover:bg-indigo-600 self-center hover:text-white text-center rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900">
+                    <button
+                      className="w-7 md:w-8 h-7 md:h-8 bg-indigo-400 hover:bg-indigo-600 self-center hover:text-white text-center rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900"
+                      onClick={handleEditButton}
+                    >
                       <svg
                         width="800px"
                         height="800px"
@@ -293,6 +309,9 @@ export default function PostViewPage() {
               setSourcePostId={setSourcePostId}
               setIsNewReplyWindowOpened={setIsNewReplyWindowOpened}
               setIsConnectionNeededClicked={setIsConnectionNeededClicked}
+              setPostId={setPostId}
+              setPostContent={setPostContent}
+              setIsPostEditWindowOpened={setIsPostEditWindowOpened}
               webcontent={webcontent}
             />
           </div>
@@ -313,6 +332,14 @@ export default function PostViewPage() {
           setIsNewReplyWindowOpened={setIsNewReplyWindowOpened}
           sourcePostType={data.type}
           sourcePostId={sourcePostId}
+          webcontent={webcontent}
+        />
+      )}
+      {data && postId && postContent && isPostEditWindowOpened && (
+        <PostEditWindow
+          setIsPostEditWindowOpened={setIsPostEditWindowOpened}
+          postId={postId}
+          previousContent={postContent}
           webcontent={webcontent}
         />
       )}

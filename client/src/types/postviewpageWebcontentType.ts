@@ -440,5 +440,9 @@ export type postviewpageWebcontentType = {
       name: string;
       content: string;
     };
+    editTitle: {
+      name: string;
+      content: string;
+    };
   };
 };

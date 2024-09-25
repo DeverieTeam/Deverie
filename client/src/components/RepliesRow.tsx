@@ -9,6 +9,9 @@ export default function RepliesRow({
   setSourcePostId,
   setIsNewReplyWindowOpened,
   setIsConnectionNeededClicked,
+  setPostId,
+  setPostContent,
+  setIsPostEditWindowOpened,
   webcontent,
 }: Props) {
   const [data, setData] = useState<null | {
@@ -54,6 +57,14 @@ export default function RepliesRow({
       setIsNewReplyWindowOpened(true);
     } else {
       setIsConnectionNeededClicked(true);
+    }
+  };
+
+  const handleEditButton = () => {
+    if (data && auth !== undefined && auth.role !== "client") {
+      setPostId(data.id);
+      setPostContent(data.content);
+      setIsPostEditWindowOpened(true);
     }
   };
 
@@ -137,7 +148,10 @@ export default function RepliesRow({
                   auth.role === "moderator" ||
                   auth.role === "administrator") && (
                   <div className="flex-1 justify-end gap-2 flex">
-                    <button className="w-7 md:w-8 h-7 md:h-8 bg-indigo-400 hover:bg-indigo-600 self-center hover:text-white text-center rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900">
+                    <button
+                      className="w-7 md:w-8 h-7 md:h-8 bg-indigo-400 hover:bg-indigo-600 self-center hover:text-white text-center rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900"
+                      onClick={handleEditButton}
+                    >
                       <svg
                         width="800px"
                         height="800px"
@@ -202,6 +216,9 @@ export default function RepliesRow({
                   setSourcePostId={setSourcePostId}
                   setIsNewReplyWindowOpened={setIsNewReplyWindowOpened}
                   setIsConnectionNeededClicked={setIsConnectionNeededClicked}
+                  setPostId={setPostId}
+                  setPostContent={setPostContent}
+                  setIsPostEditWindowOpened={setIsPostEditWindowOpened}
                   webcontent={webcontent}
                 />
               </div>
@@ -219,5 +236,8 @@ type Props = {
   setSourcePostId: (arg0: number) => void;
   setIsNewReplyWindowOpened: (arg0: boolean) => void;
   setIsConnectionNeededClicked: (arg0: boolean) => void;
+  setPostId: (arg0: number) => void;
+  setPostContent: (arg0: string) => void;
+  setIsPostEditWindowOpened: (arg0: boolean) => void;
   webcontent: postviewpageWebcontentType;
 };

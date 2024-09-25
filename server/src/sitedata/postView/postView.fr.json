@@ -48,5 +48,9 @@
   "postContentPlaceholder": {
     "name": "Placeholder du champ de saisie du contenu du post",
     "content": "Contenu de votre post"
+  },
+  "editTitle": {
+    "name": "Titre de la fenêtre d'édition de post",
+    "content": "Editer un post"
   }
 }
