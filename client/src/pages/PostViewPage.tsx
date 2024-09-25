@@ -9,11 +9,14 @@ import RepliesDisplayer from "../components/RepliesDisplayer";
 import { postviewpageWebcontentType } from "../types/postviewpageWebcontentType";
 import NewReplyWindow from "../components/NewReplyWindow";
 import PostEditWindow from "../components/PostEditWindow";
+import TagEditWindow from "../components/TagEditWindow";
 
 export default function PostViewPage() {
   const [isNewReplyWindowOpened, setIsNewReplyWindowOpened] =
     useState<boolean>(false);
   const [isPostEditWindowOpened, setIsPostEditWindowOpened] =
+    useState<boolean>(false);
+  const [isTagEditWindowOpened, setIsTagEditWindowOpened] =
     useState<boolean>(false);
   const [isConnectionNeededClicked, setIsConnectionNeededClicked] =
     useState<boolean>(false);
@@ -57,6 +60,26 @@ export default function PostViewPage() {
   const navigate = useNavigate();
   const { auth } = useAuth();
 
+  const getPreviousTags = () => {
+    if (data) {
+      const previousTags = [];
+      for (const tag of data.tags) {
+        const newTag = { ...tag, family: "" };
+        previousTags.push(newTag);
+      }
+      return previousTags;
+    } else {
+      return [
+        {
+          id: 0,
+          name: "",
+          icon: "",
+          family: "",
+        },
+      ];
+    }
+  };
+
   const handleReplyButton = () => {
     if (data && auth !== undefined && auth.role !== "client") {
       setSourcePostId(data.id);
@@ -71,6 +94,13 @@ export default function PostViewPage() {
       setPostId(data.id);
       setPostContent(data.content);
       setIsPostEditWindowOpened(true);
+    }
+  };
+
+  const handleTagEditButton = () => {
+    if (data && auth !== undefined && auth.role !== "client") {
+      setPostId(data.id);
+      setIsTagEditWindowOpened(true);
     }
   };
 
@@ -143,7 +173,10 @@ export default function PostViewPage() {
               ((auth.id && auth.id === data.author.id) ||
                 auth.role === "moderator" ||
                 auth.role === "administrator") && (
-                <button className="absolute right-0 w-7 md:w-8 h-7 md:h-8 bg-indigo-400 hover:bg-indigo-600 self-center hover:text-white text-center rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900 translate-x-[36px] md:translate-x-[40px]">
+                <button
+                  className="absolute right-0 w-7 md:w-8 h-7 md:h-8 bg-indigo-400 hover:bg-indigo-600 self-center hover:text-white text-center rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900 translate-x-[36px] md:translate-x-[40px]"
+                  onClick={handleTagEditButton}
+                >
                   <svg
                     width="800px"
                     height="800px"
@@ -343,6 +376,19 @@ export default function PostViewPage() {
           webcontent={webcontent}
         />
       )}
+      {data && postId && isTagEditWindowOpened && (
+        <TagEditWindow
+          setIsTagEditWindowOpened={setIsTagEditWindowOpened}
+          postId={postId}
+          previousTags={getPreviousTags()}
+          webcontent={{
+            buttons: webcontent.commons.buttons,
+            tagsFamilies: webcontent.commons.tagsFamilies,
+            tagNumberDisclaimer: webcontent.page.tagNumberDisclaimer,
+          }}
+        />
+      )}
+
       {isConnectionWindowDisplayed && (
         <ConnectionWindow
           setIsConnectionWindowDisplayed={setIsConnectionWindowDisplayed}

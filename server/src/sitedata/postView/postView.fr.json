@@ -52,5 +52,9 @@
   "editTitle": {
     "name": "Titre de la fenêtre d'édition de post",
     "content": "Editer un post"
+  },
+  "tagNumberDisclaimer": {
+    "name": "Texte d'invitation à sélectionner le bon nombre de tags",
+    "content": "Veuillez sélectionner de 1 à 4 Tags"
   }
 }

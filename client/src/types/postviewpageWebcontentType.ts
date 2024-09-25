@@ -444,5 +444,9 @@ export type postviewpageWebcontentType = {
       name: string;
       content: string;
     };
+    tagNumberDisclaimer: {
+      name: string;
+      content: string;
+    };
   };
 };
