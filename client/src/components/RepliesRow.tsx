@@ -14,6 +14,7 @@ export default function RepliesRow({
   setIsPostEditWindowOpened,
   setPostType,
   setIsPostDeletionWindowOpened,
+  postIsOpened,
   webcontent,
 }: Props) {
   const [data, setData] = useState<null | {
@@ -205,12 +206,18 @@ export default function RepliesRow({
       {data !== null && (
         <div className="px-1 justify-between gap-2 md:px-0 md:max-w-[750px] md:mx-auto flex flex-col">
           <div className="justify-start gap-2 flex">
-            <button
-              className="px-4 py-0.5 bg-indigo-400 hover:bg-indigo-600 self-center hover:text-white text-center text-base md:text-lg rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900"
-              onClick={handleReplyButton}
-            >
-              {webcontent.page.answerButton.content}
-            </button>
+            {auth &&
+              data &&
+              postIsOpened &&
+              (auth.role === "client" ||
+                (auth.id && auth.id !== data.author.id)) && (
+                <button
+                  className="px-4 py-0.5 bg-indigo-400 hover:bg-indigo-600 self-center hover:text-white text-center text-base md:text-lg rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900"
+                  onClick={handleReplyButton}
+                >
+                  {webcontent.page.answerButton.content}
+                </button>
+              )}
           </div>
           {data.replies !== null && data.replies.length > 0 && (
             <details className="w-full mb-4 items-end flex flex-col">
@@ -234,6 +241,7 @@ export default function RepliesRow({
                   setIsPostEditWindowOpened={setIsPostEditWindowOpened}
                   setPostType={setPostType}
                   setIsPostDeletionWindowOpened={setIsPostDeletionWindowOpened}
+                  postIsOpened={postIsOpened}
                   webcontent={webcontent}
                 />
               </div>
@@ -256,5 +264,6 @@ type Props = {
   setIsPostEditWindowOpened: (arg0: boolean) => void;
   setPostType: (arg0: string) => void;
   setIsPostDeletionWindowOpened: (arg0: boolean) => void;
+  postIsOpened: boolean;
   webcontent: postviewpageWebcontentType;
 };

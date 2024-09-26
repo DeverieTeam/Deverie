@@ -64,5 +64,13 @@
   "deletionConfirmMessage": {
     "name": "Texte de confirmation de suppression de post",
     "content": "Le message sera supprimé définitivement ! Etes-vous certain de vouloir continuer ?"
+  },
+  "closureTitle": {
+    "name": "Titre de la fenêtre de clôture de post",
+    "content": "Clôturer un post"
+  },
+  "closureConfirmMessage": {
+    "name": "Texte de confirmation de clôture de post",
+    "content": "Ce sujet sera clôturé définitivement ! Etes-vous certain de vouloir continuer ?"
   }
 }

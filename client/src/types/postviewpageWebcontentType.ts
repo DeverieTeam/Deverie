@@ -456,5 +456,13 @@ export type postviewpageWebcontentType = {
       name: string;
       content: string;
     };
+    closureTitle: {
+      name: string;
+      content: string;
+    };
+    closureConfirmMessage: {
+      name: string;
+      content: string;
+    };
   };
 };

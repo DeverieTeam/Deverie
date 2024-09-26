@@ -12,6 +12,7 @@ export default function RepliesDisplayer({
   setIsPostEditWindowOpened,
   setPostType,
   setIsPostDeletionWindowOpened,
+  postIsOpened,
   webcontent,
 }: Props) {
   return (
@@ -26,6 +27,7 @@ export default function RepliesDisplayer({
           setIsPostEditWindowOpened={setIsPostEditWindowOpened}
           setPostType={setPostType}
           setIsPostDeletionWindowOpened={setIsPostDeletionWindowOpened}
+          postIsOpened={postIsOpened}
           key={replyId.id}
           id={replyId.id}
           sort={sort}
@@ -47,5 +49,6 @@ type Props = {
   setIsPostEditWindowOpened: (arg0: boolean) => void;
   setPostType: (arg0: string) => void;
   setIsPostDeletionWindowOpened: (arg0: boolean) => void;
+  postIsOpened: boolean;
   webcontent: postviewpageWebcontentType;
 };

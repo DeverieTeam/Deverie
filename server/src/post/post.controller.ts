@@ -95,6 +95,7 @@ export class PostController {
       modification_author: number;
       tags?: { id: number }[];
       isreadable?: boolean;
+      is_opened?: boolean;
     },
   ) {
     return this.service.updatePost(post);

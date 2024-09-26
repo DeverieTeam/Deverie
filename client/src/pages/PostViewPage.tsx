@@ -11,6 +11,7 @@ import NewReplyWindow from "../components/NewReplyWindow";
 import PostEditWindow from "../components/PostEditWindow";
 import TagEditWindow from "../components/TagEditWindow";
 import PostDeletionWindow from "../components/PostDeletionWindow";
+import PostClosureWindow from "../components/PostClosureWindow";
 
 export default function PostViewPage() {
   const [isNewReplyWindowOpened, setIsNewReplyWindowOpened] =
@@ -20,6 +21,8 @@ export default function PostViewPage() {
   const [isPostDeletionWindowOpened, setIsPostDeletionWindowOpened] =
     useState<boolean>(false);
   const [isTagEditWindowOpened, setIsTagEditWindowOpened] =
+    useState<boolean>(false);
+  const [isPostClosureWindowOpened, setIsPostClosureWindowOpened] =
     useState<boolean>(false);
   const [isConnectionNeededClicked, setIsConnectionNeededClicked] =
     useState<boolean>(false);
@@ -56,6 +59,7 @@ export default function PostViewPage() {
   const [postId, setPostId] = useState<null | number>(null);
   const [postContent, setPostContent] = useState<null | string>(null);
   const [postType, setPostType] = useState<null | string>(null);
+  const [postIsOpened, setPostIsOpened] = useState<null | boolean>(null);
 
   const webcontent = useLoaderData() as postviewpageWebcontentType;
 
@@ -116,6 +120,13 @@ export default function PostViewPage() {
     }
   };
 
+  const handleClosureButton = () => {
+    if (data && auth !== undefined && auth.role !== "client") {
+      setPostId(data.id);
+      setIsPostClosureWindowOpened(true);
+    }
+  };
+
   useEffect(() => {
     if (query !== null) {
       const queryHandler = () => {
@@ -154,6 +165,12 @@ export default function PostViewPage() {
       navigate(-1);
     }
   }, [pagination, sort, query, navigate]);
+
+  useEffect(() => {
+    if (data && postIsOpened === null) {
+      setPostIsOpened(data.is_opened);
+    }
+  }, [data, postIsOpened]);
 
   return (
     <div className="w-full relative flex flex-col pb-48">
@@ -332,41 +349,54 @@ export default function PostViewPage() {
             ((auth.id && auth.id === data.author.id) ||
               auth.role === "moderator" ||
               auth.role === "administrator") && (
-              <button className="mb-1 py-1 px-2 md:px-4 text-center justify-center text-lg md:text-xl gap-2 bg-neutral-100 hover:bg-white rounded-lg shadow-sm shadow-neutral-400 flex">
+              <button
+                className="mb-1 py-1 px-2 md:px-4 text-center justify-center text-lg md:text-xl gap-2 bg-neutral-100 hover:bg-white rounded-lg shadow-sm shadow-neutral-400 flex"
+                onClick={handleClosureButton}
+              >
                 <p className="text-sm md:text-base">
                   {webcontent.page.closureButton[data.type].content}
                 </p>
               </button>
             )}
           <div className="flex-1 justify-end gap-2 flex">
-            <button
-              className="px-4 py-0.5 bg-indigo-400 hover:bg-indigo-600 self-center hover:text-white text-center text-base md:text-lg rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900"
-              onClick={handleReplyButton}
-            >
-              {webcontent.page.answerButton.content}
-            </button>
+            {auth &&
+              data &&
+              data.is_opened &&
+              (auth.role === "client" ||
+                (auth.id && auth.id !== data.author.id)) && (
+                <button
+                  className="px-4 py-0.5 bg-indigo-400 hover:bg-indigo-600 self-center hover:text-white text-center text-base md:text-lg rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900"
+                  onClick={handleReplyButton}
+                >
+                  {webcontent.page.answerButton.content}
+                </button>
+              )}
           </div>
         </div>
       )}
-      {data !== null && data.replies !== null && data.replies.length > 0 && (
-        <div className="w-full mr-1 mt-2 md:mr-0 self-center items-end md:max-w-[750px] flex flex-col">
-          <div className="w-[90%] flex flex-col">
-            <RepliesDisplayer
-              repliesId={data.replies}
-              sort={sort}
-              setSourcePostId={setSourcePostId}
-              setIsNewReplyWindowOpened={setIsNewReplyWindowOpened}
-              setIsConnectionNeededClicked={setIsConnectionNeededClicked}
-              setPostId={setPostId}
-              setPostContent={setPostContent}
-              setIsPostEditWindowOpened={setIsPostEditWindowOpened}
-              setPostType={setPostType}
-              setIsPostDeletionWindowOpened={setIsPostDeletionWindowOpened}
-              webcontent={webcontent}
-            />
+      {data !== null &&
+        data.replies !== null &&
+        data.replies.length > 0 &&
+        postIsOpened !== null && (
+          <div className="w-full mr-1 mt-2 md:mr-0 self-center items-end md:max-w-[750px] flex flex-col">
+            <div className="w-[90%] flex flex-col">
+              <RepliesDisplayer
+                repliesId={data.replies}
+                sort={sort}
+                setSourcePostId={setSourcePostId}
+                setIsNewReplyWindowOpened={setIsNewReplyWindowOpened}
+                setIsConnectionNeededClicked={setIsConnectionNeededClicked}
+                setPostId={setPostId}
+                setPostContent={setPostContent}
+                setIsPostEditWindowOpened={setIsPostEditWindowOpened}
+                setPostType={setPostType}
+                setIsPostDeletionWindowOpened={setIsPostDeletionWindowOpened}
+                postIsOpened={postIsOpened}
+                webcontent={webcontent}
+              />
+            </div>
           </div>
-        </div>
-      )}
+        )}
       {data !== null && data.replies !== null && data.replies.length > 0 && (
         <div className="w-full px-1 mt-6 md:px-0 md:max-w-[750px] md:mx-auto flex flex-col">
           <PostPagination
@@ -397,6 +427,13 @@ export default function PostViewPage() {
         <PostDeletionWindow
           setIsPostDeletionWindowOpened={setIsPostDeletionWindowOpened}
           postType={postType}
+          postId={postId}
+          webcontent={webcontent}
+        />
+      )}
+      {postId && isPostClosureWindowOpened && (
+        <PostClosureWindow
+          setIsPostClosureWindowOpened={setIsPostClosureWindowOpened}
           postId={postId}
           webcontent={webcontent}
         />
