@@ -7,7 +7,7 @@ import DropDownMenu from "./userAccount/DropDownMenu";
 
 export default function Header({
   webcontent,
-  isHeaderDisplayed,
+  isBackOfficeHeader,
 }: Props) {
   const [isConnectionWindowDisplayed, setIsConnectionWindowDisplayed] =
     useState<boolean>(false);
@@ -34,7 +34,7 @@ export default function Header({
 
   return (
     <>
-      <div className="bg-neutral-50 w-full h-16 justify-between fixed top-0 z-10 shadow-sm shadow-neutral-4OO flex">
+      <div className="bg-neutral-50 w-full h-16 justify-between fixed top-0 z-20 shadow-sm shadow-neutral-4OO flex">
         <Link
           to="/"
           className="pl-2 bg-indigo-500 w-60 rounded-br-[90px] shadow-sm shadow-indigo-800 flex"
@@ -47,7 +47,7 @@ export default function Header({
           />
         </Link>
 
-        {isHeaderDisplayed === false ?
+        {isBackOfficeHeader ?
           <></>
         :
           <nav className="bg-indigo-500 rounded-b-[90px] px-[5%] w-[50%] xl:w-[60%] shadow-sm shadow-indigo-800 hidden md:flex">
@@ -128,7 +128,7 @@ export default function Header({
             </Link>
           </nav>
         }
-        {isHeaderDisplayed === false ?
+        {isBackOfficeHeader ?
           <></>
         :
           <div className="bg-transparent w-[72px] flex">
@@ -171,5 +171,5 @@ export default function Header({
 
 type Props = {
   webcontent: headerWebcontentType;
-  isHeaderDisplayed?: boolean;
+  isBackOfficeHeader?: boolean;
 };

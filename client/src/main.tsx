@@ -94,9 +94,9 @@ const router = createBrowserRouter([
   },
   {
     path: "backoffice",
-    element: <App isHeaderDisplayed={false}/>,
+    element: <App isBackOfficeHeader={true}/>,
     loader: async () => {
-      return await fetchWebContent({page: "header", lang: "fr"});
+      return await fetchWebContent({page: "header", lang: "fr", isBackOffice: true});
     },
     children: [
       {
@@ -104,6 +104,34 @@ const router = createBrowserRouter([
         element: <BackOfficePage />,
         loader: async () => {
           return await fetchWebContent({page: "homepage", lang: "fr", isBackOffice: true});
+        },
+      },
+      {
+        path: "chats",
+        element: <WIPage />,
+        loader: async () => {
+          return await fetchWebContent({page: "wip", lang: "fr", isBackOffice: false});
+        },
+      },
+      {
+        path: "tags",
+        element: <WIPage />,
+        loader: async () => {
+          return await fetchWebContent({page: "wip", lang: "fr", isBackOffice: false});
+        },
+      },
+      {
+        path: "moderation",
+        element: <WIPage />,
+        loader: async () => {
+          return await fetchWebContent({page: "wip", lang: "fr", isBackOffice: false});
+        },
+      },
+      {
+        path: "interface",
+        element: <PageNotFound404 />,
+        loader: async () => {
+          return await fetchWebContent({page: "404", lang: "fr", isBackOffice: false});
         },
       },
     ],

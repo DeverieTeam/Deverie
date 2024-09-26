@@ -1,5 +1,5 @@
-export type headerWebcontentType = {
-  commons: {
+export type backOfficeNavbarType = {
+	commons: {
     logo: {
       hover: {
         name: string;
@@ -264,5 +264,59 @@ export type headerWebcontentType = {
         content: string;
       };
     };
+  };
+  page?: { // for the backoffice navigation
+  	sections: {
+	    home: {
+	      text: {
+	        name: string,
+	        content: string;
+	      };
+	      hover: {
+	        name: string,
+	        content: string;
+	      };
+	    };
+	    chats: {
+	      text: {
+	        name: string,
+	        content: string;
+	      };
+	      hover: {
+	        name: string,
+	        content: string;
+	      };
+	    };
+	    tags: {
+	      text: {
+	        name: string,
+	        content: string;
+	      };
+	      hover: {
+	        name: string,
+	        content: string;
+	      };
+	    };
+	    moderation: {
+	      text: {
+	        name: string,
+	        content: string;
+	      };
+	      hover: {
+	        name: string,
+	        content: string;
+	      };
+	    };
+	    interface: {
+	      text: {
+	        name: string,
+	        content: string;
+	      };
+	      hover: {
+	        name: string,
+	        content: string;
+	      };
+	    };
+	  };
   };
 };

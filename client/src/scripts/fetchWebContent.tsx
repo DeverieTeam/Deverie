@@ -17,12 +17,13 @@ async function fetchWebContent(
   const addPosts: boolean = args.hasPosts !== undefined && args.hasPosts === true;
 
   const fetchCommonsPromise = fetch(
-    `${url}${endpoint}/commons?lang=${args.lang}${addPosts ? "&posts=true" : ""}`
+    `${url}${args.page !== 'header' ? endpoint : ''}/commons?lang=${args.lang}${addPosts ? "&posts=true" : ""}`
   ).then((response) => {
     return response;
   });
 
-  if (args.page !== "header") {
+//if the page is not "header" and not a BackOffice page
+  if (args.page !== "header" || args.isBackOffice) {
     switch (args.page) {
       case "home":
       case "homepage":
@@ -49,7 +50,11 @@ async function fetchWebContent(
       case "404":
       case "notfound":
       default:
-        endpoint += "/notfound";
+        if (args.isBackOffice) {
+          endpoint += "/commons";
+        } else {
+          endpoint += "/notfound";
+        }
         break;
     }
 
@@ -71,10 +76,13 @@ async function fetchWebContent(
       page: dataPage,
     };
   }
+//if the page is "header" and this is not a BackOffice page
   else {
     const responseCommons = await fetchCommonsPromise;
     const dataCommons = await responseCommons.json();
-    return dataCommons;
+    return {
+      commons: dataCommons,
+    };
   }
 }
 
