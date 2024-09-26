@@ -15,7 +15,7 @@ export class AuthService {
   }
 
   async validate(id: number) {
-    return this.memberService.getMemberById(id);
+    return this.memberService.getAuthById(id);
   }
 
   public async registerMember(member: {

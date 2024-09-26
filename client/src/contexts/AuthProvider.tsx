@@ -24,7 +24,7 @@ export default function AuthProvider({ children }: Props) {
       if (jwt) {
         const decodedJwt: { id: number; iat: number } = jwtDecode(jwt);
         const memberId = decodedJwt.id;
-        fetch(`http://localhost:3000/member/${memberId}`, {
+        fetch(`http://localhost:3000/member/auth/${memberId}`, {
           method: "GET",
           headers: {
             Authorization: `Bearer ${jwt}`,

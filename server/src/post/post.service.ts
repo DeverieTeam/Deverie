@@ -37,6 +37,7 @@ export class PostService {
       const refinedPost = {
         id: post.id,
         author: {
+          id: post.author.id,
           name: post.author.name,
           profile_picture: post.author.profile_picture,
         },

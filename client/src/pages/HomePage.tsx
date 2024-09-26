@@ -3,11 +3,18 @@ import { useLoaderData, useNavigate } from "react-router-dom";
 import ThreadsDisplayer from "../components/ThreadsDisplayer";
 import { homepageWebcontentType } from "../types/homepageWebcontentType";
 import { useAuth } from "../contexts/useAuth";
+import MemberViewWindow from "../components/MemberViewWindow";
+import BanConfirmWindow from "../components/BanConfirmWindow";
 
 export default function HomePage() {
   const [randomThread, setRandomThread] = useState<null | "popular" | "recent">(
     null
   );
+  const [isMemberViewWindowOpened, setIsMemberViewWindowOpened] =
+    useState<boolean>(false);
+  const [isBanConfirmWindowOpened, setIsBanConfirmWindowOpened] =
+    useState<boolean>(false);
+  const [memberId, setMemberId] = useState<null | number>(null);
 
   const webcontent = useLoaderData() as homepageWebcontentType;
 
@@ -87,6 +94,8 @@ export default function HomePage() {
           {randomThread !== null && (
             <ThreadsDisplayer
               thread={randomThread}
+              setMemberId={setMemberId}
+              setIsMemberViewWindowOpened={setIsMemberViewWindowOpened}
               webcontent={{
                 publications: webcontent.commons.publications,
                 noResult: webcontent.commons.noResult,
@@ -103,6 +112,8 @@ export default function HomePage() {
           {randomThread !== null && (
             <ThreadsDisplayer
               thread={randomThread === "recent" ? "popular" : "recent"}
+              setMemberId={setMemberId}
+              setIsMemberViewWindowOpened={setIsMemberViewWindowOpened}
               webcontent={{
                 publications: webcontent.commons.publications,
                 noResult: webcontent.commons.noResult,
@@ -111,6 +122,21 @@ export default function HomePage() {
           )}
         </div>
       </div>
+      {isMemberViewWindowOpened && memberId && (
+        <MemberViewWindow
+          setIsMemberViewWindowOpened={setIsMemberViewWindowOpened}
+          setIsBanConfirmWindowOpened={setIsBanConfirmWindowOpened}
+          memberId={memberId}
+          webcontent={webcontent.commons.memberWindow}
+        />
+      )}
+      {isBanConfirmWindowOpened && memberId && (
+        <BanConfirmWindow
+          setIsBanConfirmWindowOpened={setIsBanConfirmWindowOpened}
+          memberId={memberId}
+          webcontent={webcontent.commons}
+        />
+      )}
     </div>
   );
 }

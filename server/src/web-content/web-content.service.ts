@@ -46,6 +46,7 @@ export class WebContentService {
           sections: currentLangData.sections,
           connection: currentLangData.connection,
           dropDownMenu: currentLangData.dropDownMenu,
+          memberWindow: currentLangData.memberWindow,
         };
       }
     } else {
@@ -66,6 +67,7 @@ export class WebContentService {
               sections: commonsFr.sections,
               connection: commonsFr.connection,
               dropDownMenu: commonsFr.dropDownMenu,
+              memberWindow: commonsFr.memberWindow,
             },
           };
           break;

@@ -68,9 +68,9 @@ export class Member {
   @OneToMany(() => Rating, (rating) => rating.rater)
   ratings: Rating[];
   @OneToMany(() => Post, (post) => post.author)
-  posts: Rating[];
+  posts: Post[];
   @OneToMany(() => Post, (post) => post.modification_author)
-  modified_posts: Rating[];
+  modified_posts: Post[];
   @ManyToMany(() => Post, (post) => post.is_favourited_by)
   @JoinTable({
     name: 'favourite',

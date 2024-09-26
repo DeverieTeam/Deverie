@@ -404,5 +404,35 @@
       "name": "Nom de l'item du menu déroulant permettant de se déconnecter",
       "content": "Se Déconnecter"
     }
+  },
+  "memberWindow": {
+    "pronounsPrefix": {
+      "name": "Préfixe des pronoms de la fenêtre de vue des informations utilisateurs",
+      "content": "Pronoms : "
+    },
+    "messageCount": {
+      "name": "Préfixe du nombre de post de la fenêtre de vue des informations utilisateurs",
+      "content": "Nombre de messages : "
+    },
+    "inscriptionDate": {
+      "name": "Préfixe de la date d'inscription de la fenêtre de vue des informations utilisateurs",
+      "content": "Date d'inscription : "
+    },
+    "descriptionPlaceholder": {
+      "name": "Texte affiché en cas d'absence de description dans la fenêtre de vue des informations utilisateurs",
+      "content": "Aucune description renseignée pour le moment !"
+    },
+    "banButton": {
+      "name": "Texte du bouton de bannissement des utilisateurs frauduleux",
+      "content": "Bannir l'utilisateur"
+    },
+    "banTitle": {
+      "name": "Titre de la fenêtre de bannissement des utilisateurs frauduleux",
+      "content": "Bannir un utilisateur"
+    },
+    "banConfirmMessage": {
+      "name": "Texte de confirmation de bannissement des utilisateurs frauduleux",
+      "content": "Cet utilisateur sera banni définitivement ! Etes-vous certain de vouloir continuer ?"
+    }
   }
 }

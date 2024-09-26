@@ -12,6 +12,8 @@ import PostEditWindow from "../components/PostEditWindow";
 import TagEditWindow from "../components/TagEditWindow";
 import PostDeletionWindow from "../components/PostDeletionWindow";
 import PostClosureWindow from "../components/PostClosureWindow";
+import MemberViewWindow from "../components/MemberViewWindow";
+import BanConfirmWindow from "../components/BanConfirmWindow";
 
 export default function PostViewPage() {
   const [isNewReplyWindowOpened, setIsNewReplyWindowOpened] =
@@ -28,6 +30,11 @@ export default function PostViewPage() {
     useState<boolean>(false);
   const [isConnectionWindowDisplayed, setIsConnectionWindowDisplayed] =
     useState<boolean>(false);
+  const [isMemberViewWindowOpened, setIsMemberViewWindowOpened] =
+    useState<boolean>(false);
+  const [isBanConfirmWindowOpened, setIsBanConfirmWindowOpened] =
+    useState<boolean>(false);
+
   const [data, setData] = useState<null | {
     id: number;
     author: {
@@ -60,6 +67,7 @@ export default function PostViewPage() {
   const [postContent, setPostContent] = useState<null | string>(null);
   const [postType, setPostType] = useState<null | string>(null);
   const [postIsOpened, setPostIsOpened] = useState<null | boolean>(null);
+  const [memberId, setMemberId] = useState<null | number>(null);
 
   const webcontent = useLoaderData() as postviewpageWebcontentType;
 
@@ -124,6 +132,13 @@ export default function PostViewPage() {
     if (data && auth !== undefined && auth.role !== "client") {
       setPostId(data.id);
       setIsPostClosureWindowOpened(true);
+    }
+  };
+
+  const handleMemberButton = () => {
+    if (data) {
+      setMemberId(data.author.id);
+      setIsMemberViewWindowOpened(true);
     }
   };
 
@@ -249,7 +264,10 @@ export default function PostViewPage() {
       <div className="w-full md:max-w-[750px] px-1 py-2 md:px-0 self-center gap-2 md:gap-4 flex flex-col">
         {data !== null && (
           <div className="bg-neutral-100 gap-2 p-1 md:p-4 rounded-lg shadow-sm shadow-neutral-400 flex flex-col">
-            <button className="h-16 md:h-[104px] bg-neutral-200 px-1 hover:bg-white gap-4 rounded-full shadow-sm shadow-neutral-500 flex">
+            <button
+              className="h-16 md:h-[104px] bg-neutral-200 px-1 hover:bg-white gap-4 rounded-full shadow-sm shadow-neutral-500 flex"
+              onClick={handleMemberButton}
+            >
               <img
                 className="my-auto h-14 md:h-[96px] w-14 md:w-[96px] rounded-full shadow-sm shadow-neutral-500 bg-transparent"
                 src={data.author.profile_picture}
@@ -469,6 +487,21 @@ export default function PostViewPage() {
             hypertexts: webcontent.commons.hypertexts,
             connection: webcontent.commons.connection,
           }}
+        />
+      )}
+      {isMemberViewWindowOpened && memberId && (
+        <MemberViewWindow
+          setIsMemberViewWindowOpened={setIsMemberViewWindowOpened}
+          setIsBanConfirmWindowOpened={setIsBanConfirmWindowOpened}
+          memberId={memberId}
+          webcontent={webcontent.commons.memberWindow}
+        />
+      )}
+      {isBanConfirmWindowOpened && memberId && (
+        <BanConfirmWindow
+          setIsBanConfirmWindowOpened={setIsBanConfirmWindowOpened}
+          memberId={memberId}
+          webcontent={webcontent.commons}
         />
       )}
     </div>
