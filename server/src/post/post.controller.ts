@@ -36,6 +36,20 @@ export class PostController {
   }
 
   @UseGuards(AuthGuard('jwt'))
+  @Get('number/:type')
+  async getPostsNumberByType(
+    @Param('type') type: 'all' | 'question' | 'topic',
+    @Query('isClosed') isClosed: 'true' | 'false' | undefined,
+    @Query ('isBanned') isBanned: 'true' | 'false' | undefined,
+  ) {
+    return this.service.getPostsNumberByType({
+      type: type,
+      isClosed: (isClosed === undefined ? undefined : isClosed === 'true'),
+      isBanned: (isBanned === undefined ? undefined : isBanned === 'true'),
+      });
+  }
+
+  @UseGuards(AuthGuard('jwt'))
   @Post('newThread')
   async createPost(
     @Body()

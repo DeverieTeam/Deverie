@@ -8,25 +8,57 @@
       "name": "Nom de la section des statistiques de Deverie",
       "content": "Deverie en chiffres"
     },
-    "publicationsNumberPrefix": {
-      "name": "Texte précédant le nombre de publications",
-      "content": "Nombre de publications"
+    "notBanned": {
+      "title": {
+        "name": "Nom de la section des publications des utilisateurs non bannis",
+        "content": "Publications"
+      },
+      "publicationsNumberPrefix": {
+        "name": "Texte précédant le nombre de publications",
+        "content": "Nombre de publications"
+      },
+      "questionsNumberPrefix": {
+        "name": "Texte précédant le nombre de questions",
+        "content": "Nombre de questions"
+      },
+      "closedQuestionsNumberPrefix": {
+        "name": "Texte précédant le nombre de questions closes",
+        "content": "Nombre de questions closes"
+      },
+      "topicsNumberPrefix": {
+        "name": "Texte précédant le nombre de sujets de forum",
+        "content": "Nombre de sujets de forum"
+      },
+      "closedTopicsNumberPrefix": {
+        "name": "Texte précédant le nombre de sujets de forum clos",
+        "content": "Nombre de sujets de forum clos"
+      }
     },
-    "questionsNumberPrefix": {
-      "name": "Texte précédant le nombre de questions",
-      "content": "Nombre de questions"
-    },
-    "closedQuestionsNumberPrefix": {
-      "name": "Texte précédant le nombre de questions closes",
-      "content": "Nombre de questions closes"
-    },
-    "topicsNumberPrefix": {
-      "name": "Texte précédant le nombre de sujets de forum",
-      "content": "Nombre de sujets de forum"
+    "banned": {
+      "title": {
+        "name": "Nom de la section des publications des utilisateurs bannis",
+        "content": "Publications (bannis)"
+      },
+      "publicationsNumberPrefix": {
+        "name": "Texte précédant le nombre de publications d'utilisateurs bannis",
+        "content": "Nombre de publications"
+      },
+      "questionsNumberPrefix": {
+        "name": "Texte précédant le nombre de questions d'utilisateurs bannis",
+        "content": "Nombre de questions"
+      },
+      "topicsNumberPrefix": {
+        "name": "Texte précédant le nombre de sujets de forum d'utilisateurs bannis",
+        "content": "Nombre de sujets de forum"
+      }
     },
     "usersNumberPrefix": {
       "name": "Texte précédant le nombre de comptes",
       "content": "Nombre d'utilisateurs de Deverie"
+    },
+    "bannedUsersNumberPrefix": {
+      "name": "Texte précédant le nombre d'utilisateurs bannis",
+      "content": "Nombre d'utilisateurs bannis"
     },
     "membersNumberPrefix": {
       "name": "Texte précédant le nombre de membres",

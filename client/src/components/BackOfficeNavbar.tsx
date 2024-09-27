@@ -11,7 +11,7 @@ export default function BackOfficeNavbar({
 
   const maximumBurgerMenuWidth = 768;
   
-  const [isBurgerMenuDisplayed, setIsBurgerMenuDisplayed] = useState<boolean>(!false);
+  const [isBurgerMenuDisplayed, setIsBurgerMenuDisplayed] = useState<boolean>(false);
 
   function handleBurgerMenuClicked() {
     setIsBurgerMenuDisplayed(!isBurgerMenuDisplayed);
