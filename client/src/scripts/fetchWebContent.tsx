@@ -1,28 +1,29 @@
-async function fetchWebContent(
-  args: {
-    page: string,
-    lang: string,
-    hasPosts?: boolean,
-    isBackOffice?: boolean,
-  }
-): Promise<
+async function fetchWebContent(args: {
+  page: string;
+  lang: string;
+  hasPosts?: boolean;
+  isBackOffice?: boolean;
+}): Promise<
   | {
       commons: JSON;
-      page: JSON;
+      page?: JSON;
     }
   | JSON
 > {
   const url: string = "http://localhost:3000/webcontent";
-  let endpoint: string = (args.isBackOffice ? '/backoffice' : '');
-  const addPosts: boolean = args.hasPosts !== undefined && args.hasPosts === true;
+  let endpoint: string = args.isBackOffice ? "/backoffice" : "";
+  const addPosts: boolean =
+    args.hasPosts !== undefined && args.hasPosts === true;
 
   const fetchCommonsPromise = fetch(
-    `${url}${args.page !== 'header' ? endpoint : ''}/commons?lang=${args.lang}${addPosts ? "&posts=true" : ""}`
+    `${url}${args.page !== "header" ? endpoint : ""}/commons?lang=${args.lang}${
+      addPosts ? "&posts=true" : ""
+    }`
   ).then((response) => {
     return response;
   });
 
-//if the page is not "header" and not a BackOffice page
+  //if the page is not "header" and not a BackOffice page
   if (args.page !== "header" || args.isBackOffice) {
     switch (args.page) {
       case "home":
@@ -38,9 +39,7 @@ async function fetchWebContent(
         endpoint += "/threads/question";
         break;
       case "register":
-      	endpoint += "/register";
-      	break;
-        endpoint = "/register";
+        endpoint += "/register";
         break;
       case "newPost":
         endpoint += "/newPost";
@@ -81,7 +80,7 @@ async function fetchWebContent(
       page: dataPage,
     };
   }
-//if the page is "header" and this is not a BackOffice page
+  //if the page is "header" and this is not a BackOffice page
   else {
     const responseCommons = await fetchCommonsPromise;
     const dataCommons = await responseCommons.json();

@@ -1,5 +1,5 @@
-export type backOfficeNavbarType = {
-	commons: {
+export type appWebcontentType = {
+  commons: {
     logo: {
       hover: {
         name: string;
@@ -10,114 +10,10 @@ export type backOfficeNavbarType = {
         content: string;
       };
     };
-    sections: {
-      topic: {
-        main: {
-          name: string;
-          content: string;
-        };
-        element: {
-          name: string;
-          content: string;
-        };
-      };
-      question: {
-        main: {
-          name: string;
-          content: string;
-        };
-        element: {
-          name: string;
-          content: string;
-        };
-      };
-      chat: {
-        main: {
-          name: string;
-          content: string;
-        };
-      };
-      favorite: {
-        main: {
-          name: string;
-          content: string;
-        };
-        element: {
-          name: string;
-          content: string;
-        };
-      };
-    };
-    hypertexts: {
-      home: {
-        text: {
-          name: string;
-          content: string;
-        };
-        hover: {
-          name: string;
-          content: string;
-        };
-      };
-      contact: {
-        text: {
-          name: string;
-          content: string;
-        };
-        hover: {
-          name: string;
-          content: string;
-        };
-      };
-      termsOfUse: {
-        text: {
-          name: string;
-          content: string;
-        };
-        hover: {
-          name: string;
-          content: string;
-        };
-      };
-      legalNotices: {
-        text: {
-          name: string;
-          content: string;
-        };
-        hover: {
-          name: string;
-          content: string;
-        };
-      };
-      joinUs: {
-        text: {
-          name: string;
-          content: string;
-        };
-        hover: {
-          name: string;
-          content: string;
-        };
-      };
-      login: {
-        text: {
-          name: string;
-          content: string;
-        };
-        hover: {
-          name: string;
-          content: string;
-        };
-      };
-      profile: {
-        text: {
-          name: string;
-          content: string;
-        };
-        hover: {
-          name: string;
-          content: string;
-        };
+    img: {
+      imgPath: {
+        name: string;
+        content: string;
       };
     };
     buttons: {
@@ -214,6 +110,116 @@ export type backOfficeNavbarType = {
         };
       };
     };
+    hypertexts: {
+      home: {
+        text: {
+          name: string;
+          content: string;
+        };
+        hover: {
+          name: string;
+          content: string;
+        };
+      };
+      contact: {
+        text: {
+          name: string;
+          content: string;
+        };
+        hover: {
+          name: string;
+          content: string;
+        };
+      };
+      termsOfUse: {
+        text: {
+          name: string;
+          content: string;
+        };
+        hover: {
+          name: string;
+          content: string;
+        };
+      };
+      legalNotices: {
+        text: {
+          name: string;
+          content: string;
+        };
+        hover: {
+          name: string;
+          content: string;
+        };
+      };
+      joinUs: {
+        text: {
+          name: string;
+          content: string;
+        };
+        hover: {
+          name: string;
+          content: string;
+        };
+      };
+      login: {
+        text: {
+          name: string;
+          content: string;
+        };
+        hover: {
+          name: string;
+          content: string;
+        };
+      };
+      userMenu: {
+        text: {
+          name: string;
+          content: string;
+        };
+        hover: {
+          name: string;
+          content: string;
+        };
+      };
+    };
+    sections: {
+      topic: {
+        main: {
+          name: string;
+          content: string;
+        };
+        element: {
+          name: string;
+          content: string;
+        };
+      };
+      question: {
+        main: {
+          name: string;
+          content: string;
+        };
+        element: {
+          name: string;
+          content: string;
+        };
+      };
+      chat: {
+        main: {
+          name: string;
+          content: string;
+        };
+      };
+      favourite: {
+        main: {
+          name: string;
+          content: string;
+        };
+        element: {
+          name: string;
+          content: string;
+        };
+      };
+    };
     connection: {
       title: {
         connectionPage: {
@@ -246,6 +252,142 @@ export type backOfficeNavbarType = {
         content: string;
       };
     };
+    publications: {
+      publishDatePrefix: {
+        name: string;
+        content: string;
+      };
+      numberOfResponses: {
+        name: string;
+        content: string;
+      };
+      lastResponseDatePrefix: {
+        name: string;
+        content: string;
+      };
+      closureText: {
+        topic: {
+          name: string;
+          content: string;
+        };
+        question: {
+          name: string;
+          content: string;
+        };
+      };
+      favourite: {
+        add: {
+          hover: {
+            name: string;
+            content: string;
+          };
+        };
+        remove: {
+          hover: {
+            name: string;
+            content: string;
+          };
+        };
+      };
+    };
+    searching: {
+      searchBar: {
+        text: {
+          name: string;
+          content: string;
+        };
+      };
+      tagFilter: {
+        text: {
+          name: string;
+          content: string;
+        };
+      };
+      sortFilter: {
+        text: {
+          name: string;
+          content: string;
+        };
+        filters: {
+          mostRecent: {
+            topic: {
+              name: string;
+              content: string;
+            };
+            question: {
+              name: string;
+              content: string;
+            };
+          };
+          lessRecent: {
+            topic: {
+              name: string;
+              content: string;
+            };
+            question: {
+              name: string;
+              content: string;
+            };
+          };
+          mostPopular: {
+            topic: {
+              name: string;
+              content: string;
+            };
+            question: {
+              name: string;
+              content: string;
+            };
+          };
+          lessPopular: {
+            topic: {
+              name: string;
+              content: string;
+            };
+            question: {
+              name: string;
+              content: string;
+            };
+          };
+        };
+      };
+    };
+    pagination: {
+      result: {
+        name: string;
+        content: string;
+      };
+      answer: {
+        name: string;
+        content: string;
+      };
+      outOf: {
+        name: string;
+        content: string;
+      };
+      pagesPrefix: {
+        name: string;
+        content: string;
+      };
+    };
+    tagsFamilies: {
+      language: {
+        name: string;
+        content: string;
+      };
+      environment: {
+        name: string;
+        content: string;
+      };
+      technology: {
+        name: string;
+        content: string;
+      };
+    };
+    noResult: {
+      name: string;
+      content: string;
+    };
     dropDownMenu: {
       profile: {
         name: string;
@@ -264,59 +406,104 @@ export type backOfficeNavbarType = {
         content: string;
       };
     };
+    memberWindow: {
+      role: {
+        member: {
+          name: string;
+          content: string;
+        };
+        moderator: {
+          name: string;
+          content: string;
+        };
+        administrator: {
+          name: string;
+          content: string;
+        };
+      };
+      pronounsPrefix: {
+        name: string;
+        content: string;
+      };
+      messageCount: {
+        name: string;
+        content: string;
+      };
+      inscriptionDate: {
+        name: string;
+        content: string;
+      };
+      descriptionPlaceholder: {
+        name: string;
+        content: string;
+      };
+      banButton: {
+        name: string;
+        content: string;
+      };
+      banTitle: {
+        name: string;
+        content: string;
+      };
+      banConfirmMessage: {
+        name: string;
+        content: string;
+      };
+    };
   };
-  page?: { // for the backoffice navigation
-  	sections: {
-	    home: {
-	      text: {
-	        name: string,
-	        content: string;
-	      };
-	      hover: {
-	        name: string,
-	        content: string;
-	      };
-	    };
-	    chats: {
-	      text: {
-	        name: string,
-	        content: string;
-	      };
-	      hover: {
-	        name: string,
-	        content: string;
-	      };
-	    };
-	    tags: {
-	      text: {
-	        name: string,
-	        content: string;
-	      };
-	      hover: {
-	        name: string,
-	        content: string;
-	      };
-	    };
-	    moderation: {
-	      text: {
-	        name: string,
-	        content: string;
-	      };
-	      hover: {
-	        name: string,
-	        content: string;
-	      };
-	    };
-	    interface: {
-	      text: {
-	        name: string,
-	        content: string;
-	      };
-	      hover: {
-	        name: string,
-	        content: string;
-	      };
-	    };
-	  };
+  page?: {
+    // for the backoffice navigation
+    sections: {
+      home: {
+        text: {
+          name: string;
+          content: string;
+        };
+        hover: {
+          name: string;
+          content: string;
+        };
+      };
+      chats: {
+        text: {
+          name: string;
+          content: string;
+        };
+        hover: {
+          name: string;
+          content: string;
+        };
+      };
+      tags: {
+        text: {
+          name: string;
+          content: string;
+        };
+        hover: {
+          name: string;
+          content: string;
+        };
+      };
+      moderation: {
+        text: {
+          name: string;
+          content: string;
+        };
+        hover: {
+          name: string;
+          content: string;
+        };
+      };
+      interface: {
+        text: {
+          name: string;
+          content: string;
+        };
+        hover: {
+          name: string;
+          content: string;
+        };
+      };
+    };
   };
 };

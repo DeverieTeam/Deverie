@@ -60,16 +60,6 @@ export type connectionwindowWebcontentType = {
         content: string;
       };
     };
-    profile: {
-      text: {
-        name: string;
-        content: string;
-      };
-      hover: {
-        name: string;
-        content: string;
-      };
-    };
   };
   buttons: {
     backButton: {

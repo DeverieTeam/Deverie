@@ -24,121 +24,169 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
     loader: async () => {
-      return await fetchWebContent({page: "header", lang: "fr"});
+      return await fetchWebContent({ page: "header", lang: "fr" });
     },
     children: [
       {
         path: "",
         element: <HomePage />,
         loader: async () => {
-          return await fetchWebContent({page: "homepage", lang: "fr", hasPosts: true});
+          return await fetchWebContent({
+            page: "homepage",
+            lang: "fr",
+            hasPosts: true,
+          });
         },
       },
       {
         path: "topic",
         element: <ThreadsPage threadType="topic" />,
         loader: async () => {
-          return await fetchWebContent({page: "topic", lang: "fr", hasPosts: true});
+          return await fetchWebContent({
+            page: "topic",
+            lang: "fr",
+            hasPosts: true,
+          });
         },
       },
       {
         path: "question",
         element: <ThreadsPage threadType="question" />,
         loader: async () => {
-          return await fetchWebContent({page: "question", lang: "fr", hasPosts: true});
+          return await fetchWebContent({
+            page: "question",
+            lang: "fr",
+            hasPosts: true,
+          });
         },
       },
       {
         path: "chat",
         element: <WIPage />,
         loader: async () => {
-          return await fetchWebContent({page: "wip", lang: "fr"});
+          return await fetchWebContent({ page: "wip", lang: "fr" });
         },
       },
       {
         path: "register",
         element: <RegisterPage />,
         loader: async () => {
-          return await fetchWebContent({page: "register", lang: "fr"});
+          return await fetchWebContent({ page: "register", lang: "fr" });
         },
       },
       {
         path: "newTopic",
         element: <NewPostPage threadType="topic" />,
         loader: async () => {
-          return await fetchWebContent({page: "newPost", lang: "fr", hasPosts: true});
+          return await fetchWebContent({
+            page: "newPost",
+            lang: "fr",
+            hasPosts: true,
+          });
         },
       },
       {
         path: "newQuestion",
         element: <NewPostPage threadType="question" />,
         loader: async () => {
-          return await fetchWebContent({page: "newPost", lang: "fr", hasPosts: true});
+          return await fetchWebContent({
+            page: "newPost",
+            lang: "fr",
+            hasPosts: true,
+          });
         },
       },
       {
         path: "postView",
         element: <PostViewPage />,
         loader: async () => {
-          return await fetchWebContent("postView", "fr", true);
+          return await fetchWebContent({
+            page: "postView",
+            lang: "fr",
+            hasPosts: true,
+          });
         },
       },
       {
         path: "favourites",
         element: <WIPage />,
         loader: async () => {
-          return await fetchWebContent({page: "wip", lang: "fr"});
+          return await fetchWebContent({ page: "wip", lang: "fr" });
         },
       },
       {
         path: "profile",
         element: <WIPage />,
         loader: async () => {
-          return await fetchWebContent({page: "wip", lang: "fr"});
+          return await fetchWebContent({ page: "wip", lang: "fr" });
         },
       },
     ],
   },
   {
     path: "backoffice",
-    element: <App isBackOfficeHeader={true}/>,
+    element: <App isBackOfficeHeader={true} />,
     loader: async () => {
-      return await fetchWebContent({page: "header", lang: "fr", isBackOffice: true});
+      return await fetchWebContent({
+        page: "header",
+        lang: "fr",
+        isBackOffice: true,
+      });
     },
     children: [
       {
         path: "",
         element: <BackOfficePage />,
         loader: async () => {
-          return await fetchWebContent({page: "homepage", lang: "fr", isBackOffice: true});
+          return await fetchWebContent({
+            page: "homepage",
+            lang: "fr",
+            isBackOffice: true,
+          });
         },
       },
       {
         path: "chats",
         element: <WIPage />,
         loader: async () => {
-          return await fetchWebContent({page: "wip", lang: "fr", isBackOffice: false});
+          return await fetchWebContent({
+            page: "wip",
+            lang: "fr",
+            isBackOffice: false,
+          });
         },
       },
       {
         path: "tags",
         element: <WIPage />,
         loader: async () => {
-          return await fetchWebContent({page: "wip", lang: "fr", isBackOffice: false});
+          return await fetchWebContent({
+            page: "wip",
+            lang: "fr",
+            isBackOffice: false,
+          });
         },
       },
       {
         path: "moderation",
         element: <WIPage />,
         loader: async () => {
-          return await fetchWebContent({page: "wip", lang: "fr", isBackOffice: false});
+          return await fetchWebContent({
+            page: "wip",
+            lang: "fr",
+            isBackOffice: false,
+          });
         },
       },
       {
         path: "interface",
         element: <PageNotFound404 />,
         loader: async () => {
-          return await fetchWebContent({page: "404", lang: "fr", isBackOffice: false});
+          return await fetchWebContent({
+            page: "404",
+            lang: "fr",
+            isBackOffice: false,
+          });
         },
       },
     ],
@@ -147,7 +195,7 @@ const router = createBrowserRouter([
     path: "*",
     element: <PageNotFound404 />,
     loader: async () => {
-      return await fetchWebContent({page: "404", lang: "fr"});
+      return await fetchWebContent({ page: "404", lang: "fr" });
     },
   },
 ]);

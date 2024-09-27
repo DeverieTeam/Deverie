@@ -1,76 +1,78 @@
 export type backOfficeHomepageWebcontentType = {
-  title: {
-    name: string;
-    content: string;
-  };
-  statistics: {
+  page: {
     title: {
       name: string;
       content: string;
     };
-    notBanned: {
+    statistics: {
       title: {
         name: string;
         content: string;
       };
-      publicationsNumberPrefix: {
+      notBanned: {
+        title: {
+          name: string;
+          content: string;
+        };
+        publicationsNumberPrefix: {
+          name: string;
+          content: string;
+        };
+        questionsNumberPrefix: {
+          name: string;
+          content: string;
+        };
+        closedQuestionsNumberPrefix: {
+          name: string;
+          content: string;
+        };
+        topicsNumberPrefix: {
+          name: string;
+          content: string;
+        };
+        closedTopicsNumberPrefix: {
+          name: string;
+          content: string;
+        };
+      };
+      banned: {
+        title: {
+          name: string;
+          content: string;
+        };
+        publicationsNumberPrefix: {
+          name: string;
+          content: string;
+        };
+        questionsNumberPrefix: {
+          name: string;
+          content: string;
+        };
+        topicsNumberPrefix: {
+          name: string;
+          content: string;
+        };
+      };
+      usersNumberPrefix: {
         name: string;
         content: string;
       };
-      questionsNumberPrefix: {
+      bannedUsersNumberPrefix: {
         name: string;
         content: string;
       };
-      closedQuestionsNumberPrefix: {
+      membersNumberPrefix: {
         name: string;
         content: string;
       };
-      topicsNumberPrefix: {
+      moderatorsNumberPrefix: {
         name: string;
         content: string;
       };
-      closedTopicsNumberPrefix: {
+      administratorsNumberPrefix: {
         name: string;
         content: string;
       };
-    };
-    banned: {
-      title: {
-        name: string;
-        content: string;
-      };
-      publicationsNumberPrefix: {
-        name: string;
-        content: string;
-      };
-      questionsNumberPrefix: {
-        name: string;
-        content: string;
-      };
-      topicsNumberPrefix: {
-        name: string;
-        content: string;
-      };
-    };
-    usersNumberPrefix: {
-      name: string;
-      content: string;
-    };
-    bannedUsersNumberPrefix: {
-      name: string;
-      content: string;
-    };
-    membersNumberPrefix: {
-      name: string;
-      content: string;
-    };
-    moderatorsNumberPrefix: {
-      name: string;
-      content: string;
-    };
-    administratorsNumberPrefix: {
-      name: string;
-      content: string;
     };
   };
 };
