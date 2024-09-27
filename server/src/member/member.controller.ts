@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Put, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, Query, Put, UseGuards } from '@nestjs/common';
 import { MemberService } from './member.service';
 import { AuthGuard } from '@nestjs/passport';
 
@@ -23,6 +23,17 @@ export class MemberController {
   async getMemberById(@Param('id') id: number) {
     return this.service.getMemberById(id);
   }
+
+  @UseGuards(AuthGuard('jwt'))
+  @Get('number/:role')
+  async getMemberNumberByRole(
+    @Param('role') role: 'all' | 'member' | 'moderator' | 'administrator',
+    @Query ('isBanned') isBanned: 'true' | 'false' | undefined,
+  ) {
+    return this.service.getMemberNumberByRole({
+      role: role,
+      isBanned: (isBanned === undefined ? undefined : isBanned === 'true'),
+      });
 
   @UseGuards(AuthGuard('jwt'))
   @Put()

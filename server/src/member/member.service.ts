@@ -77,6 +77,33 @@ export class MemberService {
     });
   }
 
+  async getMemberNumberByRole(args: {
+      role: 'all' | 'member' | 'moderator' | 'administrator',
+      isBanned?: boolean,
+    }
+  ) {
+    
+    const response = await this.memberRepository
+      .createQueryBuilder('member')
+      .getMany();
+
+      switch (args.role) {
+        case 'member':
+        case 'moderator':
+        case 'administrator':
+          {
+            const filteredResponse = response.filter((member) => member.role === args.role.toString()
+                                                            && (args.isBanned === undefined ? true : member.is_banned === args.isBanned));
+            return({number: filteredResponse.length});
+          }
+        case 'all':
+        default:
+          {
+            const filteredResponse = response.filter((member) => (args.isBanned === undefined ? true : member.is_banned === args.isBanned));
+            return({number: filteredResponse.length});
+          }
+      }
+
   async getMemberById(id: number) {
     const response = await this.memberRepository
       .createQueryBuilder('member')
