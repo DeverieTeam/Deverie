@@ -355,12 +355,10 @@ export class PostService {
   }
 
   async getPostsNumberByType(args: {
-      type: 'all' | 'question' | 'topic',
-      isClosed?: boolean,
-      isBanned?: boolean,
-    }
-  ) {
-    
+    type: 'all' | 'question' | 'topic';
+    isClosed?: boolean;
+    isBanned?: boolean;
+  }) {
     const response = await this.postRepository
       .createQueryBuilder('post')
       .innerJoinAndSelect('post.author', 'author')
@@ -368,22 +366,34 @@ export class PostService {
 
     switch (args.type) {
       case 'question':
-      case 'topic':
-        {
-          const filteredResponse = response.filter((post) => post.type === args.type.toString()
-                                                          && (args.isClosed === undefined ? true : post.is_readable)
-                                                          && (args.isBanned === undefined ? true : post.author.is_banned === args.isBanned)
-                                                          && (args.isClosed === undefined ? true : post.is_opened === !args.isClosed));
-          return({number: filteredResponse.length});
-        }
+      case 'topic': {
+        const filteredResponse = response.filter(
+          (post) =>
+            post.type === args.type.toString() &&
+            (args.isClosed === undefined ? true : post.is_readable) &&
+            (args.isBanned === undefined
+              ? true
+              : post.author.is_banned === args.isBanned) &&
+            (args.isClosed === undefined
+              ? true
+              : post.is_opened === !args.isClosed),
+        );
+        return { number: filteredResponse.length };
+      }
       case 'all':
-      default:
-        {
-          const filteredResponse = response.filter((post) => (args.isClosed === undefined ? true : post.is_readable)
-                                                          && (args.isBanned === undefined ? true : post.author.is_banned === args.isBanned)
-                                                          && (args.isClosed === undefined ? true : post.is_opened === !args.isClosed));
-          return({number: filteredResponse.length});
-        }
+      default: {
+        const filteredResponse = response.filter(
+          (post) =>
+            (args.isClosed === undefined ? true : post.is_readable) &&
+            (args.isBanned === undefined
+              ? true
+              : post.author.is_banned === args.isBanned) &&
+            (args.isClosed === undefined
+              ? true
+              : post.is_opened === !args.isClosed),
+        );
+        return { number: filteredResponse.length };
+      }
     }
   }
 

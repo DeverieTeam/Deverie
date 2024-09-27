@@ -5,10 +5,7 @@ import { headerWebcontentType } from "../types/headerWebcontentType";
 import { useAuth } from "../contexts/useAuth";
 import DropDownMenu from "./userAccount/DropDownMenu";
 
-export default function Header({
-  webcontent,
-  isBackOfficeHeader,
-}: Props) {
+export default function Header({ webcontent, isBackOfficeHeader }: Props) {
   const [isConnectionWindowDisplayed, setIsConnectionWindowDisplayed] =
     useState<boolean>(false);
   const [isDropDownMenuClicked, setIsDropDownMenuClicked] =
@@ -47,9 +44,9 @@ export default function Header({
           />
         </Link>
 
-        {isBackOfficeHeader ?
+        {isBackOfficeHeader ? (
           <></>
-        :
+        ) : (
           <nav className="bg-indigo-500 rounded-b-[90px] px-[5%] w-[50%] xl:w-[60%] shadow-sm shadow-indigo-800 hidden md:flex">
             <Link
               to="/topic"
@@ -127,16 +124,18 @@ export default function Header({
               </p>
             </Link>
           </nav>
-        }
-        {isBackOfficeHeader ?
+        )}
+        {isBackOfficeHeader ? (
           <></>
-        :
+        ) : (
           <div className="bg-transparent w-[72px] flex">
             <button
               className="m-auto h-14 w-14 bg-indigo-400 hover:bg-indigo-600 rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900 relative flex"
-              title={auth && auth.role && auth.role !== "client"
-                      ? webcontent.hypertexts.userMenu.hover.content
-                      : webcontent.hypertexts.login.hover.content}
+              title={
+                auth && auth.role && auth.role !== "client"
+                  ? webcontent.hypertexts.userMenu.hover.content
+                  : webcontent.hypertexts.login.hover.content
+              }
               onClick={handleConnectionWindowDisplayer}
             >
               <img
@@ -145,8 +144,7 @@ export default function Header({
               />
             </button>
           </div>
-        }
-
+        )}
       </div>
       {isConnectionWindowDisplayed && (
         <ConnectionWindow

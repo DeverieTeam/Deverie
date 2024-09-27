@@ -18,11 +18,8 @@ const httpError = (customMessage: string) => {
 
 @Injectable()
 export class BackOfficeService {
-  getBackOfficeWebContent(params: { type: string, lang: string }) {
-    const validTypes: Array<string> = [
-      'commons',
-      'homepage',
-    ];
+  getBackOfficeWebContent(params: { type: string; lang: string }) {
+    const validTypes: Array<string> = ['commons', 'homepage'];
     if (!validTypes.includes(params.type)) {
       httpError('Unvalid back office web content name');
     }
@@ -45,17 +42,16 @@ export class BackOfficeService {
           break;
       }
       return currentLangData;
-    }
-    else {
+    } else {
       switch (params.type) {
         case 'homepage':
-          return ({
+          return {
             fr: backOfficeHomepageFr,
-          });
+          };
         default:
-          return ({
+          return {
             fr: backOfficeCommonsFr,
-          });
+          };
       }
     }
   }

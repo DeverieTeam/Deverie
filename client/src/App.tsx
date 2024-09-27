@@ -6,9 +6,8 @@ import BackOfficeNavbar from "./components/BackOfficeNavbar";
 import { appWebcontentType } from "./types/appWebcontentType";
 
 export default function App({ isBackOfficeHeader }: Props) {
-
   const webcontent = useLoaderData() as appWebcontentType;
-  
+
   return (
     <div className="bg-neutral-50 w-screen relative">
       <Header
@@ -22,13 +21,11 @@ export default function App({ isBackOfficeHeader }: Props) {
         }}
         isBackOfficeHeader={isBackOfficeHeader}
       />
-      {isBackOfficeHeader ?
-        <BackOfficeNavbar
-          webcontent={webcontent.page.sections}
-        />
-      :
+      {isBackOfficeHeader && webcontent.page ? (
+        <BackOfficeNavbar webcontent={webcontent.page.sections} />
+      ) : (
         <MobileNavbar />
-      }
+      )}
       <div className="mt-16 mb-16 md:mb-0">
         <Outlet />
       </div>
@@ -37,5 +34,5 @@ export default function App({ isBackOfficeHeader }: Props) {
 }
 
 type Props = {
-  isBackOfficeHeader?: string;
+  isBackOfficeHeader?: boolean;
 };
