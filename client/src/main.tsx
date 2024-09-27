@@ -11,9 +11,9 @@ import HomePage from "./pages/HomePage.tsx";
 import ThreadsPage from "./pages/ThreadsPage.tsx";
 import NewPostPage from "./pages/NewPostPage.tsx";
 import RegisterPage from "./pages/RegisterPage.tsx";
+import PostViewPage from "./pages/PostViewPage.tsx";
 
 import BackOfficePage from "./pages/BackOfficePage.tsx";
-
 import PageNotFound404 from "./pages/PageNotFound404.tsx";
 
 import AuthProvider from "./contexts/AuthProvider.tsx";
@@ -74,6 +74,13 @@ const router = createBrowserRouter([
         element: <NewPostPage threadType="question" />,
         loader: async () => {
           return await fetchWebContent({page: "newPost", lang: "fr", hasPosts: true});
+        },
+      },
+      {
+        path: "postView",
+        element: <PostViewPage />,
+        loader: async () => {
+          return await fetchWebContent("postView", "fr", true);
         },
       },
       {

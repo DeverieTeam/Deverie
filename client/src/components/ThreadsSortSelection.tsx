@@ -1,6 +1,6 @@
 import { sortselectionWebcontentType } from "../types/sortselectionWebcontentType";
 
-export default function SortSelection({
+export default function ThreadsSortSelection({
   threadType,
   setSort,
   webcontent,
@@ -12,8 +12,7 @@ export default function SortSelection({
         className="px-1 text-sm bg-white cursor-pointer"
         onChange={(e) => {
           setSort(e.target.value);
-        }}
-      >
+        }}>
         <option className="" value="popular">
           {webcontent.filters.mostPopular[threadType].content}
         </option>

@@ -1,4 +1,4 @@
-export type commonsWebcontentType = {
+export type postviewpageWebcontentType = {
   commons: {
     logo: {
       hover: {
@@ -171,7 +171,7 @@ export type commonsWebcontentType = {
           content: string;
         };
       };
-      userMenu: {
+      profile: {
         text: {
           name: string;
           content: string;
@@ -209,7 +209,7 @@ export type commonsWebcontentType = {
           content: string;
         };
       };
-      favorite: {
+      favourite: {
         main: {
           name: string;
           content: string;
@@ -265,7 +265,17 @@ export type commonsWebcontentType = {
         name: string;
         content: string;
       };
-      favorite: {
+      closureText: {
+        topic: {
+          name: string;
+          content: string;
+        };
+        question: {
+          name: string;
+          content: string;
+        };
+      };
+      favourite: {
         add: {
           hover: {
             name: string;
@@ -287,11 +297,11 @@ export type commonsWebcontentType = {
           content: string;
         };
       };
-    };
-    favourite: {
-      main: {
-        name: string;
-        content: string;
+      tagFilter: {
+        text: {
+          name: string;
+          content: string;
+        };
       };
       sortFilter: {
         text: {
@@ -343,7 +353,15 @@ export type commonsWebcontentType = {
       };
     };
     pagination: {
-      resultsOutOf: {
+      result: {
+        name: string;
+        content: string;
+      };
+      answer: {
+        name: string;
+        content: string;
+      };
+      outOf: {
         name: string;
         content: string;
       };
@@ -370,99 +388,123 @@ export type commonsWebcontentType = {
       name: string;
       content: string;
     };
-    numberOfResponses: {
-      name: string;
-      content: string;
-    };
-    lastResponseDatePrefix: {
-      name: string;
-      content: string;
-    };
-    favourite: {
-      add: {
-        hover: {
+    memberWindow: {
+      role: {
+        member: {
+          name: string;
+          content: string;
+        };
+        moderator: {
+          name: string;
+          content: string;
+        };
+        administrator: {
           name: string;
           content: string;
         };
       };
-      remove: {
-        hover: {
-          name: string;
-          content: string;
-        };
-      };
-    };
-  };
-  searching: {
-    searchBar: {
-      text: {
+      pronounsPrefix: {
         name: string;
         content: string;
       };
-      favourites: {
+      messageCount: {
         name: string;
         content: string;
       };
-      backoffice: {
+      inscriptionDate: {
         name: string;
         content: string;
       };
-      logout: {
+      descriptionPlaceholder: {
+        name: string;
+        content: string;
+      };
+      banButton: {
+        name: string;
+        content: string;
+      };
+      banTitle: {
+        name: string;
+        content: string;
+      };
+      banConfirmMessage: {
         name: string;
         content: string;
       };
     };
   };
-  pagination: {
-    result: {
+  page: {
+    associatedTags: {
       name: string;
       content: string;
     };
-    answer: {
+    addingFavourite: {
       name: string;
       content: string;
     };
-    outOf: {
+    questionEmergency: {
       name: string;
       content: string;
     };
-    pagesPrefix: {
+    modificationNotification: {
       name: string;
       content: string;
     };
-  };
-  tagsFamilies: {
-    language: {
+    modificationSuffix: {
       name: string;
       content: string;
     };
-    environment: {
+    closureButton: {
+      topic: {
+        name: string;
+        content: string;
+      };
+      question: {
+        name: string;
+        content: string;
+      };
+    };
+    answerButton: {
       name: string;
       content: string;
     };
-    technology: {
+    displayAnswers: {
       name: string;
       content: string;
     };
-  };
-  noResult: {
-    name: string;
-    content: string;
-  };
-  dropDownMenu: {
-    profile: {
+    hideAnswers: {
       name: string;
       content: string;
     };
-    favourites: {
+    postContent: {
       name: string;
       content: string;
     };
-    backoffice: {
+    postContentPlaceholder: {
       name: string;
       content: string;
     };
-    logout: {
+    editTitle: {
+      name: string;
+      content: string;
+    };
+    tagNumberDisclaimer: {
+      name: string;
+      content: string;
+    };
+    deletionTitle: {
+      name: string;
+      content: string;
+    };
+    deletionConfirmMessage: {
+      name: string;
+      content: string;
+    };
+    closureTitle: {
+      name: string;
+      content: string;
+    };
+    closureConfirmMessage: {
       name: string;
       content: string;
     };

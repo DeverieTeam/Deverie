@@ -10,12 +10,15 @@ export default function ThreadsDisplayer({
   tags,
   webcontent,
   setDataForPage,
+  setMemberId,
+  setIsMemberViewWindowOpened,
 }: Props) {
   const [data, setData] = useState<
     | null
     | {
         id: number;
         author: {
+          id: number;
           name: string;
           profile_picture: string;
         };
@@ -96,6 +99,8 @@ export default function ThreadsDisplayer({
           <ThreadsRow
             key={post.id}
             post={post}
+            setMemberId={setMemberId}
+            setIsMemberViewWindowOpened={setIsMemberViewWindowOpened}
             webcontent={webcontent.publications}
           />
         ))}
@@ -135,5 +140,7 @@ type Props = {
   sort?: string;
   searchField?: string;
   tags?: string[];
+  setMemberId: (arg0: number) => void;
+  setIsMemberViewWindowOpened: (arg0: boolean) => void;
   webcontent: threadsdisplayerWebcontentType;
 };

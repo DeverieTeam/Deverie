@@ -208,7 +208,7 @@
         "content": "Chats"
       }
     },
-    "favorite": {
+    "favourite": {
       "main": {
         "name": "Nom de la section de contenus sauvegardés",
         "content": "Favoris"
@@ -274,7 +274,7 @@
         "content": "[Question close]"
       }
     },
-    "favorite": {
+    "favourite": {
       "add": {
         "hover": {
           "name": "Texte d'ajout aux favoris de survol",
@@ -352,9 +352,17 @@
     }
   },
   "pagination": {
-    "resultsOutOf": {
+    "result": {
       "name": "Texte de nombre de résultats",
-      "content": "résultats sur"
+      "content": "résultat"
+    },
+    "answer": {
+      "name": "Texte de nombre de réponses",
+      "content": "réponse"
+    },
+    "outOf": {
+      "name": "Texte de suffixe du nombre de résultats",
+      "content": "sur"
     },
     "pagesPrefix": {
       "name": "Texte précédant la page actuelle sur le nombre total",
@@ -395,6 +403,50 @@
     "logout": {
       "name": "Nom de l'item du menu déroulant permettant de se déconnecter",
       "content": "Se Déconnecter"
+    }
+  },
+  "memberWindow": {
+    "role": {
+      "member": {
+        "name": "Affichage du rôle de membre de la fenêtre de vue des informations utilisateurs",
+        "content": "Membre"
+      },
+      "moderator": {
+        "name": "Affichage du rôle de modérateur de la fenêtre de vue des informations utilisateurs",
+        "content": "Modérateur"
+      },
+      "administrator": {
+        "name": "Affichage du rôle d'administrateur de la fenêtre de vue des informations utilisateurs",
+        "content": "Administrateur"
+      }
+    },
+    "pronounsPrefix": {
+      "name": "Préfixe des pronoms de la fenêtre de vue des informations utilisateurs",
+      "content": "Pronoms : "
+    },
+    "messageCount": {
+      "name": "Préfixe du nombre de post de la fenêtre de vue des informations utilisateurs",
+      "content": "Nombre de messages : "
+    },
+    "inscriptionDate": {
+      "name": "Préfixe de la date d'inscription de la fenêtre de vue des informations utilisateurs",
+      "content": "Date d'inscription : "
+    },
+    "descriptionPlaceholder": {
+      "name": "Texte affiché en cas d'absence de description dans la fenêtre de vue des informations utilisateurs",
+      "content": "Aucune description renseignée pour le moment !"
+    },
+    "banButton": {
+      "name": "Texte du bouton de bannissement des utilisateurs frauduleux",
+      "content": "Bannir l'utilisateur"
+    },
+    "banTitle": {
+      "name": "Titre de la fenêtre de bannissement des utilisateurs frauduleux",
+      "content": "Bannir un utilisateur"
+    },
+    "banConfirmMessage": {
+      "name": "Texte de confirmation de bannissement des utilisateurs frauduleux",
+      "content": "Cet utilisateur sera banni définitivement ! Etes-vous certain de vouloir continuer ?"
     }
   }
 }

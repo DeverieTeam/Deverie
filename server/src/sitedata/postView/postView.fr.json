@@ -1,0 +1,76 @@
+{
+  "associatedTags": {
+    "name": "Titre de la boîte contenant les tags associés à un post",
+    "content": "Tags associés"
+  },
+  "addingFavourite": {
+    "name": "Texte du bouton permettant d'ajouter un post à ses favoris",
+    "content": "Ajouter aux Favoris"
+  },
+  "questionEmergency": {
+    "name": "Texte indiquant l'urgence d'une question",
+    "content": "Urgence de la question"
+  },
+  "modificationNotification": {
+    "name": "Texte annonçant la modification d'un message",
+    "content": "Message modifié le"
+  },
+  "modificationSuffix": {
+    "name": "Suffixe du texte annonçant la modification d'un message",
+    "content": "par"
+  },
+  "closureButton": {
+    "topic": {
+      "name": "Texte du bouton permettant de clôturer un sujet de Forum",
+      "content": "Clôturer le sujet"
+    },
+    "question": {
+      "name": "Texte du bouton permettant de clôturer une question",
+      "content": "Clôturer la question"
+    }
+  },
+  "answerButton": {
+    "name": "Texte du bouton permettant de répondre à un message",
+    "content": "Répondre"
+  },
+  "displayAnswers": {
+    "name": "Texte du bouton permettant d'afficher les réponses à un message",
+    "content": "Afficher les réponses"
+  },
+  "hideAnswers": {
+    "name": "Texte du bouton permettant de masquer les réponses à un message",
+    "content": "Masquer les réponses"
+  },
+  "postContent": {
+    "name": "Texte associé au champ de saisie du contenu du post",
+    "content": "Contenu :"
+  },
+  "postContentPlaceholder": {
+    "name": "Placeholder du champ de saisie du contenu du post",
+    "content": "Contenu de votre post"
+  },
+  "editTitle": {
+    "name": "Titre de la fenêtre d'édition de post",
+    "content": "Editer un post"
+  },
+  "tagNumberDisclaimer": {
+    "name": "Texte d'invitation à sélectionner le bon nombre de tags",
+    "content": "Veuillez sélectionner de 1 à 4 Tags"
+  },
+  "deletionTitle": {
+    "name": "Titre de la fenêtre de suppression de post",
+    "content": "Supprimer un post"
+  },
+  "deletionConfirmMessage": {
+    "name": "Texte de confirmation de suppression de post",
+    "content": "Le message sera supprimé définitivement ! Etes-vous certain de vouloir continuer ?"
+  },
+  "closureTitle": {
+    "name": "Titre de la fenêtre de clôture de post",
+    "content": "Clôturer un post"
+  },
+  "closureConfirmMessage": {
+    "name": "Texte de confirmation de clôture de post",
+    "content": "Ce sujet sera clôturé définitivement ! Etes-vous certain de vouloir continuer ?"
+  }
+}

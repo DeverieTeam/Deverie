@@ -199,7 +199,7 @@ export type wipand404pageWebcontentType = {
           content: string;
         };
       };
-      favorite: {
+      favourite: {
         main: {
           name: string;
           content: string;
@@ -223,7 +223,7 @@ export type wipand404pageWebcontentType = {
         name: string;
         content: string;
       };
-      favorite: {
+      favourite: {
         add: {
           hover: {
             name: string;

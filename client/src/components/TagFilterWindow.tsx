@@ -26,7 +26,6 @@ export default function TagFilterWindow({
 
   const handleConfirmButton = () => {
     setTags(tempTags);
-    localStorage.removeItem("Tags");
     localStorage.setItem("Tags", tempTags.join("&"));
     setIsTagButtonClicked(!isTagButtonClicked);
   };

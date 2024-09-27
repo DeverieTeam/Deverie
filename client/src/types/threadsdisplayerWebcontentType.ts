@@ -22,7 +22,7 @@ export type threadsdisplayerWebcontentType = {
         content: string;
       };
     };
-    favorite: {
+    favourite: {
       add: {
         hover: {
           name: string;

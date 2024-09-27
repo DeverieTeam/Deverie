@@ -209,7 +209,7 @@ export type threadspageWebcontentType = {
           content: string;
         };
       };
-      favorite: {
+      favourite: {
         main: {
           name: string;
           content: string;
@@ -275,7 +275,7 @@ export type threadspageWebcontentType = {
           content: string;
         };
       };
-      favorite: {
+      favourite: {
         add: {
           hover: {
             name: string;
@@ -353,7 +353,15 @@ export type threadspageWebcontentType = {
       };
     };
     pagination: {
-      resultsOutOf: {
+      result: {
+        name: string;
+        content: string;
+      };
+      answer: {
+        name: string;
+        content: string;
+      };
+      outOf: {
         name: string;
         content: string;
       };
@@ -379,6 +387,50 @@ export type threadspageWebcontentType = {
     noResult: {
       name: string;
       content: string;
+    };
+    memberWindow: {
+      role: {
+        member: {
+          name: string;
+          content: string;
+        };
+        moderator: {
+          name: string;
+          content: string;
+        };
+        administrator: {
+          name: string;
+          content: string;
+        };
+      };
+      pronounsPrefix: {
+        name: string;
+        content: string;
+      };
+      messageCount: {
+        name: string;
+        content: string;
+      };
+      inscriptionDate: {
+        name: string;
+        content: string;
+      };
+      descriptionPlaceholder: {
+        name: string;
+        content: string;
+      };
+      banButton: {
+        name: string;
+        content: string;
+      };
+      banTitle: {
+        name: string;
+        content: string;
+      };
+      banConfirmMessage: {
+        name: string;
+        content: string;
+      };
     };
   };
   page: {

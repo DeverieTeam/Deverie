@@ -2,14 +2,16 @@ import { useLoaderData, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import ThreadsDisplayer from "../components/ThreadsDisplayer";
 import TagFilterWindow from "../components/TagFilterWindow";
-import Pagination from "../components/Pagination";
-import SortSelection from "../components/SortSelection";
+import ThreadsPagination from "../components/ThreadsPagination";
+import ThreadsSortSelection from "../components/ThreadsSortSelection";
 import SearchField from "../components/SearchField";
 import ConnectionNeeded from "../components/userAccount/ConnectionNeeded";
 import ConnectionWindow from "../components/userAccount/ConnectionWindow";
 import { useTags } from "../contexts/useTags";
 import { threadspageWebcontentType } from "../types/threadspageWebcontentType";
 import { useAuth } from "../contexts/useAuth";
+import MemberViewWindow from "../components/MemberViewWindow";
+import BanConfirmWindow from "../components/BanConfirmWindow";
 
 export default function ThreadsPage({ threadType }: Props) {
   const [isConnectionNeededClicked, setIsConnectionNeededClicked] =
@@ -17,6 +19,12 @@ export default function ThreadsPage({ threadType }: Props) {
   const [isConnectionWindowDisplayed, setIsConnectionWindowDisplayed] =
     useState<boolean>(false);
   const [isTagButtonClicked, setIsTagButtonClicked] = useState<boolean>(false);
+  const [isMemberViewWindowOpened, setIsMemberViewWindowOpened] =
+    useState<boolean>(false);
+  const [isBanConfirmWindowOpened, setIsBanConfirmWindowOpened] =
+    useState<boolean>(false);
+  const [memberId, setMemberId] = useState<null | number>(null);
+
   const [dataForPage, setDataForPage] = useState<
     | null
     | {
@@ -111,7 +119,8 @@ export default function ThreadsPage({ threadType }: Props) {
         <div className="mx-auto w-72 py-2 px-4 bg-neutral-100 gap-4 rounded-lg shadow-sm shadow-neutral-400 flex flex-row">
           <button
             className="w-12 h-12 bg-indigo-400 hover:bg-indigo-600 self-center hover:text-white text-center text-5xl rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900 font-semibold relative"
-            onClick={handleNewPostButton}>
+            onClick={handleNewPostButton}
+          >
             +
           </button>
           <p className="m-auto flex-1 text-center text-lg">
@@ -126,10 +135,11 @@ export default function ThreadsPage({ threadType }: Props) {
           <div className="gap-6 xl:gap-10 flex flex-col">
             <button
               className="mx-auto w-56 py-1 px-4 text-center text-lg md:text-xl hover:text-white bg-indigo-400 hover:bg-indigo-600 rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900"
-              onClick={handleTagFilterButton}>
+              onClick={handleTagFilterButton}
+            >
               {webcontent.commons.searching.tagFilter.text.content}
             </button>
-            <SortSelection
+            <ThreadsSortSelection
               threadType={threadType}
               setSort={setSort}
               webcontent={webcontent.commons.searching.sortFilter}
@@ -146,6 +156,8 @@ export default function ThreadsPage({ threadType }: Props) {
             sort={sort}
             searchField={searchField}
             tags={tags}
+            setMemberId={setMemberId}
+            setIsMemberViewWindowOpened={setIsMemberViewWindowOpened}
             webcontent={{
               publications: webcontent.commons.publications,
               noResult: webcontent.commons.noResult,
@@ -155,7 +167,7 @@ export default function ThreadsPage({ threadType }: Props) {
       </div>
       <div className="w-full px-1 md:px-0 md:max-w-[750px] md:mx-auto flex flex-col">
         {dataForPage !== null && dataForPage.length > 0 && (
-          <Pagination
+          <ThreadsPagination
             dataForPage={dataForPage}
             pagination={pagination}
             setPagination={setPagination}
@@ -202,6 +214,21 @@ export default function ThreadsPage({ threadType }: Props) {
             }}
           />
         )}
+      {isMemberViewWindowOpened && memberId && (
+        <MemberViewWindow
+          setIsMemberViewWindowOpened={setIsMemberViewWindowOpened}
+          setIsBanConfirmWindowOpened={setIsBanConfirmWindowOpened}
+          memberId={memberId}
+          webcontent={webcontent.commons.memberWindow}
+        />
+      )}
+      {isBanConfirmWindowOpened && memberId && (
+        <BanConfirmWindow
+          setIsBanConfirmWindowOpened={setIsBanConfirmWindowOpened}
+          memberId={memberId}
+          webcontent={webcontent.commons}
+        />
+      )}
     </div>
   );
 }

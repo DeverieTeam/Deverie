@@ -40,8 +40,13 @@ async function fetchWebContent(
       case "register":
       	endpoint += "/register";
       	break;
+        endpoint = "/register";
+        break;
       case "newPost":
         endpoint += "/newPost";
+        break;
+      case "postView":
+        endpoint = "/postView";
         break;
       case "wip":
       case "wipage":

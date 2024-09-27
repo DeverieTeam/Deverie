@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import TagSelectionDisplayer from "./TagSelectionDisplayer";
 import { tagselectionwindowWebcontentType } from "../types/tagselectionwindowWebcontentType";
+import { useAuth } from "../contexts/useAuth";
+import Cookies from "universal-cookie";
 
-export default function TagSelectionWindow({
-  isTagButtonClicked,
-  setIsTagButtonClicked,
-  tags,
-  setTags,
+export default function TagEditWindow({
+  setIsTagEditWindowOpened,
+  postId,
+  previousTags,
   webcontent,
 }: Props) {
   const [tempTags, setTempTags] = useState<
@@ -16,16 +17,18 @@ export default function TagSelectionWindow({
       icon: string;
       family: string;
     }[]
-  >([]);
+  >(previousTags);
+
+  const { auth } = useAuth();
 
   useEffect(() => {
-    if (tags !== null) {
-      setTempTags(tags);
+    if (auth && auth.role && auth.role === "client") {
+      setIsTagEditWindowOpened(false);
     }
-  }, [tags]);
+  }, [auth, setIsTagEditWindowOpened]);
 
   const exitTagWindow = () => {
-    setIsTagButtonClicked(!isTagButtonClicked);
+    setIsTagEditWindowOpened(false);
   };
 
   const buttonState = () => {
@@ -36,9 +39,48 @@ export default function TagSelectionWindow({
     }
   };
 
-  const handleConfirmButton = () => {
-    setTags(tempTags);
-    setIsTagButtonClicked(!isTagButtonClicked);
+  const handleConfirmButton = async () => {
+    if (auth && auth.id) {
+      const bodyTags = [];
+      for (const tag of tempTags) {
+        const newTag = { id: tag.id };
+        bodyTags.push(newTag);
+      }
+
+      const body: {
+        id: number;
+        tags: { id: number }[];
+        modification_author: number;
+      } = {
+        id: postId,
+        tags: bodyTags,
+        modification_author: auth.id,
+      };
+
+      try {
+        const cookies = new Cookies(null, {
+          path: "/",
+        });
+        const jwt = cookies.get("JWT");
+        const response = await fetch("http://localhost:3000/post", {
+          method: "PUT",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${jwt}`,
+          },
+          body: JSON.stringify(body),
+        });
+
+        if (response.ok) {
+          //   const result = await response.json();
+          //   console.log(result);
+          window.location.reload();
+        }
+      } catch (error) {
+        console.error("Something went wrong: ", error);
+      }
+    }
   };
 
   return (
@@ -103,23 +145,13 @@ export default function TagSelectionWindow({
 }
 
 type Props = {
-  isTagButtonClicked: boolean;
-  setIsTagButtonClicked: (arg0: boolean) => void;
-  tags:
-    | {
-        id: number;
-        name: string;
-        icon: string;
-        family: string;
-      }[]
-    | null;
-  setTags: (
-    arg0: {
-      id: number;
-      name: string;
-      icon: string;
-      family: string;
-    }[]
-  ) => void;
+  setIsTagEditWindowOpened: (arg0: boolean) => void;
+  postId: number;
+  previousTags: {
+    id: number;
+    name: string;
+    icon: string;
+    family: string;
+  }[];
   webcontent: tagselectionwindowWebcontentType;
 };

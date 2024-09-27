@@ -9,6 +9,38 @@ export class MemberService {
     @InjectRepository(Member) private memberRepository: Repository<Member>,
   ) {}
 
+  refineMemberData(data: Member) {
+    const refinedData: {
+      id: number;
+      name: string;
+      email: string;
+      is_email_displayed: boolean;
+      profile_picture: string;
+      role: 'member' | 'moderator' | 'administrator';
+      pronouns?: string;
+      description?: string;
+      inscription_date: Date;
+      post_count: number;
+    } = {
+      id: data.id,
+      name: data.name,
+      email: data.email,
+      is_email_displayed: data.is_email_displayed,
+      profile_picture: data.profile_picture,
+      role: data.role,
+      pronouns: data.pronouns,
+      description: data.description,
+      inscription_date: data.inscription_date,
+      post_count: data.posts.length,
+    };
+
+    if (data.displayed_name) {
+      refinedData.name = data.displayed_name;
+    }
+
+    return refinedData;
+  }
+
   async getAllMembers() {
     return await this.memberRepository.find();
   }
@@ -34,11 +66,11 @@ export class MemberService {
 
   async getAllMemberLogs() {
     return await this.memberRepository.find({
-      select: ['id', 'name', 'email', 'hashed_password'],
+      select: ['id', 'name', 'email', 'hashed_password', 'is_banned'],
     });
   }
 
-  async getMemberById(id: number) {
+  async getAuthById(id: number) {
     return this.memberRepository.findOne({
       select: ['id', 'name', 'profile_picture', 'role'],
       where: { id: id },
@@ -72,5 +104,22 @@ export class MemberService {
           }
       }
 
+  async getMemberById(id: number) {
+    const response = await this.memberRepository
+      .createQueryBuilder('member')
+      .where('member.id = :id', { id: id })
+      .innerJoinAndSelect('member.posts', 'posts')
+      .getOne();
+
+    response.posts = response.posts.filter((post) => post.is_readable);
+
+    return this.refineMemberData(response);
+  }
+
+  async updateMember(member) {
+    const returnedValue = await this.memberRepository.save(member);
+    return {
+      id: returnedValue.id,
+    };
   }
 }
