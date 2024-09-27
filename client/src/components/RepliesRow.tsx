@@ -15,6 +15,8 @@ export default function RepliesRow({
   setPostType,
   setIsPostDeletionWindowOpened,
   postIsOpened,
+  setMemberId,
+  setIsMemberViewWindowOpened,
   webcontent,
 }: Props) {
   const [data, setData] = useState<null | {
@@ -23,6 +25,7 @@ export default function RepliesRow({
       id: number;
       name: string;
       profile_picture: string;
+      role: "member" | "moderator" | "administrator";
     };
     creation_date: string;
     content: string;
@@ -63,6 +66,14 @@ export default function RepliesRow({
     }
   };
 
+  const handleMemberButton = (e: React.BaseSyntheticEvent) => {
+    e.stopPropagation();
+    if (data) {
+      setMemberId(data.author.id);
+      setIsMemberViewWindowOpened(true);
+    }
+  };
+
   const handleEditButton = () => {
     if (data && auth !== undefined && auth.role !== "client") {
       setPostId(data.id);
@@ -84,7 +95,10 @@ export default function RepliesRow({
       <div className="w-full py-2 md:px-0 self-center gap-2 md:gap-4 flex flex-col">
         {data !== null && (
           <div className="bg-neutral-100 gap-2 p-1 md:p-4 rounded-lg shadow-sm shadow-neutral-400 flex flex-col">
-            <button className="h-16 md:h-[104px] bg-neutral-200 px-1 hover:bg-white gap-2 md:gap-4 rounded-full shadow-sm shadow-neutral-500 flex">
+            <button
+              className="h-16 md:h-[104px] bg-neutral-200 px-1 hover:bg-white gap-2 md:gap-4 rounded-full shadow-sm shadow-neutral-500 flex"
+              onClick={handleMemberButton}
+            >
               <img
                 className="my-auto h-14 md:h-[96px] w-14 md:w-[96px] rounded-full shadow-sm shadow-neutral-500 bg-transparent"
                 src={data.author.profile_picture}
@@ -156,8 +170,10 @@ export default function RepliesRow({
               {auth &&
                 data &&
                 ((auth.id && auth.id === data.author.id) ||
-                  auth.role === "moderator" ||
-                  auth.role === "administrator") && (
+                  ((auth.role === "moderator" ||
+                    auth.role === "administrator") &&
+                    data.author.role !== "moderator" &&
+                    data.author.role !== "administrator")) && (
                   <div className="flex-1 justify-end gap-2 flex">
                     <button
                       className="w-7 md:w-8 h-7 md:h-8 bg-indigo-400 hover:bg-indigo-600 self-center hover:text-white text-center rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900"
@@ -242,6 +258,8 @@ export default function RepliesRow({
                   setPostType={setPostType}
                   setIsPostDeletionWindowOpened={setIsPostDeletionWindowOpened}
                   postIsOpened={postIsOpened}
+                  setMemberId={setMemberId}
+                  setIsMemberViewWindowOpened={setIsMemberViewWindowOpened}
                   webcontent={webcontent}
                 />
               </div>
@@ -265,5 +283,7 @@ type Props = {
   setPostType: (arg0: string) => void;
   setIsPostDeletionWindowOpened: (arg0: boolean) => void;
   postIsOpened: boolean;
+  setMemberId: (arg0: number) => void;
+  setIsMemberViewWindowOpened: (arg0: boolean) => void;
   webcontent: postviewpageWebcontentType;
 };

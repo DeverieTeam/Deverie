@@ -46,19 +46,6 @@ export default function MemberViewWindow({
     setIsBanConfirmWindowOpened(true);
   };
 
-  const roleDisplay = () => {
-    if (data) {
-      switch (data.role) {
-        case "member":
-          return "Membre";
-        case "moderator":
-          return "Modérateur";
-        case "administrator":
-          return "Administrateur";
-      }
-    }
-  };
-
   return (
     <div
       className="absolute h-[120%] w-[100%] bg-gray-400/60 z-20 -translate-y-16"
@@ -89,41 +76,41 @@ export default function MemberViewWindow({
                 />
               </svg>
             </button>
-            <div className="w-full flex flex-col xl:flex-row">
-              <div className="xl:w-[50%] mb-6 xl:mb-0 flex flex-col">
+            <div className="w-full h-full flex flex-col xl:flex-row">
+              <div className="xl:w-[50%] mb-6 xl:my-auto flex flex-col">
                 <img
                   className="mx-auto mb-6 h-24 md:h-[180px] xl:h-[240px] w-24 md:w-[180px] xl:w-[240px] rounded-full bg-transparent"
                   src={data?.profile_picture}
                 />
-                <p className="text-center px-4 text-indigo-500 text-3xl md:text-5xl font-bold drop-shadow">
+                <p className="text-center px-4 mb-2 md:mb-4 text-indigo-500 text-2xl md:text-5xl font-bold drop-shadow">
                   {data?.name}
                 </p>
-                <p className="text-center px-4 text-lg md:text-2xl">
-                  {roleDisplay()}
-                </p>
+                {data && (
+                  <p className="text-center px-4 md:text-2xl">
+                    {webcontent.role[data.role].content}
+                  </p>
+                )}
                 {data && data.pronouns && (
-                  <p className="text-center px-4 text-lg md:text-2xl">
+                  <p className="text-center px-4 md:text-2xl">
                     {webcontent.pronounsPrefix.content}
                     {data.pronouns}
                   </p>
                 )}
                 {data?.is_email_displayed && (
-                  <p className="text-center px-4 text-lg md:text-2xl">
-                    {data?.email}
-                  </p>
+                  <p className="text-center px-4 md:text-2xl">{data?.email}</p>
                 )}
-                <p className="text-center px-4 text-lg md:text-2xl">
+                <p className="text-center px-4 md:text-2xl">
                   {webcontent.messageCount.content}
                   {data?.post_count}
                 </p>
-                <p className="text-center px-4 text-lg md:text-2xl">
+                <p className="text-center px-4 md:text-2xl">
                   {webcontent.inscriptionDate.content}
                   {data?.inscription_date}
                 </p>
               </div>
-              <div className="xl:w-[50%] mb-6 gap-6 md:gap-12 justify-center flex flex-col">
+              <div className="xl:w-[50%] pb-6 md:pb-12 xl:pb-0 xl:my-auto gap-6 md:gap-8 xl:gap-0 justify-center flex flex-col">
                 {data && (
-                  <p className="bg-neutral-100 px-2 py-4 md:mx-4 xl:px-4 xl:py-6 rounded-lg shadow-sm shadow-neutral-400 text-center md:text-xl xl:text-2xl">
+                  <p className="bg-neutral-100 px-2 py-4 md:mt-4 xl:mt-0 md:mx-4 xl:px-4 xl:py-6 rounded-lg shadow-sm shadow-neutral-400 text-center md:text-xl xl:text-2xl">
                     {data.description
                       ? data.description
                           .split("\n")
@@ -142,7 +129,7 @@ export default function MemberViewWindow({
                     data.role !== "moderator" &&
                     data.role !== "administrator" && (
                       <button
-                        className="py-1 px-4 md:px-8 text-center text-lg md:text-2xl hover:text-white bg-indigo-400 hover:bg-indigo-600 rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900"
+                        className="py-1 px-4 md:px-8 xl:mt-12 text-center text-lg md:text-2xl hover:text-white bg-indigo-400 hover:bg-indigo-600 rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900"
                         onClick={handleBanButton}
                       >
                         {webcontent.banButton.content}

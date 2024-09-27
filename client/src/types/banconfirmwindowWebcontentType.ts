@@ -388,6 +388,20 @@ export type banconfirmwindowWebcontentType = {
     content: string;
   };
   memberWindow: {
+    role: {
+      member: {
+        name: string;
+        content: string;
+      };
+      moderator: {
+        name: string;
+        content: string;
+      };
+      administrator: {
+        name: string;
+        content: string;
+      };
+    };
     pronounsPrefix: {
       name: string;
       content: string;

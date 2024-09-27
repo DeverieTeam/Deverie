@@ -66,6 +66,7 @@ export class PostController {
       content: string;
       author: number;
       tags: { id: number }[];
+      emergency?: number;
     },
   ) {
     return this.service.createPost(post);

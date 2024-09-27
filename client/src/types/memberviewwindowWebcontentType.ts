@@ -1,4 +1,18 @@
 export type memberviewwindowWebcontentType = {
+  role: {
+    member: {
+      name: string;
+      content: string;
+    };
+    moderator: {
+      name: string;
+      content: string;
+    };
+    administrator: {
+      name: string;
+      content: string;
+    };
+  };
   pronounsPrefix: {
     name: string;
     content: string;

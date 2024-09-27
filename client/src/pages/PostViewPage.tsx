@@ -42,6 +42,7 @@ export default function PostViewPage() {
       name: string;
       profile_picture: string;
       is_banned: boolean;
+      role: "member" | "moderator" | "administrator";
     };
     tags: {
       id: number;
@@ -307,8 +308,10 @@ export default function PostViewPage() {
               {auth &&
                 data &&
                 ((auth.id && auth.id === data.author.id) ||
-                  auth.role === "moderator" ||
-                  auth.role === "administrator") && (
+                  ((auth.role === "moderator" ||
+                    auth.role === "administrator") &&
+                    data.author.role !== "moderator" &&
+                    data.author.role !== "administrator")) && (
                   <div className="flex-1 justify-end gap-2 flex">
                     <button
                       className="w-7 md:w-8 h-7 md:h-8 bg-indigo-400 hover:bg-indigo-600 self-center hover:text-white text-center rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900"
@@ -365,8 +368,9 @@ export default function PostViewPage() {
             data &&
             data.is_opened &&
             ((auth.id && auth.id === data.author.id) ||
-              auth.role === "moderator" ||
-              auth.role === "administrator") && (
+              ((auth.role === "moderator" || auth.role === "administrator") &&
+                data.author.role !== "moderator" &&
+                data.author.role !== "administrator")) && (
               <button
                 className="mb-1 py-1 px-2 md:px-4 text-center justify-center text-lg md:text-xl gap-2 bg-neutral-100 hover:bg-white rounded-lg shadow-sm shadow-neutral-400 flex"
                 onClick={handleClosureButton}
@@ -410,6 +414,8 @@ export default function PostViewPage() {
                 setPostType={setPostType}
                 setIsPostDeletionWindowOpened={setIsPostDeletionWindowOpened}
                 postIsOpened={postIsOpened}
+                setMemberId={setMemberId}
+                setIsMemberViewWindowOpened={setIsMemberViewWindowOpened}
                 webcontent={webcontent}
               />
             </div>

@@ -87,6 +87,7 @@ export class PostService {
         name: string;
         profile_picture: string;
         is_banned: boolean;
+        role: 'member' | 'moderator' | 'administrator';
       };
       tags: {
         id: number;
@@ -111,6 +112,7 @@ export class PostService {
         name: data.author.name,
         profile_picture: data.author.profile_picture,
         is_banned: data.author.is_banned,
+        role: data.author.role,
       },
       tags: refinedTags,
       creation_date: data.creation_date,
@@ -161,6 +163,7 @@ export class PostService {
         id: number;
         name: string;
         profile_picture: string;
+        role: 'member' | 'moderator' | 'administrator';
       };
       creation_date: Date;
       content: string;
@@ -173,6 +176,7 @@ export class PostService {
         id: data.author.id,
         name: data.author.name,
         profile_picture: data.author.profile_picture,
+        role: data.author.role,
       },
       creation_date: data.creation_date,
       content: data.content,

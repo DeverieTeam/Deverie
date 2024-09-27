@@ -406,6 +406,20 @@
     }
   },
   "memberWindow": {
+    "role": {
+      "member": {
+        "name": "Affichage du rôle de membre de la fenêtre de vue des informations utilisateurs",
+        "content": "Membre"
+      },
+      "moderator": {
+        "name": "Affichage du rôle de modérateur de la fenêtre de vue des informations utilisateurs",
+        "content": "Modérateur"
+      },
+      "administrator": {
+        "name": "Affichage du rôle d'administrateur de la fenêtre de vue des informations utilisateurs",
+        "content": "Administrateur"
+      }
+    },
     "pronounsPrefix": {
       "name": "Préfixe des pronoms de la fenêtre de vue des informations utilisateurs",
       "content": "Pronoms : "
