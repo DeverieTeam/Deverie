@@ -4,6 +4,7 @@ import {
   Get,
   Param,
   Post,
+  Put,
   Query,
   UseGuards,
 } from '@nestjs/common';
@@ -65,8 +66,39 @@ export class PostController {
       content: string;
       author: number;
       tags: { id: number }[];
+      emergency?: number;
     },
   ) {
     return this.service.createPost(post);
+  }
+
+  @UseGuards(AuthGuard('jwt'))
+  @Post('newReply')
+  async createReply(
+    @Body()
+    post: {
+      type: 'comment' | 'answer';
+      content: string;
+      author: number;
+      reply_to: number;
+    },
+  ) {
+    return this.service.createReply(post);
+  }
+
+  @UseGuards(AuthGuard('jwt'))
+  @Put()
+  async updatePost(
+    @Body()
+    post: {
+      id: number;
+      content?: string;
+      modification_author: number;
+      tags?: { id: number }[];
+      isreadable?: boolean;
+      is_opened?: boolean;
+    },
+  ) {
+    return this.service.updatePost(post);
   }
 }

@@ -1,18 +1,33 @@
 import { useNavigate } from "react-router-dom";
 import { threadsrowWebcontentType } from "../types/threadsrowWebcontentType";
 
-export default function ThreadsRow({ post, webcontent }: Props) {
+export default function ThreadsRow({
+  post,
+  setMemberId,
+  setIsMemberViewWindowOpened,
+  webcontent,
+}: Props) {
   const navigate = useNavigate();
   const handleRowClick = () => {
     navigate({ pathname: "/postView", search: `?id=${post.id}` });
   };
 
+  const handleMemberButton = (e: React.BaseSyntheticEvent) => {
+    e.stopPropagation();
+    setMemberId(post.author.id);
+    setIsMemberViewWindowOpened(true);
+  };
+
   return (
     <button
       className="bg-neutral-100 hover:bg-white gap-2 p-1 md:p-4 rounded-lg shadow-sm shadow-neutral-400 flex"
-      onClick={handleRowClick}>
+      onClick={handleRowClick}
+    >
       <div className="w-[35%] justify-between gap-1 md:gap-2 flex flex-col">
-        <div className="m-auto h-14 md:h-32 w-14 md:w-32 bg-indigo-400 hover:bg-indigo-600 rounded-full shadow-sm shadow-neutral-500 flex">
+        <div
+          className="m-auto h-14 md:h-32 w-14 md:w-32 bg-indigo-400 hover:bg-indigo-600 rounded-full shadow-sm shadow-neutral-500 flex"
+          onClick={handleMemberButton}
+        >
           <img
             className="m-auto h-12 md:h-[120px] w-12 md:w-[120px] rounded-full bg-transparent"
             src={post.author.profile_picture}
@@ -71,7 +86,7 @@ export default function ThreadsRow({ post, webcontent }: Props) {
 type Props = {
   post: {
     id: number;
-    author: { name: string; profile_picture: string };
+    author: { id: number; name: string; profile_picture: string };
     tags: {
       id: number;
       name: string;
@@ -84,5 +99,7 @@ type Props = {
     replies_count: number;
     last_message_date: string;
   };
+  setMemberId: (arg0: number) => void;
+  setIsMemberViewWindowOpened: (arg0: boolean) => void;
   webcontent: threadsrowWebcontentType;
 };

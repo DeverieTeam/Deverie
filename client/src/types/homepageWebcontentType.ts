@@ -151,6 +151,16 @@ export type homepageWebcontentType = {
           content: string;
         };
       };
+      joinUs: {
+        text: {
+          name: string;
+          content: string;
+        };
+        hover: {
+          name: string;
+          content: string;
+        };
+      };
       login: {
         text: {
           name: string;
@@ -208,6 +218,38 @@ export type homepageWebcontentType = {
           name: string;
           content: string;
         };
+      };
+    };
+    connection: {
+      title: {
+        connectionPage: {
+          name: string;
+          content: string;
+        };
+        connectionNeeded: {
+          name: string;
+          content: string;
+        };
+      };
+      fields: {
+        username: {
+          name: string;
+          content: string;
+        };
+        password: {
+          name: string;
+          content: string;
+        };
+      };
+      unregistered: {
+        prefix: {
+          name: string;
+          content: string;
+        };
+      };
+      warning: {
+        name: string;
+        content: string;
       };
     };
     publications: {
@@ -311,7 +353,15 @@ export type homepageWebcontentType = {
       };
     };
     pagination: {
-      resultsOutOf: {
+      result: {
+        name: string;
+        content: string;
+      };
+      answer: {
+        name: string;
+        content: string;
+      };
+      outOf: {
         name: string;
         content: string;
       };
@@ -338,7 +388,52 @@ export type homepageWebcontentType = {
       name: string;
       content: string;
     };
+    memberWindow: {
+      role: {
+        member: {
+          name: string;
+          content: string;
+        };
+        moderator: {
+          name: string;
+          content: string;
+        };
+        administrator: {
+          name: string;
+          content: string;
+        };
+      };
+      pronounsPrefix: {
+        name: string;
+        content: string;
+      };
+      messageCount: {
+        name: string;
+        content: string;
+      };
+      inscriptionDate: {
+        name: string;
+        content: string;
+      };
+      descriptionPlaceholder: {
+        name: string;
+        content: string;
+      };
+      banButton: {
+        name: string;
+        content: string;
+      };
+      banTitle: {
+        name: string;
+        content: string;
+      };
+      banConfirmMessage: {
+        name: string;
+        content: string;
+      };
+    };
   };
+
   page: {
     welcomeMessage: {
       title: {

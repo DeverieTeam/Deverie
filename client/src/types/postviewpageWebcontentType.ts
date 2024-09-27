@@ -388,6 +388,50 @@ export type postviewpageWebcontentType = {
       name: string;
       content: string;
     };
+    memberWindow: {
+      role: {
+        member: {
+          name: string;
+          content: string;
+        };
+        moderator: {
+          name: string;
+          content: string;
+        };
+        administrator: {
+          name: string;
+          content: string;
+        };
+      };
+      pronounsPrefix: {
+        name: string;
+        content: string;
+      };
+      messageCount: {
+        name: string;
+        content: string;
+      };
+      inscriptionDate: {
+        name: string;
+        content: string;
+      };
+      descriptionPlaceholder: {
+        name: string;
+        content: string;
+      };
+      banButton: {
+        name: string;
+        content: string;
+      };
+      banTitle: {
+        name: string;
+        content: string;
+      };
+      banConfirmMessage: {
+        name: string;
+        content: string;
+      };
+    };
   };
   page: {
     associatedTags: {
@@ -429,6 +473,38 @@ export type postviewpageWebcontentType = {
       content: string;
     };
     hideAnswers: {
+      name: string;
+      content: string;
+    };
+    postContent: {
+      name: string;
+      content: string;
+    };
+    postContentPlaceholder: {
+      name: string;
+      content: string;
+    };
+    editTitle: {
+      name: string;
+      content: string;
+    };
+    tagNumberDisclaimer: {
+      name: string;
+      content: string;
+    };
+    deletionTitle: {
+      name: string;
+      content: string;
+    };
+    deletionConfirmMessage: {
+      name: string;
+      content: string;
+    };
+    closureTitle: {
+      name: string;
+      content: string;
+    };
+    closureConfirmMessage: {
       name: string;
       content: string;
     };

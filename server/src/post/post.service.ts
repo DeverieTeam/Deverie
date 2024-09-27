@@ -37,6 +37,7 @@ export class PostService {
       const refinedPost = {
         id: post.id,
         author: {
+          id: post.author.id,
           name: post.author.name,
           profile_picture: post.author.profile_picture,
         },
@@ -86,6 +87,7 @@ export class PostService {
         name: string;
         profile_picture: string;
         is_banned: boolean;
+        role: 'member' | 'moderator' | 'administrator';
       };
       tags: {
         id: number;
@@ -110,6 +112,7 @@ export class PostService {
         name: data.author.name,
         profile_picture: data.author.profile_picture,
         is_banned: data.author.is_banned,
+        role: data.author.role,
       },
       tags: refinedTags,
       creation_date: data.creation_date,
@@ -160,6 +163,7 @@ export class PostService {
         id: number;
         name: string;
         profile_picture: string;
+        role: 'member' | 'moderator' | 'administrator';
       };
       creation_date: Date;
       content: string;
@@ -172,6 +176,7 @@ export class PostService {
         id: data.author.id,
         name: data.author.name,
         profile_picture: data.author.profile_picture,
+        role: data.author.role,
       },
       creation_date: data.creation_date,
       content: data.content,
@@ -516,5 +521,19 @@ export class PostService {
       .filter((post) => !post.author.is_banned);
 
     return this.refineReplyData(response);
+  }
+
+  async createReply(post) {
+    const returnedValue = await this.postRepository.save(post);
+    return {
+      id: returnedValue.id,
+    };
+  }
+
+  async updatePost(post) {
+    const returnedValue = await this.postRepository.save(post);
+    return {
+      id: returnedValue.id,
+    };
   }
 }
