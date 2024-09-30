@@ -566,5 +566,13 @@ export type profilepageWebcontentType = {
       name: string;
       content: string;
     };
+    emailDisplayConfirmationTitle: {
+      name: string;
+      content: string;
+    };
+    emailDisplayConfirmationContent: {
+      name: string;
+      content: string;
+    };
   };
 };

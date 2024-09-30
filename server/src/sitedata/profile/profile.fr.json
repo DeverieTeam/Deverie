@@ -130,5 +130,13 @@
   "pronounsContentPlaceholder": {
     "name": "Placeholder du champ de saisie des pronoms",
     "content": "Vos pronoms"
+  },
+  "emailDisplayConfirmationTitle": {
+    "name": "Titre de la fenêtre d'édition de l'affichage de l'adresse e-mail",
+    "content": "Modifier l'affichage de l'adresse e-mail"
+  },
+  "emailDisplayConfirmationContent": {
+    "name": "Texte associé au champ de saisie de l'affichage de l'adresse e-mail",
+    "content": "Afficher adresse e-mail :"
   }
 }

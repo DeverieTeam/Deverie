@@ -6,6 +6,7 @@ import { profilepageWebcontentType } from "../types/profilepageWebcontentType";
 import DescriptionEditWindow from "../components/DescriptionEditWindow";
 import DisplayedNameEditWindow from "../components/DisplayedNameEditWindow";
 import PronounsEditWindow from "../components/PronounsEditWindow";
+import EmailDisplayConfirmationWindow from "../components/EmailDisplayConfirmationWindow";
 
 export default function ProfilePage() {
   const [isDescriptionEditWindowOpened, setIsDescriptionEditWindowOpened] =
@@ -14,6 +15,10 @@ export default function ProfilePage() {
     useState<boolean>(false);
   const [isPronounsEditWindowOpened, setIsPronounsEditWindowOpened] =
     useState<boolean>(false);
+  const [
+    isEmailDisplayConfirmationWindowOpened,
+    setIsEmailDisplayConfirmationWindowOpened,
+  ] = useState<boolean>(false);
 
   const [data, setData] = useState<null | {
     id: number;
@@ -80,6 +85,12 @@ export default function ProfilePage() {
     }
   };
 
+  const handleDisplayMailEditButton = () => {
+    if (data && auth !== undefined && auth.role !== "client") {
+      setIsEmailDisplayConfirmationWindowOpened(true);
+    }
+  };
+
   const handleFavouritesButton = () => {
     navigate("/favourites");
   };
@@ -132,7 +143,7 @@ export default function ProfilePage() {
                 </p>
                 <button
                   className="my-auto w-7 md:w-8 h-7 md:h-8 bg-indigo-400 hover:bg-indigo-600 self-center hover:text-white text-center rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900"
-                  // onClick={handleDisplayMailEditButton}
+                  onClick={handleDisplayMailEditButton}
                 >
                   <svg
                     width="800px"
@@ -395,6 +406,15 @@ export default function ProfilePage() {
         <PronounsEditWindow
           setIsPronounsEditWindowOpened={setIsPronounsEditWindowOpened}
           previousContent={data.pronouns}
+          webcontent={webcontent}
+        />
+      )}
+      {data && isEmailDisplayConfirmationWindowOpened && (
+        <EmailDisplayConfirmationWindow
+          setIsEmailDisplayConfirmationWindowOpened={
+            setIsEmailDisplayConfirmationWindowOpened
+          }
+          previousContent={data.is_email_displayed}
           webcontent={webcontent}
         />
       )}
