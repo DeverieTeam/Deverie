@@ -7,6 +7,7 @@ import * as notFoundFr from '../sitedata/notFound/notFound.fr.json';
 import * as newPostPageFr from '../sitedata/newPost/newPost.fr.json';
 import * as postViewPageFr from '../sitedata/postView/postView.fr.json';
 import * as registerPageFr from '../sitedata/register/register.fr.json';
+import * as profilePageFr from '../sitedata/profile/profile.fr.json';
 
 const httpError = (customMessage: string) => {
   throw new HttpException(
@@ -209,6 +210,22 @@ export class WebContentService {
     } else {
       return {
         fr: postViewPageFr,
+      };
+    }
+  }
+
+  getProfilePageWebContent(params: { lang: string }) {
+    if (params.lang !== 'default') {
+      switch (params.lang) {
+        case 'fr':
+          return profilePageFr;
+        default:
+          httpError('Language not handled');
+          break;
+      }
+    } else {
+      return {
+        fr: profilePageFr,
       };
     }
   }

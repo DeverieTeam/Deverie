@@ -2,12 +2,17 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Member } from './member.entity/member.entity';
 import { Repository } from 'typeorm';
+import * as crypto from 'crypto';
 
 @Injectable()
 export class MemberService {
   constructor(
     @InjectRepository(Member) private memberRepository: Repository<Member>,
   ) {}
+
+  private hash(password: string): string {
+    return crypto.createHmac('sha256', password).digest('hex');
+  }
 
   refineMemberData(data: Member) {
     const refinedData: {
@@ -37,6 +42,34 @@ export class MemberService {
     if (data.displayed_name) {
       refinedData.name = data.displayed_name;
     }
+
+    return refinedData;
+  }
+
+  refineProfileData(data: Member) {
+    const refinedData: {
+      id: number;
+      name: string;
+      email: string;
+      is_email_displayed: boolean;
+      profile_picture: string;
+      pronouns?: string;
+      description?: string;
+      displayed_name: string;
+      theme: string;
+      language: string;
+    } = {
+      id: data.id,
+      name: data.name,
+      email: data.email,
+      is_email_displayed: data.is_email_displayed,
+      profile_picture: data.profile_picture,
+      pronouns: data.pronouns,
+      description: data.description,
+      displayed_name: data.displayed_name,
+      theme: data.theme,
+      language: data.language,
+    };
 
     return refinedData;
   }
@@ -109,6 +142,7 @@ export class MemberService {
       }
     }
   }
+
   async getMemberById(id: number) {
     const response = await this.memberRepository
       .createQueryBuilder('member')
@@ -121,8 +155,31 @@ export class MemberService {
     return this.refineMemberData(response);
   }
 
+  async getProfileById(id: number) {
+    const response = await this.memberRepository.findOne({
+      where: {
+        id: id,
+      },
+    });
+
+    return this.refineProfileData(response);
+  }
+
   async updateMember(member) {
-    const returnedValue = await this.memberRepository.save(member);
+    let returnedValue;
+    if (member.password) {
+      const hashedPassword = this.hash(member.password);
+
+      const updatedMember = {
+        id: member.id,
+        hashed_password: hashedPassword,
+      };
+
+      returnedValue = await this.memberRepository.save(updatedMember);
+    } else {
+      returnedValue = await this.memberRepository.save(member);
+    }
+
     return {
       id: returnedValue.id,
     };

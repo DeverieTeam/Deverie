@@ -95,4 +95,14 @@ export class WebContentController {
       lang: lang.toLowerCase(),
     });
   }
+
+  @Get('/profile')
+  getProfilePageWebContent(@Query('lang') lang: string) {
+    if (lang == undefined) {
+      lang = 'default';
+    }
+    return this.webContentService.getProfilePageWebContent({
+      lang: lang.toLowerCase(),
+    });
+  }
 }

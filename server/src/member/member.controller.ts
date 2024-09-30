@@ -27,6 +27,12 @@ export class MemberController {
     return this.service.getAuthById(id);
   }
 
+  @UseGuards(AuthGuard('jwt'))
+  @Get('profile/:id')
+  async getProfileById(@Param('id') id: number) {
+    return this.service.getProfileById(id);
+  }
+
   @Get(':id')
   async getMemberById(@Param('id') id: number) {
     return this.service.getMemberById(id);
@@ -43,12 +49,19 @@ export class MemberController {
       isBanned: isBanned === undefined ? undefined : isBanned === 'true',
     });
   }
+
   @UseGuards(AuthGuard('jwt'))
   @Put()
   async updateMember(
     @Body()
     member: {
       id: number;
+      password?: string;
+      is_email_displayed?: boolean;
+      profile_picture?: string;
+      pronouns?: string;
+      description?: string;
+      displayed_name?: string;
       is_banned?: boolean;
     },
   ) {
