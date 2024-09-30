@@ -542,5 +542,29 @@ export type profilepageWebcontentType = {
       name: string;
       content: string;
     };
+    displayedNameEditTitle: {
+      name: string;
+      content: string;
+    };
+    displayedNameContent: {
+      name: string;
+      content: string;
+    };
+    displayedNameContentPlaceholder: {
+      name: string;
+      content: string;
+    };
+    pronounsEditTitle: {
+      name: string;
+      content: string;
+    };
+    pronounsContent: {
+      name: string;
+      content: string;
+    };
+    pronounsContentPlaceholder: {
+      name: string;
+      content: string;
+    };
   };
 };

@@ -97,14 +97,38 @@
   },
   "descriptionEditTitle": {
     "name": "Titre de la fenêtre d'édition de description",
-    "content": "Editer une description"
+    "content": "Editer une Description"
   },
   "descriptionContent": {
     "name": "Texte associé au champ de saisie du contenu de la description",
-    "content": "Contenu :"
+    "content": "Description :"
   },
   "descriptionContentPlaceholder": {
     "name": "Placeholder du champ de saisie du contenu de la description",
     "content": "Contenu de votre description"
+  },
+  "displayedNameEditTitle": {
+    "name": "Titre de la fenêtre d'édition de pseudonyme",
+    "content": "Editer un Pseudonyme"
+  },
+  "displayedNameContent": {
+    "name": "Texte associé au champ de saisie du pseudonyme",
+    "content": "Pseudonyme :"
+  },
+  "displayedNameContentPlaceholder": {
+    "name": "Placeholder du champ de saisie du pseudonyme",
+    "content": "Votre pseudonyme"
+  },
+  "pronounsEditTitle": {
+    "name": "Titre de la fenêtre d'édition des pronoms",
+    "content": "Editer les Pronoms"
+  },
+  "pronounsContent": {
+    "name": "Texte associé au champ de saisie des pronoms",
+    "content": "Pronoms :"
+  },
+  "pronounsContentPlaceholder": {
+    "name": "Placeholder du champ de saisie des pronoms",
+    "content": "Vos pronoms"
   }
 }

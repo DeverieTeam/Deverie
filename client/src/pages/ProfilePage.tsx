@@ -4,9 +4,15 @@ import { useLoaderData, useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
 import { profilepageWebcontentType } from "../types/profilepageWebcontentType";
 import DescriptionEditWindow from "../components/DescriptionEditWindow";
+import DisplayedNameEditWindow from "../components/DisplayedNameEditWindow";
+import PronounsEditWindow from "../components/PronounsEditWindow";
 
 export default function ProfilePage() {
   const [isDescriptionEditWindowOpened, setIsDescriptionEditWindowOpened] =
+    useState<boolean>(false);
+  const [isDisplayedNameEditWindowOpened, setIsDisplayedNameEditWindowOpened] =
+    useState<boolean>(false);
+  const [isPronounsEditWindowOpened, setIsPronounsEditWindowOpened] =
     useState<boolean>(false);
 
   const [data, setData] = useState<null | {
@@ -59,6 +65,18 @@ export default function ProfilePage() {
   const handleDescriptionEditButton = () => {
     if (data && auth !== undefined && auth.role !== "client") {
       setIsDescriptionEditWindowOpened(true);
+    }
+  };
+
+  const handleDisplayedNameEditButton = () => {
+    if (data && auth !== undefined && auth.role !== "client") {
+      setIsDisplayedNameEditWindowOpened(true);
+    }
+  };
+
+  const handlePronounsEditButton = () => {
+    if (data && auth !== undefined && auth.role !== "client") {
+      setIsPronounsEditWindowOpened(true);
     }
   };
 
@@ -180,7 +198,7 @@ export default function ProfilePage() {
                 </p>
                 <button
                   className="my-auto w-7 md:w-8 h-7 md:h-8 bg-indigo-400 hover:bg-indigo-600 self-center hover:text-white text-center rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900"
-                  // onClick={handlePronounsEditButton}
+                  onClick={handlePronounsEditButton}
                 >
                   <svg
                     width="800px"
@@ -306,7 +324,7 @@ export default function ProfilePage() {
                 </p>
                 <button
                   className="my-auto w-7 md:w-8 h-7 md:h-8 bg-indigo-400 hover:bg-indigo-600 self-center hover:text-white text-center rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900"
-                  // onClick={handleDisplayedNameEditButton}
+                  onClick={handleDisplayedNameEditButton}
                 >
                   <svg
                     width="800px"
@@ -361,6 +379,22 @@ export default function ProfilePage() {
         <DescriptionEditWindow
           setIsDescriptionEditWindowOpened={setIsDescriptionEditWindowOpened}
           previousContent={data.description}
+          webcontent={webcontent}
+        />
+      )}
+      {data && isDisplayedNameEditWindowOpened && (
+        <DisplayedNameEditWindow
+          setIsDisplayedNameEditWindowOpened={
+            setIsDisplayedNameEditWindowOpened
+          }
+          previousContent={data.displayed_name}
+          webcontent={webcontent}
+        />
+      )}
+      {data && isPronounsEditWindowOpened && (
+        <PronounsEditWindow
+          setIsPronounsEditWindowOpened={setIsPronounsEditWindowOpened}
+          previousContent={data.pronouns}
           webcontent={webcontent}
         />
       )}
