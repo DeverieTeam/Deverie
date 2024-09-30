@@ -49,7 +49,7 @@
   },
   "descriptionPlaceholder": {
     "name": "Texte affiché en cas d'absence de description de l'utilisateur",
-    "content": "Aucune description renseignée pour le moment !"
+    "content": "Aucune description renseignée pour le moment"
   },
   "profilePictureTitle": {
     "name": "Texte indiquant le champ de choix d'image de profil",
@@ -138,5 +138,21 @@
   "emailDisplayConfirmationContent": {
     "name": "Texte associé au champ de saisie de l'affichage de l'adresse e-mail",
     "content": "Afficher adresse e-mail :"
+  },
+  "passwordEditTitle": {
+    "name": "Titre de la fenêtre d'édition du mot de passe",
+    "content": "Editer le Mot de passe"
+  },
+  "passwordContent": {
+    "name": "Texte associé au champ de saisie du mot de passe",
+    "content": "Mot de passe :"
+  },
+  "checkerContent": {
+    "name": "Texte associé au champ de saisie de la vérification du mot de passe",
+    "content": "Confirmer mot de passe :"
+  },
+  "warningMessage": {
+    "name": "Texte d'avertissement lié à la vérification du mot de passe",
+    "content": "La confirmation n'est pas identique au mot de passe saisi. Veuillez recommencer."
   }
 }

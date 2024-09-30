@@ -574,5 +574,21 @@ export type profilepageWebcontentType = {
       name: string;
       content: string;
     };
+    passwordEditTitle: {
+      name: string;
+      content: string;
+    };
+    passwordContent: {
+      name: string;
+      content: string;
+    };
+    checkerContent: {
+      name: string;
+      content: string;
+    };
+    warningMessage: {
+      name: string;
+      content: string;
+    };
   };
 };

@@ -7,6 +7,7 @@ import DescriptionEditWindow from "../components/DescriptionEditWindow";
 import DisplayedNameEditWindow from "../components/DisplayedNameEditWindow";
 import PronounsEditWindow from "../components/PronounsEditWindow";
 import EmailDisplayConfirmationWindow from "../components/EmailDisplayConfirmationWindow";
+import PasswordEditWindow from "../components/PasswordEditWindow";
 
 export default function ProfilePage() {
   const [isDescriptionEditWindowOpened, setIsDescriptionEditWindowOpened] =
@@ -19,6 +20,8 @@ export default function ProfilePage() {
     isEmailDisplayConfirmationWindowOpened,
     setIsEmailDisplayConfirmationWindowOpened,
   ] = useState<boolean>(false);
+  const [isPasswordEditWindowOpened, setIsPasswordEditWindowOpened] =
+    useState<boolean>(false);
 
   const [data, setData] = useState<null | {
     id: number;
@@ -88,6 +91,12 @@ export default function ProfilePage() {
   const handleDisplayMailEditButton = () => {
     if (data && auth !== undefined && auth.role !== "client") {
       setIsEmailDisplayConfirmationWindowOpened(true);
+    }
+  };
+
+  const handlePasswordEditButton = () => {
+    if (data && auth !== undefined && auth.role !== "client") {
+      setIsPasswordEditWindowOpened(true);
     }
   };
 
@@ -175,7 +184,7 @@ export default function ProfilePage() {
                 </p>
                 <button
                   className="my-auto w-7 md:w-8 h-7 md:h-8 bg-indigo-400 hover:bg-indigo-600 self-center hover:text-white text-center rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900"
-                  // onClick={handlePasswordEditButton}
+                  onClick={handlePasswordEditButton}
                 >
                   <svg
                     width="800px"
@@ -415,6 +424,12 @@ export default function ProfilePage() {
             setIsEmailDisplayConfirmationWindowOpened
           }
           previousContent={data.is_email_displayed}
+          webcontent={webcontent}
+        />
+      )}
+      {data && isPasswordEditWindowOpened && (
+        <PasswordEditWindow
+          setIsPasswordEditWindowOpened={setIsPasswordEditWindowOpened}
           webcontent={webcontent}
         />
       )}

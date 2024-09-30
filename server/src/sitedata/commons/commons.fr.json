@@ -434,7 +434,7 @@
     },
     "descriptionPlaceholder": {
       "name": "Texte affiché en cas d'absence de description dans la fenêtre de vue des informations utilisateurs",
-      "content": "Aucune description renseignée pour le moment !"
+      "content": "Aucune description renseignée pour le moment"
     },
     "banButton": {
       "name": "Texte du bouton de bannissement des utilisateurs frauduleux",
