@@ -14,6 +14,39 @@ export class MemberService {
     return crypto.createHmac('sha256', password).digest('hex');
   }
 
+  refineAuthData(data: Member) {
+    const refinedTags = [];
+    for (const tag of data.selected_tags) {
+      refinedTags.push({
+        id: tag.id,
+        name: tag.name,
+        icon: tag.icon,
+        family: tag.family,
+      });
+    }
+
+    const refinedData: {
+      id: number;
+      name: string;
+      profile_picture: string;
+      role: string;
+      selected_tags?: {
+        id: number;
+        name: string;
+        icon: string;
+        family: string;
+      }[];
+    } = {
+      id: data.id,
+      name: data.name,
+      profile_picture: data.profile_picture,
+      role: data.role,
+      selected_tags: refinedTags,
+    };
+
+    return refinedData;
+  }
+
   refineMemberData(data: Member) {
     const refinedData: {
       id: number;
@@ -104,10 +137,13 @@ export class MemberService {
   }
 
   async getAuthById(id: number) {
-    return this.memberRepository.findOne({
-      select: ['id', 'name', 'profile_picture', 'role'],
-      where: { id: id },
-    });
+    const response = await this.memberRepository
+      .createQueryBuilder('member')
+      .leftJoinAndSelect('member.selected_tags', 'selected_tags')
+      .where('member.id = :id', { id: id })
+      .getOne();
+
+    return this.refineAuthData(response);
   }
 
   async getMemberNumberByRole(args: {

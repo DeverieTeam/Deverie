@@ -154,5 +154,9 @@
   "warningMessage": {
     "name": "Texte d'avertissement lié à la vérification du mot de passe",
     "content": "La confirmation n'est pas identique au mot de passe saisi. Veuillez recommencer."
+  },
+  "tagNumberDisclaimer": {
+    "name": "Texte d'invitation à sélectionner le bon nombre de tags",
+    "content": "Veuillez sélectionner au moins un tag"
   }
 }

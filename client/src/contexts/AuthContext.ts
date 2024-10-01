@@ -2,7 +2,18 @@ import { createContext } from "react";
 
 interface AuthContextType {
   auth:
-    | { id?: number; name?: string; profile_picture?: string; role: string }
+    | {
+        id?: number;
+        name?: string;
+        profile_picture?: string;
+        role: string;
+        selected_tags?: {
+          id: number;
+          name: string;
+          icon: string;
+          family: string;
+        }[];
+      }
     | undefined;
   setAuth: (
     auth:
@@ -11,6 +22,12 @@ interface AuthContextType {
           name?: string;
           profile_picture?: string;
           role: string;
+          selected_tags?: {
+            id: number;
+            name: string;
+            icon: string;
+            family: string;
+          }[];
         }
       | undefined
   ) => void;

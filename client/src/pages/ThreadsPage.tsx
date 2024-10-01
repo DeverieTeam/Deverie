@@ -78,6 +78,10 @@ export default function ThreadsPage({ threadType }: Props) {
   };
 
   useEffect(() => {
+    setTags(null);
+  }, [setTags]);
+
+  useEffect(() => {
     fetch(`http://localhost:3000/tag`)
       .then((response) => {
         if (!response.ok) {

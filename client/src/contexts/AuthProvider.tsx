@@ -10,6 +10,12 @@ export default function AuthProvider({ children }: Props) {
         name?: string;
         profile_picture?: string;
         role: string;
+        selected_tags?: {
+          id: number;
+          name: string;
+          icon: string;
+          family: string;
+        }[];
       }
     | undefined
   >(undefined);
@@ -48,6 +54,8 @@ export default function AuthProvider({ children }: Props) {
       }
     }
   }, [auth]);
+
+  console.log(auth);
 
   return (
     <AuthContext.Provider value={{ auth, setAuth }}>

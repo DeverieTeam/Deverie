@@ -590,5 +590,9 @@ export type profilepageWebcontentType = {
       name: string;
       content: string;
     };
+    tagNumberDisclaimer: {
+      name: string;
+      content: string;
+    };
   };
 };

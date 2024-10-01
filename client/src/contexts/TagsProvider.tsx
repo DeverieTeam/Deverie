@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { TagsContext } from "./TagsContext";
+import { useAuth } from "./useAuth";
 
 export default function TagsProvider({ children }: Props) {
+  const { auth } = useAuth();
   const [tags, setTags] = useState<null | string[]>(null);
 
   useEffect(() => {
-    if (tags === null) {
+    if (auth && tags === null) {
       fetch("http://localhost:3000/tag")
         .then((response) => {
           if (!response.ok) {
@@ -23,12 +25,20 @@ export default function TagsProvider({ children }: Props) {
             let storedTags = storageChecked.split("&");
             storedTags = storedTags.filter((tag) => tagArray.includes(tag));
             setTags(storedTags);
+          } else if (auth.selected_tags && auth.selected_tags.length > 0) {
+            const favouriteTags: string[] = [];
+            auth.selected_tags.map((item) => {
+              favouriteTags.push(item.name);
+            });
+            setTags(favouriteTags);
           } else {
             setTags(tagArray);
           }
         });
     }
-  }, [tags]);
+  }, [tags, auth, auth?.selected_tags]);
+
+  console.log(tags);
 
   return (
     <TagsContext.Provider value={{ tags, setTags }}>

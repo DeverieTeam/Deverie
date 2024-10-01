@@ -119,7 +119,11 @@ const router = createBrowserRouter([
         path: "profile",
         element: <ProfilePage />,
         loader: async () => {
-          return await fetchWebContent({ page: "profile", lang: "fr" });
+          return await fetchWebContent({
+            page: "profile",
+            lang: "fr",
+            hasPosts: true,
+          });
         },
       },
     ],

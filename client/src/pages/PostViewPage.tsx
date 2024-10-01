@@ -474,7 +474,6 @@ export default function PostViewPage() {
           }}
         />
       )}
-
       {isConnectionWindowDisplayed && (
         <ConnectionWindow
           setIsConnectionWindowDisplayed={setIsConnectionWindowDisplayed}

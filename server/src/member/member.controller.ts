@@ -63,6 +63,9 @@ export class MemberController {
       description?: string;
       displayed_name?: string;
       is_banned?: boolean;
+      selected_tags?: {
+        id: number;
+      }[];
     },
   ) {
     return this.service.updateMember(member);

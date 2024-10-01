@@ -8,6 +8,7 @@ import DisplayedNameEditWindow from "../components/DisplayedNameEditWindow";
 import PronounsEditWindow from "../components/PronounsEditWindow";
 import EmailDisplayConfirmationWindow from "../components/EmailDisplayConfirmationWindow";
 import PasswordEditWindow from "../components/PasswordEditWindow";
+import FavouriteTagsWindow from "../components/FavouriteTagsWindow";
 
 export default function ProfilePage() {
   const [isDescriptionEditWindowOpened, setIsDescriptionEditWindowOpened] =
@@ -21,6 +22,8 @@ export default function ProfilePage() {
     setIsEmailDisplayConfirmationWindowOpened,
   ] = useState<boolean>(false);
   const [isPasswordEditWindowOpened, setIsPasswordEditWindowOpened] =
+    useState<boolean>(false);
+  const [isFavouriteTagsWindowOpened, setIsFavouriteTagsWindowOpened] =
     useState<boolean>(false);
 
   const [data, setData] = useState<null | {
@@ -97,6 +100,12 @@ export default function ProfilePage() {
   const handlePasswordEditButton = () => {
     if (data && auth !== undefined && auth.role !== "client") {
       setIsPasswordEditWindowOpened(true);
+    }
+  };
+
+  const handleTagsButton = () => {
+    if (data && auth !== undefined && auth.role !== "client") {
+      setIsFavouriteTagsWindowOpened(true);
     }
   };
 
@@ -370,7 +379,7 @@ export default function ProfilePage() {
           <div className="mt-6 md:mt-12 gap-4 md:gap-6 xl:w-full flex flex-col">
             <button
               className="mx-auto py-1 px-8 text-center text-lg md:text-2xl hover:text-white bg-indigo-400 hover:bg-indigo-600 rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900"
-              // onClick={handleTagsButton}
+              onClick={handleTagsButton}
             >
               {webcontent.page.tagsButton.content}
             </button>
@@ -431,6 +440,17 @@ export default function ProfilePage() {
         <PasswordEditWindow
           setIsPasswordEditWindowOpened={setIsPasswordEditWindowOpened}
           webcontent={webcontent}
+        />
+      )}
+      {data && auth && auth.selected_tags && isFavouriteTagsWindowOpened && (
+        <FavouriteTagsWindow
+          setIsFavouriteTagsWindowOpened={setIsFavouriteTagsWindowOpened}
+          previousTags={auth.selected_tags}
+          webcontent={{
+            buttons: webcontent.commons.buttons,
+            tagsFamilies: webcontent.commons.tagsFamilies,
+            tagNumberDisclaimer: webcontent.page.tagNumberDisclaimer,
+          }}
         />
       )}
     </div>
