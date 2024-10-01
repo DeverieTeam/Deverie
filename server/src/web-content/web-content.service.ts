@@ -8,6 +8,7 @@ import * as newPostPageFr from '../sitedata/newPost/newPost.fr.json';
 import * as postViewPageFr from '../sitedata/postView/postView.fr.json';
 import * as registerPageFr from '../sitedata/register/register.fr.json';
 import * as profilePageFr from '../sitedata/profile/profile.fr.json';
+import * as favouritesPageFr from '../sitedata/favourites/favourites.fr.json';
 
 const httpError = (customMessage: string) => {
   throw new HttpException(
@@ -226,6 +227,22 @@ export class WebContentService {
     } else {
       return {
         fr: profilePageFr,
+      };
+    }
+  }
+
+  getFavouritesPageWebContent(params: { lang: string }) {
+    if (params.lang !== 'default') {
+      switch (params.lang) {
+        case 'fr':
+          return favouritesPageFr;
+        default:
+          httpError('Language not handled');
+          break;
+      }
+    } else {
+      return {
+        fr: favouritesPageFr,
       };
     }
   }

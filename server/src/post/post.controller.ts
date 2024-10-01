@@ -43,6 +43,26 @@ export class PostController {
     return this.service.getReplyById(id, sort);
   }
 
+  @Get('favourites/:authId')
+  async getFavouritePostsByAuthId(
+    @Param('authId') authId: string,
+    @Query('max') max: string = '10',
+    @Query('page') page: string = '0',
+    @Query('tags') tags: string[],
+    @Query('search') search: string,
+    @Query('sort')
+    sort: 'recent' | 'popular' | 'ancient' | 'discreet',
+  ) {
+    return this.service.getFavouritePostsByAuthId(
+      authId,
+      max,
+      page,
+      tags,
+      search,
+      sort,
+    );
+  }
+
   @Get(':type')
   async getPostsByType(
     @Param('type') type: 'topic' | 'question',

@@ -21,6 +21,8 @@ items:
     modification_author: '@member4'
     tags:
       - '@tag7'
+    is_favourited_by:
+      - '@member1'
 
   post3:
     author: '@member4'
@@ -96,6 +98,8 @@ items:
     creation_date: '2024, 2, 2'
     tags:
       - '@tag8'
+    is_favourited_by:
+      - '@member3'
 
   post12:
     author: '@member1'
@@ -416,6 +420,8 @@ items:
     tags:
       - '@tag12'
       - '@tag13'
+    is_favourited_by:
+      - '@member1'
 
   post48:
     author: '@member6'

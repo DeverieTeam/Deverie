@@ -50,6 +50,9 @@ async function fetchWebContent(args: {
       case "profile":
         endpoint = "/profile";
         break;
+      case "favourites":
+        endpoint = "/favourites";
+        break;
       case "wip":
       case "wipage":
         endpoint += "/wip";

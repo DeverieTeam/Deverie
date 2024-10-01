@@ -162,6 +162,7 @@ export default function ThreadsPage({ threadType }: Props) {
             tags={tags}
             setMemberId={setMemberId}
             setIsMemberViewWindowOpened={setIsMemberViewWindowOpened}
+            setIsConnectionNeededClicked={setIsConnectionNeededClicked}
             webcontent={{
               publications: webcontent.commons.publications,
               noResult: webcontent.commons.noResult,

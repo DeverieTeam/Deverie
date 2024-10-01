@@ -14,6 +14,7 @@ import PostDeletionWindow from "../components/PostDeletionWindow";
 import PostClosureWindow from "../components/PostClosureWindow";
 import MemberViewWindow from "../components/MemberViewWindow";
 import BanConfirmWindow from "../components/BanConfirmWindow";
+import Cookies from "universal-cookie";
 
 export default function PostViewPage() {
   const [isNewReplyWindowOpened, setIsNewReplyWindowOpened] =
@@ -55,6 +56,7 @@ export default function PostViewPage() {
     content: string;
     is_opened: boolean;
     is_readable: boolean;
+    is_favourited_by: null | number[];
     modification_date: string;
     modification_author: null | string;
     emergency: null | number;
@@ -76,6 +78,127 @@ export default function PostViewPage() {
   const query = new URLSearchParams(location.search).get("id");
   const navigate = useNavigate();
   const { auth } = useAuth();
+
+  const handleFavButton = async (e: React.BaseSyntheticEvent) => {
+    e.stopPropagation();
+    e.preventDefault();
+    if (data && auth && auth.role !== "client" && auth.id) {
+      const body: {
+        id: number;
+        addFav: { id: number };
+      } = {
+        id: data.id,
+        addFav: { id: auth.id },
+      };
+
+      try {
+        const cookies = new Cookies(null, {
+          path: "/",
+        });
+        const jwt = cookies.get("JWT");
+        const response = await fetch("http://localhost:3000/post", {
+          method: "PUT",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${jwt}`,
+          },
+          body: JSON.stringify(body),
+        });
+
+        if (response.ok) {
+          //   const result = await response.json();
+          //   console.log(result);
+          window.location.reload();
+        }
+      } catch (error) {
+        console.error("Something went wrong: ", error);
+      }
+    } else {
+      setIsConnectionNeededClicked(true);
+    }
+  };
+
+  const handleUnfavButton = async (e: React.BaseSyntheticEvent) => {
+    e.stopPropagation();
+    e.preventDefault();
+    if (data && auth && auth.role !== "client" && auth.id) {
+      const body: {
+        id: number;
+        removeFav: { id: number };
+      } = {
+        id: data.id,
+        removeFav: { id: auth.id },
+      };
+
+      try {
+        const cookies = new Cookies(null, {
+          path: "/",
+        });
+        const jwt = cookies.get("JWT");
+        const response = await fetch("http://localhost:3000/post", {
+          method: "PUT",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${jwt}`,
+          },
+          body: JSON.stringify(body),
+        });
+
+        if (response.ok) {
+          //   const result = await response.json();
+          //   console.log(result);
+          window.location.reload();
+        }
+      } catch (error) {
+        console.error("Something went wrong: ", error);
+      }
+    }
+  };
+
+  const getfavourite = () => {
+    if (
+      auth &&
+      auth.id &&
+      data?.is_favourited_by &&
+      data.is_favourited_by.includes(auth.id)
+    ) {
+      return (
+        <button
+          className="self-end mb-1 md:w-56 py-1 px-1 text-center justify-center text-lg gap-2 bg-neutral-100 hover:bg-white rounded-lg shadow-sm shadow-neutral-400 flex"
+          onClick={handleUnfavButton}
+        >
+          <p className="text-sm md:text-base">
+            {webcontent.page.removingFavourite.content}
+          </p>
+          <img
+            className="my-auto w-5 md:w-6 h-5 md:h-6 bg-transparent"
+            src="/icons/favourite.png"
+            title={
+              webcontent.commons.publications.favourite.remove.hover.content
+            }
+          />
+        </button>
+      );
+    } else {
+      return (
+        <button
+          className="self-end mb-1 md:w-56 py-1 px-1 text-center justify-center text-lg gap-2 bg-neutral-100 hover:bg-white rounded-lg shadow-sm shadow-neutral-400 flex"
+          onClick={handleFavButton}
+        >
+          <p className="text-sm md:text-base">
+            {webcontent.page.addingFavourite.content}
+          </p>
+          <img
+            className="my-auto w-5 md:w-6 h-5 md:h-6 bg-transparent"
+            src="/icons/notFavourite.svg"
+            title={webcontent.commons.publications.favourite.add.hover.content}
+          />
+        </button>
+      );
+    }
+  };
 
   const getPreviousTags = () => {
     if (data) {
@@ -243,7 +366,8 @@ export default function PostViewPage() {
               )}
           </div>
           <div className="gap-2 xl:gap-4 justify-between flex flex-col">
-            <button className="self-end mb-1 md:w-56 py-1 px-1 text-center justify-center text-lg gap-2 bg-neutral-100 hover:bg-white rounded-lg shadow-sm shadow-neutral-400 flex">
+            {getfavourite()}
+            {/* <button className="self-end mb-1 md:w-56 py-1 px-1 text-center justify-center text-lg gap-2 bg-neutral-100 hover:bg-white rounded-lg shadow-sm shadow-neutral-400 flex">
               <p className="text-sm md:text-base">
                 {webcontent.page.addingFavourite.content}
               </p>
@@ -254,7 +378,7 @@ export default function PostViewPage() {
                   webcontent.commons.publications.favourite.add.hover.content
                 }
               />
-            </button>
+            </button> */}
             <PostSortSelection
               setSort={setSort}
               webcontent={webcontent.commons.searching.sortFilter}

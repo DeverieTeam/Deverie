@@ -12,6 +12,12 @@ items:
     role: 'administrator'
     is_banned: false
     displayed_name: null
+    selected_tags:
+      - '@tag2'
+      - '@tag5'
+      - '@tag10'
+      - '@tag13'
+      - '@tag14'
 
   member2:
     name: 'emixam113'

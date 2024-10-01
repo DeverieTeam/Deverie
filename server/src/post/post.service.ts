@@ -34,6 +34,11 @@ export class PostService {
         });
       }
 
+      const refinedFavourites = [];
+      for (const member of post.is_favourited_by) {
+        refinedFavourites.push(member.id);
+      }
+
       const refinedPost = {
         id: post.id,
         author: {
@@ -45,6 +50,7 @@ export class PostService {
         creation_date: post.creation_date,
         type: post.type,
         is_opened: post.is_opened,
+        is_favourited_by: refinedFavourites,
         title: post.title,
         replies_count: post.replies.length,
         last_message_date: this.getLastMessageDate(post),
@@ -69,6 +75,11 @@ export class PostService {
         name: tag.name,
         icon: tag.icon,
       });
+    }
+
+    const refinedFavourites = [];
+    for (const member of data.is_favourited_by) {
+      refinedFavourites.push(member.id);
     }
 
     const refinedReplies = [];
@@ -100,6 +111,7 @@ export class PostService {
       content: string;
       is_opened: boolean;
       is_readable: boolean;
+      is_favourited_by: null | { id: number }[];
       modification_date: Date;
       modification_author: null | string;
       emergency: null | number;
@@ -121,6 +133,7 @@ export class PostService {
       content: data.content,
       is_opened: data.is_opened,
       is_readable: data.is_readable,
+      is_favourited_by: refinedFavourites,
       modification_date: data.modification_date,
       modification_author: null,
       emergency: null,
@@ -208,6 +221,7 @@ export class PostService {
       .createQueryBuilder('post')
       .innerJoinAndSelect('post.author', 'author')
       .innerJoinAndSelect('post.tags', 'tags')
+      .leftJoinAndSelect('post.is_favourited_by', 'is_favourited_by')
       .leftJoinAndSelect('post.replies', 'replies')
       .leftJoinAndSelect('replies.author', 'replyAuthor')
       .getMany();
@@ -279,6 +293,7 @@ export class PostService {
       .createQueryBuilder('post')
       .innerJoinAndSelect('post.author', 'author')
       .innerJoinAndSelect('post.tags', 'tags')
+      .leftJoinAndSelect('post.is_favourited_by', 'is_favourited_by')
       .leftJoinAndSelect('post.replies', 'replies')
       .leftJoinAndSelect('replies.author', 'replyAuthor')
       .getMany();
@@ -315,6 +330,119 @@ export class PostService {
 
     const filteredResponse = response
       .filter((post) => post.type === type)
+      .filter((post) => post.is_readable)
+      .filter((post) => !post.author.is_banned)
+      .filter((post) => post.title.toUpperCase().includes(search))
+      .filter((post) => {
+        if (tags.length === 0) {
+          return true;
+        }
+        for (const tag of post.tags) {
+          for (const value of tags) {
+            if (value === tag.name) {
+              return true;
+            }
+          }
+        }
+        return false;
+      });
+
+    for (const post of filteredResponse) {
+      if (post.replies && post.replies.length > 0) {
+        post.replies = post.replies
+          .filter((post) => post.is_readable)
+          .filter((post) => !post.author.is_banned);
+      }
+    }
+
+    const responseLength = filteredResponse.length;
+
+    if (numPage > Math.floor(responseLength / numMax)) {
+      numPage = Math.floor(responseLength / numMax);
+    }
+
+    const pagedResponse = filteredResponse.slice(
+      numMax * numPage,
+      Math.min(responseLength, numMax * numPage + numMax),
+    );
+
+    return this.refinePostData(pagedResponse, responseLength);
+  }
+
+  async getFavouritePostsByAuthId(
+    authId: string,
+    max: string,
+    page: string,
+    tags: string[] | string = [],
+    search: string = '',
+    sort: 'recent' | 'popular' | 'ancient' | 'discreet',
+  ) {
+    let numMax = parseInt(max);
+    let numPage = parseInt(page) - 1;
+    const memberId = parseInt(authId);
+
+    if (numMax < 1 || numMax > 20 || Number.isNaN(numMax)) {
+      numMax = 10;
+    }
+
+    if (numPage < 0 || Number.isNaN(numPage)) {
+      numPage = 0;
+    }
+
+    if (typeof tags === 'string') {
+      tags = [tags];
+    }
+
+    search = search.toUpperCase();
+
+    const response = await this.postRepository
+      .createQueryBuilder('post')
+      .innerJoinAndSelect('post.author', 'author')
+      .innerJoinAndSelect('post.tags', 'tags')
+      .innerJoinAndSelect('post.is_favourited_by', 'is_favourited_by')
+      .leftJoinAndSelect('post.replies', 'replies')
+      .leftJoinAndSelect('replies.author', 'replyAuthor')
+      .getMany();
+
+    switch (sort) {
+      case 'ancient':
+        response.sort((a, b) => {
+          return (
+            new Date(this.getLastMessageDate(a)).getTime() -
+            new Date(this.getLastMessageDate(b)).getTime()
+          );
+        });
+        break;
+      case 'discreet':
+        response.sort((a, b) => {
+          return a.replies.length - b.replies.length;
+        });
+        break;
+      case 'popular':
+        response.sort((a, b) => {
+          return b.replies.length - a.replies.length;
+        });
+        break;
+      case 'recent':
+      default:
+        response.sort((a, b) => {
+          return (
+            new Date(this.getLastMessageDate(b)).getTime() -
+            new Date(this.getLastMessageDate(a)).getTime()
+          );
+        });
+        break;
+    }
+
+    const filteredResponse = response
+      .filter((post) => post.type === 'topic' || post.type === 'question')
+      .filter((post) => {
+        for (const member of post.is_favourited_by) {
+          if (member.id === memberId) {
+            return true;
+          }
+        }
+      })
       .filter((post) => post.is_readable)
       .filter((post) => !post.author.is_banned)
       .filter((post) => post.title.toUpperCase().includes(search))
@@ -450,6 +578,7 @@ export class PostService {
       .createQueryBuilder('post')
       .where('post.id = :id', { id: id })
       .innerJoinAndSelect('post.author', 'author')
+      .leftJoinAndSelect('post.is_favourited_by', 'is_favourited_by')
       .leftJoinAndSelect('post.tags', 'tags')
       .leftJoinAndSelect('post.replies', 'replies')
       .leftJoinAndSelect('post.modification_author', 'modification_author')
@@ -574,7 +703,44 @@ export class PostService {
   }
 
   async updatePost(post) {
-    const returnedValue = await this.postRepository.save(post);
+    let returnedValue;
+    if (post.addFav) {
+      const response = await this.postRepository
+        .createQueryBuilder('post')
+        .where('post.id = :id', { id: post.id })
+        .innerJoinAndSelect('post.author', 'author')
+        .leftJoinAndSelect('post.is_favourited_by', 'is_favourited_by')
+        .getOne();
+
+      const favourites = response.is_favourited_by;
+      favourites.push(post.addFav);
+
+      const updatedPost = {
+        id: post.id,
+        is_favourited_by: favourites,
+      };
+      returnedValue = await this.postRepository.save(updatedPost);
+    } else if (post.removeFav) {
+      const response = await this.postRepository
+        .createQueryBuilder('post')
+        .where('post.id = :id', { id: post.id })
+        .innerJoinAndSelect('post.author', 'author')
+        .leftJoinAndSelect('post.is_favourited_by', 'is_favourited_by')
+        .getOne();
+
+      const favourites = response.is_favourited_by.filter(
+        (member) => member.id !== post.removeFav.id,
+      );
+
+      const updatedPost = {
+        id: post.id,
+        is_favourited_by: favourites,
+      };
+      returnedValue = await this.postRepository.save(updatedPost);
+    } else {
+      returnedValue = await this.postRepository.save(post);
+    }
+
     return {
       id: returnedValue.id,
     };

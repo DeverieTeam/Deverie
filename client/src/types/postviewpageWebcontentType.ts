@@ -442,6 +442,10 @@ export type postviewpageWebcontentType = {
       name: string;
       content: string;
     };
+    removingFavourite: {
+      name: string;
+      content: string;
+    };
     questionEmergency: {
       name: string;
       content: string;
