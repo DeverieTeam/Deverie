@@ -55,8 +55,6 @@ export default function AuthProvider({ children }: Props) {
     }
   }, [auth]);
 
-  console.log(auth);
-
   return (
     <AuthContext.Provider value={{ auth, setAuth }}>
       {children}

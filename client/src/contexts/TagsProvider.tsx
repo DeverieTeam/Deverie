@@ -38,8 +38,6 @@ export default function TagsProvider({ children }: Props) {
     }
   }, [tags, auth, auth?.selected_tags]);
 
-  console.log(tags);
-
   return (
     <TagsContext.Provider value={{ tags, setTags }}>
       {children}
