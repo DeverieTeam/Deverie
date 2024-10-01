@@ -45,7 +45,7 @@ async function fetchWebContent(args: {
         endpoint += "/newPost";
         break;
       case "postView":
-        endpoint = "/postView";
+        endpoint += "/postView";
         break;
       case "wip":
       case "wipage":

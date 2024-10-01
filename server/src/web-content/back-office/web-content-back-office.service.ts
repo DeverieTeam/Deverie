@@ -17,7 +17,7 @@ const httpError = (customMessage: string) => {
 };
 
 @Injectable()
-export class BackOfficeService {
+export class WebContentBackOfficeService {
   getBackOfficeWebContent(params: { type: string; lang: string }) {
     const validTypes: Array<string> = ['commons', 'homepage'];
     if (!validTypes.includes(params.type)) {

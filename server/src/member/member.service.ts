@@ -109,6 +109,7 @@ export class MemberService {
       }
     }
   }
+
   async getMemberById(id: number) {
     const response = await this.memberRepository
       .createQueryBuilder('member')

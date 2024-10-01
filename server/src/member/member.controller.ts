@@ -43,6 +43,7 @@ export class MemberController {
       isBanned: isBanned === undefined ? undefined : isBanned === 'true',
     });
   }
+
   @UseGuards(AuthGuard('jwt'))
   @Put()
   async updateMember(
