@@ -73,9 +73,7 @@ export default function PasswordEditWindow({
           });
 
           if (response.ok) {
-            //   const result = await response.json();
-            //   console.log(result);
-            window.location.reload();
+            setIsPasswordEditWindowOpened(false);
           }
         } catch (error) {
           console.error("Something went wrong: ", error);

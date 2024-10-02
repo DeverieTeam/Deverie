@@ -407,6 +407,7 @@ export default function ProfilePage() {
       {data && isDescriptionEditWindowOpened && (
         <DescriptionEditWindow
           setIsDescriptionEditWindowOpened={setIsDescriptionEditWindowOpened}
+          setData={setData}
           previousContent={data.description}
           webcontent={webcontent}
         />
@@ -416,6 +417,7 @@ export default function ProfilePage() {
           setIsDisplayedNameEditWindowOpened={
             setIsDisplayedNameEditWindowOpened
           }
+          setData={setData}
           previousContent={data.displayed_name}
           webcontent={webcontent}
         />
@@ -423,6 +425,7 @@ export default function ProfilePage() {
       {data && isPronounsEditWindowOpened && (
         <PronounsEditWindow
           setIsPronounsEditWindowOpened={setIsPronounsEditWindowOpened}
+          setData={setData}
           previousContent={data.pronouns}
           webcontent={webcontent}
         />
@@ -432,6 +435,7 @@ export default function ProfilePage() {
           setIsEmailDisplayConfirmationWindowOpened={
             setIsEmailDisplayConfirmationWindowOpened
           }
+          setData={setData}
           previousContent={data.is_email_displayed}
           webcontent={webcontent}
         />

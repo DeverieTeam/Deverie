@@ -5,6 +5,7 @@ import { profilepageWebcontentType } from "../types/profilepageWebcontentType";
 
 export default function DescriptionEditWindow({
   setIsDescriptionEditWindowOpened,
+  setData,
   previousContent,
   webcontent,
 }: Props) {
@@ -52,9 +53,8 @@ export default function DescriptionEditWindow({
         });
 
         if (response.ok) {
-          //   const result = await response.json();
-          //   console.log(result);
-          window.location.reload();
+          setData(null);
+          setIsDescriptionEditWindowOpened(false);
         }
       } catch (error) {
         console.error("Something went wrong: ", error);
@@ -117,6 +117,20 @@ export default function DescriptionEditWindow({
 
 type Props = {
   setIsDescriptionEditWindowOpened: (arg0: boolean) => void;
+  setData: (
+    arg0: null | {
+      id: number;
+      name: string;
+      email: string;
+      is_email_displayed: boolean;
+      profile_picture: string;
+      pronouns?: string;
+      description?: string;
+      displayed_name: string;
+      theme: string;
+      language: string;
+    }
+  ) => void;
   previousContent: string | undefined;
   webcontent: profilepageWebcontentType;
 };

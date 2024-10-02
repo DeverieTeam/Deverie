@@ -70,9 +70,7 @@ export default function FavouriteTagsWindow({
         });
 
         if (response.ok) {
-          //   const result = await response.json();
-          //   console.log(result);
-          window.location.reload();
+          setIsFavouriteTagsWindowOpened(false);
         }
       } catch (error) {
         console.error("Something went wrong: ", error);

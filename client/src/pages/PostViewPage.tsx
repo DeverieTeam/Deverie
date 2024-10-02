@@ -107,9 +107,7 @@ export default function PostViewPage() {
         });
 
         if (response.ok) {
-          //   const result = await response.json();
-          //   console.log(result);
-          window.location.reload();
+          setData(null);
         }
       } catch (error) {
         console.error("Something went wrong: ", error);
@@ -147,9 +145,7 @@ export default function PostViewPage() {
         });
 
         if (response.ok) {
-          //   const result = await response.json();
-          //   console.log(result);
-          window.location.reload();
+          setData(null);
         }
       } catch (error) {
         console.error("Something went wrong: ", error);
@@ -303,7 +299,7 @@ export default function PostViewPage() {
     } else {
       navigate(-1);
     }
-  }, [pagination, sort, query, navigate]);
+  }, [data, pagination, sort, query, navigate]);
 
   useEffect(() => {
     if (data && postIsOpened === null) {
@@ -367,18 +363,6 @@ export default function PostViewPage() {
           </div>
           <div className="gap-2 xl:gap-4 justify-between flex flex-col">
             {getfavourite()}
-            {/* <button className="self-end mb-1 md:w-56 py-1 px-1 text-center justify-center text-lg gap-2 bg-neutral-100 hover:bg-white rounded-lg shadow-sm shadow-neutral-400 flex">
-              <p className="text-sm md:text-base">
-                {webcontent.page.addingFavourite.content}
-              </p>
-              <img
-                className="my-auto w-5 md:w-6 h-5 md:h-6 bg-transparent"
-                src="/icons/notFavourite.svg"
-                title={
-                  webcontent.commons.publications.favourite.add.hover.content
-                }
-              />
-            </button> */}
             <PostSortSelection
               setSort={setSort}
               webcontent={webcontent.commons.searching.sortFilter}
@@ -558,6 +542,7 @@ export default function PostViewPage() {
       {data && sourcePostId && isNewReplyWindowOpened && (
         <NewReplyWindow
           setIsNewReplyWindowOpened={setIsNewReplyWindowOpened}
+          setData={setData}
           sourcePostType={data.type}
           sourcePostId={sourcePostId}
           webcontent={webcontent}
@@ -566,6 +551,7 @@ export default function PostViewPage() {
       {data && postId && postContent && isPostEditWindowOpened && (
         <PostEditWindow
           setIsPostEditWindowOpened={setIsPostEditWindowOpened}
+          setData={setData}
           postId={postId}
           previousContent={postContent}
           webcontent={webcontent}
@@ -574,6 +560,7 @@ export default function PostViewPage() {
       {postId && postType && isPostDeletionWindowOpened && (
         <PostDeletionWindow
           setIsPostDeletionWindowOpened={setIsPostDeletionWindowOpened}
+          setData={setData}
           postType={postType}
           postId={postId}
           webcontent={webcontent}
@@ -582,6 +569,7 @@ export default function PostViewPage() {
       {postId && isPostClosureWindowOpened && (
         <PostClosureWindow
           setIsPostClosureWindowOpened={setIsPostClosureWindowOpened}
+          setData={setData}
           postId={postId}
           webcontent={webcontent}
         />
@@ -589,6 +577,7 @@ export default function PostViewPage() {
       {data && postId && isTagEditWindowOpened && (
         <TagEditWindow
           setIsTagEditWindowOpened={setIsTagEditWindowOpened}
+          setData={setData}
           postId={postId}
           previousTags={getPreviousTags()}
           webcontent={{

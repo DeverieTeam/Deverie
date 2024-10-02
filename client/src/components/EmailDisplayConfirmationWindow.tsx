@@ -5,6 +5,7 @@ import { profilepageWebcontentType } from "../types/profilepageWebcontentType";
 
 export default function EmailDisplayConfirmationWindow({
   setIsEmailDisplayConfirmationWindowOpened,
+  setData,
   previousContent,
   webcontent,
 }: Props) {
@@ -52,9 +53,8 @@ export default function EmailDisplayConfirmationWindow({
         });
 
         if (response.ok) {
-          //   const result = await response.json();
-          //   console.log(result);
-          window.location.reload();
+          setData(null);
+          setIsEmailDisplayConfirmationWindowOpened(false);
         }
       } catch (error) {
         console.error("Something went wrong: ", error);
@@ -114,6 +114,20 @@ export default function EmailDisplayConfirmationWindow({
 
 type Props = {
   setIsEmailDisplayConfirmationWindowOpened: (arg0: boolean) => void;
+  setData: (
+    arg0: null | {
+      id: number;
+      name: string;
+      email: string;
+      is_email_displayed: boolean;
+      profile_picture: string;
+      pronouns?: string;
+      description?: string;
+      displayed_name: string;
+      theme: string;
+      language: string;
+    }
+  ) => void;
   previousContent: boolean;
   webcontent: profilepageWebcontentType;
 };

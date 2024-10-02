@@ -100,6 +100,7 @@ export default function ThreadsDisplayer({
         });
     }
   }, [
+    data,
     auth,
     thread,
     setData,
@@ -120,6 +121,7 @@ export default function ThreadsDisplayer({
           <ThreadsRow
             key={post.id}
             post={post}
+            setData={setData}
             setMemberId={setMemberId}
             setIsMemberViewWindowOpened={setIsMemberViewWindowOpened}
             setIsConnectionNeededClicked={setIsConnectionNeededClicked}

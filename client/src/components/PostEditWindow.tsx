@@ -5,6 +5,7 @@ import Cookies from "universal-cookie";
 
 export default function PostEditWindow({
   setIsPostEditWindowOpened,
+  setData,
   postId,
   previousContent,
   webcontent,
@@ -63,9 +64,8 @@ export default function PostEditWindow({
         });
 
         if (response.ok) {
-          //   const result = await response.json();
-          //   console.log(result);
-          window.location.reload();
+          setData(null);
+          setIsPostEditWindowOpened(false);
         }
       } catch (error) {
         console.error("Something went wrong: ", error);
@@ -127,6 +127,35 @@ export default function PostEditWindow({
 
 type Props = {
   setIsPostEditWindowOpened: (arg0: boolean) => void;
+  setData: (
+    arg0: null | {
+      id: number;
+      author: {
+        id: number;
+        name: string;
+        profile_picture: string;
+        is_banned: boolean;
+        role: "member" | "moderator" | "administrator";
+      };
+      tags: {
+        id: number;
+        name: string;
+        icon: string;
+      }[];
+      creation_date: string;
+      type: "topic" | "question";
+      title: string;
+      content: string;
+      is_opened: boolean;
+      is_readable: boolean;
+      is_favourited_by: null | number[];
+      modification_date: string;
+      modification_author: null | string;
+      emergency: null | number;
+      results_length: null | number;
+      replies: null | { id: number }[];
+    }
+  ) => void;
   postId: number;
   previousContent: string;
   webcontent: postviewpageWebcontentType;

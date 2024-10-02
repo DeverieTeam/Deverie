@@ -22,6 +22,17 @@ export class PostService {
     }
   }
 
+  getRatings(reply: Post) {
+    const upVotes = reply.ratings.filter(
+      (rating) => rating.type === 'up',
+    ).length;
+    const downVotes = reply.ratings.filter(
+      (rating) => rating.type === 'down',
+    ).length;
+
+    return upVotes - downVotes;
+  }
+
   refinePostData(data: Post[], length?: number) {
     const refinedData = [];
     for (const post of data) {
@@ -170,6 +181,25 @@ export class PostService {
       }
     }
 
+    const refinedRatings = [];
+    if (data.ratings.length > 0) {
+      for (const rating of data.ratings) {
+        refinedRatings.push({
+          id: rating.id,
+          type: rating.type,
+          rater: rating.rater.id,
+        });
+      }
+    }
+
+    const upVotes = data.ratings.filter(
+      (rating) => rating.type === 'up',
+    ).length;
+
+    const downVotes = data.ratings.filter(
+      (rating) => rating.type === 'down',
+    ).length;
+
     const refinedData: {
       id: number;
       author: {
@@ -183,6 +213,15 @@ export class PostService {
       modification_date: Date;
       modification_author: null | string;
       replies: null | { id: number }[];
+      ratings:
+        | null
+        | {
+            id: number;
+            type: string;
+            rater: number;
+          }[];
+      up_votes: number;
+      down_votes: number;
     } = {
       id: data.id,
       author: {
@@ -196,6 +235,9 @@ export class PostService {
       modification_date: data.modification_date,
       modification_author: null,
       replies: null,
+      ratings: null,
+      up_votes: upVotes,
+      down_votes: downVotes,
     };
 
     if (data.author.displayed_name) {
@@ -206,6 +248,9 @@ export class PostService {
     }
     if (data.replies.length > 0) {
       refinedData.replies = refinedReplies;
+    }
+    if (data.ratings.length > 0) {
+      refinedData.ratings = refinedRatings;
     }
 
     return refinedData;
@@ -583,6 +628,7 @@ export class PostService {
       .leftJoinAndSelect('post.replies', 'replies')
       .leftJoinAndSelect('post.modification_author', 'modification_author')
       .leftJoinAndSelect('replies.author', 'replyAuthor')
+      .leftJoinAndSelect('replies.ratings', 'replyRatings')
       .getOne();
 
     if (response.type === 'answer' || response.type === 'comment') {
@@ -610,6 +656,10 @@ export class PostService {
           });
           break;
         case 'rate':
+          response.replies.sort((a, b) => {
+            return this.getRatings(b) - this.getRatings(a);
+          });
+          break;
         case 'chrono':
         default:
           response.replies.sort((a, b) => {
@@ -645,10 +695,12 @@ export class PostService {
       .createQueryBuilder('post')
       .where('post.id = :id', { id: id })
       .innerJoinAndSelect('post.author', 'author')
-      .leftJoinAndSelect('post.tags', 'tags')
+      .leftJoinAndSelect('post.ratings', 'ratings')
+      .leftJoinAndSelect('ratings.rater', 'rater')
       .leftJoinAndSelect('post.replies', 'replies')
       .leftJoinAndSelect('post.modification_author', 'modification_author')
       .leftJoinAndSelect('replies.author', 'replyAuthor')
+      .leftJoinAndSelect('replies.ratings', 'replyRatings')
       .getOne();
 
     if (response.type === 'topic' || response.type === 'question') {
@@ -676,6 +728,10 @@ export class PostService {
           });
           break;
         case 'rate':
+          response.replies.sort((a, b) => {
+            return this.getRatings(b) - this.getRatings(a);
+          });
+          break;
         case 'chrono':
         default:
           response.replies.sort((a, b) => {

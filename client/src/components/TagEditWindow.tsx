@@ -6,6 +6,7 @@ import Cookies from "universal-cookie";
 
 export default function TagEditWindow({
   setIsTagEditWindowOpened,
+  setData,
   postId,
   previousTags,
   webcontent,
@@ -73,9 +74,8 @@ export default function TagEditWindow({
         });
 
         if (response.ok) {
-          //   const result = await response.json();
-          //   console.log(result);
-          window.location.reload();
+          setData(null);
+          setIsTagEditWindowOpened(false);
         }
       } catch (error) {
         console.error("Something went wrong: ", error);
@@ -146,6 +146,35 @@ export default function TagEditWindow({
 
 type Props = {
   setIsTagEditWindowOpened: (arg0: boolean) => void;
+  setData: (
+    arg0: null | {
+      id: number;
+      author: {
+        id: number;
+        name: string;
+        profile_picture: string;
+        is_banned: boolean;
+        role: "member" | "moderator" | "administrator";
+      };
+      tags: {
+        id: number;
+        name: string;
+        icon: string;
+      }[];
+      creation_date: string;
+      type: "topic" | "question";
+      title: string;
+      content: string;
+      is_opened: boolean;
+      is_readable: boolean;
+      is_favourited_by: null | number[];
+      modification_date: string;
+      modification_author: null | string;
+      emergency: null | number;
+      results_length: null | number;
+      replies: null | { id: number }[];
+    }
+  ) => void;
   postId: number;
   previousTags: {
     id: number;

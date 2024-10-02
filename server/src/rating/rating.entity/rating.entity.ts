@@ -3,8 +3,8 @@ import { Member } from '../../member/member.entity/member.entity';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 export enum RatingType {
-  UP = 'Up',
-  DOWN = 'Down',
+  UP = 'up',
+  DOWN = 'down',
 }
 
 @Entity()

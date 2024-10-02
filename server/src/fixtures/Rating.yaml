@@ -1,0 +1,46 @@
+entity: Rating
+items:
+  rating1:
+    type: 'up'
+    rater: '@member1'
+    rated_post: '@post48'
+
+  rating2:
+    type: 'up'
+    rater: '@member3'
+    rated_post: '@post48'
+
+  rating3:
+    type: 'up'
+    rater: '@member4'
+    rated_post: '@post48'
+
+  rating4:
+    type: 'up'
+    rater: '@member5'
+    rated_post: '@post48'
+
+  rating5:
+    type: 'up'
+    rater: '@member6'
+    rated_post: '@post48'
+
+  rating6:
+    type: 'up'
+    rater: '@member7'
+    rated_post: '@post48'
+
+  rating7:
+    type: 'up'
+    rater: '@member8'
+    rated_post: '@post48'
+
+  rating8:
+    type: 'up'
+    rater: '@member9'
+    rated_post: '@post48'
+
+  rating9:
+    type: 'down'
+    rater: '@member2'
+    rated_post: '@post48'

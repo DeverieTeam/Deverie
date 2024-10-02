@@ -5,6 +5,7 @@ import Cookies from "universal-cookie";
 
 export default function ThreadsRow({
   post,
+  setData,
   setMemberId,
   setIsMemberViewWindowOpened,
   setIsConnectionNeededClicked,
@@ -45,9 +46,7 @@ export default function ThreadsRow({
         });
 
         if (response.ok) {
-          //   const result = await response.json();
-          //   console.log(result);
-          window.location.reload();
+          setData(null);
         }
       } catch (error) {
         console.error("Something went wrong: ", error);
@@ -85,9 +84,7 @@ export default function ThreadsRow({
         });
 
         if (response.ok) {
-          //   const result = await response.json();
-          //   console.log(result);
-          window.location.reload();
+          setData(null);
         }
       } catch (error) {
         console.error("Something went wrong: ", error);
@@ -207,6 +204,31 @@ type Props = {
     replies_count: number;
     last_message_date: string;
   };
+  setData: (
+    arg0:
+      | null
+      | {
+          id: number;
+          author: {
+            id: number;
+            name: string;
+            profile_picture: string;
+          };
+          tags: {
+            id: number;
+            name: string;
+            icon: string;
+          }[];
+          creation_date: string;
+          type: "topic" | "question";
+          is_opened: boolean;
+          title: string;
+          is_favourited_by: number[];
+          replies_count: number;
+          last_message_date: string;
+          results_length: null | number;
+        }[]
+  ) => void;
   setMemberId: (arg0: number) => void;
   setIsMemberViewWindowOpened: (arg0: boolean) => void;
   setIsConnectionNeededClicked: (arg0: boolean) => void;
