@@ -50,5 +50,17 @@
         "content": "Panneau de gestion du web content"
       }
     }
+  },
+  "buttons": {
+    "submit": {
+      "text": {
+        "name": "Texte du bouton soumettre",
+        "content": "Soumettre"
+      },
+      "hover": {
+        "name": "Texte du bouton soumettre de survol",
+        "content": "Appliquer les changements"
+      }
+    }
   }
 }

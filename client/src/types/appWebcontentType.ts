@@ -505,5 +505,17 @@ export type appWebcontentType = {
         };
       };
     };
+    buttons: {
+      submit: {
+        text: {
+          name: string;
+          content: string;
+        };
+        hover: {
+          name: string;
+          content: string:
+        };
+      };
+    };
   };
 };

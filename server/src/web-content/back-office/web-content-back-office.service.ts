@@ -1,6 +1,7 @@
 import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import * as backOfficeCommonsFr from '../../sitedata/backoffice/commons/backOfficeCommons.fr.json';
 import * as backOfficeHomepageFr from '../../sitedata/backoffice/homepage/backOfficeHomepage.fr.json';
+import * as backOfficeTagsManagementFr from '../../sitedata/backoffice/tagsManagement/backOfficeTagsManagement.fr.json';
 
 const httpError = (customMessage: string) => {
   throw new HttpException(
@@ -19,7 +20,7 @@ const httpError = (customMessage: string) => {
 @Injectable()
 export class WebContentBackOfficeService {
   getBackOfficeWebContent(params: { type: string; lang: string }) {
-    const validTypes: Array<string> = ['commons', 'homepage'];
+    const validTypes: Array<string> = ['commons', 'homepage', 'tags'];
     if (!validTypes.includes(params.type)) {
       httpError('Unvalid back office web content name');
     }
@@ -31,6 +32,9 @@ export class WebContentBackOfficeService {
           switch (params.type) {
             case 'homepage':
               currentLangData = backOfficeHomepageFr;
+              break;
+            case 'tags':
+              currentLangData = backOfficeTagsManagementFr;
               break;
             default:
               currentLangData = backOfficeCommonsFr;
@@ -48,6 +52,10 @@ export class WebContentBackOfficeService {
           return {
             fr: backOfficeHomepageFr,
           };
+        case 'tags':
+          return {
+            fr: backOfficeTagsManagementFr,
+          }
         default:
           return {
             fr: backOfficeCommonsFr,

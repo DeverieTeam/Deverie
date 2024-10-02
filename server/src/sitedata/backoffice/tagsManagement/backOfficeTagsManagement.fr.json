@@ -1,0 +1,78 @@
+{
+  "title": {
+    "name": "Titre de la page de gestion des tags",
+    "content": "Gestion des tags"
+  },
+  "actions": {
+    "create": {
+      "title": {
+        "name": "Titre de la partie de création de tag",
+        "content": "Créer un tag"
+      },
+      "windowTitle": {
+        "name": "Titre de la fenêtre de création de tag",
+        "content": "Créer un nouveau tag"
+      }
+    },
+    "modify": {
+      "title": {
+        "name": "Titre de la partie de modification de tag",
+        "content": "Modifier un tag"
+      },
+      "windowTitle": {
+        "name": "Titre de la fenêtre de modification de tag",
+        "content": "Modifier un tag existant"
+      }
+    },
+    "delete": {
+      "title": {
+        "name": "Titre de la partie de suppression de tag",
+        "content": "Supprimer un tag"
+      },
+      "windowTitle": {
+        "name": "Titre de la fenêtre de suppression de tag",
+        "content": "Supprimer un tag existant"
+      }
+    }
+  },
+  "fields": {
+    "tagName": {
+      "name": "Label du champ de nom du tag",
+      "content": "Nom du tag"
+    },
+    "tagLogo": {
+      "name": "Label du champ de logo du tag",
+      "content": "Logo du tag"
+    },
+    "tagFamily": {
+      "name": "Label du champ de famille du tag",
+      "content": "famille du tag"
+    },
+    "tagOverview": {
+      "name": "Label de l'aperçu du tag",
+      "content": "Aperçu"
+    }
+  },
+  "buttons": {
+    "browse": {
+      "text": {
+        "name": "Texte du bouton de sélection de fichier",
+        "content": "Parcourir"
+      },
+      "hover": {
+        "name": "Texte du bouton de sélection de fichier de survol",
+        "content": "Sélectionnez une image"
+      }
+    }
+  },
+  "placeholders": {
+    "tagSelect": {
+      "name": "Texte par défaut de la sélection de tag",
+      "content": "--Sélectionnez un tag--"
+    },
+    "familySelect": {
+      "name": "Texte par défaut de la sélection de famille",
+      "content": "--Sélectionnez une famille--"
+    }
+  }
+}

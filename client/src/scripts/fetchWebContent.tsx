@@ -47,6 +47,10 @@ async function fetchWebContent(args: {
       case "postView":
         endpoint += "/postView";
         break;
+      case "tags":
+      case "tagsManagement":
+        endpoint += "/tags";
+        break;
       case "wip":
       case "wipage":
         endpoint += "/wip";
