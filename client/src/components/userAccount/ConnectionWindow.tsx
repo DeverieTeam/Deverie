@@ -101,8 +101,8 @@ export default function ConnectionWindow({
           >
             <div>
               <img
-                className="mx-auto w-[300px] h-[180px] md:w-[350px] md:h-[230px] bg-neutral-100"
-                src=""
+                className="mx-auto w-[300px] h-[180px] md:w-[350px] md:h-[230px] bg-neutral-100 rounded-xl"
+                src="/images/logo-login.png"
               />
               <p className="text-center text-indigo-500 text-2xl md:text-3xl xl:text-4xl font-bold drop-shadow">
                 {webcontent.connection.title.connectionPage.content}
