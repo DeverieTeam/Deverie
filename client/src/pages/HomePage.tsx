@@ -53,8 +53,8 @@ export default function HomePage() {
       <div className="xl:flex">
         <div className="xl:flex-1 py-8 flex">
           <img
-            className="m-auto w-[300px] md:w-[600px] h-[200px] md:h-[400px] bg-neutral-100"
-            src=""
+            className="m-auto w-[300px] md:w-[600px] h-[200px] md:h-[400px] bg-neutral-100 rounded-xl"
+            src="/images/logo-homepage.png"
           />
         </div>
         <div className="xl:flex-1">

@@ -37,8 +37,8 @@ export default function Header({ webcontent, isBackOfficeHeader }: Props) {
           className="pl-2 bg-indigo-500 w-60 rounded-br-[90px] shadow-sm shadow-indigo-800 flex"
         >
           <img
-            className="my-auto h-12 w-40 bg-neutral-100"
-            src=""
+            className="my-auto h-12 w-40 bg-neutral-100 rounded-xl"
+            src="/images/logo-header.png"
             alt={webcontent.logo.alt.content}
             title={webcontent.hypertexts.home.hover.content}
           />
