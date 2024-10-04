@@ -6,9 +6,14 @@ import {
   Query,
   Put,
   UseGuards,
+  UseInterceptors,
+  UploadedFile,
+  Post,
 } from '@nestjs/common';
 import { MemberService } from './member.service';
 import { AuthGuard } from '@nestjs/passport';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { diskStorage } from 'multer';
 
 @Controller('member')
 export class MemberController {
@@ -56,9 +61,10 @@ export class MemberController {
     @Body()
     member: {
       id: number;
+      name?: string;
       password?: string;
       is_email_displayed?: boolean;
-      profile_picture?: string;
+      profile_picture_filename?: string;
       pronouns?: string;
       description?: string;
       displayed_name?: string;
@@ -69,5 +75,21 @@ export class MemberController {
     },
   ) {
     return this.service.updateMember(member);
+  }
+
+  @UseGuards(AuthGuard('jwt'))
+  @Post('pp')
+  @UseInterceptors(
+    FileInterceptor('file', {
+      storage: diskStorage({
+        destination: './public/uploads/profilePictures',
+        filename: (req, file, cb) => {
+          cb(null, file.originalname);
+        },
+      }),
+    }),
+  )
+  uploadFile(@UploadedFile() file: Express.Multer.File) {
+    return { filename: file.filename };
   }
 }

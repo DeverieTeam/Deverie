@@ -1,8 +1,9 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Member } from './member.entity/member.entity';
 import { Repository } from 'typeorm';
 import * as crypto from 'crypto';
+import * as fs from 'node:fs';
 
 @Injectable()
 export class MemberService {
@@ -212,6 +213,130 @@ export class MemberService {
       };
 
       returnedValue = await this.memberRepository.save(updatedMember);
+    } else if (member.profile_picture_filename) {
+      if (member.profile_picture_filename === 'default') {
+        if (
+          fs.existsSync(
+            `./public/uploads/profilePictures/profile-picture-${member.name}.png`,
+          )
+        ) {
+          fs.unlink(
+            `./public/uploads/profilePictures/profile-picture-${member.name}.png`,
+            (error) => {
+              if (error)
+                throw new HttpException(
+                  {
+                    message: 'Invalid path',
+                    error: 'Invalid path',
+                    statusCode: HttpStatus.BAD_REQUEST,
+                  },
+                  HttpStatus.BAD_REQUEST,
+                  {
+                    cause: 'Invalid path',
+                  },
+                );
+            },
+          );
+        } else if (
+          fs.existsSync(
+            `./public/uploads/profilePictures/profile-picture-${member.name}.jpg`,
+          )
+        ) {
+          fs.unlink(
+            `./public/uploads/profilePictures/profile-picture-${member.name}.jpg`,
+            (error) => {
+              if (error)
+                throw new HttpException(
+                  {
+                    message: 'Invalid path',
+                    error: 'Invalid path',
+                    statusCode: HttpStatus.BAD_REQUEST,
+                  },
+                  HttpStatus.BAD_REQUEST,
+                  {
+                    cause: 'Invalid path',
+                  },
+                );
+            },
+          );
+        }
+        const updatedMember = {
+          id: member.id,
+          profile_picture: '/images/profile-picture-default.png',
+        };
+        returnedValue = await this.memberRepository.save(updatedMember);
+      } else {
+        const filenameExtension = member.profile_picture_filename.slice(-4);
+        const newPPName = `profile-picture-${member.name}${filenameExtension}`;
+        if (
+          fs.existsSync(
+            `./public/uploads/profilePictures/profile-picture-${member.name}.png`,
+          )
+        ) {
+          fs.unlink(
+            `./public/uploads/profilePictures/profile-picture-${member.name}.png`,
+            (error) => {
+              if (error)
+                throw new HttpException(
+                  {
+                    message: 'Invalid path',
+                    error: 'Invalid path',
+                    statusCode: HttpStatus.BAD_REQUEST,
+                  },
+                  HttpStatus.BAD_REQUEST,
+                  {
+                    cause: 'Invalid path',
+                  },
+                );
+            },
+          );
+        } else if (
+          fs.existsSync(
+            `./public/uploads/profilePictures/profile-picture-${member.name}.jpg`,
+          )
+        ) {
+          fs.unlink(
+            `./public/uploads/profilePictures/profile-picture-${member.name}.jpg`,
+            (error) => {
+              if (error)
+                throw new HttpException(
+                  {
+                    message: 'Invalid path',
+                    error: 'Invalid path',
+                    statusCode: HttpStatus.BAD_REQUEST,
+                  },
+                  HttpStatus.BAD_REQUEST,
+                  {
+                    cause: 'Invalid path',
+                  },
+                );
+            },
+          );
+        }
+        fs.rename(
+          `./public/uploads/profilePictures/${member.profile_picture_filename}`,
+          `./public/uploads/profilePictures/${newPPName}`,
+          (error) => {
+            if (error)
+              throw new HttpException(
+                {
+                  message: 'Invalid path',
+                  error: 'Invalid path',
+                  statusCode: HttpStatus.BAD_REQUEST,
+                },
+                HttpStatus.BAD_REQUEST,
+                {
+                  cause: 'Invalid path',
+                },
+              );
+          },
+        );
+        const updatedMember = {
+          id: member.id,
+          profile_picture: `http://localhost:3000/public/uploads/profilePictures/${newPPName}`,
+        };
+        returnedValue = await this.memberRepository.save(updatedMember);
+      }
     } else {
       returnedValue = await this.memberRepository.save(member);
     }

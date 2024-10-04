@@ -10,11 +10,19 @@ import { databaseConfig } from './config/database.config';
 import { RatingModule } from './rating/rating.module';
 import { WebContentModule } from './web-content/web-content.module';
 import { AuthModule } from './auth/auth.module';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 
 @Module({
   imports: [
     TypeOrmModule.forRootAsync({
-      imports: [ConfigModule],
+      imports: [
+        ConfigModule,
+        ServeStaticModule.forRoot({
+          rootPath: join(__dirname, '..', 'public'),
+          serveRoot: '/public',
+        }),
+      ],
 
       useFactory: () => databaseConfig,
     }),

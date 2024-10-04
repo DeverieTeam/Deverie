@@ -9,6 +9,7 @@ import PronounsEditWindow from "../components/PronounsEditWindow";
 import EmailDisplayConfirmationWindow from "../components/EmailDisplayConfirmationWindow";
 import PasswordEditWindow from "../components/PasswordEditWindow";
 import FavouriteTagsWindow from "../components/FavouriteTagsWindow";
+import ProfilePictureEditWindow from "../components/ProfilePictureEditWindow";
 
 export default function ProfilePage() {
   const [isDescriptionEditWindowOpened, setIsDescriptionEditWindowOpened] =
@@ -25,6 +26,10 @@ export default function ProfilePage() {
     useState<boolean>(false);
   const [isFavouriteTagsWindowOpened, setIsFavouriteTagsWindowOpened] =
     useState<boolean>(false);
+  const [
+    isProfilePictureEditWindowOpened,
+    setIsProfilePictureEditWindowOpened,
+  ] = useState<boolean>(false);
 
   const [data, setData] = useState<null | {
     id: number;
@@ -94,6 +99,12 @@ export default function ProfilePage() {
   const handleDisplayMailEditButton = () => {
     if (data && auth !== undefined && auth.role !== "client") {
       setIsEmailDisplayConfirmationWindowOpened(true);
+    }
+  };
+
+  const handleProfilePictureEditButton = () => {
+    if (data && auth !== undefined && auth.role !== "client") {
+      setIsProfilePictureEditWindowOpened(true);
     }
   };
 
@@ -289,7 +300,7 @@ export default function ProfilePage() {
               </p>
               <button
                 className="my-auto w-7 md:w-8 h-7 md:h-8 bg-indigo-400 hover:bg-indigo-600 self-center hover:text-white text-center rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900"
-                // onClick={handleProfilePictureEditButton}
+                onClick={handleProfilePictureEditButton}
               >
                 <svg
                   width="800px"
@@ -455,6 +466,15 @@ export default function ProfilePage() {
             tagsFamilies: webcontent.commons.tagsFamilies,
             tagNumberDisclaimer: webcontent.page.tagNumberDisclaimer,
           }}
+        />
+      )}
+      {data && isProfilePictureEditWindowOpened && (
+        <ProfilePictureEditWindow
+          setIsProfilePictureEditWindowOpened={
+            setIsProfilePictureEditWindowOpened
+          }
+          setData={setData}
+          webcontent={webcontent}
         />
       )}
     </div>

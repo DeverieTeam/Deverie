@@ -158,5 +158,13 @@
   "tagNumberDisclaimer": {
     "name": "Texte d'invitation à sélectionner le bon nombre de tags",
     "content": "Veuillez sélectionner au moins un tag"
+  },
+  "profilePictureEditTitle": {
+    "name": "Titre de la fenêtre d'édition de l'image de profil",
+    "content": "Modifier l'image de profil"
+  },
+  "profilePictureEditContent": {
+    "name": "Texte associé au champ d'édition de l'image de profil",
+    "content": "Veuillez sélectionner votre nouvelle image de profil (seules les images aux formats .png ou .jpg sont acceptés) :"
   }
 }

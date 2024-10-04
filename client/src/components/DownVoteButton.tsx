@@ -151,7 +151,7 @@ export default function DownVoteButton({
         case "downvote":
           return (
             <div
-              className="px-1 mr-3 md:mr-0 w-14 h-6 md:h-8 bg-red-500 self-end md:self-center gap-1 hover:text-white justify-center text-center rounded-full shadow-sm shadow-green-700 flex"
+              className="px-1 mr-3 md:mr-0 w-14 h-6 md:h-8 bg-red-500 self-end md:self-center gap-1 hover:text-white justify-center text-center rounded-full shadow-sm shadow-red-700 flex"
               onClick={handleVoteWhenAlreadyPicked}
             >
               <svg
@@ -176,7 +176,7 @@ export default function DownVoteButton({
         case "upvote":
           return (
             <div
-              className="px-1 mr-3 md:mr-0 w-14 h-6 md:h-8 bg-red-100 self-end md:self-center gap-1 hover:text-white justify-center text-center rounded-full shadow-sm shadow-green-700 flex"
+              className="px-1 mr-3 md:mr-0 w-14 h-6 md:h-8 bg-red-100 self-end md:self-center gap-1 hover:text-white justify-center text-center rounded-full shadow-sm shadow-red-700 flex"
               onClick={handleVoteWhenOtherPicked}
             >
               <svg
@@ -201,7 +201,7 @@ export default function DownVoteButton({
         case "novote":
           return (
             <div
-              className="px-1 mr-3 md:mr-0 w-14 h-6 md:h-8 bg-red-300 self-end md:self-center gap-1 hover:text-white justify-center text-center rounded-full shadow-sm shadow-green-700 flex"
+              className="px-1 mr-3 md:mr-0 w-14 h-6 md:h-8 bg-red-300 self-end md:self-center gap-1 hover:text-white justify-center text-center rounded-full shadow-sm shadow-red-700 flex"
               onClick={handleVoteWhenNonePicked}
             >
               <svg
@@ -227,7 +227,7 @@ export default function DownVoteButton({
     } else {
       return (
         <div
-          className="px-1 mr-3 md:mr-0 w-14 h-6 md:h-8 bg-red-300 self-end md:self-center gap-1 hover:text-white justify-center text-center rounded-full shadow-sm shadow-green-700 flex"
+          className="px-1 mr-3 md:mr-0 w-14 h-6 md:h-8 bg-red-300 self-end md:self-center gap-1 hover:text-white justify-center text-center rounded-full shadow-sm shadow-red-700 flex"
           onClick={handleVoteWhenClient}
         >
           <svg

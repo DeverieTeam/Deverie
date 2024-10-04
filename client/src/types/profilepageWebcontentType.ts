@@ -594,5 +594,13 @@ export type profilepageWebcontentType = {
       name: string;
       content: string;
     };
+    profilePictureEditTitle: {
+      name: string;
+      content: string;
+    };
+    profilePictureEditContent: {
+      name: string;
+      content: string;
+    };
   };
 };
