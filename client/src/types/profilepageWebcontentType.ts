@@ -1,4 +1,4 @@
-export type postviewpageWebcontentType = {
+export type profilepageWebcontentType = {
   commons: {
     logo: {
       hover: {
@@ -349,14 +349,6 @@ export type postviewpageWebcontentType = {
               content: string;
             };
           };
-          chronologicalOrder: {
-            name: string;
-            content: string;
-          };
-          relevance: {
-            name: string;
-            content: string;
-          };
         };
       };
     };
@@ -442,61 +434,159 @@ export type postviewpageWebcontentType = {
     };
   };
   page: {
-    associatedTags: {
+    profileTitle: {
       name: string;
       content: string;
     };
-    addingFavourite: {
+    informations: {
       name: string;
       content: string;
     };
-    removingFavourite: {
+    usernameTitle: {
       name: string;
       content: string;
     };
-    questionEmergency: {
+    emailTitle: {
       name: string;
       content: string;
     };
-    modificationNotification: {
+    emailDisplayTitle: {
       name: string;
       content: string;
     };
-    modificationSuffix: {
+    yes: {
       name: string;
       content: string;
     };
-    closureButton: {
-      topic: {
-        name: string;
-        content: string;
-      };
-      question: {
-        name: string;
-        content: string;
-      };
-    };
-    answerButton: {
+    no: {
       name: string;
       content: string;
     };
-    displayAnswers: {
+    passwordTitle: {
       name: string;
       content: string;
     };
-    hideAnswers: {
+    passwordPlaceholder: {
       name: string;
       content: string;
     };
-    postContent: {
+    pronounsTitle: {
       name: string;
       content: string;
     };
-    postContentPlaceholder: {
+    unknown: {
       name: string;
       content: string;
     };
-    editTitle: {
+    descriptionTitle: {
+      name: string;
+      content: string;
+    };
+    descriptionPlaceholder: {
+      name: string;
+      content: string;
+    };
+    profilePictureTitle: {
+      name: string;
+      content: string;
+    };
+    otherOptions: {
+      name: string;
+      content: string;
+    };
+    displayTheme: {
+      name: string;
+      content: string;
+    };
+    lightMode: {
+      name: string;
+      content: string;
+    };
+    language: {
+      name: string;
+      content: string;
+    };
+    french: {
+      name: string;
+      content: string;
+    };
+    displayedNameTitle: {
+      name: string;
+      content: string;
+    };
+    tagsButton: {
+      name: string;
+      content: string;
+    };
+    favouriteButton: {
+      name: string;
+      content: string;
+    };
+    disconnectButton: {
+      name: string;
+      content: string;
+    };
+    returnButton: {
+      name: string;
+      content: string;
+    };
+    descriptionEditTitle: {
+      name: string;
+      content: string;
+    };
+    descriptionContent: {
+      name: string;
+      content: string;
+    };
+    descriptionContentPlaceholder: {
+      name: string;
+      content: string;
+    };
+    displayedNameEditTitle: {
+      name: string;
+      content: string;
+    };
+    displayedNameContent: {
+      name: string;
+      content: string;
+    };
+    displayedNameContentPlaceholder: {
+      name: string;
+      content: string;
+    };
+    pronounsEditTitle: {
+      name: string;
+      content: string;
+    };
+    pronounsContent: {
+      name: string;
+      content: string;
+    };
+    pronounsContentPlaceholder: {
+      name: string;
+      content: string;
+    };
+    emailDisplayConfirmationTitle: {
+      name: string;
+      content: string;
+    };
+    emailDisplayConfirmationContent: {
+      name: string;
+      content: string;
+    };
+    passwordEditTitle: {
+      name: string;
+      content: string;
+    };
+    passwordContent: {
+      name: string;
+      content: string;
+    };
+    checkerContent: {
+      name: string;
+      content: string;
+    };
+    warningMessage: {
       name: string;
       content: string;
     };
@@ -504,19 +594,11 @@ export type postviewpageWebcontentType = {
       name: string;
       content: string;
     };
-    deletionTitle: {
+    profilePictureEditTitle: {
       name: string;
       content: string;
     };
-    deletionConfirmMessage: {
-      name: string;
-      content: string;
-    };
-    closureTitle: {
-      name: string;
-      content: string;
-    };
-    closureConfirmMessage: {
+    profilePictureEditContent: {
       name: string;
       content: string;
     };

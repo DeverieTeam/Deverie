@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import ThreadsRow from "./ThreadsRow";
 import { threadsdisplayerWebcontentType } from "../types/threadsdisplayerWebcontentType";
+import { useAuth } from "../contexts/useAuth";
 
 export default function ThreadsDisplayer({
   thread,
@@ -12,6 +13,7 @@ export default function ThreadsDisplayer({
   setDataForPage,
   setMemberId,
   setIsMemberViewWindowOpened,
+  setIsConnectionNeededClicked,
 }: Props) {
   const [data, setData] = useState<
     | null
@@ -31,65 +33,85 @@ export default function ThreadsDisplayer({
         type: "topic" | "question";
         is_opened: boolean;
         title: string;
+        is_favourited_by: number[];
         replies_count: number;
         last_message_date: string;
         results_length: null | number;
       }[]
   >(null);
 
+  const { auth } = useAuth();
+
   useEffect(() => {
-    const queryHandler = () => {
-      const queryArray = [];
-      if (pagination !== 1) {
-        queryArray.push(`page=${pagination}`);
-      }
-      if (sort) {
-        queryArray.push(`sort=${sort}`);
-      }
-      if (searchField) {
-        queryArray.push(`search=${searchField}`);
-      }
-      if (tags) {
-        tags.map((item) => queryArray.push(`tags=${item}`));
-      }
-      if (queryArray.length > 0) {
-        return `?${queryArray.join("&")}`;
-      } else {
-        return "";
-      }
-    };
+    if (auth) {
+      const queryHandler = () => {
+        const queryArray = [];
+        if (pagination !== 1) {
+          queryArray.push(`page=${pagination}`);
+        }
+        if (sort) {
+          queryArray.push(`sort=${sort}`);
+        }
+        if (searchField) {
+          queryArray.push(`search=${searchField}`);
+        }
+        if (tags) {
+          tags.map((item) => queryArray.push(`tags=${item}`));
+        }
+        if (queryArray.length > 0) {
+          return `?${queryArray.join("&")}`;
+        } else {
+          return "";
+        }
+      };
 
-    let fetchType: string;
-    switch (thread) {
-      case "topic":
-        fetchType = "topic" + queryHandler();
-        break;
-      case "question":
-        fetchType = "question" + queryHandler();
-        break;
-      case "popular":
-        fetchType = "homepage?sort=popular";
-        break;
-      case "recent":
-      default:
-        fetchType = "homepage?sort=recent";
-        break;
+      let fetchType: string;
+      switch (thread) {
+        case "favourites":
+          fetchType = `favourites/${auth.id}` + queryHandler();
+          break;
+        case "topic":
+          fetchType = "topic" + queryHandler();
+          break;
+        case "question":
+          fetchType = "question" + queryHandler();
+          break;
+        case "popular":
+          fetchType = "homepage?sort=popular";
+          break;
+        case "recent":
+        default:
+          fetchType = "homepage?sort=recent";
+          break;
+      }
+
+      fetch(`http://localhost:3000/post/${fetchType}`)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Something went wrong");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          setData(data);
+          if (setDataForPage !== undefined) {
+            setDataForPage(data);
+          }
+        });
     }
+  }, [
+    data,
+    auth,
+    thread,
+    setData,
+    setDataForPage,
+    pagination,
+    sort,
+    searchField,
+    tags,
+  ]);
 
-    fetch(`http://localhost:3000/post/${fetchType}`)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Something went wrong");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        setData(data);
-        if (setDataForPage !== undefined) {
-          setDataForPage(data);
-        }
-      });
-  }, [thread, setData, setDataForPage, pagination, sort, searchField, tags]);
+  // console.log(data);
 
   return (
     <div className="w-full md:max-w-[750px] self-center gap-2 md:gap-4 flex flex-col">
@@ -99,8 +121,10 @@ export default function ThreadsDisplayer({
           <ThreadsRow
             key={post.id}
             post={post}
+            setData={setData}
             setMemberId={setMemberId}
             setIsMemberViewWindowOpened={setIsMemberViewWindowOpened}
+            setIsConnectionNeededClicked={setIsConnectionNeededClicked}
             webcontent={webcontent.publications}
           />
         ))}
@@ -114,7 +138,7 @@ export default function ThreadsDisplayer({
 }
 
 type Props = {
-  thread: "popular" | "recent" | "topic" | "question";
+  thread: "popular" | "recent" | "topic" | "question" | "favourites";
   setDataForPage?: (
     arg0:
       | null
@@ -142,5 +166,6 @@ type Props = {
   tags?: string[];
   setMemberId: (arg0: number) => void;
   setIsMemberViewWindowOpened: (arg0: boolean) => void;
+  setIsConnectionNeededClicked: (arg0: boolean) => void;
   webcontent: threadsdisplayerWebcontentType;
 };

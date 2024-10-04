@@ -1,0 +1,170 @@
+{
+  "profileTitle": {
+    "name": "Titre de la page de profil",
+    "content": "Mon Profil"
+  },
+  "informations": {
+    "name": "Texte ouvrant la partie informations du profil",
+    "content": "Mes informations"
+  },
+  "usernameTitle": {
+    "name": "Texte indiquant le champ de nom de l'utilisateur",
+    "content": "Nom d'utilisateur :"
+  },
+  "emailTitle": {
+    "name": "Texte indiquant le champ de l'adresse e-mail de l'utilisateur",
+    "content": "Adresse e-mail :"
+  },
+  "emailDisplayTitle": {
+    "name": "Texte indiquant le champ d'affichage de l'adresse e-mail de l'utilisateur",
+    "content": "Afficher adresse e-mail :"
+  },
+  "yes": {
+    "name": "Texte indiquant l'acceptation d'affichage de l'adresse e-mail",
+    "content": "Oui"
+  },
+  "no": {
+    "name": "Texte indiquant le refus d'affichage de l'adresse e-mail",
+    "content": "Non"
+  },
+  "passwordTitle": {
+    "name": "Texte indiquant le champ du mot de passe de l'utilisateur",
+    "content": "Mot de passe :"
+  },
+  "passwordPlaceholder": {
+    "name": "Texte tenant place de faux mot de passe de l'utilisateur",
+    "content": "********"
+  },
+  "pronounsTitle": {
+    "name": "Texte indiquant le champ des pronoms de l'utilisateur",
+    "content": "Pronoms :"
+  },
+  "unknown": {
+    "name": "Texte indiquant qu'un champ facultatif est non renseigné",
+    "content": "Aucun"
+  },
+  "descriptionTitle": {
+    "name": "Texte indiquant le champ de description de l'utilisateur",
+    "content": "Description :"
+  },
+  "descriptionPlaceholder": {
+    "name": "Texte affiché en cas d'absence de description de l'utilisateur",
+    "content": "Aucune description renseignée pour le moment"
+  },
+  "profilePictureTitle": {
+    "name": "Texte indiquant le champ de choix d'image de profil",
+    "content": "Image de profil :"
+  },
+  "otherOptions": {
+    "name": "Texte ouvrant la partie autres options du profil",
+    "content": "Autres options de profil"
+  },
+  "displayTheme": {
+    "name": "Texte indiquant le champ de choix du thème d'affichage",
+    "content": "Type d'affichage :"
+  },
+  "lightMode": {
+    "name": "Etiquette permettant de choisir le thème clair",
+    "content": "Thème Clair"
+  },
+  "language": {
+    "name": "Texte indiquant le champ de choix de la langue",
+    "content": "Langue de l'interface :"
+  },
+  "french": {
+    "name": "Etiquette permettant de choisir la langue française",
+    "content": "Français"
+  },
+  "displayedNameTitle": {
+    "name": "Texte indiquant le champ de choix de pseudonyme",
+    "content": "Pseudonyme affiché :"
+  },
+  "tagsButton": {
+    "name": "Texte du bouton des tags",
+    "content": "Configurer mes Tags Favoris"
+  },
+  "favouriteButton": {
+    "name": "Texte du bouton des favoris",
+    "content": "Accéder à mes Favoris"
+  },
+  "disconnectButton": {
+    "name": "Texte du bouton de déconnexion",
+    "content": "Se Déconnecter"
+  },
+  "returnButton": {
+    "name": "Texte du bouton de retour",
+    "content": "Retour"
+  },
+  "descriptionEditTitle": {
+    "name": "Titre de la fenêtre d'édition de description",
+    "content": "Editer une Description"
+  },
+  "descriptionContent": {
+    "name": "Texte associé au champ de saisie du contenu de la description",
+    "content": "Description :"
+  },
+  "descriptionContentPlaceholder": {
+    "name": "Placeholder du champ de saisie du contenu de la description",
+    "content": "Contenu de votre description"
+  },
+  "displayedNameEditTitle": {
+    "name": "Titre de la fenêtre d'édition de pseudonyme",
+    "content": "Editer un Pseudonyme"
+  },
+  "displayedNameContent": {
+    "name": "Texte associé au champ de saisie du pseudonyme",
+    "content": "Pseudonyme :"
+  },
+  "displayedNameContentPlaceholder": {
+    "name": "Placeholder du champ de saisie du pseudonyme",
+    "content": "Votre pseudonyme"
+  },
+  "pronounsEditTitle": {
+    "name": "Titre de la fenêtre d'édition des pronoms",
+    "content": "Editer les Pronoms"
+  },
+  "pronounsContent": {
+    "name": "Texte associé au champ de saisie des pronoms",
+    "content": "Pronoms :"
+  },
+  "pronounsContentPlaceholder": {
+    "name": "Placeholder du champ de saisie des pronoms",
+    "content": "Vos pronoms"
+  },
+  "emailDisplayConfirmationTitle": {
+    "name": "Titre de la fenêtre d'édition de l'affichage de l'adresse e-mail",
+    "content": "Modifier l'affichage de l'adresse e-mail"
+  },
+  "emailDisplayConfirmationContent": {
+    "name": "Texte associé au champ de saisie de l'affichage de l'adresse e-mail",
+    "content": "Afficher adresse e-mail :"
+  },
+  "passwordEditTitle": {
+    "name": "Titre de la fenêtre d'édition du mot de passe",
+    "content": "Editer le Mot de passe"
+  },
+  "passwordContent": {
+    "name": "Texte associé au champ de saisie du mot de passe",
+    "content": "Mot de passe :"
+  },
+  "checkerContent": {
+    "name": "Texte associé au champ de saisie de la vérification du mot de passe",
+    "content": "Confirmer mot de passe :"
+  },
+  "warningMessage": {
+    "name": "Texte d'avertissement lié à la vérification du mot de passe",
+    "content": "La confirmation n'est pas identique au mot de passe saisi. Veuillez recommencer."
+  },
+  "tagNumberDisclaimer": {
+    "name": "Texte d'invitation à sélectionner le bon nombre de tags",
+    "content": "Veuillez sélectionner au moins un tag"
+  },
+  "profilePictureEditTitle": {
+    "name": "Titre de la fenêtre d'édition de l'image de profil",
+    "content": "Modifier l'image de profil"
+  },
+  "profilePictureEditContent": {
+    "name": "Texte associé au champ d'édition de l'image de profil",
+    "content": "Veuillez sélectionner votre nouvelle image de profil (seules les images aux formats .png ou .jpg sont acceptés) :"
+  }
+}

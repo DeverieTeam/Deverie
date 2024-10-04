@@ -4,10 +4,8 @@ import { tagselectionwindowWebcontentType } from "../types/tagselectionwindowWeb
 import { useAuth } from "../contexts/useAuth";
 import Cookies from "universal-cookie";
 
-export default function TagEditWindow({
-  setIsTagEditWindowOpened,
-  setData,
-  postId,
+export default function FavouriteTagsWindow({
+  setIsFavouriteTagsWindowOpened,
   previousTags,
   webcontent,
 }: Props) {
@@ -24,16 +22,16 @@ export default function TagEditWindow({
 
   useEffect(() => {
     if (auth && auth.role && auth.role === "client") {
-      setIsTagEditWindowOpened(false);
+      setIsFavouriteTagsWindowOpened(false);
     }
-  }, [auth, setIsTagEditWindowOpened]);
+  }, [auth, setIsFavouriteTagsWindowOpened]);
 
   const exitTagWindow = () => {
-    setIsTagEditWindowOpened(false);
+    setIsFavouriteTagsWindowOpened(false);
   };
 
   const buttonState = () => {
-    if (tempTags.length > 0 && tempTags.length <= 4) {
+    if (tempTags.length > 0) {
       return false;
     } else {
       return true;
@@ -50,12 +48,10 @@ export default function TagEditWindow({
 
       const body: {
         id: number;
-        tags: { id: number }[];
-        modification_author: number;
+        selected_tags: { id: number }[];
       } = {
-        id: postId,
-        tags: bodyTags,
-        modification_author: auth.id,
+        id: auth.id,
+        selected_tags: bodyTags,
       };
 
       try {
@@ -63,7 +59,7 @@ export default function TagEditWindow({
           path: "/",
         });
         const jwt = cookies.get("JWT");
-        const response = await fetch("http://localhost:3000/post", {
+        const response = await fetch("http://localhost:3000/member", {
           method: "PUT",
           headers: {
             Accept: "application/json",
@@ -74,8 +70,7 @@ export default function TagEditWindow({
         });
 
         if (response.ok) {
-          setData(null);
-          setIsTagEditWindowOpened(false);
+          setIsFavouriteTagsWindowOpened(false);
         }
       } catch (error) {
         console.error("Something went wrong: ", error);
@@ -145,37 +140,7 @@ export default function TagEditWindow({
 }
 
 type Props = {
-  setIsTagEditWindowOpened: (arg0: boolean) => void;
-  setData: (
-    arg0: null | {
-      id: number;
-      author: {
-        id: number;
-        name: string;
-        profile_picture: string;
-        is_banned: boolean;
-        role: "member" | "moderator" | "administrator";
-      };
-      tags: {
-        id: number;
-        name: string;
-        icon: string;
-      }[];
-      creation_date: string;
-      type: "topic" | "question";
-      title: string;
-      content: string;
-      is_opened: boolean;
-      is_readable: boolean;
-      is_favourited_by: null | number[];
-      modification_date: string;
-      modification_author: null | string;
-      emergency: null | number;
-      results_length: null | number;
-      replies: null | { id: number }[];
-    }
-  ) => void;
-  postId: number;
+  setIsFavouriteTagsWindowOpened: (arg0: boolean) => void;
   previousTags: {
     id: number;
     name: string;

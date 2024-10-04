@@ -78,6 +78,10 @@ export default function ThreadsPage({ threadType }: Props) {
   };
 
   useEffect(() => {
+    setTags(null);
+  }, [setTags]);
+
+  useEffect(() => {
     fetch(`http://localhost:3000/tag`)
       .then((response) => {
         if (!response.ok) {
@@ -158,6 +162,7 @@ export default function ThreadsPage({ threadType }: Props) {
             tags={tags}
             setMemberId={setMemberId}
             setIsMemberViewWindowOpened={setIsMemberViewWindowOpened}
+            setIsConnectionNeededClicked={setIsConnectionNeededClicked}
             webcontent={{
               publications: webcontent.commons.publications,
               noResult: webcontent.commons.noResult,

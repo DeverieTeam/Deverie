@@ -1,4 +1,4 @@
-export type threadspageWebcontentType = {
+export type favouritespageWebcontentType = {
   commons: {
     logo: {
       hover: {
@@ -349,14 +349,6 @@ export type threadspageWebcontentType = {
               content: string;
             };
           };
-          chronologicalOrder: {
-            name: string;
-            content: string;
-          };
-          relevance: {
-            name: string;
-            content: string;
-          };
         };
       };
     };
@@ -442,15 +434,9 @@ export type threadspageWebcontentType = {
     };
   };
   page: {
-    createButton: {
-      text: {
-        name: string;
-        content: string;
-      };
-      hover: {
-        name: string;
-        content: string;
-      };
+    favouritesPageTitle: {
+      name: string;
+      content: string;
     };
   };
 };

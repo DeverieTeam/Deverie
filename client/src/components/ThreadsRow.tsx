@@ -1,15 +1,123 @@
 import { useNavigate } from "react-router-dom";
 import { threadsrowWebcontentType } from "../types/threadsrowWebcontentType";
+import { useAuth } from "../contexts/useAuth";
+import Cookies from "universal-cookie";
 
 export default function ThreadsRow({
   post,
+  setData,
   setMemberId,
   setIsMemberViewWindowOpened,
+  setIsConnectionNeededClicked,
   webcontent,
 }: Props) {
   const navigate = useNavigate();
+  const { auth } = useAuth();
+
   const handleRowClick = () => {
     navigate({ pathname: "/postView", search: `?id=${post.id}` });
+  };
+
+  const handleFavButton = async (e: React.BaseSyntheticEvent) => {
+    e.stopPropagation();
+    e.preventDefault();
+    if (auth && auth.role !== "client" && auth.id) {
+      const body: {
+        id: number;
+        addFav: { id: number };
+      } = {
+        id: post.id,
+        addFav: { id: auth.id },
+      };
+
+      try {
+        const cookies = new Cookies(null, {
+          path: "/",
+        });
+        const jwt = cookies.get("JWT");
+        const response = await fetch("http://localhost:3000/post", {
+          method: "PUT",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${jwt}`,
+          },
+          body: JSON.stringify(body),
+        });
+
+        if (response.ok) {
+          setData(null);
+        }
+      } catch (error) {
+        console.error("Something went wrong: ", error);
+      }
+    } else {
+      setIsConnectionNeededClicked(true);
+    }
+  };
+
+  const handleUnfavButton = async (e: React.BaseSyntheticEvent) => {
+    e.stopPropagation();
+    e.preventDefault();
+    if (auth && auth.role !== "client" && auth.id) {
+      const body: {
+        id: number;
+        removeFav: { id: number };
+      } = {
+        id: post.id,
+        removeFav: { id: auth.id },
+      };
+
+      try {
+        const cookies = new Cookies(null, {
+          path: "/",
+        });
+        const jwt = cookies.get("JWT");
+        const response = await fetch("http://localhost:3000/post", {
+          method: "PUT",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${jwt}`,
+          },
+          body: JSON.stringify(body),
+        });
+
+        if (response.ok) {
+          setData(null);
+        }
+      } catch (error) {
+        console.error("Something went wrong: ", error);
+      }
+    }
+  };
+
+  const getfavourite = () => {
+    if (auth && auth.id && post.is_favourited_by.includes(auth.id)) {
+      return (
+        <div
+          title={webcontent.favourite.remove.hover.content}
+          onClick={handleUnfavButton}
+        >
+          <img
+            className="m-auto w-5 md:w-8 h-5 md:h-8 bg-transparent"
+            src="/icons/favourite.png"
+          />
+        </div>
+      );
+    } else {
+      return (
+        <div
+          title={webcontent.favourite.add.hover.content}
+          onClick={handleFavButton}
+        >
+          <img
+            className="m-auto w-5 md:w-8 h-5 md:h-8 bg-transparent"
+            src="/icons/notFavourite.svg"
+          />
+        </div>
+      );
+    }
   };
 
   const handleMemberButton = (e: React.BaseSyntheticEvent) => {
@@ -71,11 +179,7 @@ export default function ThreadsRow({
             </div>
           </div>
           <div className="m-auto w-6 md:w-10 h-6 md:h-10 flex ">
-            <img
-              className="m-auto w-5 md:w-8 h-5 md:h-8 bg-transparent"
-              src="/icons/notFavourite.svg"
-              title={webcontent.favourite.add.hover.content}
-            />
+            {getfavourite()}
           </div>
         </div>
       </div>
@@ -95,11 +199,38 @@ type Props = {
     creation_date: string;
     type: "topic" | "question";
     is_opened: boolean;
+    is_favourited_by: number[];
     title: string;
     replies_count: number;
     last_message_date: string;
   };
+  setData: (
+    arg0:
+      | null
+      | {
+          id: number;
+          author: {
+            id: number;
+            name: string;
+            profile_picture: string;
+          };
+          tags: {
+            id: number;
+            name: string;
+            icon: string;
+          }[];
+          creation_date: string;
+          type: "topic" | "question";
+          is_opened: boolean;
+          title: string;
+          is_favourited_by: number[];
+          replies_count: number;
+          last_message_date: string;
+          results_length: null | number;
+        }[]
+  ) => void;
   setMemberId: (arg0: number) => void;
   setIsMemberViewWindowOpened: (arg0: boolean) => void;
+  setIsConnectionNeededClicked: (arg0: boolean) => void;
   webcontent: threadsrowWebcontentType;
 };

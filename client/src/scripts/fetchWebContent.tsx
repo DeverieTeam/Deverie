@@ -47,6 +47,12 @@ async function fetchWebContent(args: {
       case "postView":
         endpoint = "/postView";
         break;
+      case "profile":
+        endpoint = "/profile";
+        break;
+      case "favourites":
+        endpoint = "/favourites";
+        break;
       case "wip":
       case "wipage":
         endpoint += "/wip";

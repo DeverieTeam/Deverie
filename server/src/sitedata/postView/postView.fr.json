@@ -7,6 +7,10 @@
     "name": "Texte du bouton permettant d'ajouter un post à ses favoris",
     "content": "Ajouter aux Favoris"
   },
+  "removingFavourite": {
+    "name": "Texte du bouton permettant d'enlever un post de ses favoris",
+    "content": "Retirer des Favoris"
+  },
   "questionEmergency": {
     "name": "Texte indiquant l'urgence d'une question",
     "content": "Urgence de la question"

@@ -10,6 +10,12 @@ export default function AuthProvider({ children }: Props) {
         name?: string;
         profile_picture?: string;
         role: string;
+        selected_tags?: {
+          id: number;
+          name: string;
+          icon: string;
+          family: string;
+        }[];
       }
     | undefined
   >(undefined);

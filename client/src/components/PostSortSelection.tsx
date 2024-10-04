@@ -8,15 +8,16 @@ export default function PostSortSelection({ setSort, webcontent }: Props) {
         className="px-1 text-xs md:text-base bg-white cursor-pointer"
         onChange={(e) => {
           setSort(e.target.value);
-        }}>
+        }}
+      >
         <option className="" value="chrono">
-          Ordre chronologique
+          {webcontent.filters.chronologicalOrder.content}
         </option>
         <option className="" value="recent">
-          Les plus récentes
+          {webcontent.filters.mostRecent.question.content}
         </option>
         <option className="" value="rate">
-          Les plus pertinentes
+          {webcontent.filters.relevance.content}
         </option>
       </select>
     </div>
