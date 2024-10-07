@@ -232,8 +232,6 @@ export default function RegisterPage() {
       });
 
       if (response.ok) {
-        // const result = await response.json();
-        // console.log(result);
         setIsRegisterWindowOpened(true);
       } else {
         const result = await response.json();

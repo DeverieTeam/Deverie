@@ -209,7 +209,7 @@ export type commonsWebcontentType = {
           content: string;
         };
       };
-      favorite: {
+      favourite: {
         main: {
           name: string;
           content: string;
@@ -265,7 +265,17 @@ export type commonsWebcontentType = {
         name: string;
         content: string;
       };
-      favorite: {
+      closureText: {
+        topic: {
+          name: string;
+          content: string;
+        };
+        question: {
+          name: string;
+          content: string;
+        };
+      };
+      favourite: {
         add: {
           hover: {
             name: string;
@@ -287,11 +297,11 @@ export type commonsWebcontentType = {
           content: string;
         };
       };
-    };
-    favourite: {
-      main: {
-        name: string;
-        content: string;
+      tagFilter: {
+        text: {
+          name: string;
+          content: string;
+        };
       };
       sortFilter: {
         text: {
@@ -339,11 +349,27 @@ export type commonsWebcontentType = {
               content: string;
             };
           };
+          chronologicalOrder: {
+            name: string;
+            content: string;
+          };
+          relevance: {
+            name: string;
+            content: string;
+          };
         };
       };
     };
     pagination: {
-      resultsOutOf: {
+      result: {
+        name: string;
+        content: string;
+      };
+      answer: {
+        name: string;
+        content: string;
+      };
+      outOf: {
         name: string;
         content: string;
       };
@@ -370,32 +396,8 @@ export type commonsWebcontentType = {
       name: string;
       content: string;
     };
-    numberOfResponses: {
-      name: string;
-      content: string;
-    };
-    lastResponseDatePrefix: {
-      name: string;
-      content: string;
-    };
-    favourite: {
-      add: {
-        hover: {
-          name: string;
-          content: string;
-        };
-      };
-      remove: {
-        hover: {
-          name: string;
-          content: string;
-        };
-      };
-    };
-  };
-  searching: {
-    searchBar: {
-      text: {
+    dropDownMenu: {
+      profile: {
         name: string;
         content: string;
       };
@@ -412,59 +414,49 @@ export type commonsWebcontentType = {
         content: string;
       };
     };
-  };
-  pagination: {
-    result: {
-      name: string;
-      content: string;
-    };
-    answer: {
-      name: string;
-      content: string;
-    };
-    outOf: {
-      name: string;
-      content: string;
-    };
-    pagesPrefix: {
-      name: string;
-      content: string;
-    };
-  };
-  tagsFamilies: {
-    language: {
-      name: string;
-      content: string;
-    };
-    environment: {
-      name: string;
-      content: string;
-    };
-    technology: {
-      name: string;
-      content: string;
-    };
-  };
-  noResult: {
-    name: string;
-    content: string;
-  };
-  dropDownMenu: {
-    profile: {
-      name: string;
-      content: string;
-    };
-    favourites: {
-      name: string;
-      content: string;
-    };
-    backoffice: {
-      name: string;
-      content: string;
-    };
-    logout: {
-      name: string;
-      content: string;
+    memberWindow: {
+      role: {
+        member: {
+          name: string;
+          content: string;
+        };
+        moderator: {
+          name: string;
+          content: string;
+        };
+        administrator: {
+          name: string;
+          content: string;
+        };
+      };
+      pronounsPrefix: {
+        name: string;
+        content: string;
+      };
+      messageCount: {
+        name: string;
+        content: string;
+      };
+      inscriptionDate: {
+        name: string;
+        content: string;
+      };
+      descriptionPlaceholder: {
+        name: string;
+        content: string;
+      };
+      banButton: {
+        name: string;
+        content: string;
+      };
+      banTitle: {
+        name: string;
+        content: string;
+      };
+      banConfirmMessage: {
+        name: string;
+        content: string;
+      };
     };
   };
 };
