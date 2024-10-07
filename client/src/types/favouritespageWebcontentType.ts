@@ -349,6 +349,14 @@ export type favouritespageWebcontentType = {
               content: string;
             };
           };
+          chronologicalOrder: {
+            name: string;
+            content: string;
+          };
+          relevance: {
+            name: string;
+            content: string;
+          };
         };
       };
     };

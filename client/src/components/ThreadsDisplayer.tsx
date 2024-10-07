@@ -111,8 +111,6 @@ export default function ThreadsDisplayer({
     tags,
   ]);
 
-  // console.log(data);
-
   return (
     <div className="w-full md:max-w-[750px] self-center gap-2 md:gap-4 flex flex-col">
       {data !== null &&
