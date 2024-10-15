@@ -207,7 +207,7 @@ export class PostService {
     const response = await this.postRepository
       .createQueryBuilder('post')
       .innerJoinAndSelect('post.author', 'author')
-      .innerJoinAndSelect('post.tags', 'tags')
+      .leftJoinAndSelect('post.tags', 'tags')
       .leftJoinAndSelect('post.replies', 'replies')
       .leftJoinAndSelect('replies.author', 'replyAuthor')
       .getMany();
@@ -516,7 +516,6 @@ export class PostService {
       .createQueryBuilder('post')
       .where('post.id = :id', { id: id })
       .innerJoinAndSelect('post.author', 'author')
-      .leftJoinAndSelect('post.tags', 'tags')
       .leftJoinAndSelect('post.replies', 'replies')
       .leftJoinAndSelect('post.modification_author', 'modification_author')
       .leftJoinAndSelect('replies.author', 'replyAuthor')

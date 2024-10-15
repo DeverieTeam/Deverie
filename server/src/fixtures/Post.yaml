@@ -370,8 +370,8 @@ items:
 
   post43:
     author: '@member6'
-    content: "Il y a plusieures étapes pour la création d'un token JWT :\n- Créer le token avec une clef scrète,\n- Stockqge côté client (local storage ou cookie),\n- Envoyer le token avec les requêtes pour chaque requête faite à l'API,\n- Vérification du token à chaque requête,\n- Expiration et renouvellement"
-    type: 'question'
+    content: "Il y a plusieures étapes pour la création d'un token JWT :\n- Créer le token avec une clef secrète,\n- Stockqge côté client (local storage ou cookie),\n- Envoyer le token avec les requêtes pour chaque requête faite à l'API,\n- Vérification du token à chaque requête,\n- Expiration et renouvellement"
+    type: 'answer'
     creation_date: '2024, 10, 1'
     reply_to: '@post42'
 

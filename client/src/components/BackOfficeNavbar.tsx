@@ -18,9 +18,9 @@ export default function BackOfficeNavbar({ webcontent }: Props) {
   const { pathname } = useLocation();
 
   return (
-    <nav className="w-[20%] min-w-48 max-w-72 h-[calc(100vh-4rem)] float-left fixed md:relative z-10">
+    <nav className="w-[20%] min-w-48 max-w-72 float-left fixed md:relative z-10">
       {windowWidth >= maximumBurgerMenuWidth || isBurgerMenuDisplayed ? (
-        <div className="bg-gray-300 h-full p-3 pb-6 flex flex-col gap-4 overflow-y-scroll">
+        <div className=" h-[calc(100vh-4rem)] bg-gray-300 p-3 pb-6 flex flex-col gap-4 overflow-y-scroll">
           {windowWidth < maximumBurgerMenuWidth ? (
             <button className="h-12 w-12" onClick={handleBurgerMenuClicked}>
               <img src="/icons/cross.svg" />
@@ -82,6 +82,17 @@ export default function BackOfficeNavbar({ webcontent }: Props) {
             }
           >
             {webcontent.interface.text.content}
+          </Link>
+          <Link
+            to="/backoffice/threads"
+            title={webcontent.threads.hover.content}
+            className={
+              pathname === "/backoffice/threads"
+                ? "w-[90%] min-h-10 mx-auto px-2 h-10 xl:px-6 xl:h-12 bg-indigo-600 text-white fill-white rounded-md shadow-sm shadow-indigo-900 flex items-center text-center justify-center"
+                : "w-[90%] min-h-10 mx-auto px-2 h-10 xl:px-6 xl:h-12 bg-indigo-400 hover:bg-indigo-600 hover:text-white hover:fill-white rounded-md shadow-sm shadow-indigo-700 hover:shadow-indigo-900 flex items-center text-center justify-center"
+            }
+          >
+            {webcontent.threads.text.content}
           </Link>
         </div>
       ) : (

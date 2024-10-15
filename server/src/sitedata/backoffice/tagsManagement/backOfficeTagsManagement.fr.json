@@ -46,22 +46,32 @@
     },
     "tagFamily": {
       "name": "Label du champ de famille du tag",
-      "content": "famille du tag"
+      "content": "Famille du tag"
     },
-    "tagOverview": {
+    "tagPreview": {
       "name": "Label de l'aperçu du tag",
       "content": "Aperçu"
     }
   },
   "buttons": {
-    "browse": {
+    "cancel": {
       "text": {
-        "name": "Texte du bouton de sélection de fichier",
-        "content": "Parcourir"
+        "name": "Texte du bouton d'annulation'",
+        "content": "Annuler"
       },
       "hover": {
-        "name": "Texte du bouton de sélection de fichier de survol",
-        "content": "Sélectionnez une image"
+        "name": "Texte du bouton d'annulation' de survol",
+        "content": "Annuler les changements"
+      }
+    },
+    "confirm": {
+      "text": {
+        "name": "Texte du bouton de confirmation",
+        "content": "Confirmer"
+      },
+      "hover": {
+        "name": "Texte du bouton de confirmation de survol",
+        "content": "Appliquer les changements"
       }
     }
   },
@@ -73,6 +83,26 @@
     "familySelect": {
       "name": "Texte par défaut de la sélection de famille",
       "content": "--Sélectionnez une famille--"
+    }
+  },
+  "tagsFamilies": {
+    "language": {
+      "name": "Nom de la famille de tags des langages",
+      "content": "Langages"
+    },
+    "environment": {
+      "name": "Nom de la famille de tags des environnements",
+      "content": "Environnements"
+    },
+    "technology": {
+      "name": "Nom de la famille de tags des technologies",
+      "content": "Technologies"
+    }
+  },
+  "warnings": {
+    "deletionConfirmationAlert": {
+      "name": "Message de confirmation de suppression de tag",
+      "content": "Êtes-vous certain de vouloir supprimer le tag \"{tag_name}\" ?\nCette Action est irréversible!"
     }
   }
 }

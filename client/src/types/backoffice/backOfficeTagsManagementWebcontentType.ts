@@ -63,13 +63,23 @@ export type backOfficeTagsManagementWebcontentType = {
         name: string;
         content: string;
       };
-      tagOverview: {
+      tagPreview: {
         name: string;
         content: string;
       };
     };
     buttons: {
-      browse: {
+      cancel: {
+        text: {
+          name: string;
+          content: string;
+        };
+        hover: {
+          name: string;
+          content: string;
+        };
+      };
+      confirm: {
         text: {
           name: string;
           content: string;
@@ -89,6 +99,26 @@ export type backOfficeTagsManagementWebcontentType = {
         name: string;
         content: string;
       };
+    };
+    tagsFamilies: {
+      language: {
+        name: string;
+        content: string;
+      };
+      environment: {
+        name: string;
+        content: string;
+      };
+      technology: {
+        name: string;
+        content: string;
+      };
+    };
+    warnings: {
+      deletionConfirmationAlert: {
+        name: string;
+        content: string;
+      }
     };
   };
 };

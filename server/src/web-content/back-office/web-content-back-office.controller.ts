@@ -1,12 +1,10 @@
-import { Param, Query, Controller, Get /*, UseGuards*/ } from '@nestjs/common';
+import { Controller, Get, Param, Query } from '@nestjs/common';
 import { WebContentBackOfficeService } from './web-content-back-office.service';
-// import { AuthGuard } from '@nestjs/passport';
 
 @Controller('webcontent/backoffice')
 export class WebContentBackOfficeController {
   constructor(private readonly webContentBackOfficeService: WebContentBackOfficeService) {}
 
-  //@UseGuards(AuthGuard('jwt'))
   @Get(':type')
   getBackOfficeWebContent(
     @Param('type') type: string,

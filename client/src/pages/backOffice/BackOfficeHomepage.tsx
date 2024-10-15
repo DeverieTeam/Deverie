@@ -6,7 +6,6 @@ import { backOfficeHomepageWebcontentType } from "../../types/backoffice/backOff
 
 export default function BackOfficeHomepage() {
   const webcontent = useLoaderData() as backOfficeHomepageWebcontentType;
-  console.log(webcontent);
   const navigate = useNavigate();
   const { auth } = useAuth();
 

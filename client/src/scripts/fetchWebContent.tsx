@@ -12,13 +12,16 @@ async function fetchWebContent(args: {
 > {
   const url: string = "http://localhost:3000/webcontent";
   let endpoint: string = args.isBackOffice ? "/backoffice" : "";
-  const addPosts: boolean =
-    args.hasPosts !== undefined && args.hasPosts === true;
+  const addPosts: boolean = args.hasPosts !== undefined && args.hasPosts === true;
 
   const fetchCommonsPromise = fetch(
-    `${url}${args.page !== "header" ? endpoint : ""}/commons?lang=${args.lang}${
-      addPosts ? "&posts=true" : ""
-    }`
+    `${url}${args.page !== "header" ? endpoint : ""}/commons?lang=${args.lang}${addPosts ? "&posts=true" : ""}`,
+    {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      }
+    }
   ).then((response) => {
     return response;
   });
@@ -66,7 +69,13 @@ async function fetchWebContent(args: {
         break;
     }
 
-    const fetchPagePromise = fetch(`${url}${endpoint}?lang=${args.lang}`).then(
+    const fetchPagePromise = fetch(`${url}${endpoint}?lang=${args.lang}`,
+      {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        }
+      }).then(
       (response) => {
         return response;
       }

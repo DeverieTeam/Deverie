@@ -182,10 +182,21 @@ const router = createBrowserRouter([
       },
       {
         path: "interface",
-        element: <PageNotFound404 />,
+        element: <WIPage />,
         loader: async () => {
           return await fetchWebContent({
-            page: "404",
+            page: "wip",
+            lang: "fr",
+            isBackOffice: false,
+          });
+        },
+      },
+      {
+        path: "threads",
+        element: <WIPage />,
+        loader: async () => {
+          return await fetchWebContent({
+            page: "wip",
             lang: "fr",
             isBackOffice: false,
           });
