@@ -20,6 +20,8 @@ import PageNotFound404 from "./pages/PageNotFound404.tsx";
 
 import AuthProvider from "./contexts/AuthProvider.tsx";
 import TagsProvider from "./contexts/TagsProvider.tsx";
+import ProfilePage from "./pages/ProfilePage.tsx";
+import FavouritesPage from "./pages/FavouritesPage.tsx";
 
 const router = createBrowserRouter([
   {
@@ -111,16 +113,24 @@ const router = createBrowserRouter([
       },
       {
         path: "favourites",
-        element: <WIPage />,
+        element: <FavouritesPage />,
         loader: async () => {
-          return await fetchWebContent({ page: "wip", lang: "fr" });
+          return await fetchWebContent({
+            page: "favourites",
+            lang: "fr",
+            hasPosts: true,
+          });
         },
       },
       {
         path: "profile",
-        element: <WIPage />,
+        element: <ProfilePage />,
         loader: async () => {
-          return await fetchWebContent({ page: "wip", lang: "fr" });
+          return await fetchWebContent({
+            page: "profile",
+            lang: "fr",
+            hasPosts: true,
+          });
         },
       },
     ],

@@ -2,7 +2,7 @@ import { createContext } from "react";
 
 interface TagsContextType {
   tags: string[] | null;
-  setTags: (tags: string[]) => void;
+  setTags: (tags: string[] | null) => void;
 }
 
 const defaultContextValue: TagsContextType = {

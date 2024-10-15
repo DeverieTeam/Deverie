@@ -347,6 +347,14 @@
             "name": "Nom du tri par les moins populaires",
             "content": "Les plus discrètes"
           }
+        },
+        "chronologicalOrder": {
+          "name": "Nom du tri par ordre chronologique",
+          "content": "Ordre Chronologique"
+        },
+        "relevance": {
+          "name": "Nom du tri par pertinence",
+          "content": "Les plus pertinentes"
         }
       }
     }
@@ -434,7 +442,7 @@
     },
     "descriptionPlaceholder": {
       "name": "Texte affiché en cas d'absence de description dans la fenêtre de vue des informations utilisateurs",
-      "content": "Aucune description renseignée pour le moment !"
+      "content": "Aucune description renseignée pour le moment"
     },
     "banButton": {
       "name": "Texte du bouton de bannissement des utilisateurs frauduleux",

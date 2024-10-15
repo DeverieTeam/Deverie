@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function PostDeletionWindow({
   setIsPostDeletionWindowOpened,
+  setData,
   postType,
   postId,
   webcontent,
@@ -52,12 +53,11 @@ export default function PostDeletionWindow({
         });
 
         if (response.ok) {
-          //   const result = await response.json();
-          //   console.log(result);
           if (postType === "thread") {
             navigate(-1);
           } else {
-            window.location.reload();
+            setData(null);
+            setIsPostDeletionWindowOpened(false);
           }
         }
       } catch (error) {
@@ -110,6 +110,35 @@ export default function PostDeletionWindow({
 
 type Props = {
   setIsPostDeletionWindowOpened: (arg0: boolean) => void;
+  setData: (
+    arg0: null | {
+      id: number;
+      author: {
+        id: number;
+        name: string;
+        profile_picture: string;
+        is_banned: boolean;
+        role: "member" | "moderator" | "administrator";
+      };
+      tags: {
+        id: number;
+        name: string;
+        icon: string;
+      }[];
+      creation_date: string;
+      type: "topic" | "question";
+      title: string;
+      content: string;
+      is_opened: boolean;
+      is_readable: boolean;
+      is_favourited_by: null | number[];
+      modification_date: string;
+      modification_author: null | string;
+      emergency: null | number;
+      results_length: null | number;
+      replies: null | { id: number }[];
+    }
+  ) => void;
   postType: string;
   postId: number;
   webcontent: postviewpageWebcontentType;

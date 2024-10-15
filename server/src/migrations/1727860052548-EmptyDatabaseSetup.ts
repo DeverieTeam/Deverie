@@ -1,11 +1,11 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
-export class EmptyDatabaseSetup1726827630700 implements MigrationInterface {
-  name = 'EmptyDatabaseSetup1726827630700';
+export class EmptyDatabaseSetup1727860052548 implements MigrationInterface {
+  name = 'EmptyDatabaseSetup1727860052548';
 
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(
-      `CREATE TYPE "public"."rating_type_enum" AS ENUM('Up', 'Down')`,
+      `CREATE TYPE "public"."rating_type_enum" AS ENUM('up', 'down')`,
     );
     await queryRunner.query(
       `CREATE TABLE "rating" ("id" SERIAL NOT NULL, "type" "public"."rating_type_enum" NOT NULL, "raterId" integer, "ratedPostId" integer, CONSTRAINT "PK_ecda8ad32645327e4765b43649e" PRIMARY KEY ("id"))`,

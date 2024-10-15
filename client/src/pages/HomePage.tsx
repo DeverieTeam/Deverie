@@ -5,11 +5,17 @@ import { homepageWebcontentType } from "../types/homepageWebcontentType";
 import { useAuth } from "../contexts/useAuth";
 import MemberViewWindow from "../components/MemberViewWindow";
 import BanConfirmWindow from "../components/BanConfirmWindow";
+import ConnectionWindow from "../components/userAccount/ConnectionWindow";
+import ConnectionNeeded from "../components/userAccount/ConnectionNeeded";
 
 export default function HomePage() {
   const [randomThread, setRandomThread] = useState<null | "popular" | "recent">(
     null
   );
+  const [isConnectionNeededClicked, setIsConnectionNeededClicked] =
+    useState<boolean>(false);
+  const [isConnectionWindowDisplayed, setIsConnectionWindowDisplayed] =
+    useState<boolean>(false);
   const [isMemberViewWindowOpened, setIsMemberViewWindowOpened] =
     useState<boolean>(false);
   const [isBanConfirmWindowOpened, setIsBanConfirmWindowOpened] =
@@ -47,8 +53,8 @@ export default function HomePage() {
       <div className="xl:flex">
         <div className="xl:flex-1 py-8 flex">
           <img
-            className="m-auto w-[300px] md:w-[600px] h-[200px] md:h-[400px] bg-neutral-100"
-            src=""
+            className="m-auto w-[300px] md:w-[600px] h-[200px] md:h-[400px] bg-neutral-100 rounded-xl"
+            src="/images/logo-homepage.png"
           />
         </div>
         <div className="xl:flex-1">
@@ -96,6 +102,7 @@ export default function HomePage() {
               thread={randomThread}
               setMemberId={setMemberId}
               setIsMemberViewWindowOpened={setIsMemberViewWindowOpened}
+              setIsConnectionNeededClicked={setIsConnectionNeededClicked}
               webcontent={{
                 publications: webcontent.commons.publications,
                 noResult: webcontent.commons.noResult,
@@ -114,6 +121,7 @@ export default function HomePage() {
               thread={randomThread === "recent" ? "popular" : "recent"}
               setMemberId={setMemberId}
               setIsMemberViewWindowOpened={setIsMemberViewWindowOpened}
+              setIsConnectionNeededClicked={setIsConnectionNeededClicked}
               webcontent={{
                 publications: webcontent.commons.publications,
                 noResult: webcontent.commons.noResult,
@@ -135,6 +143,26 @@ export default function HomePage() {
           setIsBanConfirmWindowOpened={setIsBanConfirmWindowOpened}
           memberId={memberId}
           webcontent={webcontent.commons}
+        />
+      )}
+      {isConnectionWindowDisplayed && (
+        <ConnectionWindow
+          setIsConnectionWindowDisplayed={setIsConnectionWindowDisplayed}
+          webcontent={{
+            hypertexts: webcontent.commons.hypertexts,
+            buttons: webcontent.commons.buttons,
+            connection: webcontent.commons.connection,
+          }}
+        />
+      )}
+      {isConnectionNeededClicked && (
+        <ConnectionNeeded
+          setIsConnectionNeededClicked={setIsConnectionNeededClicked}
+          setIsConnectionWindowDisplayed={setIsConnectionWindowDisplayed}
+          webcontent={{
+            hypertexts: webcontent.commons.hypertexts,
+            connection: webcontent.commons.connection,
+          }}
         />
       )}
     </div>

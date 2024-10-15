@@ -231,8 +231,6 @@ export default function RegisterPage() {
       });
 
       if (response.ok) {
-        // const result = await response.json();
-        // console.log(result);
         setIsRegisterWindowOpened(true);
       } else {
         const result = await response.json();
@@ -284,7 +282,8 @@ export default function RegisterPage() {
       </p>
       <form
         className="md:mx-auto md:w-[600px] xl:w-[1100px] mx-2 xl:mx-auto my-6 gap-12 xl:gap-20 flex flex-col xl:flex-row xl:flex-wrap"
-        onSubmit={handleSubmit}>
+        onSubmit={handleSubmit}
+      >
         <div className="xl:flex-1 flex flex-col">
           <p className="text-lg md:text-xl xl:text-2xl mb-4">
             {webcontent.page.form.generalInformations.main.content}

@@ -349,6 +349,14 @@ export type postviewpageWebcontentType = {
               content: string;
             };
           };
+          chronologicalOrder: {
+            name: string;
+            content: string;
+          };
+          relevance: {
+            name: string;
+            content: string;
+          };
         };
       };
     };
@@ -439,6 +447,10 @@ export type postviewpageWebcontentType = {
       content: string;
     };
     addingFavourite: {
+      name: string;
+      content: string;
+    };
+    removingFavourite: {
       name: string;
       content: string;
     };

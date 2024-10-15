@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useAuth } from "../contexts/useAuth";
 import RepliesDisplayer from "./RepliesDisplayer";
 import { postviewpageWebcontentType } from "../types/postviewpageWebcontentType";
+import UpVoteButton from "./UpVoteButton";
+import DownVoteButton from "./DownVoteButton";
 
 export default function RepliesRow({
   id,
@@ -32,6 +34,15 @@ export default function RepliesRow({
     modification_date: string;
     modification_author: null | string;
     replies: null | { id: number }[];
+    ratings:
+      | null
+      | {
+          id: number;
+          type: string;
+          rater: number;
+        }[];
+    up_votes: number;
+    down_votes: number;
   }>(null);
 
   const [areDetailsOpened, setAreDetailsOpened] = useState<boolean>(false);
@@ -51,7 +62,7 @@ export default function RepliesRow({
       .then((data) => {
         setData(data);
       });
-  }, [id, sort]);
+  }, [data, id, sort]);
 
   const handleDetailsClick = () => {
     setAreDetailsOpened(!areDetailsOpened);
@@ -107,44 +118,16 @@ export default function RepliesRow({
                 {data.author.name}
               </div>
               <div className="md:pr-2 flex-1 justify-center md:justify-end gap-1 md:gap-2 flex flex-col md:flex-row">
-                <div className="px-1 mr-3 md:mr-0 w-14 h-6 md:h-8 bg-green-400 self-end md:self-center gap-1 hover:text-white justify-center text-center rounded-full shadow-sm shadow-green-700 flex">
-                  <svg
-                    width="800px"
-                    height="800px"
-                    className="my-auto w-5 md:w-6 h-5 md:h-6 bg-transparent"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M15 11L12 8M12 8L9 11M12 8V16M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                  <p className="my-auto">33</p>
-                </div>
-                <div className="px-1 mr-3 md:mr-0 w-14 h-6 md:h-8 bg-red-400 self-end md:self-center gap-1 hover:text-white justify-center text-center rounded-full shadow-sm shadow-red-700 flex">
-                  <svg
-                    width="800px"
-                    height="800px"
-                    className="my-auto w-5 md:w-6 h-5 md:h-6 bg-transparent"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M9 13L12 16M12 16L15 13M12 16V8M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                  <p className="my-auto">10</p>
-                </div>
+                <UpVoteButton
+                  data={data}
+                  setData={setData}
+                  setIsConnectionNeededClicked={setIsConnectionNeededClicked}
+                />
+                <DownVoteButton
+                  data={data}
+                  setData={setData}
+                  setIsConnectionNeededClicked={setIsConnectionNeededClicked}
+                />
               </div>
             </button>
             <div className="justify-between gap-1 flex">
