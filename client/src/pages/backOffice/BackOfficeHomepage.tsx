@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
-import { useAuth } from "../contexts/useAuth";
-import { backOfficeHomepageWebcontentType } from "../types/backoffice/backOfficeHomepageWebcontentType";
+import { useAuth } from "../../contexts/useAuth";
+import { backOfficeHomepageWebcontentType } from "../../types/backoffice/backOfficeHomepageWebcontentType";
 
-export default function BackOfficePage() {
+export default function BackOfficeHomepage() {
   const webcontent = useLoaderData() as backOfficeHomepageWebcontentType;
-
   const navigate = useNavigate();
   const { auth } = useAuth();
 
@@ -200,7 +199,7 @@ export default function BackOfficePage() {
             <summary className="md:text-lg py-1 pl-6 bg-neutral-100 hover:bg-white rounded-lg cursor-pointer shadow-sm shadow-neutral-400">
               {webcontent.page.statistics.notBanned.title.content}
             </summary>
-            <div className="mt-6 ml-6 flex flex-col gap-1 md:gap-2">
+            <div className="mt-6 ml-2 flex flex-col gap-1 md:gap-2">
               <p>
                 {
                   webcontent.page.statistics.notBanned.publicationsNumberPrefix
@@ -243,7 +242,7 @@ export default function BackOfficePage() {
             <summary className="md:text-lg py-1 pl-6 bg-neutral-100 hover:bg-white rounded-lg cursor-pointer shadow-sm shadow-neutral-400">
               {webcontent.page.statistics.banned.title.content}
             </summary>
-            <div className="mt-6 ml-6 flex flex-col gap-1 md:gap-2">
+            <div className="mt-6 ml-2 flex flex-col gap-1 md:gap-2">
               <p>
                 {
                   webcontent.page.statistics.banned.publicationsNumberPrefix

@@ -16,7 +16,7 @@ export default function TagFilterChecker({
   };
 
   return (
-    <div className="w-[120px] md:w-[132px] gap-1 flex">
+    <div className="w-[120px] md:w-[132px] gap-1 flex items-center">
       <input
         id={`tag_${tag.id}`}
         type="checkbox"
@@ -26,7 +26,7 @@ export default function TagFilterChecker({
       />
       <label
         htmlFor={`tag_${tag.id}`}
-        className="text-sm md:text-base gap-1 flex hover:cursor-pointer">
+        className="text-sm md:text-base gap-1 flex items-center hover:cursor-pointer">
         <img
           className="h-5 w-5 bg-neutral-100 rounded-lg hover:cursor-pointer"
           src={tag.icon}

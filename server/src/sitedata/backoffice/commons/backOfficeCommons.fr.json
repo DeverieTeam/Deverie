@@ -49,6 +49,28 @@
         "name": "Texte d'accès à la gestion de l'interface de survol",
         "content": "Panneau de gestion du web content"
       }
+    },
+    "threads": {
+      "text": {
+        "name": "Texte d'accès à la gestion des posts",
+        "content": "Gestion des posts"
+      },
+      "hover": {
+        "name": "Texte d'accès à la gestion des posts de survol",
+        "content": "Panneau de gestion des posts"
+      }
+    }
+  },
+  "buttons": {
+    "submit": {
+      "text": {
+        "name": "Texte du bouton soumettre",
+        "content": "Soumettre"
+      },
+      "hover": {
+        "name": "Texte du bouton soumettre de survol",
+        "content": "Appliquer les changements"
+      }
     }
   }
 }

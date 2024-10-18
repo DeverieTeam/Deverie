@@ -48,5 +48,15 @@ export type backofficeNavbarWebcontentType = {
       name: string,
       content: string;
     };
-  };  
+  };
+  threads: {
+    text: {
+      name: string,
+      content: string;
+    };
+    hover: {
+      name: string,
+      content: string;
+    };
+  };    
 };

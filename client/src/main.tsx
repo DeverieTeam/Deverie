@@ -6,14 +6,16 @@ import fetchWebContent from "./scripts/fetchWebContent.tsx";
 import App from "./App.tsx";
 import "./index.css";
 
-import WIPage from "./pages/WIPage.tsx";
 import HomePage from "./pages/HomePage.tsx";
 import ThreadsPage from "./pages/ThreadsPage.tsx";
 import NewPostPage from "./pages/NewPostPage.tsx";
 import RegisterPage from "./pages/RegisterPage.tsx";
 import PostViewPage from "./pages/PostViewPage.tsx";
 
-import BackOfficePage from "./pages/BackOfficePage.tsx";
+import BackOfficeHomepage from "./pages/backOffice/BackOfficeHomepage.tsx";
+import BackOfficeTagsManagement from "./pages/backOffice/BackOfficeTagsManagement.tsx";
+
+import WIPage from "./pages/WIPage.tsx";
 import PageNotFound404 from "./pages/PageNotFound404.tsx";
 
 import AuthProvider from "./contexts/AuthProvider.tsx";
@@ -146,7 +148,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "",
-        element: <BackOfficePage />,
+        element: <BackOfficeHomepage />,
         loader: async () => {
           return await fetchWebContent({
             page: "homepage",
@@ -168,12 +170,12 @@ const router = createBrowserRouter([
       },
       {
         path: "tags",
-        element: <WIPage />,
+        element: <BackOfficeTagsManagement />,
         loader: async () => {
           return await fetchWebContent({
-            page: "wip",
+            page: "tags",
             lang: "fr",
-            isBackOffice: false,
+            isBackOffice: true,
           });
         },
       },
@@ -190,10 +192,21 @@ const router = createBrowserRouter([
       },
       {
         path: "interface",
-        element: <PageNotFound404 />,
+        element: <WIPage />,
         loader: async () => {
           return await fetchWebContent({
-            page: "404",
+            page: "wip",
+            lang: "fr",
+            isBackOffice: false,
+          });
+        },
+      },
+      {
+        path: "threads",
+        element: <WIPage />,
+        loader: async () => {
+          return await fetchWebContent({
+            page: "wip",
             lang: "fr",
             isBackOffice: false,
           });
