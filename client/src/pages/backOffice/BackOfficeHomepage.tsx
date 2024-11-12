@@ -164,8 +164,8 @@ export default function BackOfficeHomepage() {
       </p>
       <div className="w-full flex flex-row justify-evenly">
         <img
-          className="hidden md:block w-[300px] xl:w-[350px] h-[200px] xl:h-[250px] mt-12 mb-auto"
-          src=""
+          className="hidden md:block w-[300px] xl:w-[500px] h-[200px] xl:h-[350px] mt-12 xl:mt-0 mb-auto"
+          src="/images/logo-homepage.png"
         />
 
         <div className="flex flex-col gap-4 md:gap-6 xl:gap-8">

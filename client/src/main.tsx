@@ -180,6 +180,28 @@ const router = createBrowserRouter([
         },
       },
       {
+        path: "threads",
+        element: <WIPage />,
+        loader: async () => {
+          return await fetchWebContent({
+            page: "wip",
+            lang: "fr",
+            isBackOffice: false,
+          });
+        },
+      },
+      {
+        path: "members",
+        element: <WIPage />,
+        loader: async () => {
+          return await fetchWebContent({
+            page: "wip",
+            lang: "fr",
+            isBackOffice: false,
+          });
+        },
+      },
+      {
         path: "moderation",
         element: <WIPage />,
         loader: async () => {
@@ -192,17 +214,6 @@ const router = createBrowserRouter([
       },
       {
         path: "interface",
-        element: <WIPage />,
-        loader: async () => {
-          return await fetchWebContent({
-            page: "wip",
-            lang: "fr",
-            isBackOffice: false,
-          });
-        },
-      },
-      {
-        path: "threads",
         element: <WIPage />,
         loader: async () => {
           return await fetchWebContent({

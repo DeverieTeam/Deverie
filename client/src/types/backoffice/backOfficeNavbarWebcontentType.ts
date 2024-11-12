@@ -29,7 +29,7 @@ export type backofficeNavbarWebcontentType = {
       content: string;
     };
   };
-  moderation: {
+  interface: {
     text: {
       name: string,
       content: string;
@@ -39,7 +39,17 @@ export type backofficeNavbarWebcontentType = {
       content: string;
     };
   };
-  interface: {
+  members: {
+    text: {
+      name: string,
+      content: string;
+    };
+    hover: {
+      name: string,
+      content: string;
+    };
+  };
+  moderation: {
     text: {
       name: string,
       content: string;
