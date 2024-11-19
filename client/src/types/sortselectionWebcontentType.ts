@@ -1,56 +1,25 @@
+import { webcontentObjectType } from 'samples/webcontentObjectType.ts';
+
 export type sortselectionWebcontentType = {
-  text: {
-    name: string;
-    content: string;
-  };
+  text: webcontentObjectType;
   filters: {
     mostRecent: {
-      topic: {
-        name: string;
-        content: string;
-      };
-      question: {
-        name: string;
-        content: string;
-      };
+      topic: webcontentObjectType;
+      question: webcontentObjectType;
     };
     lessRecent: {
-      topic: {
-        name: string;
-        content: string;
-      };
-      question: {
-        name: string;
-        content: string;
-      };
+      topic: webcontentObjectType;
+      question: webcontentObjectType;
     };
     mostPopular: {
-      topic: {
-        name: string;
-        content: string;
-      };
-      question: {
-        name: string;
-        content: string;
-      };
+      topic: webcontentObjectType;
+      question: webcontentObjectType;
     };
     lessPopular: {
-      topic: {
-        name: string;
-        content: string;
-      };
-      question: {
-        name: string;
-        content: string;
-      };
+      topic: webcontentObjectType;
+      question: webcontentObjectType;
     };
-    chronologicalOrder: {
-      name: string;
-      content: string;
-    };
-    relevance: {
-      name: string;
-      content: string;
-    };
+    chronologicalOrder: webcontentObjectType;
+    relevance: webcontentObjectType;
   };
 };

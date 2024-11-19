@@ -54,6 +54,10 @@ async function fetchWebContent(args: {
       case "tagsManagement":
         endpoint += "/tags";
         break;
+      case "members":
+      case "membersManagement":
+        endpoint += "/members";
+        break;
       case "profile":
         endpoint = "/profile";
         break;

@@ -1,30 +1,17 @@
+import { webcontentObjectType } from '../samples/webcontentObjectType.ts';
+
 export type backOfficeTagDeletionConfirmationWindowWebcontentType = {
 	buttons: {
     cancel: {
-      text: {
-        name: string;
-        content: string;
-      };
-      hover: {
-        name: string;
-        content: string;
-      };
+      text: webcontentObjectType;
+      hover: webcontentObjectType;
     };
     confirm: {
-      text: {
-        name: string;
-        content: string;
-      };
-      hover: {
-        name: string;
-        content: string;
-      };
+      text: webcontentObjectType;
+      hover: webcontentObjectType;
     };
   };
   warnings: {
-    deletionConfirmationAlert: {
-      name: string;
-      content: string;
-    };
+    deletionConfirmationAlert: webcontentObjectType;
   };
 };

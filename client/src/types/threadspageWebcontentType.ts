@@ -1,456 +1,194 @@
+import { webcontentObjectType } from 'samples/webcontentObjectType.ts';
+
 export type threadspageWebcontentType = {
   commons: {
     logo: {
-      hover: {
-        name: string;
-        content: string;
-      };
-      alt: {
-        name: string;
-        content: string;
-      };
+      hover: webcontentObjectType;
+      alt: webcontentObjectType;
     };
     img: {
-      imgPath: {
-        name: string;
-        content: string;
-      };
+      imgPath: webcontentObjectType;
     };
     buttons: {
       backButton: {
-        text: {
-          name: string;
-          content: string;
-        };
-        hover: {
-          name: string;
-          content: string;
-        };
+        text: webcontentObjectType;
+        hover: webcontentObjectType;
       };
       backToHomeButton: {
-        text: {
-          name: string;
-          content: string;
-        };
-        hover: {
-          name: string;
-          content: string;
-        };
+        text: webcontentObjectType;
+        hover: webcontentObjectType;
       };
       quitButton: {
-        text: {
-          name: string;
-          content: string;
-        };
-        hover: {
-          name: string;
-          content: string;
-        };
+        text: webcontentObjectType;
+        hover: webcontentObjectType;
       };
       cancelButton: {
-        text: {
-          name: string;
-          content: string;
-        };
-        hover: {
-          name: string;
-          content: string;
-        };
+        text: webcontentObjectType;
+        hover: webcontentObjectType;
       };
       confirmButton: {
-        text: {
-          name: string;
-          content: string;
-        };
-        hover: {
-          name: string;
-          content: string;
-        };
+        text: webcontentObjectType;
+        hover: webcontentObjectType;
       };
       checkShortcuts: {
         addEntireSection: {
-          text: {
-            name: string;
-            content: string;
-          };
-          hover: {
-            name: string;
-            content: string;
-          };
+          text: webcontentObjectType;
+          hover: webcontentObjectType;
         };
         removeEntireSection: {
-          text: {
-            name: string;
-            content: string;
-          };
-          hover: {
-            name: string;
-            content: string;
-          };
+          text: webcontentObjectType;
+          hover: webcontentObjectType;
         };
         addAll: {
-          text: {
-            name: string;
-            content: string;
-          };
-          hover: {
-            name: string;
-            content: string;
-          };
+          text: webcontentObjectType;
+          hover: webcontentObjectType;
         };
         removeAll: {
-          text: {
-            name: string;
-            content: string;
-          };
-          hover: {
-            name: string;
-            content: string;
-          };
+          text: webcontentObjectType;
+          hover: webcontentObjectType;
         };
       };
     };
     hypertexts: {
       home: {
-        text: {
-          name: string;
-          content: string;
-        };
-        hover: {
-          name: string;
-          content: string;
-        };
+        text: webcontentObjectType;
+        hover: webcontentObjectType;
       };
       contact: {
-        text: {
-          name: string;
-          content: string;
-        };
-        hover: {
-          name: string;
-          content: string;
-        };
+        text: webcontentObjectType;
+        hover: webcontentObjectType;
       };
       termsOfUse: {
-        text: {
-          name: string;
-          content: string;
-        };
-        hover: {
-          name: string;
-          content: string;
-        };
+        text: webcontentObjectType;
+        hover: webcontentObjectType;
       };
       legalNotices: {
-        text: {
-          name: string;
-          content: string;
-        };
-        hover: {
-          name: string;
-          content: string;
-        };
+        text: webcontentObjectType;
+        hover: webcontentObjectType;
       };
       joinUs: {
-        text: {
-          name: string;
-          content: string;
-        };
-        hover: {
-          name: string;
-          content: string;
-        };
+        text: webcontentObjectType;
+        hover: webcontentObjectType;
       };
       login: {
-        text: {
-          name: string;
-          content: string;
-        };
-        hover: {
-          name: string;
-          content: string;
-        };
+        text: webcontentObjectType;
+        hover: webcontentObjectType;
       };
       profile: {
-        text: {
-          name: string;
-          content: string;
-        };
-        hover: {
-          name: string;
-          content: string;
-        };
+        text: webcontentObjectType;
+        hover: webcontentObjectType;
       };
     };
     sections: {
       topic: {
-        main: {
-          name: string;
-          content: string;
-        };
-        element: {
-          name: string;
-          content: string;
-        };
+        main: webcontentObjectType;
+        element: webcontentObjectType;
       };
       question: {
-        main: {
-          name: string;
-          content: string;
-        };
-        element: {
-          name: string;
-          content: string;
-        };
+        main: webcontentObjectType;
+        element: webcontentObjectType;
       };
       chat: {
-        main: {
-          name: string;
-          content: string;
-        };
+        main: webcontentObjectType;
       };
       favourite: {
-        main: {
-          name: string;
-          content: string;
-        };
-        element: {
-          name: string;
-          content: string;
-        };
+        main: webcontentObjectType;
+        element: webcontentObjectType;
       };
     };
     connection: {
       title: {
-        connectionPage: {
-          name: string;
-          content: string;
-        };
-        connectionNeeded: {
-          name: string;
-          content: string;
-        };
+        connectionPage: webcontentObjectType;
+        connectionNeeded: webcontentObjectType;
       };
       fields: {
-        username: {
-          name: string;
-          content: string;
-        };
-        password: {
-          name: string;
-          content: string;
-        };
+        username: webcontentObjectType;
+        password: webcontentObjectType;
       };
       unregistered: {
-        prefix: {
-          name: string;
-          content: string;
-        };
+        prefix: webcontentObjectType;
       };
-      warning: {
-        name: string;
-        content: string;
-      };
+      warning: webcontentObjectType;
     };
     publications: {
-      publishDatePrefix: {
-        name: string;
-        content: string;
-      };
-      numberOfResponses: {
-        name: string;
-        content: string;
-      };
-      lastResponseDatePrefix: {
-        name: string;
-        content: string;
-      };
+      publishDatePrefix: webcontentObjectType;
+      numberOfResponses: webcontentObjectType;
+      lastResponseDatePrefix: webcontentObjectType;
       closureText: {
-        topic: {
-          name: string;
-          content: string;
-        };
-        question: {
-          name: string;
-          content: string;
-        };
+        topic: webcontentObjectType;
+        question: webcontentObjectType;
       };
       favourite: {
         add: {
-          hover: {
-            name: string;
-            content: string;
-          };
+          hover: webcontentObjectType;
         };
         remove: {
-          hover: {
-            name: string;
-            content: string;
-          };
+          hover: webcontentObjectType;
         };
       };
     };
     searching: {
       searchBar: {
-        text: {
-          name: string;
-          content: string;
-        };
+        text: webcontentObjectType;
       };
       tagFilter: {
-        text: {
-          name: string;
-          content: string;
-        };
+        text: webcontentObjectType;
       };
       sortFilter: {
-        text: {
-          name: string;
-          content: string;
-        };
+        text: webcontentObjectType;
         filters: {
           mostRecent: {
-            topic: {
-              name: string;
-              content: string;
-            };
-            question: {
-              name: string;
-              content: string;
-            };
+            topic: webcontentObjectType;
+            question: webcontentObjectType;
           };
           lessRecent: {
-            topic: {
-              name: string;
-              content: string;
-            };
-            question: {
-              name: string;
-              content: string;
-            };
+            topic: webcontentObjectType;
+            question: webcontentObjectType;
           };
           mostPopular: {
-            topic: {
-              name: string;
-              content: string;
-            };
-            question: {
-              name: string;
-              content: string;
-            };
+            topic: webcontentObjectType;
+            question: webcontentObjectType;
           };
           lessPopular: {
-            topic: {
-              name: string;
-              content: string;
-            };
-            question: {
-              name: string;
-              content: string;
-            };
+            topic: webcontentObjectType;
+            question: webcontentObjectType;
           };
-          chronologicalOrder: {
-            name: string;
-            content: string;
-          };
-          relevance: {
-            name: string;
-            content: string;
-          };
+          chronologicalOrder: webcontentObjectType;
+          relevance: webcontentObjectType;
         };
       };
     };
     pagination: {
-      result: {
-        name: string;
-        content: string;
-      };
-      answer: {
-        name: string;
-        content: string;
-      };
-      outOf: {
-        name: string;
-        content: string;
-      };
-      pagesPrefix: {
-        name: string;
-        content: string;
-      };
+      result: webcontentObjectType;
+      answer: webcontentObjectType;
+      outOf: webcontentObjectType;
+      pagesPrefix: webcontentObjectType;
     };
     tagsFamilies: {
-      language: {
-        name: string;
-        content: string;
-      };
-      environment: {
-        name: string;
-        content: string;
-      };
-      technology: {
-        name: string;
-        content: string;
-      };
+      language: webcontentObjectType;
+      environment: webcontentObjectType;
+      technology: webcontentObjectType;
     };
-    noResult: {
-      name: string;
-      content: string;
-    };
+    noResult: webcontentObjectType;
     memberWindow: {
       role: {
-        member: {
-          name: string;
-          content: string;
-        };
-        moderator: {
-          name: string;
-          content: string;
-        };
-        administrator: {
-          name: string;
-          content: string;
-        };
+        member: webcontentObjectType;
+        moderator: webcontentObjectType;
+        administrator: webcontentObjectType;
       };
-      pronounsPrefix: {
-        name: string;
-        content: string;
-      };
-      messageCount: {
-        name: string;
-        content: string;
-      };
-      inscriptionDate: {
-        name: string;
-        content: string;
-      };
-      descriptionPlaceholder: {
-        name: string;
-        content: string;
-      };
-      banButton: {
-        name: string;
-        content: string;
-      };
-      banTitle: {
-        name: string;
-        content: string;
-      };
-      banConfirmMessage: {
-        name: string;
-        content: string;
-      };
+      pronounsPrefix: webcontentObjectType;
+      messageCount: webcontentObjectType;
+      inscriptionDate: webcontentObjectType;
+      descriptionPlaceholder: webcontentObjectType;
+      banButton: webcontentObjectType;
+      banTitle: webcontentObjectType;
+      banConfirmMessage: webcontentObjectType;
     };
   };
   page: {
     createButton: {
-      text: {
-        name: string;
-        content: string;
-      };
-      hover: {
-        name: string;
-        content: string;
-      };
+      text: webcontentObjectType;
+      hover: webcontentObjectType;
     };
   };
 };
