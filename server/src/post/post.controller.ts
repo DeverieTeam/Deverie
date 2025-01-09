@@ -43,6 +43,13 @@ export class PostController {
     return this.service.getReplyById(id, sort);
   }
 
+  @Get('replyPath/:id')
+  async getReplyPathById(
+    @Param('id') id: number,
+    ) {
+    return this.service.getReplyPathById(id);
+  }
+
   @Get('favourites/:authId')
   async getFavouritePostsByAuthId(
     @Param('authId') authId: string,
@@ -77,16 +84,32 @@ export class PostController {
   }
 
   @UseGuards(AuthGuard('jwt'))
+  @Get("author/:authorId")
+  async getPostsByAuthor(
+    @Param('authorId') authorId: string,
+    @Query('type') type: 'all' | 'question' | 'answer' | 'topic' | 'response' | undefined,
+  ) {
+    return this.service.getPostsByAuthor({
+      authorId: parseInt(authorId),
+      type: (type === undefined ? 'all' : type),
+    })
+  }
+
+  @UseGuards(AuthGuard('jwt'))
   @Get('number/:type')
   async getPostsNumberByType(
-    @Param('type') type: 'all' | 'question' | 'topic',
+    @Param('type') type: 'all' | 'question' | 'answer' | 'topic' | 'response',
+    @Query('authorId') authorId: string | undefined,
     @Query('isClosed') isClosed: 'true' | 'false' | undefined,
+    @Query('isReadable') isReadable: 'true' | 'false' | undefined,
     @Query('isBanned') isBanned: 'true' | 'false' | undefined,
   ) {
     return this.service.getPostsNumberByType({
       type: type,
-      isClosed: isClosed === undefined ? undefined : isClosed === 'true',
-      isBanned: isBanned === undefined ? undefined : isBanned === 'true',
+      authorId: (authorId === undefined ? undefined : parseInt(authorId)),
+      isClosed: (isClosed === undefined ? undefined : isClosed === 'true'),
+      isReadable: (isReadable === undefined ? undefined : isReadable === 'true'),
+      isBanned: (isBanned === undefined ? undefined : isBanned === 'true'),
     });
   }
 

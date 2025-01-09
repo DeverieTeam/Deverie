@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Post, Put, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Post, Put, Get, Param, Query, UseGuards } from '@nestjs/common';
 import { RatingService } from './rating.service';
 import { AuthGuard } from '@nestjs/passport';
 
@@ -42,5 +42,17 @@ export class RatingController {
     },
   ) {
     return this.service.deleteRating(rating);
+  }
+
+  @UseGuards(AuthGuard('jwt'))
+  @Get('number/:type')
+  async getRatingNumberByType(
+    @Param('type') type: 'all' | 'up' | 'down',
+    @Query('raterId') raterId: string | undefined,
+  ) {
+    return this.service.getRatingNumberByType({
+      type: type,
+      raterId: raterId === undefined ? undefined : parseInt(raterId)
+    });
   }
 }

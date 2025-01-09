@@ -79,82 +79,33 @@ export default function BackOfficeHomepage() {
 
   useEffect(() => {
     numberRequest({ endpoint: "member", type: "all", isBanned: false }).then(
-      (value) => {
-        setUsersNumber(value);
-      }
-    );
+      (value) => { setUsersNumber(value); });
     numberRequest({ endpoint: "member", type: "all", isBanned: true }).then(
-      (value) => {
-        setBannedUsersNumber(value);
-      }
-    );
+      (value) => { setBannedUsersNumber(value); });
     numberRequest({ endpoint: "member", type: "member", isBanned: false }).then(
-      (value) => {
-        setMembersNumber(value);
-      }
-    );
-    numberRequest({
-      endpoint: "member",
-      type: "moderator",
-      isBanned: false,
-    }).then((value) => {
-      setModeratorsNumber(value);
-    });
-    numberRequest({
-      endpoint: "member",
-      type: "administrator",
-      isBanned: false,
-    }).then((value) => {
-      setAdministratorsNumber(value);
-    });
+      (value) => { setMembersNumber(value); });
+    numberRequest({ endpoint: "member", type: "moderator", isBanned: false }).then(
+      (value) => { setModeratorsNumber(value); });
+    numberRequest({ endpoint: "member", type: "administrator", isBanned: false }).then(
+      (value) => { setAdministratorsNumber(value); });
 
     numberRequest({ endpoint: "post", type: "all", isBanned: false }).then(
-      (value) => {
-        setPublicationsNumber(value);
-      }
-    );
+      (value) => { setPublicationsNumber(value); });
     numberRequest({ endpoint: "post", type: "question", isBanned: false }).then(
-      (value) => {
-        setQuestionsNumber(value);
-      }
-    );
-    numberRequest({
-      endpoint: "post",
-      type: "question",
-      isClosed: true,
-      isBanned: false,
-    }).then((value) => {
-      setClosedQuestionsNumber(value);
-    });
+      (value) => { setQuestionsNumber(value); });
+    numberRequest({ endpoint: "post", type: "question", isClosed: true, isBanned: false }).then(
+      (value) => { setClosedQuestionsNumber(value); });
     numberRequest({ endpoint: "post", type: "topic", isBanned: false }).then(
-      (value) => {
-        setTopicsNumber(value);
-      }
-    );
-    numberRequest({
-      endpoint: "post",
-      type: "topic",
-      isClosed: true,
-      isBanned: false,
-    }).then((value) => {
-      setClosedTopicsNumber(value);
-    });
+      (value) => { setTopicsNumber(value); });
+    numberRequest({ endpoint: "post", type: "topic", isClosed: true, isBanned: false }).then(
+      (value) => { setClosedTopicsNumber(value); });
 
     numberRequest({ endpoint: "post", type: "all", isBanned: true }).then(
-      (value) => {
-        setBannedUsersPublicationsNumber(value);
-      }
-    );
+      (value) => { setBannedUsersPublicationsNumber(value); });
     numberRequest({ endpoint: "post", type: "question", isBanned: true }).then(
-      (value) => {
-        setBannedUsersQuestionsNumber(value);
-      }
-    );
+      (value) => { setBannedUsersQuestionsNumber(value); });
     numberRequest({ endpoint: "post", type: "topic", isBanned: true }).then(
-      (value) => {
-        setBannedUsersTopicsNumber(value);
-      }
-    );
+      (value) => { setBannedUsersTopicsNumber(value); });
   }, []);
 
   return (

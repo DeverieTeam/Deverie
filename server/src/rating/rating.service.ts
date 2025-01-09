@@ -98,4 +98,24 @@ export class RatingService {
       await this.ratingRepository.delete(existingRating.id);
     }
   }
+
+  async getRatingNumberByType(args: {
+    type: 'all' | 'up' | 'down';
+    raterId?: number;
+  }) {
+    const response = await this.ratingRepository
+      .createQueryBuilder('rating')
+      .innerJoinAndSelect('rating.rater', 'rater')
+      .getMany();
+
+    //conditional sql query depending of the url queries
+    const filteredResponse = response.filter(
+      (rate) =>
+        //if type is 'all', select all else only the given type
+        (args.type.toString() === 'all' ? true : rate.type === args.type.toString()) &&
+        //if raterId is defined, only rates from the specified rater id
+        (args.raterId === undefined ? true : rate.rater.id === args.raterId)
+    );
+    return { number: filteredResponse.length };
+  }
 }

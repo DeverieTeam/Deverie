@@ -1,6 +1,8 @@
 import { webcontentObjectType } from '../samples/webcontentObjectType.ts';
+import { backOfficeCommonsWebcontentType } from '../samples/backOfficeCommonsWebcontentType.ts';
 
 export type backOfficeHomepageWebcontentType = {
+  commons: backOfficeCommonsWebcontentType;
   page: {
     title: webcontentObjectType;
     statistics: {

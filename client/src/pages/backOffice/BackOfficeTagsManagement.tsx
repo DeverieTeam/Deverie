@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useLoaderData, useNavigate } from 'react-router-dom';
-import TagDeletionConfirmationWindow from '../../components/backoffice/TagDeletionConfirmationWindow';
+import ActionConfirmationWindow from '../../components/backoffice/ActionConfirmationWindow';
 import { backOfficeTagsManagementWebcontentType } from '../../types/backoffice/backOfficeTagsManagementWebcontentType';
 import Cookies from "universal-cookie";
 import { useAuth } from "../../contexts/useAuth";
@@ -11,10 +11,10 @@ export default function BackOfficeTagsManagement() {
   const navigate = useNavigate();
   const { auth } = useAuth();
 
-  const [isDeletionConfirmWindowDisplayed, setIsDeletionConfirmWindowDisplayed] = useState<boolean>(false);
-  function handleDisplayDeletionConfirmationWindow() {
+  const [isActionConfirmWindowDisplayed, setIsActionConfirmWindowDisplayed] = useState<boolean>(false);
+  function handleDisplayActionConfirmationWindow() {
     if (deleteTagId !== "") {
-      setIsDeletionConfirmWindowDisplayed(true);
+      setIsActionConfirmWindowDisplayed(true);
     }
   }
 
@@ -543,19 +543,19 @@ export default function BackOfficeTagsManagement() {
 
             <button
               className="ml-auto max-w-[50%] py-1 px-4 md:px-8 text-center text-lg md:text-xl enabled:hover:text-white bg-indigo-400 enabled:hover:bg-indigo-600 rounded-full shadow-sm shadow-indigo-700 enabled:hover:shadow-indigo-900 disabled:opacity-50"
-              onClick={handleDisplayDeletionConfirmationWindow}
+              onClick={handleDisplayActionConfirmationWindow}
               title={webcontent.commons.buttons.submit.hover.content}>
                 {webcontent.commons.buttons.submit.text.content}
             </button>
           </div>
         </details>
       </div>
-      {isDeletionConfirmWindowDisplayed && (
-        <TagDeletionConfirmationWindow
-          setIsDeletionConfirmWindowDisplayed={setIsDeletionConfirmWindowDisplayed}
+      {isActionConfirmWindowDisplayed && (
+        <ActionConfirmationWindow
+          setIsActionConfirmWindowDisplayed={setIsActionConfirmWindowDisplayed}
           handleConfirm={handleDeleteTagButton}
-          tagName={allTheTags.filter((tag) => tag.id === parseInt(deleteTagId))[0].name}
-          webcontent={{buttons: webcontent.page.buttons, warnings: webcontent.page.warnings}}
+          warningMessage={webcontent.page.warnings.deletionConfirmationAlert.content.replace("{tag_name}", allTheTags.filter((tag) => tag.id === parseInt(deleteTagId))[0].name)}
+          webcontent={{buttons: webcontent.page.buttons}}
         />
       )}
     </div>

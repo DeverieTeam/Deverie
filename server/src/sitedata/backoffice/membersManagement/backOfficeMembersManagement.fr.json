@@ -45,7 +45,7 @@
         "name": "Texte précédant le nombre de publications aimées",
         "content": "Nombre de publications aimées"
       },
-      "downvotesPublicationsNumber": {
+      "downvotesNumber": {
         "name": "Texte précédant le nombre de publications non aimées",
         "content": "Nombre de publications non aimées"
       },
@@ -77,11 +77,11 @@
         "name": "Texte précédant le nombre de topics clos",
         "content": "Nombre de sujet de forum clos"
       },
-      "commentariesNumber": {
+      "commentsNumber": {
         "name": "Texte précédant le nombre de commentaires publiés",
         "content": "Nombre de commentaires"
       },
-      "deletedCommentariesNumber": {
+      "deletedCommentsNumber": {
         "name": "Texte précédant le nombre de commentaires supprimés",
         "content": "Nombre de commentaires supprimés"
       }
@@ -95,19 +95,19 @@
         "name": "Texte précédant la date de publication",
         "content": "Publiée le"
       },
-      "isPublicationVisible": {
+      "isReadable": {
         "name": "Texte précédant l'état de la visibilité de la publication",
         "content": "Publication visible"
       },
-      "isPublicationClosed": {
+      "isOpened": {
         "name": "Texte précédant l'état de l'accessibilité de la publication",
-        "content": "Publication close"
+        "content": "Publication ouverte"
       },
-      "responsesNumber": {
+      "repliesNumber": {
         "name": "Texte précédant le nombre de réponses de la publication",
         "content": "Nombre de réponses"
       },
-      "lastResponseDate": {
+      "lastReplyDate": {
         "name": "Texte précédant la date de la dernière réponse de la publication",
         "content": "Dernière réponse"
       }
@@ -134,6 +134,10 @@
         "{publication_id}",
         "{link_end}"
       ]
+    },
+    "replyDepth": {
+      "name": "Texte précédant le niveau de profondeur d'une publication",
+      "content": "Profondeur"
     },
     "modificationNotification": {
       "name": "Texte annonçant la modification d'un message",
@@ -199,36 +203,32 @@
   "banishmentMessages": {
     "banned": {
       "name": "Message d'action de bannissement d'un membre",
-      "content": "\"{user_displayed_name}\" ({username}) est banni de Deverie.\n\nVoulez-vous révoquer son bannissement ?",
+      "content": "{user_name_displayer} est banni de Deverie.\n\nVoulez-vous révoquer son bannissement ?",
       "keywords": [
-        "{user_displayed_name}",
-        "{username}"
+        "{user_name_displayer}"
       ]
     },
     "unbanned": {
       "name": "Message d'action de bannissement d'un membre",
-      "content": "\"{user_displayed_name}\" ({username}) n’est pas banni de Deverie.\n\nVoulez-vous le bannir ?",
+      "content": "{user_name_displayer} n’est pas banni de Deverie.\n\nVoulez-vous le bannir ?",
       "keywords": [
-        "{user_displayed_name}",
-        "{username}"
+        "{user_name_displayer}"
       ]
     }
   },
   "warnings": {
     "banConfirmationAlert": {
       "name": "Message de confirmation de bannissement d'un membre",
-      "content": "Êtes-vous certain de vouloir bannir le membre \"{user_displayed_name}\" ({username}) ?\nCette action entreinera l’innaccessibilité de toutes ses publications encore accessible.",
+      "content": "Êtes-vous certain de vouloir bannir le membre {user_name_displayer} ?\nCette action entreinera l’innaccessibilité de toutes ses publications encore visibles.",
       "keywords": [
-        "{user_displayed_name}",
-        "{username}"
+        "{user_name_displayer}"
       ]
     },
     "unbanConfirmationAlert": {
       "name": "Message de confirmation de débannissement d'un membre",
-      "content": "Êtes-vous certain de vouloir lever le bannissement du membre \"{user_displayed_name}\" ({username}) ?",
+      "content": "Êtes-vous certain de vouloir lever le bannissement du membre {user_name_displayer} ?",
       "keywords": [
-        "{user_displayed_name}",
-        "{username}"
+        "{user_name_displayer}"
       ]
     }
   }

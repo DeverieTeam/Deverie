@@ -1,14 +1,8 @@
 import { webcontentObjectType } from '../samples/webcontentObjectType.ts';
+import { backOfficeCommonsWebcontentType } from '../samples/backOfficeCommonsWebcontentType.ts';
 
 export type backOfficeTagsManagementWebcontentType = {
-  commons: {
-    buttons: {
-      submit: {
-        text: webcontentObjectType;
-        hover: webcontentObjectType;
-      };
-    };
-  };
+  commons: backOfficeCommonsWebcontentType;
   page: {
     title: webcontentObjectType;
     actions: {

@@ -1,6 +1,6 @@
 import { webcontentObjectType } from '../samples/webcontentObjectType.ts';
 
-export type backOfficeTagDeletionConfirmationWindowWebcontentType = {
+export type backOfficeActionConfirmationWindowWebcontentType = {
 	buttons: {
     cancel: {
       text: webcontentObjectType;
@@ -10,8 +10,5 @@ export type backOfficeTagDeletionConfirmationWindowWebcontentType = {
       text: webcontentObjectType;
       hover: webcontentObjectType;
     };
-  };
-  warnings: {
-    deletionConfirmationAlert: webcontentObjectType;
   };
 };
