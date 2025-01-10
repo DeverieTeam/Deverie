@@ -11,6 +11,11 @@ export type backOfficeCommonsWebcontentType = {
     topic: webcontentObjectType;
     comment: webcontentObjectType;
   };
+  roles: {
+    member: webcontentObjectType;
+    moderator: webcontentObjectType;
+    administrator: webcontentObjectType;
+  };
   sections: {
     home: {
       text: webcontentObjectType;

@@ -27,6 +27,20 @@
       "content": "Commentaire"
     }
   },
+  "roles": {
+    "member": {
+      "name": "Nom du rôle de l'utilisateur inscrit",
+      "content": "Membre"
+    },
+    "moderator": {
+      "name": "Nom du rôle d'un gérant du contenu du site",
+      "content": "Modérateur"
+    },
+    "administrator": {
+      "name": "Nom du rôle d'un gérant de Deverie",
+      "content": "Administrateur"
+    }
+  },
 	"sections": {
     "home": {
       "text": {

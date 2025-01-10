@@ -214,6 +214,14 @@
       "keywords": [
         "{user_name_displayer}"
       ]
+    },
+    "unbannable": {
+      "name": "Message d'action de bannissement impossible d'un membre",
+      "content": "{user_name_displayer} est {user_role} et n’est donc pas bannissable de Deverie.",
+      "keywords": [
+        "{user_name_displayer}",
+        "{user_role}"
+      ]
     }
   },
   "warnings": {

@@ -6,7 +6,7 @@ import Cookies from "universal-cookie";
 import { useAuth } from "../../contexts/useAuth";
 import useWindowDimensions from "../../scripts/useWindowDimensions";
 
-export default function BackOfficeUsersManagement() {
+export default function BackOfficeMembersManagement() {
 
   const webcontent = useLoaderData() as backOfficeMembersManagementWebcontentType;
   const navigate = useNavigate();
@@ -223,35 +223,37 @@ export default function BackOfficeUsersManagement() {
   }
 
   const handleToggleMemberBanishment = async () => {
-    const body: {
-      id: number;
-      is_banned: boolean;
-    } = {
-      id: selectedMember,
-      is_banned: (!selectedMemberInfos.is_banned),
-    };
+    if (selectedMemberInfos.role === 'member') {
+      const body: {
+        id: number;
+        is_banned: boolean;
+      } = {
+        id: selectedMember,
+        is_banned: (!selectedMemberInfos.is_banned),
+      };
 
-    try {
-      const cookies = new Cookies(null, {
-        path: "/",
-      });
-      const jwt = cookies.get("JWT");
-      const response = await fetch("http://localhost:3000/member", {
-        method: "PUT",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${jwt}`,
-        },
-        body: JSON.stringify(body),
-      });
+      try {
+        const cookies = new Cookies(null, {
+          path: "/",
+        });
+        const jwt = cookies.get("JWT");
+        const response = await fetch("http://localhost:3000/member", {
+          method: "PUT",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${jwt}`,
+          },
+          body: JSON.stringify(body),
+        });
 
-      if (response.ok) {
-        setSelectedMember(0);
-        fetchAllTheMembers();
+        if (response.ok) {
+          setSelectedMember(0);
+          fetchAllTheMembers();
+        }
+      } catch (error) {
+        console.error('Something went wrong: ', error);
       }
-    } catch (error) {
-      console.error('Something went wrong: ', error);
     }
   };
 
@@ -635,20 +637,23 @@ export default function BackOfficeUsersManagement() {
           </summary>
           <div className="flex flex-col gap-6 w-full bg-neutral-100 mt-3 p-4 rounded-lg shadow-sm shadow-neutral-400">
             <p>
-              {webcontent.page.banishmentMessages[selectedMemberInfos.is_banned ? 'banned' : 'unbanned'].content
+              {webcontent.page.banishmentMessages[selectedMemberInfos.role !== 'member' ? 'unbannable' : selectedMemberInfos.is_banned ? 'banned' : 'unbanned'].content
                 .replace('{user_name_displayer}', (selectedMemberInfos.displayed_name ?
                   `"${selectedMemberInfos.displayed_name}" (${selectedMemberInfos.name})` :
                   selectedMemberInfos.name))
+                .replace('{user_role}', webcontent.commons.roles[selectedMemberInfos.role].content.toLowerCase())
                 .split("\n")
                 .flatMap((line: string, i: number) => [line, <br key={i} />])
               }
             </p>
-            <button
-              className="mx-auto py-1 px-4 md:px-8 text-center text-lg md:text-xl enabled:hover:text-white bg-indigo-400 enabled:hover:bg-indigo-600 rounded-full shadow-sm shadow-indigo-700 enabled:hover:shadow-indigo-900 disabled:opacity-50"
-              onClick={handleDisplayDeletionConfirmationWindow}
-              title={webcontent.page.buttons[selectedMemberInfos.is_banned ? 'unban' : 'ban'].hover.content}>
-                {webcontent.page.buttons[selectedMemberInfos.is_banned ? 'unban' : 'ban'].text.content}
-            </button>
+            {selectedMemberInfos.role === 'member' && (
+              <button
+                className="mx-auto py-1 px-4 md:px-8 text-center text-lg md:text-xl enabled:hover:text-white bg-indigo-400 enabled:hover:bg-indigo-600 rounded-full shadow-sm shadow-indigo-700 enabled:hover:shadow-indigo-900 disabled:opacity-50"
+                onClick={handleDisplayDeletionConfirmationWindow}
+                title={webcontent.page.buttons[selectedMemberInfos.is_banned ? 'unban' : 'ban'].hover.content}>
+                  {webcontent.page.buttons[selectedMemberInfos.is_banned ? 'unban' : 'ban'].text.content}
+              </button>
+            )}
           </div>
         </details>
       </div>
