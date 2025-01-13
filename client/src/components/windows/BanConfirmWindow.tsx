@@ -1,7 +1,7 @@
 import { useEffect } from "react";
-import { useAuth } from "../contexts/useAuth";
+import { useAuth } from "../../contexts/useAuth";
 import Cookies from "universal-cookie";
-import { banconfirmwindowWebcontentType } from "../types/banconfirmwindowWebcontentType";
+import { banConfirmWindowWebcontentType } from "../../types/coponents/windows/banConfirmWindowWebcontentType";
 
 export default function BanConfirmWindow({
   setIsBanConfirmWindowOpened,
@@ -100,5 +100,5 @@ export default function BanConfirmWindow({
 type Props = {
   setIsBanConfirmWindowOpened: (arg0: boolean) => void;
   memberId: number;
-  webcontent: banconfirmwindowWebcontentType;
+  webcontent: banConfirmWindowWebcontentType;
 };

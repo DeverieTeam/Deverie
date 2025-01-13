@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { tagfilterdisplayerWebcontentType } from "../types/tagfilterdisplayerWebcontentType";
+import { tagFilterDisplayerWebcontentType } from "../types/coponents/tagFilterDisplayerWebcontentType";
 import TagSelectionChecker from "./TagSelectionChecker";
 
 export default function TagSelectionDisplayer({
@@ -82,5 +82,5 @@ type Props = {
           family: string;
         }[])
   ) => void;
-  webcontent: tagfilterdisplayerWebcontentType;
+  webcontent: tagFilterDisplayerWebcontentType;
 };

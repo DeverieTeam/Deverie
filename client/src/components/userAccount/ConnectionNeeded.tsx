@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { connectionneededWebcontentType } from "../../types/connectionneededWebcontentType";
+import { connectionNeededWebcontentType } from "../../types/coponents/connectionNeededWebcontentType";
 
 export default function ConnectionNeeded({
   setIsConnectionNeededClicked,
@@ -59,5 +59,5 @@ export default function ConnectionNeeded({
 type Props = {
   setIsConnectionNeededClicked: (arg0: boolean) => void;
   setIsConnectionWindowDisplayed: (arg0: boolean) => void;
-  webcontent: connectionneededWebcontentType;
+  webcontent: connectionNeededWebcontentType;
 };

@@ -7,13 +7,13 @@ import { useAuth } from "../contexts/useAuth";
 import PostPagination from "../components/PostPagination";
 import RepliesDisplayer from "../components/RepliesDisplayer";
 import { postviewpageWebcontentType } from "../types/postviewpageWebcontentType";
-import NewReplyWindow from "../components/NewReplyWindow";
-import PostEditWindow from "../components/PostEditWindow";
-import TagEditWindow from "../components/TagEditWindow";
-import PostDeletionWindow from "../components/PostDeletionWindow";
-import PostClosureWindow from "../components/PostClosureWindow";
-import MemberViewWindow from "../components/MemberViewWindow";
-import BanConfirmWindow from "../components/BanConfirmWindow";
+import NewReplyWindow from "../components/windows/NewReplyWindow";
+import PostEditWindow from "../components/windows/PostEditWindow";
+import TagEditWindow from "../components/windows/TagEditWindow";
+import PostDeletionWindow from "../components/windows/PostDeletionWindow";
+import PostClosureWindow from "../components/windows/PostClosureWindow";
+import MemberViewWindow from "../components/windows/MemberViewWindow";
+import BanConfirmWindow from "../components/windows/BanConfirmWindow";
 import Cookies from "universal-cookie";
 
 export default function PostViewPage() {

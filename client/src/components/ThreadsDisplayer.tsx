@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import ThreadsRow from "./ThreadsRow";
-import { threadsdisplayerWebcontentType } from "../types/threadsdisplayerWebcontentType";
+import { threadsDisplayerWebcontentType } from "../types/coponents/threadsDisplayerWebcontentType";
 import { useAuth } from "../contexts/useAuth";
 
 export default function ThreadsDisplayer({
@@ -165,5 +165,5 @@ type Props = {
   setMemberId: (arg0: number) => void;
   setIsMemberViewWindowOpened: (arg0: boolean) => void;
   setIsConnectionNeededClicked: (arg0: boolean) => void;
-  webcontent: threadsdisplayerWebcontentType;
+  webcontent: threadsDisplayerWebcontentType;
 };

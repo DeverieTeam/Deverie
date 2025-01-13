@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { useAuth } from "../contexts/useAuth";
+import { useAuth } from "../../contexts/useAuth";
 import Cookies from "universal-cookie";
-import { profilepageWebcontentType } from "../types/profilepageWebcontentType";
+import { profilePageWebcontentType } from "../../types/profilePageWebcontentType";
 
 export default function ProfilePictureEditWindow({
   setIsProfilePictureEditWindowOpened,
@@ -181,5 +181,5 @@ type Props = {
       language: string;
     }
   ) => void;
-  webcontent: profilepageWebcontentType;
+  webcontent: profilePageWebcontentType;
 };

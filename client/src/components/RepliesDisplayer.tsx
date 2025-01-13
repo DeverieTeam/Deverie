@@ -1,4 +1,4 @@
-import { postviewpageWebcontentType } from "../types/postviewpageWebcontentType";
+import { postViewPageWebcontentType } from "../types/postViewPageWebcontentType";
 import RepliesRow from "./RepliesRow";
 
 export default function RepliesDisplayer({
@@ -56,5 +56,5 @@ type Props = {
   postIsOpened: boolean;
   setMemberId: (arg0: number) => void;
   setIsMemberViewWindowOpened: (arg0: boolean) => void;
-  webcontent: postviewpageWebcontentType;
+  webcontent: postViewPageWebcontentType;
 };

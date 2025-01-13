@@ -3,8 +3,8 @@ import { useLoaderData, useNavigate } from "react-router-dom";
 import ThreadsDisplayer from "../components/ThreadsDisplayer";
 import { homepageWebcontentType } from "../types/homepageWebcontentType";
 import { useAuth } from "../contexts/useAuth";
-import MemberViewWindow from "../components/MemberViewWindow";
-import BanConfirmWindow from "../components/BanConfirmWindow";
+import MemberViewWindow from "../components/windows/MemberViewWindow";
+import BanConfirmWindow from "../components/windows/BanConfirmWindow";
 import ConnectionWindow from "../components/userAccount/ConnectionWindow";
 import ConnectionNeeded from "../components/userAccount/ConnectionNeeded";
 

@@ -1,36 +1,39 @@
 import { useEffect } from "react";
-import { postviewpageWebcontentType } from "../types/postviewpageWebcontentType";
-import { useAuth } from "../contexts/useAuth";
+import { postViewPageWebcontentType } from "../../types/postViewPageWebcontentType";
+import { useAuth } from "../../contexts/useAuth";
 import Cookies from "universal-cookie";
+import { useNavigate } from "react-router-dom";
 
-export default function PostClosureWindow({
-  setIsPostClosureWindowOpened,
+export default function PostDeletionWindow({
+  setIsPostDeletionWindowOpened,
   setData,
+  postType,
   postId,
   webcontent,
 }: Props) {
   const { auth } = useAuth();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (auth && auth.role && auth.role === "client") {
-      setIsPostClosureWindowOpened(false);
+      setIsPostDeletionWindowOpened(false);
     }
-  }, [auth, setIsPostClosureWindowOpened]);
+  }, [auth, setIsPostDeletionWindowOpened]);
 
   const exitTagWindow = () => {
-    setIsPostClosureWindowOpened(false);
+    setIsPostDeletionWindowOpened(false);
   };
 
-  const handleClosureButton = async (e: React.BaseSyntheticEvent) => {
+  const handleDeleteButton = async (e: React.BaseSyntheticEvent) => {
     e.preventDefault();
     if (auth && auth.id && postId) {
       const body: {
         id: number;
-        is_opened: boolean;
+        is_readable: boolean;
         modification_author: number;
       } = {
         id: postId,
-        is_opened: false,
+        is_readable: false,
         modification_author: auth.id,
       };
 
@@ -50,8 +53,12 @@ export default function PostClosureWindow({
         });
 
         if (response.ok) {
-          setData(null);
-          setIsPostClosureWindowOpened(false);
+          if (postType === "thread") {
+            navigate(-1);
+          } else {
+            setData(null);
+            setIsPostDeletionWindowOpened(false);
+          }
         }
       } catch (error) {
         console.error("Something went wrong: ", error);
@@ -73,10 +80,10 @@ export default function PostClosureWindow({
             }}
           >
             <p className="text-center px-8 text-indigo-500 text-3xl md:text-4xl font-bold drop-shadow">
-              {webcontent.page.closureTitle.content}
+              {webcontent.page.deletionTitle.content}
             </p>
             <p className="mx-auto px-4 md:px-8 text-center text-xl md:text-3xl md:font-semibold">
-              {webcontent.page.closureConfirmMessage.content}
+              {webcontent.page.deletionConfirmMessage.content}
             </p>
             <div className="justify-center gap-4 md:gap-8 flex">
               <button
@@ -88,7 +95,7 @@ export default function PostClosureWindow({
               </button>
               <button
                 className="py-1 px-4 md:px-8 text-center text-lg md:text-xl enabled:hover:text-white bg-indigo-400 enabled:hover:bg-indigo-600 rounded-full shadow-sm shadow-indigo-700 enabled:hover:shadow-indigo-900 disabled:opacity-50"
-                onClick={handleClosureButton}
+                onClick={handleDeleteButton}
                 title={webcontent.commons.buttons.confirmButton.hover.content}
               >
                 {webcontent.commons.buttons.confirmButton.text.content}
@@ -102,7 +109,7 @@ export default function PostClosureWindow({
 }
 
 type Props = {
-  setIsPostClosureWindowOpened: (arg0: boolean) => void;
+  setIsPostDeletionWindowOpened: (arg0: boolean) => void;
   setData: (
     arg0: null | {
       id: number;
@@ -132,6 +139,7 @@ type Props = {
       replies: null | { id: number }[];
     }
   ) => void;
+  postType: string;
   postId: number;
-  webcontent: postviewpageWebcontentType;
+  webcontent: postViewPageWebcontentType;
 };

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../contexts/useAuth";
 import RepliesDisplayer from "./RepliesDisplayer";
-import { postviewpageWebcontentType } from "../types/postviewpageWebcontentType";
+import { postViewPageWebcontentType } from "../types/postViewPageWebcontentType";
 import UpVoteButton from "./UpVoteButton";
 import DownVoteButton from "./DownVoteButton";
 
@@ -268,5 +268,5 @@ type Props = {
   postIsOpened: boolean;
   setMemberId: (arg0: number) => void;
   setIsMemberViewWindowOpened: (arg0: boolean) => void;
-  webcontent: postviewpageWebcontentType;
+  webcontent: postViewPageWebcontentType;
 };

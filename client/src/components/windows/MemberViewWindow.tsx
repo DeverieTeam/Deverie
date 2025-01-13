@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { useAuth } from "../contexts/useAuth";
-import { memberviewwindowWebcontentType } from "../types/memberviewwindowWebcontentType";
+import { useAuth } from "../../contexts/useAuth";
+import { memberViewWindowWebcontentType } from "../../types/coponents/windows/memberViewWindowWebcontentType";
 
 export default function MemberViewWindow({
   setIsMemberViewWindowOpened,
@@ -149,5 +149,5 @@ type Props = {
   setIsMemberViewWindowOpened: (arg0: boolean) => void;
   setIsBanConfirmWindowOpened: (arg0: boolean) => void;
   memberId: number;
-  webcontent: memberviewwindowWebcontentType;
+  webcontent: memberViewWindowWebcontentType;
 };

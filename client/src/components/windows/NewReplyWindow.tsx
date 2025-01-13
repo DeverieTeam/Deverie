@@ -1,40 +1,63 @@
-import { useEffect } from "react";
-import { postviewpageWebcontentType } from "../types/postviewpageWebcontentType";
-import { useAuth } from "../contexts/useAuth";
+import { useEffect, useState } from "react";
+import { postViewPageWebcontentType } from "../../types/postViewPageWebcontentType";
+import { useAuth } from "../../contexts/useAuth";
 import Cookies from "universal-cookie";
-import { useNavigate } from "react-router-dom";
 
-export default function PostDeletionWindow({
-  setIsPostDeletionWindowOpened,
+export default function NewReplyWindow({
+  setIsNewReplyWindowOpened,
   setData,
-  postType,
-  postId,
+  sourcePostType,
+  sourcePostId,
   webcontent,
 }: Props) {
+  const [content, setContent] = useState<string>("");
   const { auth } = useAuth();
-  const navigate = useNavigate();
 
   useEffect(() => {
     if (auth && auth.role && auth.role === "client") {
-      setIsPostDeletionWindowOpened(false);
+      setIsNewReplyWindowOpened(false);
     }
-  }, [auth, setIsPostDeletionWindowOpened]);
+  }, [auth, setIsNewReplyWindowOpened]);
 
   const exitTagWindow = () => {
-    setIsPostDeletionWindowOpened(false);
+    setIsNewReplyWindowOpened(false);
   };
 
-  const handleDeleteButton = async (e: React.BaseSyntheticEvent) => {
+  const handleContentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setContent(e.target.value);
+  };
+
+  const buttonState = () => {
+    if (auth && auth.role !== "client" && content.length > 3) {
+      return false;
+    } else {
+      return true;
+    }
+  };
+
+  const handleSubmit = async (e: React.BaseSyntheticEvent) => {
     e.preventDefault();
-    if (auth && auth.id && postId) {
+    if (auth && auth.id) {
+      let bodyType: "comment" | "answer";
+      switch (sourcePostType) {
+        case "topic":
+          bodyType = "comment";
+          break;
+        case "question":
+          bodyType = "answer";
+          break;
+      }
+
       const body: {
-        id: number;
-        is_readable: boolean;
-        modification_author: number;
+        type: string;
+        content: string;
+        author: number;
+        reply_to: number;
       } = {
-        id: postId,
-        is_readable: false,
-        modification_author: auth.id,
+        type: bodyType,
+        content: content,
+        author: auth.id,
+        reply_to: sourcePostId,
       };
 
       try {
@@ -42,8 +65,8 @@ export default function PostDeletionWindow({
           path: "/",
         });
         const jwt = cookies.get("JWT");
-        const response = await fetch("http://localhost:3000/post", {
-          method: "PUT",
+        const response = await fetch("http://localhost:3000/post/newReply", {
+          method: "POST",
           headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
@@ -53,12 +76,8 @@ export default function PostDeletionWindow({
         });
 
         if (response.ok) {
-          if (postType === "thread") {
-            navigate(-1);
-          } else {
-            setData(null);
-            setIsPostDeletionWindowOpened(false);
-          }
+          setData(null);
+          setIsNewReplyWindowOpened(false);
         }
       } catch (error) {
         console.error("Something went wrong: ", error);
@@ -73,18 +92,28 @@ export default function PostDeletionWindow({
     >
       <div className="h-[100%] w-[100%] relative">
         <div className="h-screen w-screen sticky top-16">
-          <div
+          <form
             className="mx-auto px-4 py-8 h-[430px] md:h-[500px] w-[290px] md:w-[500px] bg-neutral-50 translate-y-[35%] md:translate-y-[25%] xl:translate-y-[30%] justify-between rounded-lg shadow-sm shadow-gray-700 flex flex-col overflow-auto"
             onClick={(e) => {
               e.stopPropagation();
             }}
+            onSubmit={handleSubmit}
           >
             <p className="text-center px-8 text-indigo-500 text-3xl md:text-4xl font-bold drop-shadow">
-              {webcontent.page.deletionTitle.content}
+              {webcontent.page.answerButton.content}
             </p>
-            <p className="mx-auto px-4 md:px-8 text-center text-xl md:text-3xl md:font-semibold">
-              {webcontent.page.deletionConfirmMessage.content}
-            </p>
+            <div className="flex flex-col">
+              <p className="text-lg md:text-2xl">
+                {webcontent.page.postContent.content}
+              </p>
+              <textarea
+                className="px-4 py-2 mb-4 w-full resize-none focus:outline-none active:outline-none md:text-lg shadow-sm shadow-neutral-400 bg-neutral-200 rounded-xl"
+                placeholder={webcontent.page.postContentPlaceholder.content}
+                rows={8}
+                value={content}
+                onChange={handleContentChange}
+              />
+            </div>
             <div className="justify-center gap-4 md:gap-8 flex">
               <button
                 className="py-1 px-4 md:px-8 text-center text-lg md:text-xl hover:text-white bg-indigo-400 hover:bg-indigo-600 rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900"
@@ -93,15 +122,15 @@ export default function PostDeletionWindow({
               >
                 {webcontent.commons.buttons.backButton.text.content}
               </button>
-              <button
+              <input
                 className="py-1 px-4 md:px-8 text-center text-lg md:text-xl enabled:hover:text-white bg-indigo-400 enabled:hover:bg-indigo-600 rounded-full shadow-sm shadow-indigo-700 enabled:hover:shadow-indigo-900 disabled:opacity-50"
-                onClick={handleDeleteButton}
+                disabled={buttonState()}
+                type="submit"
                 title={webcontent.commons.buttons.confirmButton.hover.content}
-              >
-                {webcontent.commons.buttons.confirmButton.text.content}
-              </button>
+                value={webcontent.commons.buttons.confirmButton.text.content}
+              />
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>
@@ -109,7 +138,7 @@ export default function PostDeletionWindow({
 }
 
 type Props = {
-  setIsPostDeletionWindowOpened: (arg0: boolean) => void;
+  setIsNewReplyWindowOpened: (arg0: boolean) => void;
   setData: (
     arg0: null | {
       id: number;
@@ -139,7 +168,7 @@ type Props = {
       replies: null | { id: number }[];
     }
   ) => void;
-  postType: string;
-  postId: number;
-  webcontent: postviewpageWebcontentType;
+  sourcePostType: "topic" | "question";
+  sourcePostId: number;
+  webcontent: postViewPageWebcontentType;
 };

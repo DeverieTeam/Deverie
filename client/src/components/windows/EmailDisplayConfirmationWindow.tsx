@@ -1,29 +1,29 @@
 import { useEffect, useState } from "react";
-import { useAuth } from "../contexts/useAuth";
+import { useAuth } from "../../contexts/useAuth";
 import Cookies from "universal-cookie";
-import { profilepageWebcontentType } from "../types/profilepageWebcontentType";
+import { profilePageWebcontentType } from "../../types/profilePageWebcontentType";
 
-export default function PronounsEditWindow({
-  setIsPronounsEditWindowOpened,
+export default function EmailDisplayConfirmationWindow({
+  setIsEmailDisplayConfirmationWindowOpened,
   setData,
   previousContent,
   webcontent,
 }: Props) {
-  const [content, setContent] = useState<string | undefined>(previousContent);
+  const [content, setContent] = useState<boolean>(previousContent);
   const { auth } = useAuth();
 
   useEffect(() => {
     if (auth && auth.role && auth.role === "client") {
-      setIsPronounsEditWindowOpened(false);
+      setIsEmailDisplayConfirmationWindowOpened(false);
     }
-  }, [auth, setIsPronounsEditWindowOpened]);
+  }, [auth, setIsEmailDisplayConfirmationWindowOpened]);
 
   const exitWindow = () => {
-    setIsPronounsEditWindowOpened(false);
+    setIsEmailDisplayConfirmationWindowOpened(false);
   };
 
-  const handleContentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setContent(e.target.value);
+  const handleContentChange = () => {
+    setContent(!content);
   };
 
   const handleSubmit = async (e: React.BaseSyntheticEvent) => {
@@ -31,10 +31,10 @@ export default function PronounsEditWindow({
     if (auth && auth.id) {
       const body: {
         id: number;
-        pronouns: string | undefined;
+        is_email_displayed: boolean;
       } = {
         id: auth.id,
-        pronouns: content,
+        is_email_displayed: content,
       };
 
       try {
@@ -54,7 +54,7 @@ export default function PronounsEditWindow({
 
         if (response.ok) {
           setData(null);
-          setIsPronounsEditWindowOpened(false);
+          setIsEmailDisplayConfirmationWindowOpened(false);
         }
       } catch (error) {
         console.error("Something went wrong: ", error);
@@ -77,17 +77,16 @@ export default function PronounsEditWindow({
             onSubmit={handleSubmit}
           >
             <p className="text-center px-8 text-indigo-500 text-3xl md:text-4xl font-bold drop-shadow">
-              {webcontent.page.pronounsEditTitle.content}
+              {webcontent.page.emailDisplayConfirmationTitle.content}
             </p>
-            <div className="flex flex-col">
-              <p className="text-lg md:text-2xl">
-                {webcontent.page.pronounsContent.content}
+            <div className="md:px-8 justify-between flex">
+              <p className="my-auto text-lg md:text-2xl">
+                {webcontent.page.emailDisplayConfirmationContent.content}
               </p>
-              <textarea
-                className="px-4 py-2 mb-4 w-full resize-none focus:outline-none active:outline-none md:text-lg shadow-sm shadow-neutral-400 bg-neutral-200 rounded-xl"
-                placeholder={webcontent.page.pronounsContentPlaceholder.content}
-                rows={1}
-                value={content}
+              <input
+                className="my-auto cursor-pointer"
+                type="checkbox"
+                checked={content}
                 onChange={handleContentChange}
               />
             </div>
@@ -114,7 +113,7 @@ export default function PronounsEditWindow({
 }
 
 type Props = {
-  setIsPronounsEditWindowOpened: (arg0: boolean) => void;
+  setIsEmailDisplayConfirmationWindowOpened: (arg0: boolean) => void;
   setData: (
     arg0: null | {
       id: number;
@@ -129,6 +128,6 @@ type Props = {
       language: string;
     }
   ) => void;
-  previousContent: string | undefined;
-  webcontent: profilepageWebcontentType;
+  previousContent: boolean;
+  webcontent: profilePageWebcontentType;
 };

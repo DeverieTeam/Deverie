@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { useAuth } from "../contexts/useAuth";
+import { useAuth } from "../../contexts/useAuth";
 import Cookies from "universal-cookie";
-import { profilepageWebcontentType } from "../types/profilepageWebcontentType";
+import { profilePageWebcontentType } from "../../types/profilePageWebcontentType";
 
 export default function PasswordEditWindow({
   setIsPasswordEditWindowOpened,
@@ -149,5 +149,5 @@ export default function PasswordEditWindow({
 
 type Props = {
   setIsPasswordEditWindowOpened: (arg0: boolean) => void;
-  webcontent: profilepageWebcontentType;
+  webcontent: profilePageWebcontentType;
 };

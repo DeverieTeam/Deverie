@@ -1,14 +1,14 @@
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import ThreadsDisplayer from "../components/ThreadsDisplayer";
-import TagFilterWindow from "../components/TagFilterWindow";
+import TagFilterWindow from "../components/windows/TagFilterWindow";
 import ThreadsPagination from "../components/ThreadsPagination";
 import ThreadsSortSelection from "../components/ThreadsSortSelection";
 import SearchField from "../components/SearchField";
 import { useTags } from "../contexts/useTags";
 import { useAuth } from "../contexts/useAuth";
-import MemberViewWindow from "../components/MemberViewWindow";
-import BanConfirmWindow from "../components/BanConfirmWindow";
+import MemberViewWindow from "../components/windows/MemberViewWindow";
+import BanConfirmWindow from "../components/windows/BanConfirmWindow";
 import { favouritespageWebcontentType } from "../types/favouritespageWebcontentType";
 import ConnectionWindow from "../components/userAccount/ConnectionWindow";
 import ConnectionNeeded from "../components/userAccount/ConnectionNeeded";

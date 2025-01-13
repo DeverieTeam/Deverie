@@ -1,29 +1,29 @@
 import { useEffect, useState } from "react";
-import { useAuth } from "../contexts/useAuth";
+import { useAuth } from "../../contexts/useAuth";
 import Cookies from "universal-cookie";
-import { profilepageWebcontentType } from "../types/profilepageWebcontentType";
+import { profilePageWebcontentType } from "../../types/profilePageWebcontentType";
 
-export default function EmailDisplayConfirmationWindow({
-  setIsEmailDisplayConfirmationWindowOpened,
+export default function PronounsEditWindow({
+  setIsPronounsEditWindowOpened,
   setData,
   previousContent,
   webcontent,
 }: Props) {
-  const [content, setContent] = useState<boolean>(previousContent);
+  const [content, setContent] = useState<string | undefined>(previousContent);
   const { auth } = useAuth();
 
   useEffect(() => {
     if (auth && auth.role && auth.role === "client") {
-      setIsEmailDisplayConfirmationWindowOpened(false);
+      setIsPronounsEditWindowOpened(false);
     }
-  }, [auth, setIsEmailDisplayConfirmationWindowOpened]);
+  }, [auth, setIsPronounsEditWindowOpened]);
 
   const exitWindow = () => {
-    setIsEmailDisplayConfirmationWindowOpened(false);
+    setIsPronounsEditWindowOpened(false);
   };
 
-  const handleContentChange = () => {
-    setContent(!content);
+  const handleContentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setContent(e.target.value);
   };
 
   const handleSubmit = async (e: React.BaseSyntheticEvent) => {
@@ -31,10 +31,10 @@ export default function EmailDisplayConfirmationWindow({
     if (auth && auth.id) {
       const body: {
         id: number;
-        is_email_displayed: boolean;
+        pronouns: string | undefined;
       } = {
         id: auth.id,
-        is_email_displayed: content,
+        pronouns: content,
       };
 
       try {
@@ -54,7 +54,7 @@ export default function EmailDisplayConfirmationWindow({
 
         if (response.ok) {
           setData(null);
-          setIsEmailDisplayConfirmationWindowOpened(false);
+          setIsPronounsEditWindowOpened(false);
         }
       } catch (error) {
         console.error("Something went wrong: ", error);
@@ -77,16 +77,17 @@ export default function EmailDisplayConfirmationWindow({
             onSubmit={handleSubmit}
           >
             <p className="text-center px-8 text-indigo-500 text-3xl md:text-4xl font-bold drop-shadow">
-              {webcontent.page.emailDisplayConfirmationTitle.content}
+              {webcontent.page.pronounsEditTitle.content}
             </p>
-            <div className="md:px-8 justify-between flex">
-              <p className="my-auto text-lg md:text-2xl">
-                {webcontent.page.emailDisplayConfirmationContent.content}
+            <div className="flex flex-col">
+              <p className="text-lg md:text-2xl">
+                {webcontent.page.pronounsContent.content}
               </p>
-              <input
-                className="my-auto cursor-pointer"
-                type="checkbox"
-                checked={content}
+              <textarea
+                className="px-4 py-2 mb-4 w-full resize-none focus:outline-none active:outline-none md:text-lg shadow-sm shadow-neutral-400 bg-neutral-200 rounded-xl"
+                placeholder={webcontent.page.pronounsContentPlaceholder.content}
+                rows={1}
+                value={content}
                 onChange={handleContentChange}
               />
             </div>
@@ -113,7 +114,7 @@ export default function EmailDisplayConfirmationWindow({
 }
 
 type Props = {
-  setIsEmailDisplayConfirmationWindowOpened: (arg0: boolean) => void;
+  setIsPronounsEditWindowOpened: (arg0: boolean) => void;
   setData: (
     arg0: null | {
       id: number;
@@ -128,6 +129,6 @@ type Props = {
       language: string;
     }
   ) => void;
-  previousContent: boolean;
-  webcontent: profilepageWebcontentType;
+  previousContent: string | undefined;
+  webcontent: profilePageWebcontentType;
 };

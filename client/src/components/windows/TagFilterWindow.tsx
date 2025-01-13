@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import TagFilterDisplayer from "./TagFilterDisplayer";
-import { tagfilterwindowWebcontentType } from "../types/tagfilterwindowWebcontentType";
+import TagFilterDisplayer from "../TagFilterDisplayer";
+import { tagFilterWindowWebcontentType } from "../../types/coponents/windows/tagFilterWindowWebcontentType";
 
 export default function TagFilterWindow({
   isTagButtonClicked,
@@ -137,5 +137,5 @@ type Props = {
   langTags: string[];
   envTags: string[];
   technoTags: string[];
-  webcontent: tagfilterwindowWebcontentType;
+  webcontent: tagFilterWindowWebcontentType;
 };

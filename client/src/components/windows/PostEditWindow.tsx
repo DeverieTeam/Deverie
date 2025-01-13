@@ -1,26 +1,26 @@
 import { useEffect, useState } from "react";
-import { postviewpageWebcontentType } from "../types/postviewpageWebcontentType";
-import { useAuth } from "../contexts/useAuth";
+import { postViewPageWebcontentType } from "../../types/postViewPageWebcontentType";
+import { useAuth } from "../../contexts/useAuth";
 import Cookies from "universal-cookie";
 
-export default function NewReplyWindow({
-  setIsNewReplyWindowOpened,
+export default function PostEditWindow({
+  setIsPostEditWindowOpened,
   setData,
-  sourcePostType,
-  sourcePostId,
+  postId,
+  previousContent,
   webcontent,
 }: Props) {
-  const [content, setContent] = useState<string>("");
+  const [content, setContent] = useState<string>(previousContent);
   const { auth } = useAuth();
 
   useEffect(() => {
     if (auth && auth.role && auth.role === "client") {
-      setIsNewReplyWindowOpened(false);
+      setIsPostEditWindowOpened(false);
     }
-  }, [auth, setIsNewReplyWindowOpened]);
+  }, [auth, setIsPostEditWindowOpened]);
 
   const exitTagWindow = () => {
-    setIsNewReplyWindowOpened(false);
+    setIsPostEditWindowOpened(false);
   };
 
   const handleContentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -38,26 +38,14 @@ export default function NewReplyWindow({
   const handleSubmit = async (e: React.BaseSyntheticEvent) => {
     e.preventDefault();
     if (auth && auth.id) {
-      let bodyType: "comment" | "answer";
-      switch (sourcePostType) {
-        case "topic":
-          bodyType = "comment";
-          break;
-        case "question":
-          bodyType = "answer";
-          break;
-      }
-
       const body: {
-        type: string;
+        id: number;
         content: string;
-        author: number;
-        reply_to: number;
+        modification_author: number;
       } = {
-        type: bodyType,
+        id: postId,
         content: content,
-        author: auth.id,
-        reply_to: sourcePostId,
+        modification_author: auth.id,
       };
 
       try {
@@ -65,8 +53,8 @@ export default function NewReplyWindow({
           path: "/",
         });
         const jwt = cookies.get("JWT");
-        const response = await fetch("http://localhost:3000/post/newReply", {
-          method: "POST",
+        const response = await fetch("http://localhost:3000/post", {
+          method: "PUT",
           headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
@@ -77,7 +65,7 @@ export default function NewReplyWindow({
 
         if (response.ok) {
           setData(null);
-          setIsNewReplyWindowOpened(false);
+          setIsPostEditWindowOpened(false);
         }
       } catch (error) {
         console.error("Something went wrong: ", error);
@@ -100,7 +88,7 @@ export default function NewReplyWindow({
             onSubmit={handleSubmit}
           >
             <p className="text-center px-8 text-indigo-500 text-3xl md:text-4xl font-bold drop-shadow">
-              {webcontent.page.answerButton.content}
+              {webcontent.page.editTitle.content}
             </p>
             <div className="flex flex-col">
               <p className="text-lg md:text-2xl">
@@ -138,7 +126,7 @@ export default function NewReplyWindow({
 }
 
 type Props = {
-  setIsNewReplyWindowOpened: (arg0: boolean) => void;
+  setIsPostEditWindowOpened: (arg0: boolean) => void;
   setData: (
     arg0: null | {
       id: number;
@@ -168,7 +156,7 @@ type Props = {
       replies: null | { id: number }[];
     }
   ) => void;
-  sourcePostType: "topic" | "question";
-  sourcePostId: number;
-  webcontent: postviewpageWebcontentType;
+  postId: number;
+  previousContent: string;
+  webcontent: postViewPageWebcontentType;
 };

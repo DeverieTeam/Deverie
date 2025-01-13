@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { useAuth } from "../contexts/useAuth";
+import { useAuth } from "../../contexts/useAuth";
 import Cookies from "universal-cookie";
-import { profilepageWebcontentType } from "../types/profilepageWebcontentType";
+import { profilePageWebcontentType } from "../../types/profilePageWebcontentType";
 
-export default function DescriptionEditWindow({
-  setIsDescriptionEditWindowOpened,
+export default function DisplayedNameEditWindow({
+  setIsDisplayedNameEditWindowOpened,
   setData,
   previousContent,
   webcontent,
@@ -14,12 +14,12 @@ export default function DescriptionEditWindow({
 
   useEffect(() => {
     if (auth && auth.role && auth.role === "client") {
-      setIsDescriptionEditWindowOpened(false);
+      setIsDisplayedNameEditWindowOpened(false);
     }
-  }, [auth, setIsDescriptionEditWindowOpened]);
+  }, [auth, setIsDisplayedNameEditWindowOpened]);
 
   const exitWindow = () => {
-    setIsDescriptionEditWindowOpened(false);
+    setIsDisplayedNameEditWindowOpened(false);
   };
 
   const handleContentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -31,10 +31,10 @@ export default function DescriptionEditWindow({
     if (auth && auth.id) {
       const body: {
         id: number;
-        description: string | undefined;
+        displayed_name: string | undefined;
       } = {
         id: auth.id,
-        description: content,
+        displayed_name: content,
       };
 
       try {
@@ -54,7 +54,7 @@ export default function DescriptionEditWindow({
 
         if (response.ok) {
           setData(null);
-          setIsDescriptionEditWindowOpened(false);
+          setIsDisplayedNameEditWindowOpened(false);
         }
       } catch (error) {
         console.error("Something went wrong: ", error);
@@ -77,18 +77,18 @@ export default function DescriptionEditWindow({
             onSubmit={handleSubmit}
           >
             <p className="text-center px-8 text-indigo-500 text-3xl md:text-4xl font-bold drop-shadow">
-              {webcontent.page.descriptionEditTitle.content}
+              {webcontent.page.displayedNameEditTitle.content}
             </p>
             <div className="flex flex-col">
               <p className="text-lg md:text-2xl">
-                {webcontent.page.descriptionContent.content}
+                {webcontent.page.displayedNameContent.content}
               </p>
               <textarea
                 className="px-4 py-2 mb-4 w-full resize-none focus:outline-none active:outline-none md:text-lg shadow-sm shadow-neutral-400 bg-neutral-200 rounded-xl"
                 placeholder={
-                  webcontent.page.descriptionContentPlaceholder.content
+                  webcontent.page.displayedNameContentPlaceholder.content
                 }
-                rows={8}
+                rows={1}
                 value={content}
                 onChange={handleContentChange}
               />
@@ -116,7 +116,7 @@ export default function DescriptionEditWindow({
 }
 
 type Props = {
-  setIsDescriptionEditWindowOpened: (arg0: boolean) => void;
+  setIsDisplayedNameEditWindowOpened: (arg0: boolean) => void;
   setData: (
     arg0: null | {
       id: number;
@@ -132,5 +132,5 @@ type Props = {
     }
   ) => void;
   previousContent: string | undefined;
-  webcontent: profilepageWebcontentType;
+  webcontent: profilePageWebcontentType;
 };

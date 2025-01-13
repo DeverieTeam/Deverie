@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import TagSelectionDisplayer from "./TagSelectionDisplayer";
-import { tagselectionwindowWebcontentType } from "../types/tagselectionwindowWebcontentType";
-import { useAuth } from "../contexts/useAuth";
+import TagSelectionDisplayer from "../TagSelectionDisplayer";
+import { tagSelectionWindowWebcontentType } from "../../types/coponents/windows/tagSelectionWindowWebcontentType";
+import { useAuth } from "../../contexts/useAuth";
 import Cookies from "universal-cookie";
 
 export default function TagEditWindow({
@@ -182,5 +182,5 @@ type Props = {
     icon: string;
     family: string;
   }[];
-  webcontent: tagselectionwindowWebcontentType;
+  webcontent: tagSelectionWindowWebcontentType;
 };

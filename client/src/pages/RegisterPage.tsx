@@ -3,7 +3,7 @@ import { useLoaderData, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/useAuth";
 import { registerpageWebcontentType } from "../types/registerpageWebcontentType";
 import AutoFormField from "../components/AutoFormField";
-import RegistrationValidationWindow from "../components/RegistrationValidationWindow";
+import RegistrationValidationWindow from "../components/windows/RegistrationValidationWindow";
 
 export default function RegisterPage() {
   const webcontent = useLoaderData() as registerpageWebcontentType;

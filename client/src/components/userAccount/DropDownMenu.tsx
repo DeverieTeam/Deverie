@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/useAuth";
-import { dropdownmenuWebcontentType } from "../../types/dropdownmenuWebcontentType";
+import { dropDownMenuWebcontentType } from "../../types/coponents/dropDownMenuWebcontentType";
 import Cookies from "universal-cookie";
 
 export default function DropDownMenu({
@@ -89,5 +89,5 @@ export default function DropDownMenu({
 type Props = {
   isDropDownMenuClicked: boolean;
   setIsDropDownMenuClicked: (arg0: boolean) => void;
-  webcontent: dropdownmenuWebcontentType;
+  webcontent: dropDownMenuWebcontentType;
 };
