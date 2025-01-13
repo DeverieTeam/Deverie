@@ -1,116 +1,49 @@
+import { webcontentObjectType } from 'samples/webcontentObjectType.ts';
+
 export type registerpageWebcontentType = {
   page: {
-    title: {
-      name: string;
-      content: string;
-    };
+    title: webcontentObjectType;
     form: {
       generalInformations: {
-        main: {
-          name: string;
-          content: string;
-        };
+        main: webcontentObjectType;
         fields: {
-          username: {
-            name: string;
-            content: string;
-          };
-          password: {
-            name: string;
-            content: string;
-          };
-          confirmPassword: {
-            name: string;
-            content: string;
-          };
-          email: {
-            name: string;
-            content: string;
-          };
+          username: webcontentObjectType;
+          password: webcontentObjectType;
+          confirmPassword: webcontentObjectType;
+          email: webcontentObjectType;
         };
       };
       complementaryInformations: {
-        main: {
-          name: string;
-          content: string;
-        };
+        main: webcontentObjectType;
         fields: {
-          pronouns: {
-            name: string;
-            content: string;
-          };
-          showEmail: {
-            name: string;
-            content: string;
-          };
-          description: {
-            name: string;
-            content: string;
-          };
+          pronouns: webcontentObjectType;
+          showEmail: webcontentObjectType;
+          description: webcontentObjectType;
         };
       };
-      obligatoryFieldsMessage: {
-        name: string;
-        content: string;
-      };
+      obligatoryFieldsMessage: webcontentObjectType;
     };
     submitButton: {
-      text: {
-        name: string;
-        content: string;
-      };
-      hover: {
-        name: string;
-        content: string;
-      };
+      text: webcontentObjectType;
+      hover: webcontentObjectType;
     };
     warningMessages: {
       unvalidField: {
-        tooShort: {
-          name: string;
-          content: string;
-        };
-        tooLong: {
-          name: string;
-          content: string;
-        };
+        tooShort: webcontentObjectType;
+        tooLong: webcontentObjectType;
       };
-      passwordsNotMatching: {
-        name: string;
-        content: string;
-      };
-      emailNotMatching: {
-        name: string;
-        content: string;
-      };
+      passwordsNotMatching: webcontentObjectType;
+      emailNotMatching: webcontentObjectType;
       conflicts: {
-        unvalidNameAndEmail: {
-          name: string;
-          content: string;
-        };
-        unvalidName: {
-          name: string;
-          content: string;
-        };
-        unvalidEmail: {
-          name: string;
-          content: string;
-        };
+        unvalidNameAndEmail: webcontentObjectType;
+        unvalidName: webcontentObjectType;
+        unvalidEmail: webcontentObjectType;
       };
     };
     validationWindow: {
-      welcomeTitle: {
-        name: string;
-        content: string;
-      };
-      mainText: {
-        name: string;
-        content: string;
-      };
-      exitButton: {
-        name: string;
-        content: string;
-      };
+      welcomeTitle: webcontentObjectType;
+      mainText: webcontentObjectType;
+      exitButton: webcontentObjectType;
     };
   };
 };

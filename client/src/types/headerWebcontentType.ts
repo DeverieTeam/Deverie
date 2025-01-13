@@ -1,266 +1,115 @@
+import { webcontentObjectType } from 'samples/webcontentObjectType.ts';
+
 export type headerWebcontentType = {
   logo: {
-    hover: {
-      name: string;
-      content: string;
-    };
-    alt: {
-      name: string;
-      content: string;
-    };
+    hover: webcontentObjectType;
+    alt: webcontentObjectType;
   };
   buttons: {
     backButton: {
-      text: {
-        name: string;
-        content: string;
-      };
-      hover: {
-        name: string;
-        content: string;
-      };
+      text: webcontentObjectType;
+      hover: webcontentObjectType;
     };
     backToHomeButton: {
-      text: {
-        name: string;
-        content: string;
-      };
-      hover: {
-        name: string;
-        content: string;
-      };
+      text: webcontentObjectType;
+      hover: webcontentObjectType;
     };
     quitButton: {
-      text: {
-        name: string;
-        content: string;
-      };
-      hover: {
-        name: string;
-        content: string;
-      };
+      text: webcontentObjectType;
+      hover: webcontentObjectType;
     };
     cancelButton: {
-      text: {
-        name: string;
-        content: string;
-      };
-      hover: {
-        name: string;
-        content: string;
-      };
+      text: webcontentObjectType;
+      hover: webcontentObjectType;
     };
     confirmButton: {
-      text: {
-        name: string;
-        content: string;
-      };
-      hover: {
-        name: string;
-        content: string;
-      };
+      text: webcontentObjectType;
+      hover: webcontentObjectType;
     };
     checkShortcuts: {
       addEntireSection: {
-        text: {
-          name: string;
-          content: string;
-        };
-        hover: {
-          name: string;
-          content: string;
-        };
+        text: webcontentObjectType;
+        hover: webcontentObjectType;
       };
       removeEntireSection: {
-        text: {
-          name: string;
-          content: string;
-        };
-        hover: {
-          name: string;
-          content: string;
-        };
+        text: webcontentObjectType;
+        hover: webcontentObjectType;
       };
       addAll: {
-        text: {
-          name: string;
-          content: string;
-        };
-        hover: {
-          name: string;
-          content: string;
-        };
+        text: webcontentObjectType;
+        hover: webcontentObjectType;
       };
       removeAll: {
-        text: {
-          name: string;
-          content: string;
-        };
-        hover: {
-          name: string;
-          content: string;
-        };
+        text: webcontentObjectType;
+        hover: webcontentObjectType;
       };
     };
   };
   hypertexts: {
     home: {
-      text: {
-        name: string;
-        content: string;
-      };
-      hover: {
-        name: string;
-        content: string;
-      };
+      text: webcontentObjectType;
+      hover: webcontentObjectType;
     };
     contact: {
-      text: {
-        name: string;
-        content: string;
-      };
-      hover: {
-        name: string;
-        content: string;
-      };
+      text: webcontentObjectType;
+      hover: webcontentObjectType;
     };
     termsOfUse: {
-      text: {
-        name: string;
-        content: string;
-      };
-      hover: {
-        name: string;
-        content: string;
-      };
+      text: webcontentObjectType;
+      hover: webcontentObjectType;
     };
     legalNotices: {
-      text: {
-        name: string;
-        content: string;
-      };
-      hover: {
-        name: string;
-        content: string;
-      };
+      text: webcontentObjectType;
+      hover: webcontentObjectType;
     };
     joinUs: {
-      text: {
-        name: string;
-        content: string;
-      };
-      hover: {
-        name: string;
-        content: string;
-      };
+      text: webcontentObjectType;
+      hover: webcontentObjectType;
     };
     login: {
-      text: {
-        name: string;
-        content: string;
-      };
-      hover: {
-        name: string;
-        content: string;
-      };
+      text: webcontentObjectType;
+      hover: webcontentObjectType;
     };
     userMenu: {
-      text: {
-        name: string;
-        content: string;
-      };
-      hover: {
-        name: string;
-        content: string;
-      };
+      text: webcontentObjectType;
+      hover: webcontentObjectType;
     };
   };
   sections: {
     topic: {
-      main: {
-        name: string;
-        content: string;
-      };
-      element: {
-        name: string;
-        content: string;
-      };
+      main: webcontentObjectType;
+      element: webcontentObjectType;
     };
     question: {
-      main: {
-        name: string;
-        content: string;
-      };
-      element: {
-        name: string;
-        content: string;
-      };
+      main: webcontentObjectType;
+      element: webcontentObjectType;
     };
     chat: {
-      main: {
-        name: string;
-        content: string;
-      };
+      main: webcontentObjectType;
     };
     favourite: {
-      main: {
-        name: string;
-        content: string;
-      };
-      element: {
-        name: string;
-        content: string;
-      };
+      main: webcontentObjectType;
+      element: webcontentObjectType;
     };
   };
   connection: {
     title: {
-      connectionPage: {
-        name: string;
-        content: string;
-      };
-      connectionNeeded: {
-        name: string;
-        content: string;
-      };
+      connectionPage: webcontentObjectType;
+      connectionNeeded: webcontentObjectType;
     };
     fields: {
-      username: {
-        name: string;
-        content: string;
-      };
-      password: {
-        name: string;
-        content: string;
-      };
+      username: webcontentObjectType;
+      password: webcontentObjectType;
     };
     unregistered: {
-      prefix: {
-        name: string;
-        content: string;
-      };
+      prefix: webcontentObjectType;
     };
-    warning: {
-      name: string;
-      content: string;
-    };
+    warning: webcontentObjectType;
   };
   dropDownMenu: {
-    profile: {
-      name: string;
-      content: string;
-    };
-    favourites: {
-      name: string;
-      content: string;
-    };
-    backoffice: {
-      name: string;
-      content: string;
-    };
-    logout: {
-      name: string;
-      content: string;
-    };
+    profile: webcontentObjectType;
+    favourites: webcontentObjectType;
+    backoffice: webcontentObjectType;
+    logout: webcontentObjectType;
   };
 };

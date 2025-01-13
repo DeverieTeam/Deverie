@@ -102,7 +102,10 @@
   "warnings": {
     "deletionConfirmationAlert": {
       "name": "Message de confirmation de suppression de tag",
-      "content": "Êtes-vous certain de vouloir supprimer le tag \"{tag_name}\" ?\nCette Action est irréversible!"
+      "content": "Êtes-vous certain de vouloir supprimer le tag \"{tag_name}\" ?\nCette Action est irréversible!",
+      "keywords": [
+        "{tag_name}"
+      ]
     }
   }
 }

@@ -1,18 +1,8 @@
+import { webcontentObjectType } from 'samples/webcontentObjectType.ts';
+
 export type dropdownmenuWebcontentType = {
-  profile: {
-    name: string;
-    content: string;
-  };
-  favourites: {
-    name: string;
-    content: string;
-  };
-  backoffice: {
-    name: string;
-    content: string;
-  };
-  logout: {
-    name: string;
-    content: string;
-  };
+  profile: webcontentObjectType;
+  favourites: webcontentObjectType;
+  backoffice: webcontentObjectType;
+  logout: webcontentObjectType;
 };

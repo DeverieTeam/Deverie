@@ -1,0 +1,243 @@
+{
+  "title":{
+    "name": "Titre de la page de gestion des membres",
+    "content": "Gestion des membres"
+  },
+  "actions": {
+    "informations": {
+      "title": {
+        "name": "Titre de la partie d'informations du membre",
+        "content": "Informations du membre"
+      }
+    },
+    "publications": {
+      "title": {
+        "name": "Titre de la partie des publications du membre",
+        "content": "Publications"
+      }
+    },
+    "banish": {
+      "title": {
+        "name": "Titre de la partie de bannissement",
+        "content": "Bannissement"
+      }
+    }
+  },
+  "informationsPrefixes": {
+    "member": {
+      "accountName": {
+        "name": "Texte précédant le nom du compte",
+        "content": "Nom de compte"
+      },
+      "inscriptionDate": {
+        "name": "Texte précédant la date d'inscription",
+        "content": "Date d'inscription"
+      },
+      "isBanned": {
+        "name": "Texte précédant l'état du bannissement",
+        "content": "Utilisateur banni"
+      },
+      "publicationsNumber": {
+        "name": "Texte précédant le nombre de publications publiées",
+        "content": "Nombre de publications"
+      },
+      "upvotesNumber": {
+        "name": "Texte précédant le nombre de publications aimées",
+        "content": "Nombre de publications aimées"
+      },
+      "downvotesNumber": {
+        "name": "Texte précédant le nombre de publications non aimées",
+        "content": "Nombre de publications non aimées"
+      },
+      "favoritesNumber": {
+        "name": "Texte précédant le nombre de favoris",
+        "content": "Nombre de favoris"
+      },
+      "questionsNumber": {
+        "name": "Texte précédant le nombre de questions publiées",
+        "content": "Nombre de questions"
+      },
+      "closedQuestionsNumber": {
+        "name": "Texte précédant le nombre de questions closes",
+        "content": "Nombre de questions closes"
+      },
+      "answersNumber": {
+        "name": "Texte précédant le nombre de réponses publiées",
+        "content": "Nombre de réponses"
+      },
+      "deletedAnswersNumber": {
+        "name": "Texte précédant le nombre de réponses supprimées",
+        "content": "Nombre de réponses supprimées"
+      },
+      "topicsNumber": {
+        "name": "Texte précédant le nombre de topics publiés",
+        "content": "Nombre de sujets de forum"
+      },
+      "closedTopicsNumber": {
+        "name": "Texte précédant le nombre de topics clos",
+        "content": "Nombre de sujet de forum clos"
+      },
+      "commentsNumber": {
+        "name": "Texte précédant le nombre de commentaires publiés",
+        "content": "Nombre de commentaires"
+      },
+      "deletedCommentsNumber": {
+        "name": "Texte précédant le nombre de commentaires supprimés",
+        "content": "Nombre de commentaires supprimés"
+      }
+    },
+    "publication": {
+      "type": {
+        "name": "Texte précédant le type de publication sélectionnée",
+        "content": "Type"
+      },
+      "publicationDate": {
+        "name": "Texte précédant la date de publication",
+        "content": "Publiée le"
+      },
+      "isReadable": {
+        "name": "Texte précédant l'état de la visibilité de la publication",
+        "content": "Publication visible"
+      },
+      "isOpened": {
+        "name": "Texte précédant l'état de l'accessibilité de la publication",
+        "content": "Publication ouverte"
+      },
+      "repliesNumber": {
+        "name": "Texte précédant le nombre de réponses de la publication",
+        "content": "Nombre de réponses"
+      },
+      "lastReplyDate": {
+        "name": "Texte précédant la date de la dernière réponse de la publication",
+        "content": "Dernière réponse"
+      }
+    }
+  },
+  "fields": {
+    "memberSelect": {
+      "name": "Texte précédant la sélection de membre",
+      "content": "Membre"
+    },
+    "publicationSelect": {
+      "name": "Texte précédant la sélection de publication",
+      "content": "Publication"
+    },
+    "associatedTags": {
+      "name": "Texte du champ des tags de la publications",
+      "content": "Tags associés"
+    },
+    "replyTo": {
+      "name": "Texte du lien vers la publication parente de la sélection",
+      "content": "Réponse à la {link_start}publication n°{publication_id}{link_end}",
+      "keywords": [
+        "{link_start}",
+        "{publication_id}",
+        "{link_end}"
+      ]
+    },
+    "replyDepth": {
+      "name": "Texte précédant le niveau de profondeur d'une publication",
+      "content": "Profondeur"
+    },
+    "modificationNotification": {
+      "name": "Texte annonçant la modification d'un message",
+      "content": "Message modifié le {modification_date} par {modification_author}",
+      "keywords": [
+        "{modification_date}",
+        "{modification_author}"
+      ]
+    }
+  },
+  "buttons": {
+    "cancel": {
+      "text": {
+        "name": "Texte du bouton d'annulation'",
+        "content": "Annuler"
+      },
+      "hover": {
+        "name": "Texte du bouton d'annulation' de survol",
+        "content": "Annuler les changements"
+      }
+    },
+    "confirm": {
+      "text": {
+        "name": "Texte du bouton de confirmation",
+        "content": "Confirmer"
+      },
+      "hover": {
+        "name": "Texte du bouton de confirmation de survol",
+        "content": "Appliquer les changements"
+      }
+    },
+    "ban": {
+      "text": {
+        "name": "Texte du bouton de bannissement",
+        "content": "Bannir"
+      },
+      "hover": {
+        "name": "Texte du bouton de bannissement de survol",
+        "content": "Bannir l'utilisateur"
+      }
+    },
+    "unban": {
+      "text": {
+        "name": "Texte du bouton de débannissement",
+        "content": "Lever le bannissement"
+      },
+      "hover": {
+        "name": "Texte du bouton de débannissement de survol",
+        "content": "Débannir l'utilisateur"
+      }
+    }
+  },
+  "placeholders": {
+    "memberSelect": {
+      "name": "Texte par défaut de la sélection de membre",
+      "content": "--Sélectionnez un membre--"
+    },
+    "publicationSelect": {
+      "name": "Texte par défaut de la sélection de publication",
+      "content": "--Sélectionnez une publication--"
+    }
+  },
+  "banishmentMessages": {
+    "banned": {
+      "name": "Message d'action de bannissement d'un membre",
+      "content": "{user_name_displayer} est banni de Deverie.\n\nVoulez-vous révoquer son bannissement ?",
+      "keywords": [
+        "{user_name_displayer}"
+      ]
+    },
+    "unbanned": {
+      "name": "Message d'action de bannissement d'un membre",
+      "content": "{user_name_displayer} n’est pas banni de Deverie.\n\nVoulez-vous le bannir ?",
+      "keywords": [
+        "{user_name_displayer}"
+      ]
+    },
+    "unbannable": {
+      "name": "Message d'action de bannissement impossible d'un membre",
+      "content": "{user_name_displayer} est {user_role} et n’est donc pas bannissable de Deverie.",
+      "keywords": [
+        "{user_name_displayer}",
+        "{user_role}"
+      ]
+    }
+  },
+  "warnings": {
+    "banConfirmationAlert": {
+      "name": "Message de confirmation de bannissement d'un membre",
+      "content": "Êtes-vous certain de vouloir bannir le membre {user_name_displayer} ?\nCette action entreinera l’innaccessibilité de toutes ses publications encore visibles.",
+      "keywords": [
+        "{user_name_displayer}"
+      ]
+    },
+    "unbanConfirmationAlert": {
+      "name": "Message de confirmation de débannissement d'un membre",
+      "content": "Êtes-vous certain de vouloir lever le bannissement du membre {user_name_displayer} ?",
+      "keywords": [
+        "{user_name_displayer}"
+      ]
+    }
+  }
+}

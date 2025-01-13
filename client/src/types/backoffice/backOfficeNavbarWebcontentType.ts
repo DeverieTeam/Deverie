@@ -1,72 +1,32 @@
+import { webcontentObjectType } from '../samples/webcontentObjectType.ts';
+
 export type backofficeNavbarWebcontentType = {
   home: {
-    text: {
-      name: string,
-      content: string;
-    };
-    hover: {
-      name: string,
-      content: string;
-    };
+    text: webcontentObjectType;
+    hover: webcontentObjectType;
   };
   chats: {
-    text: {
-      name: string,
-      content: string;
-    };
-    hover: {
-      name: string,
-      content: string;
-    };
+    text: webcontentObjectType;
+    hover: webcontentObjectType;
   };
   tags: {
-    text: {
-      name: string,
-      content: string;
-    };
-    hover: {
-      name: string,
-      content: string;
-    };
+    text: webcontentObjectType;
+    hover: webcontentObjectType;
   };
   interface: {
-    text: {
-      name: string,
-      content: string;
-    };
-    hover: {
-      name: string,
-      content: string;
-    };
+    text: webcontentObjectType;
+    hover: webcontentObjectType;
   };
   members: {
-    text: {
-      name: string,
-      content: string;
-    };
-    hover: {
-      name: string,
-      content: string;
-    };
+    text: webcontentObjectType;
+    hover: webcontentObjectType;
   };
   moderation: {
-    text: {
-      name: string,
-      content: string;
-    };
-    hover: {
-      name: string,
-      content: string;
-    };
+    text: webcontentObjectType;
+    hover: webcontentObjectType;
   };
   threads: {
-    text: {
-      name: string,
-      content: string;
-    };
-    hover: {
-      name: string,
-      content: string;
-    };
+    text: webcontentObjectType;
+    hover: webcontentObjectType;
   };    
 };

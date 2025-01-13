@@ -1,190 +1,84 @@
+import { webcontentObjectType } from 'samples/webcontentObjectType.ts';
+
 export type connectionwindowWebcontentType = {
   hypertexts: {
     home: {
-      text: {
-        name: string;
-        content: string;
-      };
-      hover: {
-        name: string;
-        content: string;
-      };
+      text: webcontentObjectType;
+      hover: webcontentObjectType;
     };
     contact: {
-      text: {
-        name: string;
-        content: string;
-      };
-      hover: {
-        name: string;
-        content: string;
-      };
+      text: webcontentObjectType;
+      hover: webcontentObjectType;
     };
     termsOfUse: {
-      text: {
-        name: string;
-        content: string;
-      };
-      hover: {
-        name: string;
-        content: string;
-      };
+      text: webcontentObjectType;
+      hover: webcontentObjectType;
     };
     legalNotices: {
-      text: {
-        name: string;
-        content: string;
-      };
-      hover: {
-        name: string;
-        content: string;
-      };
+      text: webcontentObjectType;
+      hover: webcontentObjectType;
     };
     joinUs: {
-      text: {
-        name: string;
-        content: string;
-      };
-      hover: {
-        name: string;
-        content: string;
-      };
+      text: webcontentObjectType;
+      hover: webcontentObjectType;
     };
     login: {
-      text: {
-        name: string;
-        content: string;
-      };
-      hover: {
-        name: string;
-        content: string;
-      };
+      text: webcontentObjectType;
+      hover: webcontentObjectType;
     };
   };
   buttons: {
     backButton: {
-      text: {
-        name: string;
-        content: string;
-      };
-      hover: {
-        name: string;
-        content: string;
-      };
+      text: webcontentObjectType;
+      hover: webcontentObjectType;
     };
     backToHomeButton: {
-      text: {
-        name: string;
-        content: string;
-      };
-      hover: {
-        name: string;
-        content: string;
-      };
+      text: webcontentObjectType;
+      hover: webcontentObjectType;
     };
     quitButton: {
-      text: {
-        name: string;
-        content: string;
-      };
-      hover: {
-        name: string;
-        content: string;
-      };
+      text: webcontentObjectType;
+      hover: webcontentObjectType;
     };
     cancelButton: {
-      text: {
-        name: string;
-        content: string;
-      };
-      hover: {
-        name: string;
-        content: string;
-      };
+      text: webcontentObjectType;
+      hover: webcontentObjectType;
     };
     confirmButton: {
-      text: {
-        name: string;
-        content: string;
-      };
-      hover: {
-        name: string;
-        content: string;
-      };
+      text: webcontentObjectType;
+      hover: webcontentObjectType;
     };
     checkShortcuts: {
       addEntireSection: {
-        text: {
-          name: string;
-          content: string;
-        };
-        hover: {
-          name: string;
-          content: string;
-        };
+        text: webcontentObjectType;
+        hover: webcontentObjectType;
       };
       removeEntireSection: {
-        text: {
-          name: string;
-          content: string;
-        };
-        hover: {
-          name: string;
-          content: string;
-        };
+        text: webcontentObjectType;
+        hover: webcontentObjectType;
       };
       addAll: {
-        text: {
-          name: string;
-          content: string;
-        };
-        hover: {
-          name: string;
-          content: string;
-        };
+        text: webcontentObjectType;
+        hover: webcontentObjectType;
       };
       removeAll: {
-        text: {
-          name: string;
-          content: string;
-        };
-        hover: {
-          name: string;
-          content: string;
-        };
+        text: webcontentObjectType;
+        hover: webcontentObjectType;
       };
     };
   };
   connection: {
     title: {
-      connectionPage: {
-        name: string;
-        content: string;
-      };
-      connectionNeeded: {
-        name: string;
-        content: string;
-      };
+      connectionPage: webcontentObjectType;
+      connectionNeeded: webcontentObjectType;
     };
     fields: {
-      username: {
-        name: string;
-        content: string;
-      };
-      password: {
-        name: string;
-        content: string;
-      };
+      username: webcontentObjectType;
+      password: webcontentObjectType;
     };
     unregistered: {
-      prefix: {
-        name: string;
-        content: string;
-      };
+      prefix: webcontentObjectType;
     };
-    warning: {
-      name: string;
-      content: string;
-    };
+    warning: webcontentObjectType;
   };
 };

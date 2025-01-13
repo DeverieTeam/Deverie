@@ -19,7 +19,7 @@ import { diskStorage } from 'multer';
 export class MemberController {
   constructor(private service: MemberService) {}
 
-  // For now this route is unused by app, and only serves test purposes
+  // Now this route is unused by the back office and no more only serves test purposes
   @UseGuards(AuthGuard('jwt'))
   @Get()
   async getAllMembers() {

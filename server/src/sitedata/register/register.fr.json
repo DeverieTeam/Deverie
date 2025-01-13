@@ -67,11 +67,18 @@
     "unvalidField": {
       "tooShort": {
         "name": "Texte d'avertissement d'un un champ trop court",
-        "content": "{field} trop court (4 caractères minimum)"
+        "content": "{field} trop court (4 caractères minimum)",
+        "keywords": [
+          "{field}"
+        ]
       },
       "tooLong": {
         "name": "Texte d'avertissement d'un un champ trop long",
-        "content": "{field} trop long ({max} caractères minimum)"
+        "content": "{field} trop long ({max} caractères minimum)",
+        "keywords": [
+          "{field}",
+          "{max}"
+        ]
       }
     },
     "passwordsNotMatching": {
@@ -89,7 +96,10 @@
       },
       "unvalidName": {
         "name": "Texte d'avertissement de nom déjà existant",
-        "content": "Le compte \"{username}\" existe déjà"
+        "content": "Le compte \"{username}\" existe déjà",
+        "keywords": [
+          "{username}"
+        ]
       },
       "unvalidEmail": {
         "name": "Texte d'avertissement d'email déjà existant",
@@ -100,7 +110,10 @@
   "validationWindow": {
     "welcomeTitle": {
       "name": "Titre de la fenêtre de validation d'inscription",
-      "content": "Bienvenue, {username}"
+      "content": "Bienvenue, {username}",
+      "keywords": [
+        "{username}"
+      ]
     },
     "mainText": {
       "name": "Texte de bienvenue parmi les membres du site",

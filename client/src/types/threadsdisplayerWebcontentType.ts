@@ -1,44 +1,22 @@
+import { webcontentObjectType } from 'samples/webcontentObjectType.ts';
+
 export type threadsdisplayerWebcontentType = {
   publications: {
-    publishDatePrefix: {
-      name: string;
-      content: string;
-    };
-    numberOfResponses: {
-      name: string;
-      content: string;
-    };
-    lastResponseDatePrefix: {
-      name: string;
-      content: string;
-    };
+    publishDatePrefix: webcontentObjectType;
+    numberOfResponses: webcontentObjectType;
+    lastResponseDatePrefix: webcontentObjectType;
     closureText: {
-      topic: {
-        name: string;
-        content: string;
-      };
-      question: {
-        name: string;
-        content: string;
-      };
+      topic: webcontentObjectType;
+      question: webcontentObjectType;
     };
     favourite: {
       add: {
-        hover: {
-          name: string;
-          content: string;
-        };
+        hover: webcontentObjectType;
       };
       remove: {
-        hover: {
-          name: string;
-          content: string;
-        };
+        hover: webcontentObjectType;
       };
     };
   };
-  noResult: {
-    name: string;
-    content: string;
-  };
+  noResult: webcontentObjectType;
 };

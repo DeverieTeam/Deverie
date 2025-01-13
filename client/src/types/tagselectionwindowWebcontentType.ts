@@ -1,104 +1,46 @@
+import { webcontentObjectType } from 'samples/webcontentObjectType.ts';
+
 export type tagselectionwindowWebcontentType = {
   buttons: {
     backButton: {
-      text: {
-        name: string;
-        content: string;
-      };
-      hover: {
-        name: string;
-        content: string;
-      };
+      text: webcontentObjectType;
+      hover: webcontentObjectType;
     };
     quitButton: {
-      text: {
-        name: string;
-        content: string;
-      };
-      hover: {
-        name: string;
-        content: string;
-      };
+      text: webcontentObjectType;
+      hover: webcontentObjectType;
     };
     cancelButton: {
-      text: {
-        name: string;
-        content: string;
-      };
-      hover: {
-        name: string;
-        content: string;
-      };
+      text: webcontentObjectType;
+      hover: webcontentObjectType;
     };
     confirmButton: {
-      text: {
-        name: string;
-        content: string;
-      };
-      hover: {
-        name: string;
-        content: string;
-      };
+      text: webcontentObjectType;
+      hover: webcontentObjectType;
     };
     checkShortcuts: {
       addEntireSection: {
-        text: {
-          name: string;
-          content: string;
-        };
-        hover: {
-          name: string;
-          content: string;
-        };
+        text: webcontentObjectType;
+        hover: webcontentObjectType;
       };
       removeEntireSection: {
-        text: {
-          name: string;
-          content: string;
-        };
-        hover: {
-          name: string;
-          content: string;
-        };
+        text: webcontentObjectType;
+        hover: webcontentObjectType;
       };
       addAll: {
-        text: {
-          name: string;
-          content: string;
-        };
-        hover: {
-          name: string;
-          content: string;
-        };
+        text: webcontentObjectType;
+        hover: webcontentObjectType;
       };
       removeAll: {
-        text: {
-          name: string;
-          content: string;
-        };
-        hover: {
-          name: string;
-          content: string;
-        };
+        text: webcontentObjectType;
+        hover: webcontentObjectType;
       };
     };
   };
   tagsFamilies: {
-    language: {
-      name: string;
-      content: string;
-    };
-    environment: {
-      name: string;
-      content: string;
-    };
-    technology: {
-      name: string;
-      content: string;
-    };
+    language: webcontentObjectType;
+    environment: webcontentObjectType;
+    technology: webcontentObjectType;
   };
-  tagNumberDisclaimer: {
-    name: string;
-    content: string;
-  };
+  tagNumberDisclaimer: webcontentObjectType;
 };

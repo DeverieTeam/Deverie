@@ -14,6 +14,7 @@ import PostViewPage from "./pages/PostViewPage.tsx";
 
 import BackOfficeHomepage from "./pages/backOffice/BackOfficeHomepage.tsx";
 import BackOfficeTagsManagement from "./pages/backOffice/BackOfficeTagsManagement.tsx";
+import BackOfficeMembersManagement from "./pages/backOffice/BackOfficeMembersManagement.tsx";
 
 import WIPage from "./pages/WIPage.tsx";
 import PageNotFound404 from "./pages/PageNotFound404.tsx";
@@ -192,12 +193,12 @@ const router = createBrowserRouter([
       },
       {
         path: "members",
-        element: <WIPage />,
+        element: <BackOfficeMembersManagement />,
         loader: async () => {
           return await fetchWebContent({
-            page: "wip",
+            page: "members",
             lang: "fr",
-            isBackOffice: false,
+            isBackOffice: true,
           });
         },
       },
