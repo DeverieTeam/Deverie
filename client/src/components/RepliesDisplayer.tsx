@@ -1,4 +1,4 @@
-import { postViewPageWebcontentType } from "../types/postViewPageWebcontentType";
+import { postViewPageWebcontentType } from "../types/pages/postViewPageWebcontentType";
 import RepliesRow from "./RepliesRow";
 
 export default function RepliesDisplayer({

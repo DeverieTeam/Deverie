@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../contexts/useAuth";
 import RepliesDisplayer from "./RepliesDisplayer";
-import { postViewPageWebcontentType } from "../types/postViewPageWebcontentType";
-import UpVoteButton from "./UpVoteButton";
-import DownVoteButton from "./DownVoteButton";
+import { postViewPageWebcontentType } from "../types/pages/postViewPageWebcontentType";
+import VoteButtons from "./VoteButtons";
 
 export default function RepliesRow({
   id,
@@ -62,7 +61,7 @@ export default function RepliesRow({
       .then((data) => {
         setData(data);
       });
-  }, [data, id, sort]);
+  }, [id, sort]);
 
   const handleDetailsClick = () => {
     setAreDetailsOpened(!areDetailsOpened);
@@ -117,18 +116,15 @@ export default function RepliesRow({
               <div className="my-auto text-center md:text-2xl font-semibold text-indigo-500">
                 {data.author.name}
               </div>
-              <div className="md:pr-2 flex-1 justify-center md:justify-end gap-1 md:gap-2 flex flex-col md:flex-row">
-                <UpVoteButton
-                  data={data}
-                  setData={setData}
-                  setIsConnectionNeededClicked={setIsConnectionNeededClicked}
-                />
-                <DownVoteButton
-                  data={data}
-                  setData={setData}
-                  setIsConnectionNeededClicked={setIsConnectionNeededClicked}
-                />
-              </div>
+              {auth && (
+                <div className="md:pr-2 flex-1 justify-center md:justify-end gap-1 md:gap-2 flex flex-col md:flex-row">
+                  <VoteButtons
+                    data={data}
+                    setData={setData}
+                    setIsConnectionNeededClicked={setIsConnectionNeededClicked}
+                  />
+                </div>
+              )}
             </button>
             <div className="justify-between gap-1 flex">
               <div className="self-start text-center text-xs md:text-base">
@@ -136,11 +132,17 @@ export default function RepliesRow({
                 {data.creation_date}
               </div>
             </div>
-            <div className="md:py-2 text-justify text-base md:text-xl">
-              {data.content
-                .split("\n")
-                .flatMap((line: string, i: number) => [line, <br key={i} />])}
-            </div>
+            <p className="md:py-2 text-justify text-base md:text-xl"
+              dangerouslySetInnerHTML={{__html: (data.content
+                                                .replace(/(<a href=")?((https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)))(">(.*)<\/a>)?/gi,
+                                                  function () {
+                                                    return (`<a href="${arguments[2]}" target="_blank">${(arguments[7] || arguments[2])}</a>`);
+                                                  })
+                                                .split("\n")
+                                                .map((line: string, i: number) => `${line}<br key=${i} />`)
+                                                .join(""))
+            }}>
+            </p>
             <div className="justify-between flex">
               {data.modification_author !== null && (
                 <div className="my-auto text-center text-xs md:text-base">

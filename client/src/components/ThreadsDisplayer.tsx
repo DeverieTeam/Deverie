@@ -40,6 +40,11 @@ export default function ThreadsDisplayer({
       }[]
   >(null);
 
+  const [updateCount, setUpdateCount] = useState<number>(0);
+  const handleUpdate = () => {
+    setUpdateCount(updateCount+1);
+  }
+
   const { auth } = useAuth();
 
   useEffect(() => {
@@ -100,10 +105,9 @@ export default function ThreadsDisplayer({
         });
     }
   }, [
-    data,
+    updateCount,
     auth,
     thread,
-    setData,
     setDataForPage,
     pagination,
     sort,
@@ -117,6 +121,7 @@ export default function ThreadsDisplayer({
         data.length > 0 &&
         data.map((post) => (
           <ThreadsRow
+            handleUpdate={handleUpdate}
             key={post.id}
             post={post}
             setData={setData}
