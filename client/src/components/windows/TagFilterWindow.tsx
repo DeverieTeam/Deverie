@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import TagFilterDisplayer from "../TagFilterDisplayer";
-import { tagFilterWindowWebcontentType } from "../../types/coponents/windows/tagFilterWindowWebcontentType";
+import { tagFilterWindowWebcontentType } from "../../types/components/windows/tagFilterWindowWebcontentType";
 
 export default function TagFilterWindow({
   isTagButtonClicked,

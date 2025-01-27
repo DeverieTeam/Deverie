@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../../contexts/useAuth";
-import { memberViewWindowWebcontentType } from "../../types/coponents/windows/memberViewWindowWebcontentType";
+import { memberViewWindowWebcontentType } from "../../types/components/windows/memberViewWindowWebcontentType";
 
 export default function MemberViewWindow({
   setIsMemberViewWindowOpened,

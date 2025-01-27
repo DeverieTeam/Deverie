@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import ThreadsRow from "./ThreadsRow";
-import { threadsDisplayerWebcontentType } from "../types/coponents/threadsDisplayerWebcontentType";
+import { threadsDisplayerWebcontentType } from "../types/components/threadsDisplayerWebcontentType";
 import { useAuth } from "../contexts/useAuth";
 
 export default function ThreadsDisplayer({

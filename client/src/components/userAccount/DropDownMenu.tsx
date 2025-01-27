@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/useAuth";
-import { dropDownMenuWebcontentType } from "../../types/coponents/dropDownMenuWebcontentType";
+import { dropDownMenuWebcontentType } from "../../types/components/dropDownMenuWebcontentType";
 import Cookies from "universal-cookie";
 
 export default function DropDownMenu({

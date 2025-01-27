@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import useWindowDimensions from "../scripts/useWindowDimensions";
-import { backofficeNavbarWebcontentType } from "../types/coponents/backoffice/backOfficeNavbarWebcontentType";
+import { backofficeNavbarWebcontentType } from "../types/components/backoffice/backOfficeNavbarWebcontentType";
 
 export default function BackOfficeNavbar({ webcontent }: Props) {
   const { windowWidth } = useWindowDimensions();

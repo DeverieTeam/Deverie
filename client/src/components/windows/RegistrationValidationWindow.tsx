@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { registrationValidationWindowWebcontentType } from "../../types/coponents/windows/registrationValidationWindowWebcontentType";
+import { registrationValidationWindowWebcontentType } from "../../types/components/windows/registrationValidationWindowWebcontentType";
 
 export default function RegistrationValidationWindow({
   usernameFieldData,

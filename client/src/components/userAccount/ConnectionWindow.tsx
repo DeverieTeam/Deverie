@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { connectionWindowWebcontentType } from "../../types/coponents/windows/connectionWindowWebcontentType";
+import { connectionWindowWebcontentType } from "../../types/components/windows/connectionWindowWebcontentType";
 import { useState } from "react";
 import { useAuth } from "../../contexts/useAuth";
 

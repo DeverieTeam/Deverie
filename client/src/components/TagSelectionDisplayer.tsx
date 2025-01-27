@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { tagFilterDisplayerWebcontentType } from "../types/coponents/tagFilterDisplayerWebcontentType";
+import { tagFilterDisplayerWebcontentType } from "../types/components/tagFilterDisplayerWebcontentType";
 import TagSelectionChecker from "./TagSelectionChecker";
 
 export default function TagSelectionDisplayer({

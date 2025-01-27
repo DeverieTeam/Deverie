@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { threadsRowWebcontentType } from "../types/coponents/threadsRowWebcontentType";
+import { threadsRowWebcontentType } from "../types/components/threadsRowWebcontentType";
 import { useAuth } from "../contexts/useAuth";
 import Cookies from "universal-cookie";
 

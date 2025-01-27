@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import TagSelectionDisplayer from "../TagSelectionDisplayer";
-import { tagSelectionWindowWebcontentType } from "../../types/coponents/windows/tagSelectionWindowWebcontentType";
+import { tagSelectionWindowWebcontentType } from "../../types/components/windows/tagSelectionWindowWebcontentType";
 import { useAuth } from "../../contexts/useAuth";
 import Cookies from "universal-cookie";
 

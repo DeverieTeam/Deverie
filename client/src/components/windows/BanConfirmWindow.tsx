@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useAuth } from "../../contexts/useAuth";
 import Cookies from "universal-cookie";
-import { banConfirmWindowWebcontentType } from "../../types/coponents/windows/banConfirmWindowWebcontentType";
+import { banConfirmWindowWebcontentType } from "../../types/components/windows/banConfirmWindowWebcontentType";
 
 export default function BanConfirmWindow({
   setIsBanConfirmWindowOpened,

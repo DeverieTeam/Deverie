@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { connectionNeededWebcontentType } from "../../types/coponents/connectionNeededWebcontentType";
+import { connectionNeededWebcontentType } from "../../types/components/connectionNeededWebcontentType";
 
 export default function ConnectionNeeded({
   setIsConnectionNeededClicked,

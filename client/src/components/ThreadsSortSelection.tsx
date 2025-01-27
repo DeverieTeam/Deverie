@@ -1,4 +1,4 @@
-import { sortSelectionWebcontentType } from "../types/coponents/sortSelectionWebcontentType";
+import { sortSelectionWebcontentType } from "../types/components/sortSelectionWebcontentType";
 
 export default function ThreadsSortSelection({
   threadType,
