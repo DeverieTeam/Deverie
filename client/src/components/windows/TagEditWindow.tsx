@@ -5,35 +5,34 @@ import { useAuth } from "../../contexts/useAuth";
 import Cookies from "universal-cookie";
 
 export default function TagEditWindow({
-  setIsTagEditWindowOpened,
+  setIsSelfOpened,
+  data,
   setData,
-  postId,
-  previousTags,
   webcontent,
 }: Props) {
-  const [tempTags, setTempTags] = useState<
+  const [tmpTags, setTmpTags] = useState<
     {
       id: number;
       name: string;
       icon: string;
       family: string;
     }[]
-  >(previousTags);
+  >(data.tags);
 
   const { auth } = useAuth();
 
   useEffect(() => {
     if (auth && auth.role && auth.role === "client") {
-      setIsTagEditWindowOpened(false);
+      setIsSelfOpened(false);
     }
-  }, [auth, setIsTagEditWindowOpened]);
+  }, [auth, setIsSelfOpened]);
 
-  const exitTagWindow = () => {
-    setIsTagEditWindowOpened(false);
+  const closeWindow = () => {
+    setIsSelfOpened(false);
   };
 
   const buttonState = () => {
-    if (tempTags.length > 0 && tempTags.length <= 4) {
+    if (tmpTags.length > 0 && tmpTags.length <= 4) {
       return false;
     } else {
       return true;
@@ -43,7 +42,7 @@ export default function TagEditWindow({
   const handleConfirmButton = async () => {
     if (auth && auth.id) {
       const bodyTags = [];
-      for (const tag of tempTags) {
+      for (const tag of tmpTags) {
         const newTag = { id: tag.id };
         bodyTags.push(newTag);
       }
@@ -53,7 +52,7 @@ export default function TagEditWindow({
         tags: { id: number }[];
         modification_author: number;
       } = {
-        id: postId,
+        id: data.id,
         tags: bodyTags,
         modification_author: auth.id,
       };
@@ -74,8 +73,10 @@ export default function TagEditWindow({
         });
 
         if (response.ok) {
-          setData(null);
-          setIsTagEditWindowOpened(false);
+          const tmpUpdatedData = data;
+          tmpUpdatedData.tags = tmpTags;
+          setData(tmpUpdatedData);
+          closeWindow();
         }
       } catch (error) {
         console.error("Something went wrong: ", error);
@@ -85,8 +86,8 @@ export default function TagEditWindow({
 
   return (
     <div
-      className="absolute h-[120%] w-[100%] bg-gray-400/60 z-20 -translate-y-16"
-      onClick={exitTagWindow}
+      className="inset-0 absolute h-[120%] w-[100%] bg-gray-400/60 z-20 -translate-y-16"
+      onClick={closeWindow}
     >
       <div className="h-[100%] w-[100%] relative">
         <div className="h-screen w-screen sticky top-16">
@@ -107,8 +108,8 @@ export default function TagEditWindow({
                     <TagSelectionDisplayer
                       key={family}
                       tagFamily={family}
-                      tempTags={tempTags}
-                      setTempTags={setTempTags}
+                      tmpTags={tmpTags}
+                      setTmpTags={setTmpTags}
                       webcontent={webcontent}
                     />
                   );
@@ -122,7 +123,7 @@ export default function TagEditWindow({
               <div className="justify-center gap-4 flex">
                 <button
                   className="py-1 px-4 md:px-8 text-center text-lg md:text-xl hover:text-white bg-indigo-400 hover:bg-indigo-600 rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900"
-                  onClick={exitTagWindow}
+                  onClick={closeWindow}
                   title={webcontent.buttons.cancelButton.hover.content}
                 >
                   {webcontent.buttons.cancelButton.text.content}
@@ -145,9 +146,36 @@ export default function TagEditWindow({
 }
 
 type Props = {
-  setIsTagEditWindowOpened: (arg0: boolean) => void;
+  setIsSelfOpened: (arg0: boolean) => void;
+  data: {
+    id: number;
+    author: {
+      id: number;
+      name: string;
+      profile_picture: string;
+      is_banned: boolean;
+      role: "member" | "moderator" | "administrator";
+    };
+    tags: {
+      id: number;
+      name: string;
+      icon: string;
+    }[];
+    creation_date: string;
+    type: "topic" | "question";
+    title: string;
+    content: string;
+    is_opened: boolean;
+    is_readable: boolean;
+    is_favourited_by: null | number[];
+    modification_date: string;
+    modification_author: null | string;
+    emergency: null | number;
+    results_length: null | number;
+    replies: null | { id: number }[];
+  };
   setData: (
-    arg0: null | {
+    arg0: {
       id: number;
       author: {
         id: number;
@@ -175,12 +203,5 @@ type Props = {
       replies: null | { id: number }[];
     }
   ) => void;
-  postId: number;
-  previousTags: {
-    id: number;
-    name: string;
-    icon: string;
-    family: string;
-  }[];
   webcontent: tagSelectionWindowWebcontentType;
 };

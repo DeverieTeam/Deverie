@@ -84,7 +84,7 @@ export default function PasswordEditWindow({
 
   return (
     <div
-      className="absolute h-[120%] w-[100%] bg-gray-400/60 z-20 -translate-y-16"
+      className="inset-0 absolute h-[120%] w-[100%] bg-gray-400/60 z-20 -translate-y-16"
       onClick={exitWindow}
     >
       <div className="h-[100%] w-[100%] relative">

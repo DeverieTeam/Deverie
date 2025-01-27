@@ -5,10 +5,10 @@ import Cookies from "universal-cookie";
 import { useNavigate } from "react-router-dom";
 
 export default function PostDeletionWindow({
-  setIsPostDeletionWindowOpened,
-  setData,
-  postType,
+  setIsSelfOpened,
   postId,
+  data,
+  setData,
   webcontent,
 }: Props) {
   const { auth } = useAuth();
@@ -16,12 +16,12 @@ export default function PostDeletionWindow({
 
   useEffect(() => {
     if (auth && auth.role && auth.role === "client") {
-      setIsPostDeletionWindowOpened(false);
+      setIsSelfOpened(false);
     }
-  }, [auth, setIsPostDeletionWindowOpened]);
+  }, [auth, setIsSelfOpened]);
 
-  const exitTagWindow = () => {
-    setIsPostDeletionWindowOpened(false);
+  const closeWindow = () => {
+    setIsSelfOpened(false);
   };
 
   const handleDeleteButton = async (e: React.BaseSyntheticEvent) => {
@@ -53,11 +53,18 @@ export default function PostDeletionWindow({
         });
 
         if (response.ok) {
-          if (postType === "thread") {
+          if (data.id === postId && (data.type === 'topic' || data.type === 'question')) {
             navigate(-1);
           } else {
-            setData(null);
-            setIsPostDeletionWindowOpened(false);
+            if (data.replies.some(post => post.id === postId)) {
+              const tmpUpdatedData = data;
+              tmpUpdatedData.replies.splice(tmpUpdatedData.replies.indexOf(
+                                            tmpUpdatedData.replies.filter((post) => post.id === postId)[0]
+                                          ), 1);
+              tmpUpdatedData.results_length -= 1;
+              setData(tmpUpdatedData);
+            }
+            closeWindow();
           }
         }
       } catch (error) {
@@ -68,16 +75,14 @@ export default function PostDeletionWindow({
 
   return (
     <div
-      className="absolute h-[120%] w-[100%] bg-gray-400/60 z-20 -translate-y-16"
-      onClick={exitTagWindow}
+      className="inset-0 absolute h-[120%] w-[100%] bg-gray-400/60 z-20 -translate-y-16"
+      onClick={closeWindow}
     >
       <div className="h-[100%] w-[100%] relative">
         <div className="h-screen w-screen sticky top-16">
           <div
             className="mx-auto px-4 py-8 h-[430px] md:h-[500px] w-[290px] md:w-[500px] bg-neutral-50 translate-y-[35%] md:translate-y-[25%] xl:translate-y-[30%] justify-between rounded-lg shadow-sm shadow-gray-700 flex flex-col overflow-auto"
-            onClick={(e) => {
-              e.stopPropagation();
-            }}
+            onClick={(e) => {e.stopPropagation();}}
           >
             <p className="text-center px-8 text-indigo-500 text-3xl md:text-4xl font-bold drop-shadow">
               {webcontent.page.deletionTitle.content}
@@ -88,7 +93,7 @@ export default function PostDeletionWindow({
             <div className="justify-center gap-4 md:gap-8 flex">
               <button
                 className="py-1 px-4 md:px-8 text-center text-lg md:text-xl hover:text-white bg-indigo-400 hover:bg-indigo-600 rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900"
-                onClick={exitTagWindow}
+                onClick={closeWindow}
                 title={webcontent.commons.buttons.backButton.hover.content}
               >
                 {webcontent.commons.buttons.backButton.text.content}
@@ -109,7 +114,35 @@ export default function PostDeletionWindow({
 }
 
 type Props = {
-  setIsPostDeletionWindowOpened: (arg0: boolean) => void;
+  setIsSelfOpened: (arg0: boolean) => void;
+  postId: number;
+  data: {
+    id: number;
+    author: {
+      id: number;
+      name: string;
+      profile_picture: string;
+      is_banned: boolean;
+      role: "member" | "moderator" | "administrator";
+    };
+    tags: {
+      id: number;
+      name: string;
+      icon: string;
+    }[];
+    creation_date: string;
+    type: "topic" | "question";
+    title: string;
+    content: string;
+    is_opened: boolean;
+    is_readable: boolean;
+    is_favourited_by: null | number[];
+    modification_date: string;
+    modification_author: null | string;
+    emergency: null | number;
+    results_length: null | number;
+    replies: null | { id: number }[];
+  };
   setData: (
     arg0: null | {
       id: number;
@@ -139,7 +172,5 @@ type Props = {
       replies: null | { id: number }[];
     }
   ) => void;
-  postType: string;
-  postId: number;
   webcontent: postViewPageWebcontentType;
 };

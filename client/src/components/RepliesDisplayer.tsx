@@ -1,60 +1,116 @@
+import { useState, useEffect } from "react";
 import { postViewPageWebcontentType } from "../types/pages/postViewPageWebcontentType";
+import PostDeletionWindow from "./windows/PostDeletionWindow";
 import RepliesRow from "./RepliesRow";
 
 export default function RepliesDisplayer({
-  repliesId,
+  data,
   sort,
-  setSourcePostId,
-  setIsNewReplyWindowOpened,
+  isPostOpened,
   setIsConnectionNeededClicked,
-  setPostId,
-  setPostContent,
-  setIsPostEditWindowOpened,
-  setPostType,
-  setIsPostDeletionWindowOpened,
-  postIsOpened,
-  setMemberId,
-  setIsMemberViewWindowOpened,
   webcontent,
 }: Props) {
+
+  const [localData, setLocalData] = useState<null | {
+    id: number;
+    author: {
+      id: number;
+      name: string;
+      profile_picture: string;
+      is_banned: boolean;
+      role: "member" | "moderator" | "administrator";
+    };
+    tags: {
+      id: number;
+      name: string;
+      icon: string;
+    }[];
+    creation_date: string;
+    type: "topic" | "question";
+    title: string;
+    content: string;
+    is_opened: boolean;
+    is_readable: boolean;
+    is_favourited_by: null | number[];
+    modification_date: string;
+    modification_author: null | string;
+    emergency: null | number;
+    results_length: null | number;
+    replies: null | { id: number }[];
+  }>(data);
+
+  useEffect(() => {
+    setLocalData(data);
+  }, [data]);
+
+  const [postToDelete, setPostToDelete] = useState<number>(0);
+  const [isPostDeletionWindowOpened, setIsPostDeletionWindowOpened] = useState<boolean>(false);
+
+  const handleDelete = (postId: number) => {
+    if (postId) {
+      setPostToDelete(postId);
+      setIsPostDeletionWindowOpened(true);
+    }
+  };
+
   return (
-    <div className="w-full">
-      {repliesId.map((replyId) => (
-        <RepliesRow
-          setSourcePostId={setSourcePostId}
-          setIsNewReplyWindowOpened={setIsNewReplyWindowOpened}
-          setIsConnectionNeededClicked={setIsConnectionNeededClicked}
-          setPostId={setPostId}
-          setPostContent={setPostContent}
-          setIsPostEditWindowOpened={setIsPostEditWindowOpened}
-          setPostType={setPostType}
-          setIsPostDeletionWindowOpened={setIsPostDeletionWindowOpened}
-          postIsOpened={postIsOpened}
-          setMemberId={setMemberId}
-          setIsMemberViewWindowOpened={setIsMemberViewWindowOpened}
-          key={replyId.id}
-          id={replyId.id}
-          sort={sort}
+    <>
+      <div className="w-full">
+        {localData.replies.map((replyId) => (
+          <RepliesRow
+            key={replyId.id}
+            id={replyId.id}
+            sort={sort}
+            handleDelete={handleDelete}
+            isPostOpened={isPostOpened}
+            setIsConnectionNeededClicked={setIsConnectionNeededClicked}
+            webcontent={webcontent}
+          />
+        ))}
+      </div>
+      {isPostDeletionWindowOpened && postToDelete && (
+        <PostDeletionWindow
+          setIsSelfOpened={setIsPostDeletionWindowOpened}
+          postId={postToDelete}
+          data={localData}
+          setData={setLocalData}
           webcontent={webcontent}
         />
-      ))}
-    </div>
+      )}
+    </>
   );
 }
 
 type Props = {
-  repliesId: { id: number }[];
+  data: {
+    id: number;
+    author: {
+      id: number;
+      name: string;
+      profile_picture: string;
+      is_banned: boolean;
+      role: "member" | "moderator" | "administrator";
+    };
+    tags: {
+      id: number;
+      name: string;
+      icon: string;
+    }[];
+    creation_date: string;
+    type: "topic" | "question";
+    title: string;
+    content: string;
+    is_opened: boolean;
+    is_readable: boolean;
+    is_favourited_by: null | number[];
+    modification_date: string;
+    modification_author: null | string;
+    emergency: null | number;
+    results_length: null | number;
+    replies: null | { id: number }[];
+  };
   sort: string;
-  setSourcePostId: (arg0: number) => void;
-  setIsNewReplyWindowOpened: (arg0: boolean) => void;
-  setIsConnectionNeededClicked: (arg0: boolean) => void;
-  setPostId: (arg0: number) => void;
-  setPostContent: (arg0: string) => void;
-  setIsPostEditWindowOpened: (arg0: boolean) => void;
-  setPostType: (arg0: string) => void;
-  setIsPostDeletionWindowOpened: (arg0: boolean) => void;
-  postIsOpened: boolean;
-  setMemberId: (arg0: number) => void;
-  setIsMemberViewWindowOpened: (arg0: boolean) => void;
+  isPostOpened: boolean;
+  setIsConnectionNeededClicked: (arg0: boolean) => null;
   webcontent: postViewPageWebcontentType;
 };

@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { tagFilterDisplayerWebcontentType } from "../types/components/tagFilterDisplayerWebcontentType";
-import TagSelectionChecker from "./TagSelectionChecker";
+import TagChecker from "./TagChecker";
 
 export default function TagSelectionDisplayer({
   tagFamily,
-  tempTags,
-  setTempTags,
+  tmpTags,
+  setTmpTags,
   webcontent,
 }: Props) {
   const [data, setData] = useState<
@@ -32,7 +32,7 @@ export default function TagSelectionDisplayer({
   }, [tagFamily]);
 
   return (
-    <details className="mb-6" open={tagFamily === "language"}>
+    <details className="mb-6">
       <summary className="w-48 md:w-56 md:text-lg py-1 pl-6 bg-neutral-100 hover:bg-white rounded-lg cursor-pointer shadow-sm shadow-neutral-400">
         {webcontent.tagsFamilies[tagFamily].content}
       </summary>
@@ -40,10 +40,11 @@ export default function TagSelectionDisplayer({
       <div className="md:px-4 mt-6 mb-4 gap-2 md:gap-4 justify-start flex flex-wrap">
         {data !== null &&
           data.map((tag) => (
-            <TagSelectionChecker
+            <TagChecker
+              type={'selection'}
               tag={tag}
-              tempTags={tempTags}
-              setTempTags={setTempTags}
+              tmpTags={tmpTags}
+              setTmpTags={setTmpTags}
               key={tag.id}
             />
           ))}
@@ -54,13 +55,13 @@ export default function TagSelectionDisplayer({
 
 type Props = {
   tagFamily: "language" | "environment" | "technology";
-  tempTags: {
+  tmpTags: {
     id: number;
     name: string;
     icon: string;
     family: string;
   }[];
-  setTempTags: (
+  setTmpTags: (
     arg0:
       | {
           id: number;

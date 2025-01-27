@@ -4,7 +4,8 @@ import Cookies from "universal-cookie";
 import { profilePageWebcontentType } from "../../types/profilePageWebcontentType";
 
 export default function ProfilePictureEditWindow({
-  setIsProfilePictureEditWindowOpened,
+  setIsSelfOpened,
+  data,
   setData,
   webcontent,
 }: Props) {
@@ -13,12 +14,12 @@ export default function ProfilePictureEditWindow({
 
   useEffect(() => {
     if (auth && auth.role && auth.role === "client") {
-      setIsProfilePictureEditWindowOpened(false);
+      setIsSelfOpened(false);
     }
-  }, [auth, setIsProfilePictureEditWindowOpened]);
+  }, [auth, setIsSelfOpened]);
 
-  const exitWindow = () => {
-    setIsProfilePictureEditWindowOpened(false);
+  const closeWindow = () => {
+    setIsSelfOpened(false);
   };
 
   const handleContentChange = (e: React.BaseSyntheticEvent) => {
@@ -55,9 +56,8 @@ export default function ProfilePictureEditWindow({
           });
 
           if (response.ok) {
-            setData(null);
             setAuth(undefined);
-            setIsProfilePictureEditWindowOpened(false);
+            closeWindow();
           }
         } catch (error) {
           console.error("Something went wrong: ", error);
@@ -103,9 +103,11 @@ export default function ProfilePictureEditWindow({
             });
 
             if (response2.ok) {
-              setData(null);
+              const tmpUpdatedData = data;
+              tmpUpdatedData.profile_picture = result.filename;
+              setData(tmpUpdatedData);
               setAuth(undefined);
-              setIsProfilePictureEditWindowOpened(false);
+              closeWindow();
             }
           }
         } catch (error) {
@@ -117,8 +119,8 @@ export default function ProfilePictureEditWindow({
 
   return (
     <div
-      className="absolute h-[120%] w-[100%] bg-gray-400/60 z-20 -translate-y-16"
-      onClick={exitWindow}
+      className="inset-0 absolute h-[120%] w-[100%] bg-gray-400/60 z-20 -translate-y-16"
+      onClick={closeWindow}
     >
       <div className="h-[100%] w-[100%] relative">
         <div className="h-screen w-screen sticky top-16">
@@ -146,7 +148,7 @@ export default function ProfilePictureEditWindow({
             <div className="justify-center gap-4 md:gap-8 flex">
               <button
                 className="py-1 px-4 md:px-8 text-center text-lg md:text-xl hover:text-white bg-indigo-400 hover:bg-indigo-600 rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900"
-                onClick={exitWindow}
+                onClick={closeWindow}
                 title={webcontent.commons.buttons.backButton.hover.content}
               >
                 {webcontent.commons.buttons.backButton.text.content}
@@ -166,7 +168,7 @@ export default function ProfilePictureEditWindow({
 }
 
 type Props = {
-  setIsProfilePictureEditWindowOpened: (arg0: boolean) => void;
+  setIsSelfOpened: (arg0: boolean) => void;
   setData: (
     arg0: null | {
       id: number;

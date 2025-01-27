@@ -1,38 +1,40 @@
-export default function TagSelectionChecker({
+export default function TagChecker({
+  type,
   tag,
-  tempTags,
-  setTempTags,
+  tmpTags,
+  setTmpTags,
 }: Props) {
+
   const handleChecked = () => {
-    for (const tempTag of tempTags) {
-      if (tempTag.name === tag.name) {
-        return true;
-      }
+    if (type === 'filter') {
+      return tmpTags.includes(tag.name);
+    } else {
+      return tmpTags.some(iTag => iTag.id === tag.id);
     }
-    return false;
   };
 
   const handleChange = () => {
-    let check = false;
-    for (const tempTag of tempTags) {
-      if (tempTag.name === tag.name) {
-        check = true;
-      }
-    }
-    if (check) {
-      setTempTags((pv) =>
-        pv.filter(
+    if (handleChecked()) {
+      if (type === 'filter') {
+        setTmpTags((pv) => pv.filter(
+          (item: string) =>
+          item !== tag.name));
+      } else {
+        setTmpTags((pv) => pv.filter(
           (item: { id: number; name: string; icon: string; family: string }) =>
-            item.name !== tag.name
-        )
-      );
+          item.id !== tag.id));
+      }
     } else {
-      setTempTags((pv) => pv.concat([tag]));
+      if (type === 'filter') {
+        setTmpTags((pv) => pv.concat([tag.name]));
+      } else {
+        setTmpTags((pv) => pv.concat([tag]));
+      }
     }
   };
 
   return (
-    <div className="w-[120px] md:w-[132px] gap-1 flex">
+    <div className="w-[120px] md:w-[132px] gap-1 flex items-center">
       <input
         id={`tag_${tag.id}`}
         type="checkbox"
@@ -42,8 +44,7 @@ export default function TagSelectionChecker({
       />
       <label
         htmlFor={`tag_${tag.id}`}
-        className="text-sm md:text-base gap-1 flex hover:cursor-pointer"
-      >
+        className="text-sm md:text-base gap-1 flex items-center hover:cursor-pointer">
         <img
           className="h-5 w-5 bg-neutral-100 rounded-lg hover:cursor-pointer"
           src={tag.icon}
@@ -55,20 +56,22 @@ export default function TagSelectionChecker({
 }
 
 type Props = {
+  type: 'filter' | 'selection';
   tag: {
     id: number;
     name: string;
     icon: string;
     family: string;
   };
-  tempTags: {
+  tmpTags: {
     id: number;
     name: string;
     icon: string;
     family: string;
-  }[];
-  setTempTags: (
-    arg0:
+  }[] |
+  string[];
+  setTmpTags: (
+    arg0: (
       | {
           id: number;
           name: string;
@@ -88,5 +91,9 @@ type Props = {
           icon: string;
           family: string;
         }[])
-  ) => void;
+      |
+        string[]
+      |
+        ((pv: string[]) => string[])
+  )) => void;
 };

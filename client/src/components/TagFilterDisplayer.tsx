@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import TagFilterChecker from "./TagFilterChecker";
-import { tagFilterDisplayerWebcontentType } from "../types/components/tagFilterDisplayerWebcontentType";
+import TagChecker from "./TagChecker";
+import { tagFilterDisplayerWebcontentType } from "../types/coponents/tagFilterDisplayerWebcontentType";
 
 export default function TagFilterDisplayer({
   tagFamily,
-  tempTags,
-  setTempTags,
+  tmpTags,
+  setTmpTags,
   langTags,
   envTags,
   technoTags,
@@ -50,8 +50,8 @@ export default function TagFilterDisplayer({
         break;
     }
     for (const tag of array) {
-      if (!tempTags.includes(tag)) {
-        setTempTags((pv) => pv.concat([tag]));
+      if (!tmpTags.includes(tag)) {
+        setTmpTags((pv) => pv.concat([tag]));
       }
     }
   };
@@ -73,8 +73,8 @@ export default function TagFilterDisplayer({
     }
 
     for (const tag of array) {
-      if (tempTags.includes(tag)) {
-        setTempTags((pv) => pv.filter((item: string) => item !== tag));
+      if (tmpTags.includes(tag)) {
+        setTmpTags((pv) => pv.filter((item: string) => item !== tag));
       }
     }
   };
@@ -107,10 +107,11 @@ export default function TagFilterDisplayer({
       <div className="md:px-4 mt-6 mb-4 gap-2 md:gap-4 justify-start flex flex-wrap">
         {data !== null &&
           data.map((tag) => (
-            <TagFilterChecker
+            <TagChecker
+              type={'filter'}
               tag={tag}
-              tempTags={tempTags}
-              setTempTags={setTempTags}
+              tmpTags={tmpTags}
+              setTmpTags={setTmpTags}
               key={tag.id}
             />
           ))}
@@ -121,8 +122,8 @@ export default function TagFilterDisplayer({
 
 type Props = {
   tagFamily: "language" | "environment" | "technology";
-  tempTags: string[];
-  setTempTags: (arg0: string[] | ((pv: string[]) => string[])) => void;
+  tmpTags: string[];
+  setTmpTags: (arg0: string[] | ((pv: string[]) => string[])) => void;
   langTags: string[];
   envTags: string[];
   technoTags: string[];

@@ -15,10 +15,8 @@ export default function RegisterPage() {
   const maximumPasswordFieldLength: number = 25;
   const emailRegex = /^[a-zA-Z0-9]([.-]?[a-zA-Z0-9])*@[a-zA-Z]([_-]?[a-zA-Z])*\.[a-zA-Z]{2,4}$/;
 
-  const [isRegisterWindowOpened, setIsRegisterWindowOpened] =
-    useState<boolean>(false);
-  const [isWarningMessageShowed, setIsWarningMessageShowed] =
-    useState<boolean>(false);
+  const [isRegisterWindowOpened, setIsRegisterWindowOpened] = useState<boolean>(false);
+  const [isWarningMessageShowed, setIsWarningMessageShowed] = useState<boolean>(false);
 
   const [frontWarningMessage, setFrontWarningMessage] = useState<string>("");
 
@@ -39,12 +37,9 @@ export default function RegisterPage() {
     }
   }
 
-  const [usernameWarningMessage, setUsernameWarningMessage] =
-    useState<string>("");
-  const [passwordWarningMessage, setPasswordWarningMessage] =
-    useState<string>("");
-  const [passwordConfirmWarningMessage, setPasswordConfirmWarningMessage] =
-    useState<string>("");
+  const [usernameWarningMessage, setUsernameWarningMessage] = useState<string>("");
+  const [passwordWarningMessage, setPasswordWarningMessage] = useState<string>("");
+  const [passwordConfirmWarningMessage, setPasswordConfirmWarningMessage] = useState<string>("");
   const [emailWarningMessage, setEmailWarningMessage] = useState<string>("");
 
   const [isUsernameValid, setIsUsernameValid] = useState<boolean>(true);

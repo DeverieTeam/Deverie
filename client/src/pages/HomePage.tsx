@@ -4,7 +4,6 @@ import ThreadsDisplayer from "../components/ThreadsDisplayer";
 import { homepageWebcontentType } from "../types/homepageWebcontentType";
 import { useAuth } from "../contexts/useAuth";
 import MemberViewWindow from "../components/windows/MemberViewWindow";
-import BanConfirmWindow from "../components/windows/BanConfirmWindow";
 import ConnectionWindow from "../components/userAccount/ConnectionWindow";
 import ConnectionNeeded from "../components/userAccount/ConnectionNeeded";
 
@@ -12,14 +11,9 @@ export default function HomePage() {
   const [randomThread, setRandomThread] = useState<null | "popular" | "recent">(
     null
   );
-  const [isConnectionNeededClicked, setIsConnectionNeededClicked] =
-    useState<boolean>(false);
-  const [isConnectionWindowDisplayed, setIsConnectionWindowDisplayed] =
-    useState<boolean>(false);
-  const [isMemberViewWindowOpened, setIsMemberViewWindowOpened] =
-    useState<boolean>(false);
-  const [isBanConfirmWindowOpened, setIsBanConfirmWindowOpened] =
-    useState<boolean>(false);
+  const [isConnectionNeededClicked, setIsConnectionNeededClicked] = useState<boolean>(false);
+  const [isConnectionWindowDisplayed, setIsConnectionWindowDisplayed] = useState<boolean>(false);
+  const [isMemberViewWindowOpened, setIsMemberViewWindowOpened] = useState<boolean>(false);
   const [memberId, setMemberId] = useState<null | number>(null);
 
   const webcontent = useLoaderData() as homepageWebcontentType;
@@ -132,15 +126,7 @@ export default function HomePage() {
       </div>
       {isMemberViewWindowOpened && memberId && (
         <MemberViewWindow
-          setIsMemberViewWindowOpened={setIsMemberViewWindowOpened}
-          setIsBanConfirmWindowOpened={setIsBanConfirmWindowOpened}
-          memberId={memberId}
-          webcontent={webcontent.commons.memberWindow}
-        />
-      )}
-      {isBanConfirmWindowOpened && memberId && (
-        <BanConfirmWindow
-          setIsBanConfirmWindowOpened={setIsBanConfirmWindowOpened}
+          setIsSelfOpened={setIsMemberViewWindowOpened}
           memberId={memberId}
           webcontent={webcontent.commons}
         />

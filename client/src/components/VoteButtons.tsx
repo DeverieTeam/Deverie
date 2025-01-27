@@ -94,7 +94,7 @@ export default function VoteButtons({
       {data && auth && (
       <>
         <div
-          className={'bg-green-' + (currentRate === 'up' ? '500 ' : !currentRate ? '300 ' : '100') +
+          className={(currentRate === 'up' ? 'bg-green-500' : !currentRate ? 'bg-green-300' : 'bg-green-100') +
             " px-1 mr-3 md:mr-0 w-14 h-6 md:h-8 self-end md:self-center gap-1 hover:text-white justify-center text-center rounded-full shadow-sm shadow-green-700 flex"}
           value="up"
           onClick={(e) => handleVoteInteraction(e, 'up')}
@@ -118,7 +118,7 @@ export default function VoteButtons({
         <p className="my-auto">{currentPublicationScore.up_votes}</p>
       </div>
       <div
-          className={'bg-red-' + (currentRate === 'down' ? '500 ' : !currentRate ? '300 ' : '100') +
+          className={(currentRate === 'down' ? 'bg-red-500' : !currentRate ? 'bg-red-300' : 'bg-red-100') +
             " px-1 mr-3 md:mr-0 w-14 h-6 md:h-8 self-end md:self-center gap-1 hover:text-white justify-center text-center rounded-full shadow-sm shadow-red-700 flex"}
           value="down"
           onClick={(e) => handleVoteInteraction(e, 'down')}

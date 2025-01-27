@@ -1,20 +1,20 @@
 import { useLoaderData, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { postViewPageWebcontentType } from "../types/pages/postViewPageWebcontentType";
+import { useAuth } from "../contexts/useAuth";
+import Cookies from "universal-cookie";
+
 import PostSortSelection from "../components/PostSortSelection";
 import ConnectionNeeded from "../components/userAccount/ConnectionNeeded";
 import ConnectionWindow from "../components/userAccount/ConnectionWindow";
-import { useAuth } from "../contexts/useAuth";
-import PostPagination from "../components/PostPagination";
+import Pagination from "../components/Pagination";
 import RepliesDisplayer from "../components/RepliesDisplayer";
-import { postViewPageWebcontentType } from "../types/pages/postViewPageWebcontentType";
 import NewReplyWindow from "../components/windows/NewReplyWindow";
-import PostEditWindow from "../components/windows/PostEditWindow";
 import TagEditWindow from "../components/windows/TagEditWindow";
 import PostDeletionWindow from "../components/windows/PostDeletionWindow";
 import PostClosureWindow from "../components/windows/PostClosureWindow";
 import MemberViewWindow from "../components/windows/MemberViewWindow";
-import BanConfirmWindow from "../components/windows/BanConfirmWindow";
-import Cookies from "universal-cookie";
+import ContentEditWindow from "../components/windows/ContentEditWindow";
 
 export default function PostViewPage() {
   const [isNewReplyWindowOpened, setIsNewReplyWindowOpened] = useState<boolean>(false);
@@ -25,7 +25,6 @@ export default function PostViewPage() {
   const [isConnectionNeededClicked, setIsConnectionNeededClicked] = useState<boolean>(false);
   const [isConnectionWindowDisplayed, setIsConnectionWindowDisplayed] = useState<boolean>(false);
   const [isMemberViewWindowOpened, setIsMemberViewWindowOpened] = useState<boolean>(false);
-  const [isBanConfirmWindowOpened, setIsBanConfirmWindowOpened] = useState<boolean>(false);
 
   const [data, setData] = useState<null | {
     id: number;
@@ -56,11 +55,8 @@ export default function PostViewPage() {
   }>(null);
   const [pagination, setPagination] = useState<number>(1);
   const [sort, setSort] = useState<string>("popular");
-  const [sourcePostId, setSourcePostId] = useState<null | number>(null);
-  const [postId, setPostId] = useState<null | number>(null);
   const [postContent, setPostContent] = useState<null | string>(null);
-  const [postType, setPostType] = useState<null | string>(null);
-  const [postIsOpened, setPostIsOpened] = useState<null | boolean>(null);
+  const [isPostOpened, setIsPostOpened] = useState<null | boolean>(null);
   const [memberId, setMemberId] = useState<null | number>(null);
 
   const webcontent = useLoaderData() as postViewPageWebcontentType;
@@ -69,6 +65,11 @@ export default function PostViewPage() {
   const query = new URLSearchParams(location.search).get("id");
   const navigate = useNavigate();
   const { auth } = useAuth();
+
+  const [updateCount, setUpdateCount] = useState<number>(0);
+  const handleUpdate = () => {
+    setUpdateCount(updateCount+1);
+  }
 
   const handleToggleFavButton = async (e: React.BaseSyntheticEvent) => {
     e.stopPropagation();
@@ -107,11 +108,12 @@ export default function PostViewPage() {
 
         if (response.ok) {
           if (data.is_favourited_by.includes(auth.id)) {
-            delete tmpUpdatedData.is_favourited_by[tmpUpdatedData.is_favourited_by.indexOf(auth.id)];
+            tmpUpdatedData.is_favourited_by.splice(tmpUpdatedData.is_favourited_by.indexOf(auth.id), 1);
           } else {
             tmpUpdatedData.is_favourited_by.push(auth.id);
           }
           setData(tmpUpdatedData);
+          handleUpdate();
         }
       } catch (error) {
         console.error("Something went wrong: ", error);
@@ -121,49 +123,8 @@ export default function PostViewPage() {
     }
   };
 
-  const getfavourite = () => {
-    return (
-      <button
-        className="self-end mb-1 md:w-56 py-1 px-1 text-center justify-center text-lg gap-2 bg-neutral-100 hover:bg-white rounded-lg shadow-sm shadow-neutral-400 flex"
-        onClick={handleToggleFavButton}
-      >
-        <p className="text-sm md:text-base">
-          {webcontent.page[(auth && auth.id && data?.is_favourited_by && data.is_favourited_by.includes(auth.id)) ? 'removingFavourite' : 'addingFavourite'].content}
-        </p>
-        <img
-          className="my-auto w-5 md:w-6 h-5 md:h-6 bg-transparent"
-          src={"/icons/" + ((auth && auth.id && data?.is_favourited_by && data.is_favourited_by.includes(auth.id)) ? 'favourite.png' : 'notFavourite.svg')}
-          title={
-            webcontent.commons.publications.favourite[(auth && auth.id && data?.is_favourited_by && data.is_favourited_by.includes(auth.id)) ? 'remove' : 'add'].hover.content
-          }
-        />
-      </button>
-    );
-  };
-
-  const getPreviousTags = () => {
-    if (data) {
-      const previousTags = [];
-      for (const tag of data.tags) {
-        const newTag = { ...tag, family: "" };
-        previousTags.push(newTag);
-      }
-      return previousTags;
-    } else {
-      return [
-        {
-          id: 0,
-          name: "",
-          icon: "",
-          family: "",
-        },
-      ];
-    }
-  };
-
   const handleReplyButton = () => {
-    if (data && auth !== undefined && auth.role !== "client") {
-      setSourcePostId(data.id);
+    if (data && auth && auth.role !== "client") {
       setIsNewReplyWindowOpened(true);
     } else {
       setIsConnectionNeededClicked(true);
@@ -171,31 +132,26 @@ export default function PostViewPage() {
   };
 
   const handleEditButton = () => {
-    if (data && auth !== undefined && auth.role !== "client") {
-      setPostId(data.id);
+    if (data && auth && auth.role !== "client") {
       setPostContent(data.content);
       setIsPostEditWindowOpened(true);
     }
   };
 
   const handleTagEditButton = () => {
-    if (data && auth !== undefined && auth.role !== "client") {
-      setPostId(data.id);
+    if (data && auth && auth.role !== "client") {
       setIsTagEditWindowOpened(true);
     }
   };
 
   const handleDeleteButton = () => {
-    if (data && auth !== undefined && auth.role !== "client") {
-      setPostId(data.id);
-      setPostType("thread");
+    if (data && auth && auth.role !== "client") {
       setIsPostDeletionWindowOpened(true);
     }
   };
 
   const handleClosureButton = () => {
-    if (data && auth !== undefined && auth.role !== "client") {
-      setPostId(data.id);
+    if (data && auth && auth.role !== "client") {
       setIsPostClosureWindowOpened(true);
     }
   };
@@ -239,7 +195,7 @@ export default function PostViewPage() {
             navigate(-1);
           } else {
             setData(data);
-            setPostIsOpened(data.is_opened);
+            setIsPostOpened(data.is_opened);
           }
         });
     } else {
@@ -306,7 +262,21 @@ export default function PostViewPage() {
               )}
           </div>
           <div className="gap-2 xl:gap-4 justify-between flex flex-col">
-            {getfavourite()}
+            <button
+              className="self-end mb-1 md:w-56 py-1 px-1 text-center justify-center text-lg gap-2 bg-neutral-100 hover:bg-white rounded-lg shadow-sm shadow-neutral-400 flex"
+              onClick={handleToggleFavButton}
+            >
+              <p className="text-sm md:text-base">
+                {webcontent.page[(auth && auth.id && data?.is_favourited_by && data.is_favourited_by.includes(auth.id)) ? 'removingFavourite' : 'addingFavourite'].content}
+              </p>
+              <img
+                className="my-auto w-5 md:w-6 h-5 md:h-6 bg-transparent"
+                src={"/icons/" + ((auth && auth.id && data?.is_favourited_by && data.is_favourited_by.includes(auth.id)) ? 'favourite.png' : 'notFavourite.svg')}
+                title={
+                  webcontent.commons.publications.favourite[(auth && auth.id && data?.is_favourited_by && data.is_favourited_by.includes(auth.id)) ? 'remove' : 'add'].hover.content
+                }
+              />
+            </button>
             <PostSortSelection
               setSort={setSort}
               webcontent={webcontent.commons.searching.sortFilter}
@@ -454,25 +424,15 @@ export default function PostViewPage() {
           </div>
         </div>
       )}
-      {data !== null &&
-        data.replies !== null &&
+      {data && data.replies &&
         data.replies.length > 0 && (
           <div className="w-full mr-1 mt-2 md:mr-0 self-center items-end md:max-w-[750px] flex flex-col">
             <div className="w-[90%] flex flex-col">
               <RepliesDisplayer
-                repliesId={data.replies}
+                data={data}
                 sort={sort}
-                setSourcePostId={setSourcePostId}
-                setIsNewReplyWindowOpened={setIsNewReplyWindowOpened}
+                isPostOpened={isPostOpened}
                 setIsConnectionNeededClicked={setIsConnectionNeededClicked}
-                setPostId={setPostId}
-                setPostContent={setPostContent}
-                setIsPostEditWindowOpened={setIsPostEditWindowOpened}
-                setPostType={setPostType}
-                setIsPostDeletionWindowOpened={setIsPostDeletionWindowOpened}
-                postIsOpened={postIsOpened}
-                setMemberId={setMemberId}
-                setIsMemberViewWindowOpened={setIsMemberViewWindowOpened}
                 webcontent={webcontent}
               />
             </div>
@@ -480,7 +440,7 @@ export default function PostViewPage() {
         )}
       {data !== null && data.replies !== null && data.replies.length > 0 && (
         <div className="w-full px-1 mt-6 md:px-0 md:max-w-[750px] md:mx-auto flex flex-col">
-          <PostPagination
+          <Pagination
             data={data}
             pagination={pagination}
             setPagination={setPagination}
@@ -488,47 +448,57 @@ export default function PostViewPage() {
           />
         </div>
       )}
-      {data && sourcePostId && isNewReplyWindowOpened && (
+      {data && isNewReplyWindowOpened && (
         <NewReplyWindow
-          setIsNewReplyWindowOpened={setIsNewReplyWindowOpened}
+          setIsSelfOpened={setIsNewReplyWindowOpened}
+          data={data}
           setData={setData}
-          sourcePostType={data.type}
-          sourcePostId={sourcePostId}
           webcontent={webcontent}
         />
       )}
-      {data && postId && postContent && isPostEditWindowOpened && (
-        <PostEditWindow
-          setIsPostEditWindowOpened={setIsPostEditWindowOpened}
+      {data && isPostEditWindowOpened && (
+        <ContentEditWindow
+          confirmEndpoint={'post'}
+          fieldName={'content'}
+          isLargeFormat={true}
+          canBeEmpty={false}
+          setIsSelfOpened={setIsPostEditWindowOpened}
+          data={data}
           setData={setData}
-          postId={postId}
-          previousContent={postContent}
-          webcontent={webcontent}
+          webcontent={{
+            actionTitle: webcontent.page.editTitle,
+            contentTitle: webcontent.page.postContent,
+            contentPlaceholder: webcontent.page.postContentPlaceholder,
+            buttons: {
+              cancelButton: webcontent.commons.buttons.cancelButton,
+              confirmButton: webcontent.commons.buttons.confirmButton
+            }
+          }}
+          content={data.content}
         />
       )}
-      {postId && postType && isPostDeletionWindowOpened && (
+      {data && isPostDeletionWindowOpened && (
         <PostDeletionWindow
-          setIsPostDeletionWindowOpened={setIsPostDeletionWindowOpened}
+          setIsSelfOpened={setIsPostDeletionWindowOpened}
+          postId={data.id}
+          data={data}
           setData={setData}
-          postType={postType}
-          postId={postId}
           webcontent={webcontent}
         />
       )}
-      {postId && isPostClosureWindowOpened && (
+      {data && isPostClosureWindowOpened && (
         <PostClosureWindow
-          setIsPostClosureWindowOpened={setIsPostClosureWindowOpened}
+          setIsSelfOpened={setIsPostClosureWindowOpened}
+          data={data}
           setData={setData}
-          postId={postId}
           webcontent={webcontent}
         />
       )}
-      {data && postId && isTagEditWindowOpened && (
+      {data && isTagEditWindowOpened && (
         <TagEditWindow
-          setIsTagEditWindowOpened={setIsTagEditWindowOpened}
+          setIsSelfOpened={setIsTagEditWindowOpened}
+          data={data}
           setData={setData}
-          postId={postId}
-          previousTags={getPreviousTags()}
           webcontent={{
             buttons: webcontent.commons.buttons,
             tagsFamilies: webcontent.commons.tagsFamilies,
@@ -558,15 +528,7 @@ export default function PostViewPage() {
       )}
       {isMemberViewWindowOpened && memberId && (
         <MemberViewWindow
-          setIsMemberViewWindowOpened={setIsMemberViewWindowOpened}
-          setIsBanConfirmWindowOpened={setIsBanConfirmWindowOpened}
-          memberId={memberId}
-          webcontent={webcontent.commons.memberWindow}
-        />
-      )}
-      {isBanConfirmWindowOpened && memberId && (
-        <BanConfirmWindow
-          setIsBanConfirmWindowOpened={setIsBanConfirmWindowOpened}
+          setIsSelfOpened={setIsMemberViewWindowOpened}
           memberId={memberId}
           webcontent={webcontent.commons}
         />

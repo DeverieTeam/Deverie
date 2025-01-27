@@ -4,7 +4,7 @@ import Cookies from "universal-cookie";
 import { banConfirmWindowWebcontentType } from "../../types/components/windows/banConfirmWindowWebcontentType";
 
 export default function BanConfirmWindow({
-  setIsBanConfirmWindowOpened,
+  setIsSelfOpened,
   memberId,
   webcontent,
 }: Props) {
@@ -12,12 +12,12 @@ export default function BanConfirmWindow({
 
   useEffect(() => {
     if (auth && auth.role && auth.role === "client") {
-      setIsBanConfirmWindowOpened(false);
+      setIsSelfOpened(false);
     }
-  }, [auth, setIsBanConfirmWindowOpened]);
+  }, [auth, setIsSelfOpened]);
 
-  const exitBanConfirmWindow = () => {
-    setIsBanConfirmWindowOpened(false);
+  const closeWindow = () => {
+    setIsSelfOpened(false);
   };
 
   const handleBanButton = async (e: React.BaseSyntheticEvent) => {
@@ -57,8 +57,8 @@ export default function BanConfirmWindow({
 
   return (
     <div
-      className="absolute h-[120%] w-[100%] bg-gray-400/60 z-30 -translate-y-16"
-      onClick={exitBanConfirmWindow}
+      className="inset-0 absolute h-[120%] w-[100%] bg-gray-400/60 z-30 -translate-y-16"
+      onClick={closeWindow}
     >
       <div className="h-[100%] w-[100%] relative">
         <div className="h-screen w-screen sticky top-16">
@@ -77,7 +77,7 @@ export default function BanConfirmWindow({
             <div className="justify-center gap-4 md:gap-8 flex">
               <button
                 className="py-1 px-4 md:px-8 text-center text-lg md:text-xl hover:text-white bg-indigo-400 hover:bg-indigo-600 rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900"
-                onClick={exitBanConfirmWindow}
+                onClick={closeWindow}
                 title={webcontent.buttons.backButton.hover.content}
               >
                 {webcontent.buttons.backButton.text.content}
@@ -98,7 +98,7 @@ export default function BanConfirmWindow({
 }
 
 type Props = {
-  setIsBanConfirmWindowOpened: (arg0: boolean) => void;
+  setIsSelfOpened: (arg0: boolean) => void;
   memberId: number;
   webcontent: banConfirmWindowWebcontentType;
 };

@@ -4,22 +4,22 @@ import Cookies from "universal-cookie";
 import { profilePageWebcontentType } from "../../types/profilePageWebcontentType";
 
 export default function EmailDisplayConfirmationWindow({
-  setIsEmailDisplayConfirmationWindowOpened,
+  setIsSelfOpened,
+  data,
   setData,
-  previousContent,
   webcontent,
 }: Props) {
-  const [content, setContent] = useState<boolean>(previousContent);
+  const [content, setContent] = useState<boolean>(data.is_email_displayed);
   const { auth } = useAuth();
 
   useEffect(() => {
     if (auth && auth.role && auth.role === "client") {
-      setIsEmailDisplayConfirmationWindowOpened(false);
+      setIsSelfOpened(false);
     }
-  }, [auth, setIsEmailDisplayConfirmationWindowOpened]);
+  }, [auth, setIsSelfOpened]);
 
-  const exitWindow = () => {
-    setIsEmailDisplayConfirmationWindowOpened(false);
+  const closeWindow = () => {
+    setIsSelfOpened(false);
   };
 
   const handleContentChange = () => {
@@ -53,8 +53,10 @@ export default function EmailDisplayConfirmationWindow({
         });
 
         if (response.ok) {
-          setData(null);
-          setIsEmailDisplayConfirmationWindowOpened(false);
+          const tmpUpdatedData = data;
+          tmpUpdatedData.is_email_displayed = content;
+          setData(tmpUpdatedData);
+          closeWindow();
         }
       } catch (error) {
         console.error("Something went wrong: ", error);
@@ -64,8 +66,8 @@ export default function EmailDisplayConfirmationWindow({
 
   return (
     <div
-      className="absolute h-[120%] w-[100%] bg-gray-400/60 z-20 -translate-y-16"
-      onClick={exitWindow}
+      className="inset-0 absolute h-[120%] w-[100%] bg-gray-400/60 z-20 -translate-y-16"
+      onClick={closeWindow}
     >
       <div className="h-[100%] w-[100%] relative">
         <div className="h-screen w-screen sticky top-16">
@@ -80,10 +82,13 @@ export default function EmailDisplayConfirmationWindow({
               {webcontent.page.emailDisplayConfirmationTitle.content}
             </p>
             <div className="md:px-8 justify-between flex">
-              <p className="my-auto text-lg md:text-2xl">
+              <label
+                htmlFor="emailDisplay"
+                className="my-auto text-lg md:text-2xl">
                 {webcontent.page.emailDisplayConfirmationContent.content}
-              </p>
+              </label>
               <input
+                id="emailDisplay"
                 className="my-auto cursor-pointer"
                 type="checkbox"
                 checked={content}
@@ -93,7 +98,7 @@ export default function EmailDisplayConfirmationWindow({
             <div className="justify-center gap-4 md:gap-8 flex">
               <button
                 className="py-1 px-4 md:px-8 text-center text-lg md:text-xl hover:text-white bg-indigo-400 hover:bg-indigo-600 rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900"
-                onClick={exitWindow}
+                onClick={closeWindow}
                 title={webcontent.commons.buttons.backButton.hover.content}
               >
                 {webcontent.commons.buttons.backButton.text.content}
@@ -113,7 +118,19 @@ export default function EmailDisplayConfirmationWindow({
 }
 
 type Props = {
-  setIsEmailDisplayConfirmationWindowOpened: (arg0: boolean) => void;
+  setIsSelfOpened: (arg0: boolean) => void;
+  data: {
+    id: number;
+    name: string;
+    email: string;
+    is_email_displayed: boolean;
+    profile_picture: string;
+    pronouns?: string;
+    description?: string;
+    displayed_name: string;
+    theme: string;
+    language: string;
+  };
   setData: (
     arg0: null | {
       id: number;
@@ -128,6 +145,5 @@ type Props = {
       language: string;
     }
   ) => void;
-  previousContent: boolean;
   webcontent: profilePageWebcontentType;
 };
