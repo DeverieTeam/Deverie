@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { newpostpageWebcontentType } from "../types/newpostpageWebcontentType";
-import TagSelectionWindow from "../components/TagSelectionWindow";
+import TagSelectionWindow from "../components/windows/TagSelectionWindow";
 import Cookies from "universal-cookie";
 import { useAuth } from "../contexts/useAuth";
 

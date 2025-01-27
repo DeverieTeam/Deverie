@@ -3,13 +3,13 @@ import { useAuth } from "../contexts/useAuth";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
 import { profilepageWebcontentType } from "../types/profilepageWebcontentType";
-import DescriptionEditWindow from "../components/DescriptionEditWindow";
-import DisplayedNameEditWindow from "../components/DisplayedNameEditWindow";
-import PronounsEditWindow from "../components/PronounsEditWindow";
-import EmailDisplayConfirmationWindow from "../components/EmailDisplayConfirmationWindow";
-import PasswordEditWindow from "../components/PasswordEditWindow";
-import FavouriteTagsWindow from "../components/FavouriteTagsWindow";
-import ProfilePictureEditWindow from "../components/ProfilePictureEditWindow";
+import DescriptionEditWindow from "../components/windows/DescriptionEditWindow";
+import DisplayedNameEditWindow from "../components/windows/DisplayedNameEditWindow";
+import PronounsEditWindow from "../components/windows/PronounsEditWindow";
+import EmailDisplayConfirmationWindow from "../components/windows/EmailDisplayConfirmationWindow";
+import PasswordEditWindow from "../components/windows/PasswordEditWindow";
+import FavouriteTagsWindow from "../components/windows/FavouriteTagsWindow";
+import ProfilePictureEditWindow from "../components/windows/ProfilePictureEditWindow";
 
 export default function ProfilePage() {
   const [isDescriptionEditWindowOpened, setIsDescriptionEditWindowOpened] =

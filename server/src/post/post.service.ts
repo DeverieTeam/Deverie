@@ -128,6 +128,8 @@ export class PostService {
       emergency: null | number;
       results_length: null | number;
       replies: null | { id: number }[];
+      up_votes?: number;
+      down_votes?: number;
     } = {
       id: data.id,
       author: {
@@ -151,6 +153,11 @@ export class PostService {
       results_length: null,
       replies: null,
     };
+
+    if (data.type === 'answer' || data.type === 'comment') {
+      refinedData.up_votes = data.ratings.filter((rating) => rating.type === 'up').length;
+      refinedData.down_votes = data.ratings.filter((rating) => rating.type === 'down').length;
+    }
 
     if (data.author.displayed_name) {
       refinedData.author.name = data.author.displayed_name;
@@ -527,9 +534,29 @@ export class PostService {
     return this.refinePostData(pagedResponse, responseLength);
   }
 
+  async getPostsByAuthor(args: {
+    authorId: number;
+    type: string;
+  }) {
+    const response = await this.postRepository
+      .createQueryBuilder('post')
+      .select(['post.id', 'post.title', 'post.content', 'post.type'])
+      .where('post.author = :authorId', {authorId: args.authorId})
+      .getMany();
+
+    const filteredResponse = response.filter(
+      (post) =>
+        //if the type is not 'all', takes the specified type, else takes everything
+        (args.type === 'all' ? true : post.type === args.type)
+    );
+    return filteredResponse;
+  }
+
   async getPostsNumberByType(args: {
-    type: 'all' | 'question' | 'topic';
+    type: 'all' | 'question' | 'answer' | 'topic' | 'response';
+    authorId?: number;
     isClosed?: boolean;
+    isReadable?: boolean;
     isBanned?: boolean;
   }) {
     const response = await this.postRepository
@@ -537,37 +564,21 @@ export class PostService {
       .innerJoinAndSelect('post.author', 'author')
       .getMany();
 
-    switch (args.type) {
-      case 'question':
-      case 'topic': {
-        const filteredResponse = response.filter(
-          (post) =>
-            post.type === args.type.toString() &&
-            (args.isClosed === undefined ? true : post.is_readable) &&
-            (args.isBanned === undefined
-              ? true
-              : post.author.is_banned === args.isBanned) &&
-            (args.isClosed === undefined
-              ? true
-              : post.is_opened === !args.isClosed),
-        );
-        return { number: filteredResponse.length };
-      }
-      case 'all':
-      default: {
-        const filteredResponse = response.filter(
-          (post) =>
-            (args.isClosed === undefined ? true : post.is_readable) &&
-            (args.isBanned === undefined
-              ? true
-              : post.author.is_banned === args.isBanned) &&
-            (args.isClosed === undefined
-              ? true
-              : post.is_opened === !args.isClosed),
-        );
-        return { number: filteredResponse.length };
-      }
-    }
+    //conditional sql query depending of the url queries
+    const filteredResponse = response.filter(
+      (post) =>
+        //if type is 'all', select all else only the given type
+        (args.type.toString() === 'all' ? true : post.type === args.type.toString()) &&
+        //if author is defined, only posts from the specified author id
+        (args.authorId === undefined ? true : post.author.id === args.authorId) &&
+        //if isClosed and isReadable is (avoid a sql error), only posts of the specified access
+        (args.isClosed !== undefined && args.isReadable !== undefined ? post.is_readable === args.isReadable : true ) &&
+        //if isBanned is defined, only posts from a specified author access (ban or not)
+        (args.isBanned === undefined ? true : post.author.is_banned === args.isBanned) &&
+        //if isClosed is defined, only closed posts
+        (['all', 'question', 'topic'].includes(args.type.toString()) && args.isClosed === undefined ? true : post.is_opened === !args.isClosed)
+    );
+    return { number: filteredResponse.length };
   }
 
   async createPost(post) {
@@ -623,6 +634,7 @@ export class PostService {
       .createQueryBuilder('post')
       .where('post.id = :id', { id: id })
       .innerJoinAndSelect('post.author', 'author')
+      .leftJoinAndSelect('post.ratings', 'ratings')
       .leftJoinAndSelect('post.is_favourited_by', 'is_favourited_by')
       .leftJoinAndSelect('post.tags', 'tags')
       .leftJoinAndSelect('post.replies', 'replies')
@@ -630,20 +642,6 @@ export class PostService {
       .leftJoinAndSelect('replies.author', 'replyAuthor')
       .leftJoinAndSelect('replies.ratings', 'replyRatings')
       .getOne();
-
-    if (response.type === 'answer' || response.type === 'comment') {
-      throw new HttpException(
-        {
-          message: 'Invalid thread id',
-          error: 'Invalid thread id',
-          statusCode: HttpStatus.BAD_REQUEST,
-        },
-        HttpStatus.BAD_REQUEST,
-        {
-          cause: 'Invalid thread id',
-        },
-      );
-    }
 
     if (response.replies) {
       switch (sort) {
@@ -678,14 +676,17 @@ export class PostService {
 
     const responseLength = response.replies.length;
 
-    if (numPage > Math.floor(responseLength / numMax)) {
-      numPage = Math.floor(responseLength / numMax);
+    if (response.type === 'question' || response.type === 'topic') {
+      
+      if (numPage > Math.floor(responseLength / numMax)) {
+        numPage = Math.floor(responseLength / numMax);
+      }
+      
+      response.replies = response.replies.slice(
+        numMax * numPage,
+        Math.min(responseLength, numMax * numPage + numMax),
+      );
     }
-
-    response.replies = response.replies.slice(
-      numMax * numPage,
-      Math.min(responseLength, numMax * numPage + numMax),
-    );
 
     return this.refineSinglePostData(response, responseLength);
   }
@@ -749,6 +750,59 @@ export class PostService {
       .filter((post) => !post.author.is_banned);
 
     return this.refineReplyData(response);
+  }
+
+  async getReplyPathById(id: number) {
+    const response = await this.postRepository
+      .createQueryBuilder('post')
+      .where('post.id = :id', { id: id })
+      .getOne();
+
+    if (response.type === 'question' || response.type === 'topic') {
+      throw new HttpException(
+        {
+          message: 'Invalid reply id',
+          error: 'Invalid reply id',
+          statusCode: HttpStatus.BAD_REQUEST,
+        },
+        HttpStatus.BAD_REQUEST,
+        {
+          cause: 'Invalid reply id',
+        },
+      );
+    }
+
+    const publicationsPath: Array<number> = [id];
+    let replyDepth: number = 1;
+
+    const directReply = await this.postRepository
+      .createQueryBuilder('post')
+      .where('post.id = :id', { id: id })
+      .innerJoinAndSelect('post.reply_to', 'replyTo')
+      .innerJoinAndSelect('replyTo.author', 'author')
+      .getOne();
+    publicationsPath.push(directReply.reply_to.id);
+    let lastPublicationRepliedToType: string = directReply.reply_to.type;
+    
+    while (lastPublicationRepliedToType === 'answer' || lastPublicationRepliedToType === 'comment') {
+      replyDepth += 1;
+      const indirectReply = await this.postRepository
+        .createQueryBuilder('post')
+        .where('post.id = :id', { id: publicationsPath[publicationsPath.length -1] })
+        .innerJoinAndSelect('post.reply_to', 'replyTo')
+        .getOne();
+      publicationsPath.push(indirectReply.reply_to.id);
+      lastPublicationRepliedToType = indirectReply.reply_to.type;
+    }
+    return ({
+      original_publication_id: publicationsPath[publicationsPath.length -1],
+      direct_reply: {
+        id: publicationsPath[1],
+        content: directReply.reply_to.content,
+        author_id: directReply.reply_to.author.id
+      },
+      reply_depth: replyDepth,
+    });
   }
 
   async createReply(post) {

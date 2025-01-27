@@ -1,4 +1,4 @@
-import { sortselectionWebcontentType } from "../types/sortselectionWebcontentType";
+import { sortSelectionWebcontentType } from "../types/components/sortSelectionWebcontentType";
 
 export default function PostSortSelection({ setSort, webcontent }: Props) {
   return (
@@ -26,5 +26,5 @@ export default function PostSortSelection({ setSort, webcontent }: Props) {
 
 type Props = {
   setSort: (arg0: string) => void;
-  webcontent: sortselectionWebcontentType;
+  webcontent: sortSelectionWebcontentType;
 };

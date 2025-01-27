@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import useWindowDimensions from "../scripts/useWindowDimensions";
-import { backofficeNavbarWebcontentType } from "../types/backoffice/backOfficeNavbarWebcontentType";
+import { backofficeNavbarWebcontentType } from "../types/components/backoffice/backOfficeNavbarWebcontentType";
 
 export default function BackOfficeNavbar({ webcontent }: Props) {
   const { windowWidth } = useWindowDimensions();
@@ -62,6 +62,17 @@ export default function BackOfficeNavbar({ webcontent }: Props) {
             {webcontent.tags.text.content}
           </Link>
           <Link
+            to="/backoffice/members"
+            title={webcontent.members.hover.content}
+            className={
+              pathname === "/backoffice/members"
+                ? "w-[90%] min-h-10 mx-auto px-2 h-10 xl:px-6 xl:h-12 bg-indigo-600 text-white fill-white rounded-md shadow-sm shadow-indigo-900 flex items-center text-center justify-center"
+                : "w-[90%] min-h-10 mx-auto px-2 h-10 xl:px-6 xl:h-12 bg-indigo-400 hover:bg-indigo-600 hover:text-white hover:fill-white rounded-md shadow-sm shadow-indigo-700 hover:shadow-indigo-900 flex items-center text-center justify-center"
+            }
+          >
+            {webcontent.members.text.content}
+          </Link>
+          <Link
             to="/backoffice/moderation"
             title={webcontent.moderation.hover.content}
             className={
@@ -73,17 +84,6 @@ export default function BackOfficeNavbar({ webcontent }: Props) {
             {webcontent.moderation.text.content}
           </Link>
           <Link
-            to="/backoffice/interface"
-            title={webcontent.interface.hover.content}
-            className={
-              pathname === "/backoffice/interface"
-                ? "w-[90%] min-h-10 mx-auto px-2 h-10 xl:px-6 xl:h-12 bg-indigo-600 text-white fill-white rounded-md shadow-sm shadow-indigo-900 flex items-center text-center justify-center"
-                : "w-[90%] min-h-10 mx-auto px-2 h-10 xl:px-6 xl:h-12 bg-indigo-400 hover:bg-indigo-600 hover:text-white hover:fill-white rounded-md shadow-sm shadow-indigo-700 hover:shadow-indigo-900 flex items-center text-center justify-center"
-            }
-          >
-            {webcontent.interface.text.content}
-          </Link>
-          <Link
             to="/backoffice/threads"
             title={webcontent.threads.hover.content}
             className={
@@ -93,6 +93,17 @@ export default function BackOfficeNavbar({ webcontent }: Props) {
             }
           >
             {webcontent.threads.text.content}
+          </Link>
+          <Link
+            to="/backoffice/interface"
+            title={webcontent.interface.hover.content}
+            className={
+              pathname === "/backoffice/interface"
+                ? "w-[90%] min-h-10 mx-auto px-2 h-10 xl:px-6 xl:h-12 bg-indigo-600 text-white fill-white rounded-md shadow-sm shadow-indigo-900 flex items-center text-center justify-center"
+                : "w-[90%] min-h-10 mx-auto px-2 h-10 xl:px-6 xl:h-12 bg-indigo-400 hover:bg-indigo-600 hover:text-white hover:fill-white rounded-md shadow-sm shadow-indigo-700 hover:shadow-indigo-900 flex items-center text-center justify-center"
+            }
+          >
+            {webcontent.interface.text.content}
           </Link>
         </div>
       ) : (

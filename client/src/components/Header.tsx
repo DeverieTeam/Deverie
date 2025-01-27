@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import ConnectionWindow from "../components/userAccount/ConnectionWindow";
-import { headerWebcontentType } from "../types/headerWebcontentType";
+import { headerWebcontentType } from "../types/components/headerWebcontentType";
 import { useAuth } from "../contexts/useAuth";
 import DropDownMenu from "./userAccount/DropDownMenu";
 

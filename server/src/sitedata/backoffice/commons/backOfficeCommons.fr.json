@@ -1,4 +1,46 @@
 {
+  "boolean": {
+    "yes": {
+      "name": "Texte d'affirmation",
+      "content": "Oui"
+    },
+    "no": {
+      "name": "Texte de négation",
+      "content": "Non"
+    }
+  },
+  "publicationTypes": {
+    "question": {
+      "name": "Nom du type de publication de la partie question",
+      "content": "Question"
+    },
+    "answer": {
+      "name": "Nom du type de publication en réponse à une question",
+      "content": "Réponse"
+    },
+    "topic": {
+      "name": "Nom du type de publication de la partie forum",
+      "content": "Post"
+    },
+    "comment": {
+      "name": "Nom du type de publication en réponse à un post",
+      "content": "Commentaire"
+    }
+  },
+  "roles": {
+    "member": {
+      "name": "Nom du rôle de l'utilisateur inscrit",
+      "content": "Membre"
+    },
+    "moderator": {
+      "name": "Nom du rôle d'un gérant du contenu du site",
+      "content": "Modérateur"
+    },
+    "administrator": {
+      "name": "Nom du rôle d'un gérant de Deverie",
+      "content": "Administrateur"
+    }
+  },
 	"sections": {
     "home": {
       "text": {
@@ -30,6 +72,16 @@
         "content": "Panneau de gestion des tags"
       }
     },
+    "members": {
+      "text": {
+        "name": "Texte d'accès à la gestion des membres",
+        "content": "Gestion des membres"
+      },
+      "hover": {
+        "name": "Texte d'accès à la gestion des membres de survol",
+        "content": "Panneau de gestion des membres"
+      }
+    },
     "moderation": {
       "text": {
         "name": "Texte d'accès à la gestion des modérateurs",
@@ -40,6 +92,16 @@
         "content": "Panneau de gestion des modérateurs"
       }
     },
+    "threads": {
+      "text": {
+        "name": "Texte d'accès à la gestion des publications",
+        "content": "Gestion des publications"
+      },
+      "hover": {
+        "name": "Texte d'accès à la gestion des publications de survol",
+        "content": "Panneau de gestion des publications"
+      }
+    },
     "interface": {
       "text": {
         "name": "Texte d'accès à la gestion de l'interface",
@@ -48,16 +110,6 @@
       "hover": {
         "name": "Texte d'accès à la gestion de l'interface de survol",
         "content": "Panneau de gestion du web content"
-      }
-    },
-    "threads": {
-      "text": {
-        "name": "Texte d'accès à la gestion des posts",
-        "content": "Gestion des posts"
-      },
-      "hover": {
-        "name": "Texte d'accès à la gestion des posts de survol",
-        "content": "Panneau de gestion des posts"
       }
     }
   },

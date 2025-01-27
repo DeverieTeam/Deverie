@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import TagFilterChecker from "./TagFilterChecker";
-import { tagfilterdisplayerWebcontentType } from "../types/tagfilterdisplayerWebcontentType";
+import { tagFilterDisplayerWebcontentType } from "../types/components/tagFilterDisplayerWebcontentType";
 
 export default function TagFilterDisplayer({
   tagFamily,
@@ -126,5 +126,5 @@ type Props = {
   langTags: string[];
   envTags: string[];
   technoTags: string[];
-  webcontent: tagfilterdisplayerWebcontentType;
+  webcontent: tagFilterDisplayerWebcontentType;
 };

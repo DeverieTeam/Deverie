@@ -1,124 +1,51 @@
+import { webcontentObjectType } from '../samples/webcontentObjectType.ts';
+import { backOfficeCommonsWebcontentType } from '../samples/backOfficeCommonsWebcontentType.ts';
+
 export type backOfficeTagsManagementWebcontentType = {
-  commons: {
-    buttons: {
-      submit: {
-        text: {
-          name: string;
-          content: string;
-        };
-        hover: {
-          name: string;
-          content: string;
-        };
-      };
-    };
-  };
+  commons: backOfficeCommonsWebcontentType;
   page: {
-    title: {
-      name: string;
-      content: string;
-    };
+    title: webcontentObjectType;
     actions: {
       create: {
-        title: {
-          name: string;
-          content: string;
-        };
-        windowTitle: {
-          name: string;
-          content: string;
-        };
+        title: webcontentObjectType;
+        windowTitle: webcontentObjectType;
       };
       modify: {
-        title: {
-          name: string;
-          content: string;
-        };
-        windowTitle: {
-          name: string;
-          content: string;
-        };
+        title: webcontentObjectType;
+        windowTitle: webcontentObjectType;
       };
       delete: {
-        title: {
-          name: string;
-          content: string;
-        };
-        windowTitle: {
-          name: string;
-          content: string;
-        };
+        title: webcontentObjectType;
+        windowTitle: webcontentObjectType;
       };
     };
     fields: {
-      tagName: {
-        name: string;
-        content: string;
-      };
-      tagLogo: {
-        name: string;
-        content: string;
-      };
-      tagFamily: {
-        name: string;
-        content: string;
-      };
-      tagPreview: {
-        name: string;
-        content: string;
-      };
+      tagName: webcontentObjectType;
+      tagLogo: webcontentObjectType;
+      tagFamily: webcontentObjectType;
+      tagPreview: webcontentObjectType;
     };
     buttons: {
       cancel: {
-        text: {
-          name: string;
-          content: string;
-        };
-        hover: {
-          name: string;
-          content: string;
-        };
+        text: webcontentObjectType;
+        hover: webcontentObjectType;
       };
       confirm: {
-        text: {
-          name: string;
-          content: string;
-        };
-        hover: {
-          name: string;
-          content: string;
-        };
+        text: webcontentObjectType;
+        hover: webcontentObjectType;
       };
     };
     placeholders: {
-      tagSelect: {
-        name: string;
-        content: string;
-      };
-      familySelect: {
-        name: string;
-        content: string;
-      };
+      tagSelect: webcontentObjectType;
+      familySelect: webcontentObjectType;
     };
     tagsFamilies: {
-      language: {
-        name: string;
-        content: string;
-      };
-      environment: {
-        name: string;
-        content: string;
-      };
-      technology: {
-        name: string;
-        content: string;
-      };
+      language: webcontentObjectType;
+      environment: webcontentObjectType;
+      technology: webcontentObjectType;
     };
     warnings: {
-      deletionConfirmationAlert: {
-        name: string;
-        content: string;
-      }
+      deletionConfirmationAlert: webcontentObjectType
     };
   };
 };

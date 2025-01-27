@@ -1,4 +1,4 @@
-import { sortselectionWebcontentType } from "../types/sortselectionWebcontentType";
+import { sortSelectionWebcontentType } from "../types/components/sortSelectionWebcontentType";
 
 export default function ThreadsSortSelection({
   threadType,
@@ -33,5 +33,5 @@ export default function ThreadsSortSelection({
 type Props = {
   threadType: "topic" | "question";
   setSort: (arg0: string) => void;
-  webcontent: sortselectionWebcontentType;
+  webcontent: sortSelectionWebcontentType;
 };

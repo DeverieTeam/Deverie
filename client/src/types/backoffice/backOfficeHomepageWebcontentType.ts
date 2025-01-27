@@ -1,78 +1,31 @@
+import { webcontentObjectType } from '../samples/webcontentObjectType.ts';
+import { backOfficeCommonsWebcontentType } from '../samples/backOfficeCommonsWebcontentType.ts';
+
 export type backOfficeHomepageWebcontentType = {
+  commons: backOfficeCommonsWebcontentType;
   page: {
-    title: {
-      name: string;
-      content: string;
-    };
+    title: webcontentObjectType;
     statistics: {
-      title: {
-        name: string;
-        content: string;
-      };
+      title: webcontentObjectType;
       notBanned: {
-        title: {
-          name: string;
-          content: string;
-        };
-        publicationsNumberPrefix: {
-          name: string;
-          content: string;
-        };
-        questionsNumberPrefix: {
-          name: string;
-          content: string;
-        };
-        closedQuestionsNumberPrefix: {
-          name: string;
-          content: string;
-        };
-        topicsNumberPrefix: {
-          name: string;
-          content: string;
-        };
-        closedTopicsNumberPrefix: {
-          name: string;
-          content: string;
-        };
+        title: webcontentObjectType;
+        publicationsNumberPrefix: webcontentObjectType;
+        questionsNumberPrefix: webcontentObjectType;
+        closedQuestionsNumberPrefix: webcontentObjectType;
+        topicsNumberPrefix: webcontentObjectType;
+        closedTopicsNumberPrefix: webcontentObjectType;
       };
       banned: {
-        title: {
-          name: string;
-          content: string;
-        };
-        publicationsNumberPrefix: {
-          name: string;
-          content: string;
-        };
-        questionsNumberPrefix: {
-          name: string;
-          content: string;
-        };
-        topicsNumberPrefix: {
-          name: string;
-          content: string;
-        };
+        title: webcontentObjectType;
+        publicationsNumberPrefix: webcontentObjectType;
+        questionsNumberPrefix: webcontentObjectType;
+        topicsNumberPrefix: webcontentObjectType;
       };
-      usersNumberPrefix: {
-        name: string;
-        content: string;
-      };
-      bannedUsersNumberPrefix: {
-        name: string;
-        content: string;
-      };
-      membersNumberPrefix: {
-        name: string;
-        content: string;
-      };
-      moderatorsNumberPrefix: {
-        name: string;
-        content: string;
-      };
-      administratorsNumberPrefix: {
-        name: string;
-        content: string;
-      };
+      usersNumberPrefix: webcontentObjectType;
+      bannedUsersNumberPrefix: webcontentObjectType;
+      membersNumberPrefix: webcontentObjectType;
+      moderatorsNumberPrefix: webcontentObjectType;
+      administratorsNumberPrefix: webcontentObjectType;
     };
   };
 };

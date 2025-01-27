@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { connectionwindowWebcontentType } from "../../types/connectionwindowWebcontentType";
+import { connectionWindowWebcontentType } from "../../types/components/windows/connectionWindowWebcontentType";
 import { useState } from "react";
 import { useAuth } from "../../contexts/useAuth";
 
@@ -171,5 +171,5 @@ export default function ConnectionWindow({
 
 type Props = {
   setIsConnectionWindowDisplayed: (arg0: boolean) => void;
-  webcontent: connectionwindowWebcontentType;
+  webcontent: connectionWindowWebcontentType;
 };

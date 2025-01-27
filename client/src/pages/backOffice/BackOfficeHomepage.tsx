@@ -79,82 +79,33 @@ export default function BackOfficeHomepage() {
 
   useEffect(() => {
     numberRequest({ endpoint: "member", type: "all", isBanned: false }).then(
-      (value) => {
-        setUsersNumber(value);
-      }
-    );
+      (value) => { setUsersNumber(value); });
     numberRequest({ endpoint: "member", type: "all", isBanned: true }).then(
-      (value) => {
-        setBannedUsersNumber(value);
-      }
-    );
+      (value) => { setBannedUsersNumber(value); });
     numberRequest({ endpoint: "member", type: "member", isBanned: false }).then(
-      (value) => {
-        setMembersNumber(value);
-      }
-    );
-    numberRequest({
-      endpoint: "member",
-      type: "moderator",
-      isBanned: false,
-    }).then((value) => {
-      setModeratorsNumber(value);
-    });
-    numberRequest({
-      endpoint: "member",
-      type: "administrator",
-      isBanned: false,
-    }).then((value) => {
-      setAdministratorsNumber(value);
-    });
+      (value) => { setMembersNumber(value); });
+    numberRequest({ endpoint: "member", type: "moderator", isBanned: false }).then(
+      (value) => { setModeratorsNumber(value); });
+    numberRequest({ endpoint: "member", type: "administrator", isBanned: false }).then(
+      (value) => { setAdministratorsNumber(value); });
 
     numberRequest({ endpoint: "post", type: "all", isBanned: false }).then(
-      (value) => {
-        setPublicationsNumber(value);
-      }
-    );
+      (value) => { setPublicationsNumber(value); });
     numberRequest({ endpoint: "post", type: "question", isBanned: false }).then(
-      (value) => {
-        setQuestionsNumber(value);
-      }
-    );
-    numberRequest({
-      endpoint: "post",
-      type: "question",
-      isClosed: true,
-      isBanned: false,
-    }).then((value) => {
-      setClosedQuestionsNumber(value);
-    });
+      (value) => { setQuestionsNumber(value); });
+    numberRequest({ endpoint: "post", type: "question", isClosed: true, isBanned: false }).then(
+      (value) => { setClosedQuestionsNumber(value); });
     numberRequest({ endpoint: "post", type: "topic", isBanned: false }).then(
-      (value) => {
-        setTopicsNumber(value);
-      }
-    );
-    numberRequest({
-      endpoint: "post",
-      type: "topic",
-      isClosed: true,
-      isBanned: false,
-    }).then((value) => {
-      setClosedTopicsNumber(value);
-    });
+      (value) => { setTopicsNumber(value); });
+    numberRequest({ endpoint: "post", type: "topic", isClosed: true, isBanned: false }).then(
+      (value) => { setClosedTopicsNumber(value); });
 
     numberRequest({ endpoint: "post", type: "all", isBanned: true }).then(
-      (value) => {
-        setBannedUsersPublicationsNumber(value);
-      }
-    );
+      (value) => { setBannedUsersPublicationsNumber(value); });
     numberRequest({ endpoint: "post", type: "question", isBanned: true }).then(
-      (value) => {
-        setBannedUsersQuestionsNumber(value);
-      }
-    );
+      (value) => { setBannedUsersQuestionsNumber(value); });
     numberRequest({ endpoint: "post", type: "topic", isBanned: true }).then(
-      (value) => {
-        setBannedUsersTopicsNumber(value);
-      }
-    );
+      (value) => { setBannedUsersTopicsNumber(value); });
   }, []);
 
   return (
@@ -164,8 +115,8 @@ export default function BackOfficeHomepage() {
       </p>
       <div className="w-full flex flex-row justify-evenly">
         <img
-          className="hidden md:block w-[300px] xl:w-[350px] h-[200px] xl:h-[250px] mt-12 mb-auto"
-          src=""
+          className="hidden md:block w-[300px] xl:w-[500px] h-[200px] xl:h-[350px] mt-12 xl:mt-0 mb-auto"
+          src="/images/logo-homepage.png"
         />
 
         <div className="flex flex-col gap-4 md:gap-6 xl:gap-8">

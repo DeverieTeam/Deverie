@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { threadsrowWebcontentType } from "../types/threadsrowWebcontentType";
+import { threadsRowWebcontentType } from "../types/components/threadsRowWebcontentType";
 import { useAuth } from "../contexts/useAuth";
 import Cookies from "universal-cookie";
 
@@ -232,5 +232,5 @@ type Props = {
   setMemberId: (arg0: number) => void;
   setIsMemberViewWindowOpened: (arg0: boolean) => void;
   setIsConnectionNeededClicked: (arg0: boolean) => void;
-  webcontent: threadsrowWebcontentType;
+  webcontent: threadsRowWebcontentType;
 };
