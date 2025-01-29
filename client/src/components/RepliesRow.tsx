@@ -1,24 +1,19 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../contexts/useAuth";
+import { postViewPageWebcontentType } from "../types/pages/postViewPageWebcontentType";
+
+import MemberViewWindow from "../components/windows/MemberViewWindow";
 import RepliesDisplayer from "./RepliesDisplayer";
-import { postViewPageWebcontentType } from "../types/postViewPageWebcontentType";
-import UpVoteButton from "./UpVoteButton";
-import DownVoteButton from "./DownVoteButton";
+import NewReplyWindow from "./windows/NewReplyWindow";
+import ContentEditWindow from "./windows/ContentEditWindow";
+import VoteButtons from "./VoteButtons";
 
 export default function RepliesRow({
   id,
   sort,
-  setSourcePostId,
-  setIsNewReplyWindowOpened,
+  handleDelete,
+  isPostOpened,
   setIsConnectionNeededClicked,
-  setPostId,
-  setPostContent,
-  setIsPostEditWindowOpened,
-  setPostType,
-  setIsPostDeletionWindowOpened,
-  postIsOpened,
-  setMemberId,
-  setIsMemberViewWindowOpened,
   webcontent,
 }: Props) {
   const [data, setData] = useState<null | {
@@ -46,6 +41,10 @@ export default function RepliesRow({
   }>(null);
 
   const [areDetailsOpened, setAreDetailsOpened] = useState<boolean>(false);
+  const [isMemberViewWindowOpened, setIsMemberViewWindowOpened] = useState<boolean>(false);
+
+  const [isNewReplyWindowOpened, setIsNewReplyWindowOpened] = useState<boolean>(false);
+  const [isPostEditWindowOpened, setIsPostEditWindowOpened] = useState<boolean>(false);
 
   const { auth } = useAuth();
 
@@ -62,7 +61,7 @@ export default function RepliesRow({
       .then((data) => {
         setData(data);
       });
-  }, [data, id, sort]);
+  }, [id, sort]);
 
   const handleDetailsClick = () => {
     setAreDetailsOpened(!areDetailsOpened);
@@ -70,7 +69,6 @@ export default function RepliesRow({
 
   const handleReplyButton = () => {
     if (data && auth !== undefined && auth.role !== "client") {
-      setSourcePostId(data.id);
       setIsNewReplyWindowOpened(true);
     } else {
       setIsConnectionNeededClicked(true);
@@ -80,26 +78,25 @@ export default function RepliesRow({
   const handleMemberButton = (e: React.BaseSyntheticEvent) => {
     e.stopPropagation();
     if (data) {
-      setMemberId(data.author.id);
       setIsMemberViewWindowOpened(true);
     }
   };
 
   const handleEditButton = () => {
     if (data && auth !== undefined && auth.role !== "client") {
-      setPostId(data.id);
-      setPostContent(data.content);
       setIsPostEditWindowOpened(true);
     }
   };
 
   const handleDeleteButton = () => {
     if (data && auth !== undefined && auth.role !== "client") {
-      setPostId(data.id);
-      setPostType("reply");
-      setIsPostDeletionWindowOpened(true);
+      handleDelete(data.id);
     }
   };
+
+  const handleMemberViewToggle = () => {
+    setIsMemberViewWindowOpened(true);
+  }
 
   return (
     <div>
@@ -117,18 +114,15 @@ export default function RepliesRow({
               <div className="my-auto text-center md:text-2xl font-semibold text-indigo-500">
                 {data.author.name}
               </div>
-              <div className="md:pr-2 flex-1 justify-center md:justify-end gap-1 md:gap-2 flex flex-col md:flex-row">
-                <UpVoteButton
-                  data={data}
-                  setData={setData}
-                  setIsConnectionNeededClicked={setIsConnectionNeededClicked}
-                />
-                <DownVoteButton
-                  data={data}
-                  setData={setData}
-                  setIsConnectionNeededClicked={setIsConnectionNeededClicked}
-                />
-              </div>
+              {auth && (
+                <div className="md:pr-2 flex-1 justify-center md:justify-end gap-1 md:gap-2 flex flex-col md:flex-row">
+                  <VoteButtons
+                    data={data}
+                    setData={setData}
+                    setIsConnectionNeededClicked={setIsConnectionNeededClicked}
+                  />
+                </div>
+              )}
             </button>
             <div className="justify-between gap-1 flex">
               <div className="self-start text-center text-xs md:text-base">
@@ -136,11 +130,17 @@ export default function RepliesRow({
                 {data.creation_date}
               </div>
             </div>
-            <div className="md:py-2 text-justify text-base md:text-xl">
-              {data.content
-                .split("\n")
-                .flatMap((line: string, i: number) => [line, <br key={i} />])}
-            </div>
+            <p className="md:py-2 text-justify text-base md:text-xl"
+              dangerouslySetInnerHTML={{__html: (data.content
+                                                .replace(/(<a href=")?((https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)))(">(.*)<\/a>)?/gi,
+                                                  function () {
+                                                    return (`<a href="${arguments[2]}" target="_blank">${(arguments[7] || arguments[2])}</a>`);
+                                                  })
+                                                .split("\n")
+                                                .map((line: string, i: number) => `${line}<br key=${i} />`)
+                                                .join(""))
+            }}>
+            </p>
             <div className="justify-between flex">
               {data.modification_author !== null && (
                 <div className="my-auto text-center text-xs md:text-base">
@@ -207,7 +207,7 @@ export default function RepliesRow({
           <div className="justify-start gap-2 flex">
             {auth &&
               data &&
-              postIsOpened &&
+              isPostOpened &&
               (auth.role === "client" ||
                 (auth.id && auth.id !== data.author.id)) && (
                 <button
@@ -218,7 +218,8 @@ export default function RepliesRow({
                 </button>
               )}
           </div>
-          {data.replies !== null && data.replies.length > 0 && (
+          {data && data.replies &&
+            data.replies.length > 0 && (
             <details className="w-full mb-4 items-end flex flex-col">
               <summary
                 className="w-60 md:w-72 md:text-lg py-1 pl-4 bg-neutral-100 hover:bg-white rounded-lg cursor-pointer shadow-sm shadow-neutral-400"
@@ -229,26 +230,52 @@ export default function RepliesRow({
                   : `${webcontent.page.displayAnswers.content} (${data.replies.length})`}
               </summary>
               <div className="w-full flex flex-col">
-                <RepliesDisplayer
-                  repliesId={data.replies}
-                  sort={sort}
-                  setSourcePostId={setSourcePostId}
-                  setIsNewReplyWindowOpened={setIsNewReplyWindowOpened}
-                  setIsConnectionNeededClicked={setIsConnectionNeededClicked}
-                  setPostId={setPostId}
-                  setPostContent={setPostContent}
-                  setIsPostEditWindowOpened={setIsPostEditWindowOpened}
-                  setPostType={setPostType}
-                  setIsPostDeletionWindowOpened={setIsPostDeletionWindowOpened}
-                  postIsOpened={postIsOpened}
-                  setMemberId={setMemberId}
-                  setIsMemberViewWindowOpened={setIsMemberViewWindowOpened}
-                  webcontent={webcontent}
-                />
+              <RepliesDisplayer
+                data={data}
+                sort={sort}
+                isPostOpened={isPostOpened}
+                webcontent={webcontent}
+              />
               </div>
             </details>
           )}
         </div>
+      )}
+      {data && isNewReplyWindowOpened && (
+        <NewReplyWindow
+          setIsSelfOpened={setIsNewReplyWindowOpened}
+          data={data}
+          setData={setData}
+          webcontent={webcontent}
+        />
+      )}
+      {data && isPostEditWindowOpened && (
+        <ContentEditWindow
+          confirmEndpoint={'post'}
+          fieldName={'content'}
+          isLargeFormat={true}
+          canBeEmpty={false}
+          setIsSelfOpened={setIsPostEditWindowOpened}
+          data={data}
+          setData={setData}
+          webcontent={{
+            actionTitle: webcontent.page.editTitle,
+            contentTitle: webcontent.page.postContent,
+            contentPlaceholder: webcontent.page.postContentPlaceholder,
+            buttons: {
+              cancelButton: webcontent.commons.buttons.cancelButton,
+              confirmButton: webcontent.commons.buttons.confirmButton
+            }
+          }}
+          content={data.content}
+        />
+      )}
+      {isMemberViewWindowOpened && (
+        <MemberViewWindow
+          setIsSelfOpened={setIsMemberViewWindowOpened}
+          memberId={data.author.id}
+          webcontent={webcontent.commons}
+        />
       )}
     </div>
   );
@@ -257,16 +284,8 @@ export default function RepliesRow({
 type Props = {
   id: number;
   sort: string;
-  setSourcePostId: (arg0: number) => void;
-  setIsNewReplyWindowOpened: (arg0: boolean) => void;
-  setIsConnectionNeededClicked: (arg0: boolean) => void;
-  setPostId: (arg0: number) => void;
-  setPostContent: (arg0: string) => void;
-  setIsPostEditWindowOpened: (arg0: boolean) => void;
-  setPostType: (arg0: string) => void;
-  setIsPostDeletionWindowOpened: (arg0: boolean) => void;
-  postIsOpened: boolean;
-  setMemberId: (arg0: number) => void;
-  setIsMemberViewWindowOpened: (arg0: boolean) => void;
+  handleDelete: (arg0: number) => void;
+  isPostOpened: boolean;
+  setIsConnectionNeededClicked: (arg0: boolean) => null;
   webcontent: postViewPageWebcontentType;
 };

@@ -3,33 +3,20 @@ import { useAuth } from "../contexts/useAuth";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
 import { profilepageWebcontentType } from "../types/profilepageWebcontentType";
-import DescriptionEditWindow from "../components/windows/DescriptionEditWindow";
-import DisplayedNameEditWindow from "../components/windows/DisplayedNameEditWindow";
-import PronounsEditWindow from "../components/windows/PronounsEditWindow";
 import EmailDisplayConfirmationWindow from "../components/windows/EmailDisplayConfirmationWindow";
 import PasswordEditWindow from "../components/windows/PasswordEditWindow";
 import FavouriteTagsWindow from "../components/windows/FavouriteTagsWindow";
 import ProfilePictureEditWindow from "../components/windows/ProfilePictureEditWindow";
+import ContentEditWindow from "../components/windows/ContentEditWindow";
 
 export default function ProfilePage() {
-  const [isDescriptionEditWindowOpened, setIsDescriptionEditWindowOpened] =
-    useState<boolean>(false);
-  const [isDisplayedNameEditWindowOpened, setIsDisplayedNameEditWindowOpened] =
-    useState<boolean>(false);
-  const [isPronounsEditWindowOpened, setIsPronounsEditWindowOpened] =
-    useState<boolean>(false);
-  const [
-    isEmailDisplayConfirmationWindowOpened,
-    setIsEmailDisplayConfirmationWindowOpened,
-  ] = useState<boolean>(false);
-  const [isPasswordEditWindowOpened, setIsPasswordEditWindowOpened] =
-    useState<boolean>(false);
-  const [isFavouriteTagsWindowOpened, setIsFavouriteTagsWindowOpened] =
-    useState<boolean>(false);
-  const [
-    isProfilePictureEditWindowOpened,
-    setIsProfilePictureEditWindowOpened,
-  ] = useState<boolean>(false);
+  const [isDescriptionEditWindowOpened, setIsDescriptionEditWindowOpened] = useState<boolean>(false);
+  const [isDisplayedNameEditWindowOpened, setIsDisplayedNameEditWindowOpened] = useState<boolean>(false);
+  const [isPronounsEditWindowOpened, setIsPronounsEditWindowOpened] = useState<boolean>(false);
+  const [isEmailDisplayConfirmationWindowOpened, setIsEmailDisplayConfirmationWindowOpened] = useState<boolean>(false);
+  const [isPasswordEditWindowOpened, setIsPasswordEditWindowOpened] = useState<boolean>(false);
+  const [isFavouriteTagsWindowOpened, setIsFavouriteTagsWindowOpened] = useState<boolean>(false);
+  const [isProfilePictureEditWindowOpened, setIsProfilePictureEditWindowOpened] = useState<boolean>(false);
 
   const [data, setData] = useState<null | {
     id: number;
@@ -54,29 +41,27 @@ export default function ProfilePage() {
   }, [auth, navigate]);
 
   useEffect(() => {
-    if (data === null && auth && auth.id) {
-      const cookies = new Cookies(null, {
-        path: "/",
-      });
-      const jwt = cookies.get("JWT");
+    const cookies = new Cookies(null, {
+      path: "/",
+    });
+    const jwt = cookies.get("JWT");
 
-      fetch(`http://localhost:3000/member/profile/${auth.id}`, {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${jwt}`,
-        },
+    fetch(`http://localhost:3000/member/profile/${auth.id}`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${jwt}`,
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Something went wrong");
+        }
+        return response.json();
       })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("Something went wrong");
-          }
-          return response.json();
-        })
-        .then((data) => {
-          setData(data);
-        });
-    }
-  }, [data, auth]);
+      .then((data) => {
+        setData(data);
+      });
+  }, []);
 
   const handleDescriptionEditButton = () => {
     if (data && auth !== undefined && auth.role !== "client") {
@@ -323,7 +308,7 @@ export default function ProfilePage() {
             </div>
             <img
               className="mx-auto mb-6 h-24 md:h-[180px] xl:h-[240px] w-24 md:w-[180px] xl:w-[240px] rounded-full bg-transparent"
-              src={data?.profile_picture}
+              src={auth?.profile_picture}
             />
             <p className="text-lg md:text-2xl">
               {webcontent.page.otherOptions.content}
@@ -416,38 +401,73 @@ export default function ProfilePage() {
         </div>
       </div>
       {data && isDescriptionEditWindowOpened && (
-        <DescriptionEditWindow
-          setIsDescriptionEditWindowOpened={setIsDescriptionEditWindowOpened}
+        <ContentEditWindow
+          confirmEndpoint={'member'}
+          fieldName={'description'}
+          isLargeFormat={true}
+          canBeEmpty={true}
+          setIsSelfOpened={setIsDescriptionEditWindowOpened}
+          data={data}
           setData={setData}
-          previousContent={data.description}
-          webcontent={webcontent}
+          webcontent={{
+            actionTitle: webcontent.page.descriptionEditTitle,
+            contentTitle: webcontent.page.descriptionContent,
+            contentPlaceholder: webcontent.page.descriptionContentPlaceholder,
+            buttons: {
+              cancelButton: webcontent.commons.buttons.backButton,
+              confirmButton: webcontent.commons.buttons.confirmButton
+            }
+          }}
+          content={data.description}
         />
       )}
       {data && isDisplayedNameEditWindowOpened && (
-        <DisplayedNameEditWindow
-          setIsDisplayedNameEditWindowOpened={
-            setIsDisplayedNameEditWindowOpened
-          }
+        <ContentEditWindow
+          confirmEndpoint={'member'}
+          fieldName={'displayed_name'}
+          isLargeFormat={false}
+          canBeEmpty={true}
+          setIsSelfOpened={setIsDisplayedNameEditWindowOpened}
+          data={data}
           setData={setData}
-          previousContent={data.displayed_name}
-          webcontent={webcontent}
+          webcontent={{
+            actionTitle: webcontent.page.displayedNameEditTitle,
+            contentTitle: webcontent.page.displayedNameContent,
+            contentPlaceholder: webcontent.page.displayedNameContentPlaceholder,
+            buttons: {
+              cancelButton: webcontent.commons.buttons.backButton,
+              confirmButton: webcontent.commons.buttons.confirmButton
+            }
+          }}
+          content={data.displayed_name}
         />
       )}
       {data && isPronounsEditWindowOpened && (
-        <PronounsEditWindow
-          setIsPronounsEditWindowOpened={setIsPronounsEditWindowOpened}
+        <ContentEditWindow
+          confirmEndpoint={'member'}
+          fieldName={'pronouns'}
+          isLargeFormat={false}
+          canBeEmpty={true}
+          setIsSelfOpened={setIsPronounsEditWindowOpened}
+          data={data}
           setData={setData}
-          previousContent={data.pronouns}
-          webcontent={webcontent}
+          webcontent={{
+            actionTitle: webcontent.page.pronounsEditTitle,
+            contentTitle: webcontent.page.pronounsContent,
+            contentPlaceholder: webcontent.page.pronounsContentPlaceholder,
+            buttons: {
+              cancelButton: webcontent.commons.buttons.backButton,
+              confirmButton: webcontent.commons.buttons.confirmButton
+            }
+          }}
+          content={data.pronouns}
         />
       )}
       {data && isEmailDisplayConfirmationWindowOpened && (
         <EmailDisplayConfirmationWindow
-          setIsEmailDisplayConfirmationWindowOpened={
-            setIsEmailDisplayConfirmationWindowOpened
-          }
+          setIsSelfOpened={setIsEmailDisplayConfirmationWindowOpened}
+          data={data}
           setData={setData}
-          previousContent={data.is_email_displayed}
           webcontent={webcontent}
         />
       )}
@@ -470,9 +490,8 @@ export default function ProfilePage() {
       )}
       {data && isProfilePictureEditWindowOpened && (
         <ProfilePictureEditWindow
-          setIsProfilePictureEditWindowOpened={
-            setIsProfilePictureEditWindowOpened
-          }
+          setIsSelfOpened={setIsProfilePictureEditWindowOpened}
+          data={data}
           setData={setData}
           webcontent={webcontent}
         />

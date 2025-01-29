@@ -1,35 +1,37 @@
+import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { postViewPageWebcontentType } from "../../types/postViewPageWebcontentType";
 import { useAuth } from "../../contexts/useAuth";
 import Cookies from "universal-cookie";
 
 export default function PostClosureWindow({
-  setIsPostClosureWindowOpened,
+  setIsSelfOpened,
+  data,
   setData,
-  postId,
   webcontent,
 }: Props) {
+  const navigate = useNavigate();
   const { auth } = useAuth();
 
   useEffect(() => {
     if (auth && auth.role && auth.role === "client") {
-      setIsPostClosureWindowOpened(false);
+      setIsSelfOpened(false);
     }
-  }, [auth, setIsPostClosureWindowOpened]);
+  }, [auth, setIsSelfOpened]);
 
-  const exitTagWindow = () => {
-    setIsPostClosureWindowOpened(false);
+  const closeWindow = () => {
+    setIsSelfOpened(false);
   };
 
   const handleClosureButton = async (e: React.BaseSyntheticEvent) => {
     e.preventDefault();
-    if (auth && auth.id && postId) {
+    if (auth && auth.id) {
       const body: {
         id: number;
         is_opened: boolean;
         modification_author: number;
       } = {
-        id: postId,
+        id: data.id,
         is_opened: false,
         modification_author: auth.id,
       };
@@ -50,8 +52,8 @@ export default function PostClosureWindow({
         });
 
         if (response.ok) {
-          setData(null);
-          setIsPostClosureWindowOpened(false);
+          navigate(0);
+          closeWindow();
         }
       } catch (error) {
         console.error("Something went wrong: ", error);
@@ -61,8 +63,8 @@ export default function PostClosureWindow({
 
   return (
     <div
-      className="absolute h-[120%] w-[100%] bg-gray-400/60 z-20 -translate-y-16"
-      onClick={exitTagWindow}
+      className="inset-0 absolute h-[120%] w-[100%] bg-gray-400/60 z-20 -translate-y-16"
+      onClick={closeWindow}
     >
       <div className="h-[100%] w-[100%] relative">
         <div className="h-screen w-screen sticky top-16">
@@ -81,7 +83,7 @@ export default function PostClosureWindow({
             <div className="justify-center gap-4 md:gap-8 flex">
               <button
                 className="py-1 px-4 md:px-8 text-center text-lg md:text-xl hover:text-white bg-indigo-400 hover:bg-indigo-600 rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900"
-                onClick={exitTagWindow}
+                onClick={closeWindow}
                 title={webcontent.commons.buttons.backButton.hover.content}
               >
                 {webcontent.commons.buttons.backButton.text.content}
@@ -102,7 +104,34 @@ export default function PostClosureWindow({
 }
 
 type Props = {
-  setIsPostClosureWindowOpened: (arg0: boolean) => void;
+  setIsSelfOpened: (arg0: boolean) => void;
+  data: {
+    id: number;
+    author: {
+      id: number;
+      name: string;
+      profile_picture: string;
+      is_banned: boolean;
+      role: "member" | "moderator" | "administrator";
+    };
+    tags: {
+      id: number;
+      name: string;
+      icon: string;
+    }[];
+    creation_date: string;
+    type: "topic" | "question";
+    title: string;
+    content: string;
+    is_opened: boolean;
+    is_readable: boolean;
+    is_favourited_by: null | number[];
+    modification_date: string;
+    modification_author: null | string;
+    emergency: null | number;
+    results_length: null | number;
+    replies: null | { id: number }[];
+  };
   setData: (
     arg0: null | {
       id: number;
@@ -132,6 +161,5 @@ type Props = {
       replies: null | { id: number }[];
     }
   ) => void;
-  postId: number;
   webcontent: postViewPageWebcontentType;
 };

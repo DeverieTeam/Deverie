@@ -6,7 +6,7 @@ export default function RegistrationValidationWindow({
   webcontent,
 }: Props) {
   return (
-    <div className="absolute  h-[120%] w-[100%] bg-gray-400/60 z-20 -translate-y-16">
+    <div className="inset-0 absolute h-[120%] w-[100%] bg-gray-400/60 z-20 -translate-y-16">
       <div className="h-[100%] w-[100%] relative">
         <div className="h-screen w-screen sticky top-16">
           <div className="mx-auto px-4 py-8 h-[530px] md:h-[500px] w-[290px] md:w-[500px] bg-neutral-50 translate-y-[20%] md:translate-y-[25%] xl:translate-y-[30%] justify-between rounded-lg shadow-sm shadow-gray-700 flex flex-col overflow-auto">

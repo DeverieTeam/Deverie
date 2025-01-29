@@ -2,7 +2,7 @@ import { useLoaderData, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import ThreadsDisplayer from "../components/ThreadsDisplayer";
 import TagFilterWindow from "../components/windows/TagFilterWindow";
-import ThreadsPagination from "../components/ThreadsPagination";
+import Pagination from "../components/Pagination";
 import ThreadsSortSelection from "../components/ThreadsSortSelection";
 import SearchField from "../components/SearchField";
 import ConnectionNeeded from "../components/userAccount/ConnectionNeeded";
@@ -14,15 +14,10 @@ import MemberViewWindow from "../components/windows/MemberViewWindow";
 import BanConfirmWindow from "../components/windows/BanConfirmWindow";
 
 export default function ThreadsPage({ threadType }: Props) {
-  const [isConnectionNeededClicked, setIsConnectionNeededClicked] =
-    useState<boolean>(false);
-  const [isConnectionWindowDisplayed, setIsConnectionWindowDisplayed] =
-    useState<boolean>(false);
+  const [isConnectionNeededClicked, setIsConnectionNeededClicked] = useState<boolean>(false);
+  const [isConnectionWindowDisplayed, setIsConnectionWindowDisplayed] = useState<boolean>(false);
   const [isTagButtonClicked, setIsTagButtonClicked] = useState<boolean>(false);
-  const [isMemberViewWindowOpened, setIsMemberViewWindowOpened] =
-    useState<boolean>(false);
-  const [isBanConfirmWindowOpened, setIsBanConfirmWindowOpened] =
-    useState<boolean>(false);
+  const [isMemberViewWindowOpened, setIsMemberViewWindowOpened] = useState<boolean>(false);
   const [memberId, setMemberId] = useState<null | number>(null);
 
   const [dataForPage, setDataForPage] = useState<
@@ -59,7 +54,7 @@ export default function ThreadsPage({ threadType }: Props) {
   const { auth } = useAuth();
 
   const handleTagFilterButton = () => {
-    setIsTagButtonClicked(!isTagButtonClicked);
+    setIsTagButtonClicked(true);
   };
 
   const handleNewPostButton = () => {
@@ -172,8 +167,8 @@ export default function ThreadsPage({ threadType }: Props) {
       </div>
       <div className="w-full px-1 md:px-0 md:max-w-[750px] md:mx-auto flex flex-col">
         {dataForPage !== null && dataForPage.length > 0 && (
-          <ThreadsPagination
-            dataForPage={dataForPage}
+          <Pagination
+            data={dataForPage}
             pagination={pagination}
             setPagination={setPagination}
             webcontent={webcontent.commons.pagination}
@@ -200,14 +195,9 @@ export default function ThreadsPage({ threadType }: Props) {
           }}
         />
       )}
-      {isTagButtonClicked &&
-        tags !== null &&
-        langTags !== null &&
-        envTags !== null &&
-        technoTags !== null && (
+      {isTagButtonClicked && tags && langTags && envTags && technoTags && (
           <TagFilterWindow
-            isTagButtonClicked={isTagButtonClicked}
-            setIsTagButtonClicked={setIsTagButtonClicked}
+            setIsSelfOpened={setIsTagButtonClicked}
             tags={tags}
             setTags={setTags}
             langTags={langTags}
@@ -221,15 +211,7 @@ export default function ThreadsPage({ threadType }: Props) {
         )}
       {isMemberViewWindowOpened && memberId && (
         <MemberViewWindow
-          setIsMemberViewWindowOpened={setIsMemberViewWindowOpened}
-          setIsBanConfirmWindowOpened={setIsBanConfirmWindowOpened}
-          memberId={memberId}
-          webcontent={webcontent.commons.memberWindow}
-        />
-      )}
-      {isBanConfirmWindowOpened && memberId && (
-        <BanConfirmWindow
-          setIsBanConfirmWindowOpened={setIsBanConfirmWindowOpened}
+          setIsSelfOpened={setIsMemberViewWindowOpened}
           memberId={memberId}
           webcontent={webcontent.commons}
         />

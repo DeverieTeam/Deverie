@@ -4,6 +4,7 @@ import { useAuth } from "../contexts/useAuth";
 import Cookies from "universal-cookie";
 
 export default function ThreadsRow({
+  handleUpdate,
   post,
   setData,
   setMemberId,
@@ -18,17 +19,25 @@ export default function ThreadsRow({
     navigate({ pathname: "/postView", search: `?id=${post.id}` });
   };
 
-  const handleFavButton = async (e: React.BaseSyntheticEvent) => {
+  const handleToggleFavButton = async (e: React.BaseSyntheticEvent) => {
     e.stopPropagation();
     e.preventDefault();
     if (auth && auth.role !== "client" && auth.id) {
-      const body: {
+      const tmpUpdatedPost = post;
+      
+      let body: {
         id: number;
-        addFav: { id: number };
+        addFav?: { id: number };
+        removeFav?: { id: number };
       } = {
-        id: post.id,
-        addFav: { id: auth.id },
+        id: post.id
       };
+
+      if (post.is_favourited_by.includes(auth.id)) {
+        body.removeFav = { id: auth.id };
+      } else {
+        body.addFav = { id: auth.id };
+      }
 
       try {
         const cookies = new Cookies(null, {
@@ -46,7 +55,7 @@ export default function ThreadsRow({
         });
 
         if (response.ok) {
-          setData(null);
+          handleUpdate();
         }
       } catch (error) {
         console.error("Something went wrong: ", error);
@@ -56,68 +65,18 @@ export default function ThreadsRow({
     }
   };
 
-  const handleUnfavButton = async (e: React.BaseSyntheticEvent) => {
-    e.stopPropagation();
-    e.preventDefault();
-    if (auth && auth.role !== "client" && auth.id) {
-      const body: {
-        id: number;
-        removeFav: { id: number };
-      } = {
-        id: post.id,
-        removeFav: { id: auth.id },
-      };
-
-      try {
-        const cookies = new Cookies(null, {
-          path: "/",
-        });
-        const jwt = cookies.get("JWT");
-        const response = await fetch("http://localhost:3000/post", {
-          method: "PUT",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${jwt}`,
-          },
-          body: JSON.stringify(body),
-        });
-
-        if (response.ok) {
-          setData(null);
-        }
-      } catch (error) {
-        console.error("Something went wrong: ", error);
-      }
-    }
-  };
-
   const getfavourite = () => {
-    if (auth && auth.id && post.is_favourited_by.includes(auth.id)) {
-      return (
-        <div
-          title={webcontent.favourite.remove.hover.content}
-          onClick={handleUnfavButton}
-        >
-          <img
-            className="m-auto w-5 md:w-8 h-5 md:h-8 bg-transparent"
-            src="/icons/favourite.png"
-          />
-        </div>
-      );
-    } else {
-      return (
-        <div
-          title={webcontent.favourite.add.hover.content}
-          onClick={handleFavButton}
-        >
-          <img
-            className="m-auto w-5 md:w-8 h-5 md:h-8 bg-transparent"
-            src="/icons/notFavourite.svg"
-          />
-        </div>
-      );
-    }
+    return (
+      <div
+        title={webcontent.favourite[(auth && auth.id && post.is_favourited_by.includes(auth.id)) ? 'remove' : 'add'].hover.content}
+        onClick={handleToggleFavButton}
+      >
+        <img
+          className="m-auto w-5 md:w-8 h-5 md:h-8 bg-transparent"
+          src={'/icons/' + ((auth && auth.id && post.is_favourited_by.includes(auth.id)) ? 'favourite.png' : 'notFavourite.svg')}
+        />
+      </div>
+    );
   };
 
   const handleMemberButton = (e: React.BaseSyntheticEvent) => {
@@ -188,6 +147,7 @@ export default function ThreadsRow({
 }
 
 type Props = {
+  handleUpdate: (arg0: number) => void;
   post: {
     id: number;
     author: { id: number; name: string; profile_picture: string };

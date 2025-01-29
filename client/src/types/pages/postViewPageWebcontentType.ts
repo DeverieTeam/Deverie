@@ -1,7 +1,7 @@
 import { webcontentObjectType } from 'samples/webcontentObjectType.ts';
 import { mainCommonsWebcontentType } from 'samples/mainCommonsWebcontentType.ts';
 
-export type postviewpageWebcontentType = {
+export type postViewPageWebcontentType = {
   commons: mainCommonsWebcontentType;
   page: {
     associatedTags: webcontentObjectType;

@@ -3,8 +3,7 @@ import TagFilterDisplayer from "../TagFilterDisplayer";
 import { tagFilterWindowWebcontentType } from "../../types/components/windows/tagFilterWindowWebcontentType";
 
 export default function TagFilterWindow({
-  isTagButtonClicked,
-  setIsTagButtonClicked,
+  setIsSelfOpened,
   tags,
   setTags,
   langTags,
@@ -12,30 +11,30 @@ export default function TagFilterWindow({
   technoTags,
   webcontent,
 }: Props) {
-  const [tempTags, setTempTags] = useState<string[]>([]);
+  const [tmpTags, setTmpTags] = useState<string[]>([]);
 
   useEffect(() => {
     if (tags !== null) {
-      setTempTags(tags);
+      setTmpTags(tags);
     }
   }, [tags]);
 
-  const exitTagWindow = () => {
-    setIsTagButtonClicked(!isTagButtonClicked);
+  const closeWindow = () => {
+    setIsSelfOpened(false);
   };
 
   const handleConfirmButton = () => {
-    setTags(tempTags);
-    localStorage.setItem("Tags", tempTags.join("&"));
-    setIsTagButtonClicked(!isTagButtonClicked);
+    setTags(tmpTags);
+    localStorage.setItem("Tags", tmpTags.join("&"));
+    setIsSelfOpened(false);
   };
 
   const handleAddAll = () => {
     const array: string[] = langTags.concat(envTags).concat(technoTags);
 
     for (const tag of array) {
-      if (!tempTags.includes(tag)) {
-        setTempTags((pv) => pv.concat([tag]));
+      if (!tmpTags.includes(tag)) {
+        setTmpTags((pv) => pv.concat([tag]));
       }
     }
   };
@@ -44,16 +43,16 @@ export default function TagFilterWindow({
     const array: string[] = langTags.concat(envTags).concat(technoTags);
 
     for (const tag of array) {
-      if (tempTags.includes(tag)) {
-        setTempTags((pv) => pv.filter((item: string) => item !== tag));
+      if (tmpTags.includes(tag)) {
+        setTmpTags((pv) => pv.filter((item: string) => item !== tag));
       }
     }
   };
 
   return (
     <div
-      className="absolute  h-[120%] w-[100%] bg-gray-400/60 z-20 -translate-y-16"
-      onClick={exitTagWindow}
+      className="inset-0 absolute h-[120%] w-[100%] bg-gray-400/60 z-20 -translate-y-16"
+      onClick={closeWindow}
     >
       <div className="h-[100%] w-[100%] relative">
         <div className="h-screen w-screen sticky top-16">
@@ -64,7 +63,7 @@ export default function TagFilterWindow({
             }}
           >
             <div className="flex flex-col">
-              {tempTags !== null &&
+              {tmpTags !== null &&
                 ["language", "environment", "technology"].map((family) => {
                   if (
                     family === "language" ||
@@ -75,8 +74,8 @@ export default function TagFilterWindow({
                       <TagFilterDisplayer
                         key={family}
                         tagFamily={family}
-                        tempTags={tempTags}
-                        setTempTags={setTempTags}
+                        tmpTags={tmpTags}
+                        setTmpTags={setTmpTags}
                         langTags={langTags}
                         envTags={envTags}
                         technoTags={technoTags}
@@ -108,7 +107,7 @@ export default function TagFilterWindow({
               <div className="justify-center gap-4 flex">
                 <button
                   className="py-1 px-4 md:px-8 text-center text-lg md:text-xl hover:text-white bg-indigo-400 hover:bg-indigo-600 rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900"
-                  onClick={exitTagWindow}
+                  onClick={closeWindow}
                   title={webcontent.buttons.cancelButton.hover.content}
                 >
                   {webcontent.buttons.cancelButton.text.content}
@@ -130,8 +129,7 @@ export default function TagFilterWindow({
 }
 
 type Props = {
-  isTagButtonClicked: boolean;
-  setIsTagButtonClicked: (arg0: boolean) => void;
+  setIsSelfOpened: (arg0: boolean) => void;
   tags: string[];
   setTags: (arg0: string[] | null) => void;
   langTags: string[];
