@@ -10,6 +10,7 @@ export default function BackOfficeHomepage() {
   const navigate = useNavigate();
   
   const webcontent = useLoaderData() as backOfficeHomepageWebcontentType;
+  document.title = webcontent.page.title.content;
 
   const [usersNumber, setUsersNumber] = useState<number>(0);
   const [bannedUsersNumber, setBannedUsersNumber] = useState<number>(0);

@@ -13,6 +13,7 @@ export default function BackOfficeMembersManagement() {
   const { windowWidth } = useWindowDimensions();
 
   const webcontent = useLoaderData() as backOfficeMembersManagementWebcontentType;
+  document.title = `${webcontent.page.title.content} - Deverie`;
 
   const maximumEffectiveDetailsWidth = 768;
 

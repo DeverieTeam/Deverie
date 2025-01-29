@@ -3,6 +3,10 @@
     "name": "Titre de la page d'inscription",
     "content": "M'inscrire sur Deverie"
   },
+  "tabTitle": {
+    "name": "Titre de l'onglet de la page d'inscription",
+    "content": "Inscription"
+  },
   "form": {
     "generalInformations": {
       "main": {

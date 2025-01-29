@@ -11,6 +11,7 @@ export default function RegisterPage() {
   const navigate = useNavigate();
   
   const webcontent = useLoaderData() as registerpageWebcontentType;
+  document.title = `${webcontent.page.tabTitle.content} - Deverie`;
 
   const minimumFieldLength: number = 4;
   const maximumFieldLength: number = 100;

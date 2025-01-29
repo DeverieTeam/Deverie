@@ -19,6 +19,7 @@ export default function FavouritesPage() {
   const navigate = useNavigate();
 
   const webcontent = useLoaderData() as favouritespageWebcontentType;
+  document.title = `${webcontent.page.title.content} - Deverie`;
 
   const [isTagButtonClicked, setIsTagButtonClicked] = useState<boolean>(false);
   const [isConnectionNeededClicked, setIsConnectionNeededClicked] = useState<boolean>(false);
@@ -100,7 +101,7 @@ export default function FavouritesPage() {
     <div className="w-full relative flex flex-col">
       <div className="w-full md:max-w-[750px] md:mx-auto px-1 md:px-0 gap-6 xl:gap-10 flex flex-col">
         <p className="mx-auto mt-4 text-center text-indigo-500 text-4xl md:text-5xl font-bold drop-shadow">
-          {webcontent.page.favouritesPageTitle.content}
+          {webcontent.page.title.content}
         </p>
         <div className="gap-6 xl:gap-10 md:justify-between flex flex-col md:flex-row">
           <SearchField

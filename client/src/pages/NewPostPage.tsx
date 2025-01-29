@@ -7,6 +7,7 @@ import { useAuth } from "../contexts/useAuth";
 
 export default function NewPostPage({ threadType }: Props) {
   const webcontent = useLoaderData() as newpostpageWebcontentType;
+  document.title = `${webcontent.page.title[threadType].content} - Deverie`;
 
   const serverAddress: string = import.meta.env.VITE_SERVER_ADDRESS;
   const { auth } = useAuth();

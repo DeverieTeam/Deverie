@@ -20,6 +20,7 @@ export default function ThreadsPage({ threadType }: Props) {
   const navigate = useNavigate();
 
   const webcontent = useLoaderData() as threadspageWebcontentType;
+  document.title = `${webcontent.commons.sections[threadType].main.content} - Deverie`;
 
   const [isConnectionNeededClicked, setIsConnectionNeededClicked] = useState<boolean>(false);
   const [isConnectionWindowDisplayed, setIsConnectionWindowDisplayed] = useState<boolean>(false);

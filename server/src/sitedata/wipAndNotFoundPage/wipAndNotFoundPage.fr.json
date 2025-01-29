@@ -1,0 +1,38 @@
+{
+  "wip": {
+    "title": {
+      "name": "Titre d'une page en travaux",
+      "content": "Cette page n'est pas encore prête !"
+    },
+    "tabTitle": {
+      "title": "Préfixe du titre de l'onglet d'une page en travaux",
+      "content": "Page en développement"
+    },
+    "description": {
+      "name": "Description d'une page en travaux",
+      "content": "Du contenu bientôt...\nOu pas, ça dépend...\nÇa dépend, ça dépasse...\nMais ça bosse dur (peut-être) !\nEn tout cas, pas grand chose à voir ici."
+    },
+    "imgSrc": {
+      "name": "Source de l'image d'une page en travaux",
+      "content": "WIP.png"
+    }
+  },
+  "notFound": {
+    "title": {
+      "name": "Titre d'une page absente",
+      "content": "Page Not Found"
+    },
+    "tabTitle": {
+      "title": "Préfixe du titre de l'onglet d'une page absente",
+      "content": "Page non trouvée"
+    },
+    "description": {
+      "name": "Description d'une page absente",
+      "content": "La classique erreur 404...\nPeut-être la page n'existe-t-elle plus ?\nS'est perdue dans la forêt ?\nOu a disparu dans le vide intersidéral ?\nEn tout cas, pas grand chose à voir ici."
+    },
+    "imgSrc": {
+      "name": "Source de l'image d'une page absente",
+      "content": "error-404.png"
+    }
+  }
+}

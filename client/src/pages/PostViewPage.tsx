@@ -19,9 +19,9 @@ import ContentEditWindow from "../components/windows/ContentEditWindow";
 export default function PostViewPage() {
   const serverAddress: string = import.meta.env.VITE_SERVER_ADDRESS;
   const { auth } = useAuth();
-  const query = new URLSearchParams(location.search).get("id");
-  const navigate = useNavigate();
   const location = useLocation();
+  const navigate = useNavigate();
+  const query = new URLSearchParams(location.search).get("id");
 
   const webcontent = useLoaderData() as postViewPageWebcontentType;
 
@@ -197,6 +197,13 @@ export default function PostViewPage() {
           } else {
             setData(data);
             setIsPostOpened(data.is_opened);
+            let i = 0;
+            let tmpTitle: string = data.title.split(' ')[i];
+            while (tmpTitle.length < 15) {
+              i++;
+              tmpTitle += ` ${data.title.split(' ')[i]}`
+            }
+            document.title = `${tmpTitle}... (${data.id}) - Deverie`;
           }
         });
     } else {

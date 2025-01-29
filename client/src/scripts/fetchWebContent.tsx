@@ -68,15 +68,13 @@ async function fetchWebContent(args: {
         break;
       case "wip":
       case "wipage":
-        endpoint += "/wip";
-        break;
       case "404":
-      case "notfound":
+      case "notFound":
       default:
         if (args.isBackOffice) {
           endpoint += "/commons";
         } else {
-          endpoint += "/notfound";
+          endpoint += "/wipAndNotFound";
         }
         break;
     }

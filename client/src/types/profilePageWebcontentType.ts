@@ -4,7 +4,7 @@ import { mainCommonsWebcontentType } from 'samples/mainCommonsWebcontentType.ts'
 export type profilepageWebcontentType = {
   commons: mainCommonsWebcontentType;
   page: {
-    profileTitle: webcontentObjectType;
+    title: webcontentObjectType;
     informations: webcontentObjectType;
     usernameTitle: webcontentObjectType;
     emailTitle: webcontentObjectType;

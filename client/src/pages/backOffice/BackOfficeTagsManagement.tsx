@@ -13,6 +13,7 @@ export default function BackOfficeTagsManagement() {
   const { windowWidth } = useWindowDimensions();
 
   const webcontent = useLoaderData() as backOfficeTagsManagementWebcontentType;
+  document.title = `${webcontent.page.title.content} - Deverie`;
 
   const maximumEffectiveDetailsWidth = 768;
   
