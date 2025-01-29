@@ -9,8 +9,10 @@ export default function EmailDisplayConfirmationWindow({
   setData,
   webcontent,
 }: Props) {
-  const [content, setContent] = useState<boolean>(data.is_email_displayed);
+  const serverAddress: string = import.meta.env.VITE_SERVER_ADDRESS;
   const { auth } = useAuth();
+
+  const [content, setContent] = useState<boolean>(data.is_email_displayed);
 
   useEffect(() => {
     if (auth && auth.role && auth.role === "client") {
@@ -42,7 +44,7 @@ export default function EmailDisplayConfirmationWindow({
           path: "/",
         });
         const jwt = cookies.get("JWT");
-        const response = await fetch("http://localhost:3000/member", {
+        const response = await fetch(`${serverAddress}/member`, {
           method: "PUT",
           headers: {
             Accept: "application/json",

@@ -12,8 +12,10 @@ export default function ThreadsRow({
   setIsConnectionNeededClicked,
   webcontent,
 }: Props) {
-  const navigate = useNavigate();
+  const serverAddress: string = import.meta.env.VITE_SERVER_ADDRESS;
   const { auth } = useAuth();
+
+  const navigate = useNavigate();
 
   const handleRowClick = () => {
     navigate({ pathname: "/postView", search: `?id=${post.id}` });
@@ -44,7 +46,7 @@ export default function ThreadsRow({
           path: "/",
         });
         const jwt = cookies.get("JWT");
-        const response = await fetch("http://localhost:3000/post", {
+        const response = await fetch(`${serverAddress}/post`, {
           method: "PUT",
           headers: {
             Accept: "application/json",

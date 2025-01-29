@@ -7,10 +7,12 @@ export default function PasswordEditWindow({
   setIsPasswordEditWindowOpened,
   webcontent,
 }: Props) {
+  const serverAddress: string = import.meta.env.VITE_SERVER_ADDRESS;
+  const { auth } = useAuth();
+
   const [content, setContent] = useState<string>("");
   const [checker, setChecker] = useState<string>("");
   const [isWarningOn, setIsWarningOn] = useState<boolean>(false);
-  const { auth } = useAuth();
 
   useEffect(() => {
     if (auth && auth.role && auth.role === "client") {
@@ -62,7 +64,7 @@ export default function PasswordEditWindow({
             path: "/",
           });
           const jwt = cookies.get("JWT");
-          const response = await fetch("http://localhost:3000/member", {
+          const response = await fetch(`${serverAddress}/member`, {
             method: "PUT",
             headers: {
               Accept: "application/json",

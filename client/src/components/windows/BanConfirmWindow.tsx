@@ -8,6 +8,7 @@ export default function BanConfirmWindow({
   memberId,
   webcontent,
 }: Props) {
+  const serverAddress: string = import.meta.env.VITE_SERVER_ADDRESS;
   const { auth } = useAuth();
 
   useEffect(() => {
@@ -36,7 +37,7 @@ export default function BanConfirmWindow({
           path: "/",
         });
         const jwt = cookies.get("JWT");
-        const response = await fetch("http://localhost:3000/member", {
+        const response = await fetch(`${serverAddress}/member`, {
           method: "PUT",
           headers: {
             Accept: "application/json",

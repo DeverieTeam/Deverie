@@ -9,8 +9,10 @@ export default function ProfilePictureEditWindow({
   setData,
   webcontent,
 }: Props) {
-  const [content, setContent] = useState(null);
+  const serverAddress: string = import.meta.env.VITE_SERVER_ADDRESS;
   const { auth, setAuth } = useAuth();
+  
+  const [content, setContent] = useState(null);
 
   useEffect(() => {
     if (auth && auth.role && auth.role === "client") {
@@ -45,7 +47,7 @@ export default function ProfilePictureEditWindow({
             path: "/",
           });
           const jwt = cookies.get("JWT");
-          const response = await fetch("http://localhost:3000/member", {
+          const response = await fetch(`${serverAddress}/member`, {
             method: "PUT",
             headers: {
               Accept: "application/json",
@@ -71,7 +73,7 @@ export default function ProfilePictureEditWindow({
           const formData = new FormData();
           formData.append("file", content);
 
-          const response = await fetch("http://localhost:3000/member/pp", {
+          const response = await fetch(`${serverAddress}/member/pp`, {
             method: "POST",
             headers: {
               Authorization: `Bearer ${jwt}`,
@@ -92,7 +94,7 @@ export default function ProfilePictureEditWindow({
               profile_picture_filename: result.filename,
             };
 
-            const response2 = await fetch("http://localhost:3000/member", {
+            const response2 = await fetch(`${serverAddress}/member`, {
               method: "PUT",
               headers: {
                 Accept: "application/json",

@@ -22,6 +22,8 @@ export default function AuthProvider({ children }: Props) {
 
   useEffect(() => {
     if (auth === undefined) {
+      const serverAddress: string = import.meta.env.VITE_SERVER_ADDRESS;
+      
       const cookies = new Cookies(null, {
         path: "/",
       });
@@ -30,7 +32,7 @@ export default function AuthProvider({ children }: Props) {
       if (jwt) {
         const decodedJwt: { id: number; iat: number } = jwtDecode(jwt);
         const memberId = decodedJwt.id;
-        fetch(`http://localhost:3000/member/auth/${memberId}`, {
+        fetch(`${serverAddress}/member/auth/${memberId}`, {
           method: "GET",
           headers: {
             Authorization: `Bearer ${jwt}`,

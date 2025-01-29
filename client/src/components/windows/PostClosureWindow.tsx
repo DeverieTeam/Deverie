@@ -10,8 +10,10 @@ export default function PostClosureWindow({
   setData,
   webcontent,
 }: Props) {
-  const navigate = useNavigate();
+  const serverAddress: string = import.meta.env.VITE_SERVER_ADDRESS;
   const { auth } = useAuth();
+  
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (auth && auth.role && auth.role === "client") {
@@ -41,7 +43,7 @@ export default function PostClosureWindow({
           path: "/",
         });
         const jwt = cookies.get("JWT");
-        const response = await fetch("http://localhost:3000/post", {
+        const response = await fetch(`${serverAddress}/post`, {
           method: "PUT",
           headers: {
             Accept: "application/json",

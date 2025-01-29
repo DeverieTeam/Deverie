@@ -16,6 +16,9 @@ export default function RepliesRow({
   setIsConnectionNeededClicked,
   webcontent,
 }: Props) {
+  const serverAddress: string = import.meta.env.VITE_SERVER_ADDRESS;
+  const { auth } = useAuth();
+
   const [data, setData] = useState<null | {
     id: number;
     author: {
@@ -46,12 +49,10 @@ export default function RepliesRow({
   const [isNewReplyWindowOpened, setIsNewReplyWindowOpened] = useState<boolean>(false);
   const [isPostEditWindowOpened, setIsPostEditWindowOpened] = useState<boolean>(false);
 
-  const { auth } = useAuth();
-
   useEffect(() => {
     const fetchType = `reply/${id}${sort ? `?sort=${sort}` : ""}`;
 
-    fetch(`http://localhost:3000/post/${fetchType}`)
+    fetch(`${serverAddress}/post/${fetchType}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Something went wrong");

@@ -14,6 +14,13 @@ import MemberViewWindow from "../components/windows/MemberViewWindow";
 import BanConfirmWindow from "../components/windows/BanConfirmWindow";
 
 export default function ThreadsPage({ threadType }: Props) {
+  const serverAddress: string = import.meta.env.VITE_SERVER_ADDRESS;
+  const { auth } = useAuth();
+  const { tags, setTags } = useTags();
+  const navigate = useNavigate();
+
+  const webcontent = useLoaderData() as threadspageWebcontentType;
+
   const [isConnectionNeededClicked, setIsConnectionNeededClicked] = useState<boolean>(false);
   const [isConnectionWindowDisplayed, setIsConnectionWindowDisplayed] = useState<boolean>(false);
   const [isTagButtonClicked, setIsTagButtonClicked] = useState<boolean>(false);
@@ -47,12 +54,6 @@ export default function ThreadsPage({ threadType }: Props) {
   const [envTags, setEnvTags] = useState<null | string[]>(null);
   const [technoTags, setTechnoTags] = useState<null | string[]>(null);
 
-  const webcontent = useLoaderData() as threadspageWebcontentType;
-
-  const navigate = useNavigate();
-  const { tags, setTags } = useTags();
-  const { auth } = useAuth();
-
   const handleTagFilterButton = () => {
     setIsTagButtonClicked(true);
   };
@@ -77,7 +78,7 @@ export default function ThreadsPage({ threadType }: Props) {
   }, [setTags]);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/tag`)
+    fetch(`${serverAddress}/tag`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Something went wrong");

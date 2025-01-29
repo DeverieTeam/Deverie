@@ -17,6 +17,14 @@ import MemberViewWindow from "../components/windows/MemberViewWindow";
 import ContentEditWindow from "../components/windows/ContentEditWindow";
 
 export default function PostViewPage() {
+  const serverAddress: string = import.meta.env.VITE_SERVER_ADDRESS;
+  const { auth } = useAuth();
+  const query = new URLSearchParams(location.search).get("id");
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const webcontent = useLoaderData() as postViewPageWebcontentType;
+
   const [isNewReplyWindowOpened, setIsNewReplyWindowOpened] = useState<boolean>(false);
   const [isPostEditWindowOpened, setIsPostEditWindowOpened] = useState<boolean>(false);
   const [isPostDeletionWindowOpened, setIsPostDeletionWindowOpened] = useState<boolean>(false);
@@ -59,13 +67,6 @@ export default function PostViewPage() {
   const [isPostOpened, setIsPostOpened] = useState<null | boolean>(null);
   const [memberId, setMemberId] = useState<null | number>(null);
 
-  const webcontent = useLoaderData() as postViewPageWebcontentType;
-
-  const location = useLocation();
-  const query = new URLSearchParams(location.search).get("id");
-  const navigate = useNavigate();
-  const { auth } = useAuth();
-
   const [updateCount, setUpdateCount] = useState<number>(0);
   const handleUpdate = () => {
     setUpdateCount(updateCount+1);
@@ -96,7 +97,7 @@ export default function PostViewPage() {
           path: "/",
         });
         const jwt = cookies.get("JWT");
-        const response = await fetch("http://localhost:3000/post", {
+        const response = await fetch(`${serverAddress}/post`, {
           method: "PUT",
           headers: {
             Accept: "application/json",
@@ -182,7 +183,7 @@ export default function PostViewPage() {
 
       const fetchType = `detailed/${query}` + queryHandler();
 
-      fetch(`http://localhost:3000/post/${fetchType}`)
+      fetch(`${serverAddress}/post/${fetchType}`)
         .then((response) => {
           if (!response.ok) {
             navigate(-1);

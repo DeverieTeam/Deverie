@@ -13,6 +13,13 @@ import ConnectionWindow from "../components/userAccount/ConnectionWindow";
 import ConnectionNeeded from "../components/userAccount/ConnectionNeeded";
 
 export default function FavouritesPage() {
+  const serverAddress: string = import.meta.env.VITE_SERVER_ADDRESS;
+  const { auth } = useAuth();
+  const { tags, setTags } = useTags();
+  const navigate = useNavigate();
+
+  const webcontent = useLoaderData() as favouritespageWebcontentType;
+
   const [isTagButtonClicked, setIsTagButtonClicked] = useState<boolean>(false);
   const [isConnectionNeededClicked, setIsConnectionNeededClicked] = useState<boolean>(false);
   const [isConnectionWindowDisplayed, setIsConnectionWindowDisplayed] = useState<boolean>(false);
@@ -46,12 +53,6 @@ export default function FavouritesPage() {
   const [envTags, setEnvTags] = useState<null | string[]>(null);
   const [technoTags, setTechnoTags] = useState<null | string[]>(null);
 
-  const webcontent = useLoaderData() as favouritespageWebcontentType;
-
-  const { tags, setTags } = useTags();
-  const { auth } = useAuth();
-  const navigate = useNavigate();
-
   const handleTagFilterButton = () => {
     setIsTagButtonClicked(!isTagButtonClicked);
   };
@@ -63,7 +64,7 @@ export default function FavouritesPage() {
   }, [auth, navigate]);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/tag`)
+    fetch(`${serverAddress}/tag`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Something went wrong");

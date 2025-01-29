@@ -7,6 +7,7 @@ export default function VoteButtons({
   setData,
   setIsConnectionNeededClicked,
 }: Props) {
+  const serverAddress: string = import.meta.env.VITE_SERVER_ADDRESS;
   const { auth } = useAuth();
 
   const currentRate = (data.ratings ? data.ratings.filter((rating) => rating.rater === auth.id)[0]?.type : null);
@@ -42,7 +43,7 @@ export default function VoteButtons({
           path: '/',
         });
         const jwt = cookies.get('JWT');
-        const response = await fetch('http://localhost:3000/rating', {
+        const response = await fetch(`${serverAddress}/rating`, {
           method: httpMethod,
           headers: {
             Accept: 'application/json',

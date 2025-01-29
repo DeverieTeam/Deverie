@@ -7,11 +7,12 @@ import { useAuth } from "../../contexts/useAuth";
 import useWindowDimensions from "../../scripts/useWindowDimensions";
 
 export default function BackOfficeMembersManagement() {
+  const serverAddress: string = import.meta.env.VITE_SERVER_ADDRESS;
+  const { auth } = useAuth();
+  const navigate = useNavigate();
+  const { windowWidth } = useWindowDimensions();
 
   const webcontent = useLoaderData() as backOfficeMembersManagementWebcontentType;
-  const navigate = useNavigate();
-  const { auth } = useAuth();
-  const { windowWidth } = useWindowDimensions();
 
   const maximumEffectiveDetailsWidth = 768;
 
@@ -127,15 +128,13 @@ export default function BackOfficeMembersManagement() {
   const [memberDeletedCommentsNumber, setMemberDeletedCommentsNumber] = useState<number>(0);
   
   async function fetchAllTheMembers() {
-    const url = 'http://localhost:3000';
-
     try {
       const cookies = new Cookies(null, {
         path: '/',
       });
       const jwt = cookies.get('JWT');
 
-      const membersPromise = fetch(`${url}/member`,
+      const membersPromise = fetch(`${serverAddress}/member`,
         {
           headers: {
             Accept: 'application/json',
@@ -175,7 +174,7 @@ export default function BackOfficeMembersManagement() {
       });
       const jwt = cookies.get("JWT");
       const fetchPromise = await fetch(
-        `http://localhost:3000/${args.endpoint.toString()}/number/${args.type}${queries}`,
+        `${serverAddress}/${args.endpoint.toString()}/number/${args.type}${queries}`,
         {
           headers: {
             Accept: "application/json",
@@ -204,7 +203,7 @@ export default function BackOfficeMembersManagement() {
       });
       const jwt = cookies.get("JWT");
       const fetchPromise = await fetch(
-        `http://localhost:3000/post/${args.endpoint}/${args.id}`,
+        `${serverAddress}/post/${args.endpoint}/${args.id}`,
         {
           headers: {
             Accept: "application/json",
@@ -237,7 +236,7 @@ export default function BackOfficeMembersManagement() {
           path: "/",
         });
         const jwt = cookies.get("JWT");
-        const response = await fetch("http://localhost:3000/member", {
+        const response = await fetch(`${serverAddress}/member`, {
           method: "PUT",
           headers: {
             Accept: "application/json",

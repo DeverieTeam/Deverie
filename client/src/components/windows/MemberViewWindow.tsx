@@ -8,6 +8,7 @@ export default function MemberViewWindow({
   memberId,
   webcontent,
 }: Props) {
+  const serverAddress: string = import.meta.env.VITE_SERVER_ADDRESS;
   const { auth } = useAuth();
   
   const [data, setData] = useState<null | {
@@ -27,7 +28,7 @@ export default function MemberViewWindow({
 
   useEffect(() => {
     if (data === null) {
-      fetch(`http://localhost:3000/member/${memberId}`)
+      fetch(`${serverAddress}/member/${memberId}`)
         .then((response) => {
           if (!response.ok) {
             setIsSelfOpened(false);

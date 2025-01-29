@@ -10,6 +10,12 @@ import ProfilePictureEditWindow from "../components/windows/ProfilePictureEditWi
 import ContentEditWindow from "../components/windows/ContentEditWindow";
 
 export default function ProfilePage() {
+  const serverAddress: string = import.meta.env.VITE_SERVER_ADDRESS;
+  const { auth, setAuth } = useAuth();
+  const navigate = useNavigate();
+  
+  const webcontent = useLoaderData() as profilepageWebcontentType;
+
   const [isDescriptionEditWindowOpened, setIsDescriptionEditWindowOpened] = useState<boolean>(false);
   const [isDisplayedNameEditWindowOpened, setIsDisplayedNameEditWindowOpened] = useState<boolean>(false);
   const [isPronounsEditWindowOpened, setIsPronounsEditWindowOpened] = useState<boolean>(false);
@@ -30,10 +36,6 @@ export default function ProfilePage() {
     theme: string;
     language: string;
   }>(null);
-  const { auth, setAuth } = useAuth();
-  const navigate = useNavigate();
-  const webcontent = useLoaderData() as profilepageWebcontentType;
-
   useEffect(() => {
     if (auth && auth.role && auth.role === "client") {
       navigate("/");
@@ -46,7 +48,7 @@ export default function ProfilePage() {
     });
     const jwt = cookies.get("JWT");
 
-    fetch(`http://localhost:3000/member/profile/${auth.id}`, {
+    fetch(`${serverAddress}/member/profile/${auth.id}`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${jwt}`,

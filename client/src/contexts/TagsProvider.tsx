@@ -8,7 +8,8 @@ export default function TagsProvider({ children }: Props) {
 
   useEffect(() => {
     if (auth && tags === null) {
-      fetch("http://localhost:3000/tag")
+      const serverAddress: string = import.meta.env.VITE_SERVER_ADDRESS;
+      fetch(`${serverAddress}/tag`)
         .then((response) => {
           if (!response.ok) {
             throw new Error("Something went wrong");

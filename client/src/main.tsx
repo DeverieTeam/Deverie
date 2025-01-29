@@ -9,8 +9,10 @@ import "./index.css";
 import HomePage from "./pages/HomePage.tsx";
 import ThreadsPage from "./pages/ThreadsPage.tsx";
 import NewPostPage from "./pages/NewPostPage.tsx";
-import RegisterPage from "./pages/RegisterPage.tsx";
 import PostViewPage from "./pages/PostViewPage.tsx";
+import RegisterPage from "./pages/RegisterPage.tsx";
+import ProfilePage from "./pages/ProfilePage.tsx";
+import FavouritesPage from "./pages/FavouritesPage.tsx";
 
 import BackOfficeHomepage from "./pages/backOffice/BackOfficeHomepage.tsx";
 import BackOfficeTagsManagement from "./pages/backOffice/BackOfficeTagsManagement.tsx";
@@ -21,8 +23,6 @@ import PageNotFound404 from "./pages/PageNotFound404.tsx";
 
 import AuthProvider from "./contexts/AuthProvider.tsx";
 import TagsProvider from "./contexts/TagsProvider.tsx";
-import ProfilePage from "./pages/ProfilePage.tsx";
-import FavouritesPage from "./pages/FavouritesPage.tsx";
 
 const router = createBrowserRouter([
   {

@@ -8,8 +8,10 @@ import { useAuth } from "../contexts/useAuth";
 export default function NewPostPage({ threadType }: Props) {
   const webcontent = useLoaderData() as newpostpageWebcontentType;
 
-  const navigate = useNavigate();
+  const serverAddress: string = import.meta.env.VITE_SERVER_ADDRESS;
   const { auth } = useAuth();
+  
+  const navigate = useNavigate();
   const [title, setTitle] = useState<string>("");
   const [content, setContent] = useState<string>("");
   const [tags, setTags] = useState<
@@ -123,7 +125,7 @@ export default function NewPostPage({ threadType }: Props) {
           path: "/",
         });
         const jwt = cookies.get("JWT");
-        const response = await fetch("http://localhost:3000/post/newThread", {
+        const response = await fetch(`${serverAddress}/post/newThread`, {
           method: "POST",
           headers: {
             Accept: "application/json",

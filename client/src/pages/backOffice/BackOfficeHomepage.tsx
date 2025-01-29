@@ -5,9 +5,11 @@ import { useAuth } from "../../contexts/useAuth";
 import { backOfficeHomepageWebcontentType } from "../../types/backoffice/backOfficeHomepageWebcontentType";
 
 export default function BackOfficeHomepage() {
-  const webcontent = useLoaderData() as backOfficeHomepageWebcontentType;
-  const navigate = useNavigate();
+  const serverAddress: string = import.meta.env.VITE_SERVER_ADDRESS;
   const { auth } = useAuth();
+  const navigate = useNavigate();
+  
+  const webcontent = useLoaderData() as backOfficeHomepageWebcontentType;
 
   const [usersNumber, setUsersNumber] = useState<number>(0);
   const [bannedUsersNumber, setBannedUsersNumber] = useState<number>(0);
@@ -50,7 +52,7 @@ export default function BackOfficeHomepage() {
       });
       const jwt = cookies.get("JWT");
       const fetchPromise = await fetch(
-        `http://localhost:3000/${args.endpoint.toString()}/number/${
+        `${serverAddress}/${args.endpoint.toString()}/number/${
           args.type
         }${queries}`,
         {
