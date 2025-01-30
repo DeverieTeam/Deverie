@@ -95,10 +95,6 @@ export default function RepliesRow({
     }
   };
 
-  const handleMemberViewToggle = () => {
-    setIsMemberViewWindowOpened(true);
-  }
-
   return (
     <div>
       <div className="w-full py-2 md:px-0 self-center gap-2 md:gap-4 flex flex-col">
@@ -133,7 +129,7 @@ export default function RepliesRow({
             </div>
             <p className="md:py-2 text-justify text-base md:text-xl"
               dangerouslySetInnerHTML={{__html: (data.content
-                                                .replace(/(<a href=")?((https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)))(">(.*)<\/a>)?/gi,
+                                                .replace(/(<a href=")?((https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)))(">(.*)<\/a>)?/gi,
                                                   function () {
                                                     return (`<a href="${arguments[2]}" target="_blank">${(arguments[7] || arguments[2])}</a>`);
                                                   })

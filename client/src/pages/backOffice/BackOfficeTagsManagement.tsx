@@ -248,7 +248,7 @@ export default function BackOfficeTagsManagement() {
         }
       }
 
-      const response = await fetch(`${url}${endpoint}`, {
+      fetch(`${url}${endpoint}`, {
         method: httpVerb,
         headers: {
           Accept: 'application/json',

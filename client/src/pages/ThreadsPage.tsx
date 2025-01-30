@@ -11,7 +11,6 @@ import { useTags } from "../contexts/useTags";
 import { threadspageWebcontentType } from "../types/threadspageWebcontentType";
 import { useAuth } from "../contexts/useAuth";
 import MemberViewWindow from "../components/windows/MemberViewWindow";
-import BanConfirmWindow from "../components/windows/BanConfirmWindow";
 
 export default function ThreadsPage({ threadType }: Props) {
   const serverAddress: string = import.meta.env.VITE_SERVER_ADDRESS;

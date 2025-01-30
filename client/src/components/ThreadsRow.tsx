@@ -6,7 +6,6 @@ import Cookies from "universal-cookie";
 export default function ThreadsRow({
   handleUpdate,
   post,
-  setData,
   setMemberId,
   setIsMemberViewWindowOpened,
   setIsConnectionNeededClicked,
@@ -24,10 +23,8 @@ export default function ThreadsRow({
   const handleToggleFavButton = async (e: React.BaseSyntheticEvent) => {
     e.stopPropagation();
     e.preventDefault();
-    if (auth && auth.role !== "client" && auth.id) {
-      const tmpUpdatedPost = post;
-      
-      let body: {
+    if (auth && auth.role !== "client" && auth.id) {      
+      const body: {
         id: number;
         addFav?: { id: number };
         removeFav?: { id: number };
@@ -166,31 +163,6 @@ type Props = {
     replies_count: number;
     last_message_date: string;
   };
-  setData: (
-    arg0:
-      | null
-      | {
-          id: number;
-          author: {
-            id: number;
-            name: string;
-            profile_picture: string;
-          };
-          tags: {
-            id: number;
-            name: string;
-            icon: string;
-          }[];
-          creation_date: string;
-          type: "topic" | "question";
-          is_opened: boolean;
-          title: string;
-          is_favourited_by: number[];
-          replies_count: number;
-          last_message_date: string;
-          results_length: null | number;
-        }[]
-  ) => void;
   setMemberId: (arg0: number) => void;
   setIsMemberViewWindowOpened: (arg0: boolean) => void;
   setIsConnectionNeededClicked: (arg0: boolean) => void;

@@ -24,7 +24,7 @@ export default function BackOfficeMembersManagement() {
     }
   }
 
-  const [allTheMembers, setAllTheMembers] = useState<null | String[]>(null);
+  const [allTheMembers, setAllTheMembers] = useState<null | string[]>(null);
   
   const [selectedMember, setSelectedMember] = useState<number>(0);
   const handleSelectedMemberChange = (e: string) => {
@@ -135,7 +135,7 @@ export default function BackOfficeMembersManagement() {
       });
       const jwt = cookies.get('JWT');
 
-      const membersPromise = fetch(`${serverAddress}/member`,
+      fetch(`${serverAddress}/member`,
         {
           headers: {
             Accept: 'application/json',
@@ -174,8 +174,7 @@ export default function BackOfficeMembersManagement() {
         path: "/",
       });
       const jwt = cookies.get("JWT");
-      const fetchPromise = await fetch(
-        `${serverAddress}/${args.endpoint.toString()}/number/${args.type}${queries}`,
+      fetch(`${serverAddress}/${args.endpoint.toString()}/number/${args.type}${queries}`,
         {
           headers: {
             Accept: "application/json",
@@ -183,12 +182,12 @@ export default function BackOfficeMembersManagement() {
             Authorization: `Bearer ${jwt}`,
           },
         }
-      );
-
-      if (fetchPromise.ok) {
-        const responseData = await fetchPromise.json();
-        return responseData.number;
-      }
+      ).then(async (response) => {
+        if (response.ok) {
+          const responseData = await response.json();
+          return responseData.number;
+        }
+      });
     } catch (error) {
       console.error("Something went wrong: ", error);
     }
@@ -296,7 +295,7 @@ export default function BackOfficeMembersManagement() {
           setSelectedPublicationInfos(value);
           if (value.replies !== null) {
             let tmpLastId = 0;
-            for (let reply of value.replies) {
+            for (const reply of value.replies) {
               if (reply.id > tmpLastId) {
                 tmpLastId = reply.id;
               }
@@ -606,7 +605,7 @@ export default function BackOfficeMembersManagement() {
                     )}
                     <p className="text-justify text-base md:text-lg"
                       dangerouslySetInnerHTML={{__html: (selectedPublicationInfos.content
-                                                        .replace(/(<a href=")?((https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)))(">(.*)<\/a>)?/gi,
+                                                        .replace(/(<a href=")?((https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)))(">(.*)<\/a>)?/gi,
                                                           function () {
                                                             return (`<a href="${arguments[2]}" target="_blank">${(arguments[7] || arguments[2])}</a>`);
                                                           })

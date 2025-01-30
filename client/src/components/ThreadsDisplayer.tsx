@@ -125,7 +125,6 @@ export default function ThreadsDisplayer({
             handleUpdate={handleUpdate}
             key={post.id}
             post={post}
-            setData={setData}
             setMemberId={setMemberId}
             setIsMemberViewWindowOpened={setIsMemberViewWindowOpened}
             setIsConnectionNeededClicked={setIsConnectionNeededClicked}

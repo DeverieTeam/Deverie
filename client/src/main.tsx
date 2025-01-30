@@ -1,4 +1,4 @@
-import { useState, useEffect, StrictMode } from "react";
+import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import fetchWebContent from "./scripts/fetchWebContent.tsx";
@@ -23,9 +23,7 @@ import WIPAndNotFoundPage from "./pages/WIPAndNotFoundPage.tsx";
 import AuthProvider from "./contexts/AuthProvider.tsx";
 import TagsProvider from "./contexts/TagsProvider.tsx";
 
-const serverAddress: string = import.meta.env.VITE_SERVER_ADDRESS;
 const language: string = 'fr';
-let pageNames: Object = {};
 
 const router = createBrowserRouter([
   {
