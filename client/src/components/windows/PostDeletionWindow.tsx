@@ -11,7 +11,9 @@ export default function PostDeletionWindow({
   setData,
   webcontent,
 }: Props) {
+  const serverAddress: string = import.meta.env.VITE_SERVER_ADDRESS;
   const { auth } = useAuth();
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -42,7 +44,7 @@ export default function PostDeletionWindow({
           path: "/",
         });
         const jwt = cookies.get("JWT");
-        const response = await fetch("http://localhost:3000/post", {
+        const response = await fetch(`${serverAddress}/post`, {
           method: "PUT",
           headers: {
             Accept: "application/json",

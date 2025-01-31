@@ -6,9 +6,12 @@ import AutoFormField from "../components/AutoFormField";
 import RegistrationValidationWindow from "../components/windows/RegistrationValidationWindow";
 
 export default function RegisterPage() {
-  const webcontent = useLoaderData() as registerpageWebcontentType;
-  const navigate = useNavigate();
+  const serverAddress: string = import.meta.env.VITE_SERVER_ADDRESS;
   const { auth } = useAuth();
+  const navigate = useNavigate();
+  
+  const webcontent = useLoaderData() as registerpageWebcontentType;
+  document.title = `${webcontent.page.tabTitle.content} - Deverie`;
 
   const minimumFieldLength: number = 4;
   const maximumFieldLength: number = 100;
@@ -216,7 +219,7 @@ export default function RegisterPage() {
     }
 
     try {
-      const response = await fetch("http://localhost:3000/auth/register", {
+      const response = await fetch(`${serverAddress}/auth/register`, {
         method: "POST",
         headers: {
           Accept: "application/json",

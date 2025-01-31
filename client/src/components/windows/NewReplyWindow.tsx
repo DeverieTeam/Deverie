@@ -9,8 +9,10 @@ export default function NewReplyWindow({
   setData,
   webcontent,
 }: Props) {
-  const [content, setContent] = useState<string>("");
+  const serverAddress: string = import.meta.env.VITE_SERVER_ADDRESS;
   const { auth } = useAuth();
+  
+  const [content, setContent] = useState<string>("");
 
   useEffect(() => {
     if (auth && auth.role && auth.role === "client") {
@@ -54,7 +56,7 @@ export default function NewReplyWindow({
           path: "/",
         });
         const jwt = cookies.get("JWT");
-        const response = await fetch("http://localhost:3000/post/newReply", {
+        const response = await fetch(`${serverAddress}/post/newReply`, {
           method: "POST",
           headers: {
             Accept: "application/json",

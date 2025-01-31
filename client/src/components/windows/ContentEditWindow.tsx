@@ -14,8 +14,10 @@ export default function ContentEditWindow({
   webcontent,
   content,
 }: Props) {
-  const [fieldContent, setFieldContent] = useState<string>(content ? content : null);
+  const serverAddress: string = import.meta.env.VITE_SERVER_ADDRESS;
   const { auth } = useAuth();
+
+  const [fieldContent, setFieldContent] = useState<string>(content ? content : null);
 
   useEffect(() => {
     if (auth && auth.role && auth.role === "client") {
@@ -52,7 +54,7 @@ export default function ContentEditWindow({
           path: '/',
         });
         const jwt = cookies.get('JWT');
-        const response = await fetch(`http://localhost:3000/${confirmEndpoint}`, {
+        const response = await fetch(`${serverAddress}/${confirmEndpoint}`, {
           method: 'PUT',
           headers: {
             Accept: "application/json",
@@ -160,7 +162,34 @@ type Props = {
     replies: null | { id: number }[];
   };
   setData: (
-    arg0: null | Object
+    arg0: null |
+    {
+      id: number;
+      author: {
+        id: number;
+        name: string;
+        profile_picture: string;
+        is_banned: boolean;
+        role: "member" | "moderator" | "administrator";
+      };
+      tags: {
+        id: number;
+        name: string;
+        icon: string;
+      }[];
+      creation_date: string;
+      type: "topic" | "question";
+      title: string;
+      content: string;
+      is_opened: boolean;
+      is_readable: boolean;
+      is_favourited_by: null | number[];
+      modification_date: string;
+      modification_author: null | string;
+      emergency: null | number;
+      results_length: null | number;
+      replies: null | { id: number }[];
+    }
   ) => void;
   webcontent: contentEditWindowWebcontentType;
 };

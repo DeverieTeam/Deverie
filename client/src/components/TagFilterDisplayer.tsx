@@ -11,6 +11,8 @@ export default function TagFilterDisplayer({
   technoTags,
   webcontent,
 }: Props) {
+  const serverAddress: string = import.meta.env.VITE_SERVER_ADDRESS;
+
   const [data, setData] = useState<
     | null
     | {
@@ -22,7 +24,7 @@ export default function TagFilterDisplayer({
   >(null);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/tag/${tagFamily}`)
+    fetch(`${serverAddress}/tag/${tagFamily}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Something went wrong");

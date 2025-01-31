@@ -8,15 +8,14 @@ import ConnectionWindow from "../components/userAccount/ConnectionWindow";
 import ConnectionNeeded from "../components/userAccount/ConnectionNeeded";
 
 export default function HomePage() {
-  const [randomThread, setRandomThread] = useState<null | "popular" | "recent">(
-    null
-  );
+  const [randomThread, setRandomThread] = useState<null | "popular" | "recent">(null);
   const [isConnectionNeededClicked, setIsConnectionNeededClicked] = useState<boolean>(false);
   const [isConnectionWindowDisplayed, setIsConnectionWindowDisplayed] = useState<boolean>(false);
   const [isMemberViewWindowOpened, setIsMemberViewWindowOpened] = useState<boolean>(false);
   const [memberId, setMemberId] = useState<null | number>(null);
 
   const webcontent = useLoaderData() as homepageWebcontentType;
+  document.title = 'Deverie';
 
   const navigate = useNavigate();
   const { auth } = useAuth();

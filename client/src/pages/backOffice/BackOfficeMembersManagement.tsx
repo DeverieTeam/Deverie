@@ -7,11 +7,13 @@ import { useAuth } from "../../contexts/useAuth";
 import useWindowDimensions from "../../scripts/useWindowDimensions";
 
 export default function BackOfficeMembersManagement() {
+  const serverAddress: string = import.meta.env.VITE_SERVER_ADDRESS;
+  const { auth } = useAuth();
+  const navigate = useNavigate();
+  const { windowWidth } = useWindowDimensions();
 
   const webcontent = useLoaderData() as backOfficeMembersManagementWebcontentType;
-  const navigate = useNavigate();
-  const { auth } = useAuth();
-  const { windowWidth } = useWindowDimensions();
+  document.title = `${webcontent.page.title.content} - Deverie`;
 
   const maximumEffectiveDetailsWidth = 768;
 
@@ -22,7 +24,7 @@ export default function BackOfficeMembersManagement() {
     }
   }
 
-  const [allTheMembers, setAllTheMembers] = useState<null | String[]>(null);
+  const [allTheMembers, setAllTheMembers] = useState<null | string[]>(null);
   
   const [selectedMember, setSelectedMember] = useState<number>(0);
   const handleSelectedMemberChange = (e: string) => {
@@ -127,15 +129,13 @@ export default function BackOfficeMembersManagement() {
   const [memberDeletedCommentsNumber, setMemberDeletedCommentsNumber] = useState<number>(0);
   
   async function fetchAllTheMembers() {
-    const url = 'http://localhost:3000';
-
     try {
       const cookies = new Cookies(null, {
         path: '/',
       });
       const jwt = cookies.get('JWT');
 
-      const membersPromise = fetch(`${url}/member`,
+      fetch(`${serverAddress}/member`,
         {
           headers: {
             Accept: 'application/json',
@@ -174,8 +174,7 @@ export default function BackOfficeMembersManagement() {
         path: "/",
       });
       const jwt = cookies.get("JWT");
-      const fetchPromise = await fetch(
-        `http://localhost:3000/${args.endpoint.toString()}/number/${args.type}${queries}`,
+      fetch(`${serverAddress}/${args.endpoint.toString()}/number/${args.type}${queries}`,
         {
           headers: {
             Accept: "application/json",
@@ -183,12 +182,12 @@ export default function BackOfficeMembersManagement() {
             Authorization: `Bearer ${jwt}`,
           },
         }
-      );
-
-      if (fetchPromise.ok) {
-        const responseData = await fetchPromise.json();
-        return responseData.number;
-      }
+      ).then(async (response) => {
+        if (response.ok) {
+          const responseData = await response.json();
+          return responseData.number;
+        }
+      });
     } catch (error) {
       console.error("Something went wrong: ", error);
     }
@@ -204,7 +203,7 @@ export default function BackOfficeMembersManagement() {
       });
       const jwt = cookies.get("JWT");
       const fetchPromise = await fetch(
-        `http://localhost:3000/post/${args.endpoint}/${args.id}`,
+        `${serverAddress}/post/${args.endpoint}/${args.id}`,
         {
           headers: {
             Accept: "application/json",
@@ -237,7 +236,7 @@ export default function BackOfficeMembersManagement() {
           path: "/",
         });
         const jwt = cookies.get("JWT");
-        const response = await fetch("http://localhost:3000/member", {
+        const response = await fetch(`${serverAddress}/member`, {
           method: "PUT",
           headers: {
             Accept: "application/json",
@@ -296,7 +295,7 @@ export default function BackOfficeMembersManagement() {
           setSelectedPublicationInfos(value);
           if (value.replies !== null) {
             let tmpLastId = 0;
-            for (let reply of value.replies) {
+            for (const reply of value.replies) {
               if (reply.id > tmpLastId) {
                 tmpLastId = reply.id;
               }
@@ -606,7 +605,7 @@ export default function BackOfficeMembersManagement() {
                     )}
                     <p className="text-justify text-base md:text-lg"
                       dangerouslySetInnerHTML={{__html: (selectedPublicationInfos.content
-                                                        .replace(/(<a href=")?((https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)))(">(.*)<\/a>)?/gi,
+                                                        .replace(/(<a href=")?((https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)))(">(.*)<\/a>)?/gi,
                                                           function () {
                                                             return (`<a href="${arguments[2]}" target="_blank">${(arguments[7] || arguments[2])}</a>`);
                                                           })

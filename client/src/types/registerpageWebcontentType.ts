@@ -5,6 +5,7 @@ export type registerpageWebcontentType = {
   commons: mainCommonsWebcontentType;
   page: {
     title: webcontentObjectType;
+    tabTitle: webcontentObjectType;
     form: {
       generalInformations: {
         main: webcontentObjectType;

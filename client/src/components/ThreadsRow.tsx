@@ -6,14 +6,15 @@ import Cookies from "universal-cookie";
 export default function ThreadsRow({
   handleUpdate,
   post,
-  setData,
   setMemberId,
   setIsMemberViewWindowOpened,
   setIsConnectionNeededClicked,
   webcontent,
 }: Props) {
-  const navigate = useNavigate();
+  const serverAddress: string = import.meta.env.VITE_SERVER_ADDRESS;
   const { auth } = useAuth();
+
+  const navigate = useNavigate();
 
   const handleRowClick = () => {
     navigate({ pathname: "/postView", search: `?id=${post.id}` });
@@ -22,10 +23,8 @@ export default function ThreadsRow({
   const handleToggleFavButton = async (e: React.BaseSyntheticEvent) => {
     e.stopPropagation();
     e.preventDefault();
-    if (auth && auth.role !== "client" && auth.id) {
-      const tmpUpdatedPost = post;
-      
-      let body: {
+    if (auth && auth.role !== "client" && auth.id) {      
+      const body: {
         id: number;
         addFav?: { id: number };
         removeFav?: { id: number };
@@ -44,7 +43,7 @@ export default function ThreadsRow({
           path: "/",
         });
         const jwt = cookies.get("JWT");
-        const response = await fetch("http://localhost:3000/post", {
+        const response = await fetch(`${serverAddress}/post`, {
           method: "PUT",
           headers: {
             Accept: "application/json",
@@ -164,31 +163,6 @@ type Props = {
     replies_count: number;
     last_message_date: string;
   };
-  setData: (
-    arg0:
-      | null
-      | {
-          id: number;
-          author: {
-            id: number;
-            name: string;
-            profile_picture: string;
-          };
-          tags: {
-            id: number;
-            name: string;
-            icon: string;
-          }[];
-          creation_date: string;
-          type: "topic" | "question";
-          is_opened: boolean;
-          title: string;
-          is_favourited_by: number[];
-          replies_count: number;
-          last_message_date: string;
-          results_length: null | number;
-        }[]
-  ) => void;
   setMemberId: (arg0: number) => void;
   setIsMemberViewWindowOpened: (arg0: boolean) => void;
   setIsConnectionNeededClicked: (arg0: boolean) => void;

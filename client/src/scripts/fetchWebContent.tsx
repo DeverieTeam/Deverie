@@ -1,3 +1,5 @@
+const serverAddress: string = import.meta.env.VITE_SERVER_ADDRESS;
+
 async function fetchWebContent(args: {
   page: string;
   lang: string;
@@ -10,7 +12,7 @@ async function fetchWebContent(args: {
     }
   | JSON
 > {
-  const url: string = "http://localhost:3000/webcontent";
+  const url: string = `${serverAddress}/webcontent`;
   let endpoint: string = args.isBackOffice ? "/backoffice" : "";
   const addPosts: boolean = args.hasPosts !== undefined && args.hasPosts === true;
 
@@ -66,15 +68,13 @@ async function fetchWebContent(args: {
         break;
       case "wip":
       case "wipage":
-        endpoint += "/wip";
-        break;
       case "404":
-      case "notfound":
+      case "notFound":
       default:
         if (args.isBackOffice) {
           endpoint += "/commons";
         } else {
-          endpoint += "/notfound";
+          endpoint += "/wipAndNotFound";
         }
         break;
     }

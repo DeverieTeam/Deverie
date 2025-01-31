@@ -17,6 +17,14 @@ import MemberViewWindow from "../components/windows/MemberViewWindow";
 import ContentEditWindow from "../components/windows/ContentEditWindow";
 
 export default function PostViewPage() {
+  const serverAddress: string = import.meta.env.VITE_SERVER_ADDRESS;
+  const { auth } = useAuth();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const query = new URLSearchParams(location.search).get("id");
+
+  const webcontent = useLoaderData() as postViewPageWebcontentType;
+
   const [isNewReplyWindowOpened, setIsNewReplyWindowOpened] = useState<boolean>(false);
   const [isPostEditWindowOpened, setIsPostEditWindowOpened] = useState<boolean>(false);
   const [isPostDeletionWindowOpened, setIsPostDeletionWindowOpened] = useState<boolean>(false);
@@ -55,16 +63,8 @@ export default function PostViewPage() {
   }>(null);
   const [pagination, setPagination] = useState<number>(1);
   const [sort, setSort] = useState<string>("popular");
-  const [postContent, setPostContent] = useState<null | string>(null);
   const [isPostOpened, setIsPostOpened] = useState<null | boolean>(null);
   const [memberId, setMemberId] = useState<null | number>(null);
-
-  const webcontent = useLoaderData() as postViewPageWebcontentType;
-
-  const location = useLocation();
-  const query = new URLSearchParams(location.search).get("id");
-  const navigate = useNavigate();
-  const { auth } = useAuth();
 
   const [updateCount, setUpdateCount] = useState<number>(0);
   const handleUpdate = () => {
@@ -77,7 +77,7 @@ export default function PostViewPage() {
     if (data && auth && auth.role !== "client" && auth.id) {
       const tmpUpdatedData = data;
       
-      let body: {
+      const body: {
         id: number;
         addFav?: { id: number };
         removeFav?: { id: number };
@@ -96,7 +96,7 @@ export default function PostViewPage() {
           path: "/",
         });
         const jwt = cookies.get("JWT");
-        const response = await fetch("http://localhost:3000/post", {
+        const response = await fetch(`${serverAddress}/post`, {
           method: "PUT",
           headers: {
             Accept: "application/json",
@@ -182,7 +182,7 @@ export default function PostViewPage() {
 
       const fetchType = `detailed/${query}` + queryHandler();
 
-      fetch(`http://localhost:3000/post/${fetchType}`)
+      fetch(`${serverAddress}/post/${fetchType}`)
         .then((response) => {
           if (!response.ok) {
             navigate(-1);
@@ -196,6 +196,13 @@ export default function PostViewPage() {
           } else {
             setData(data);
             setIsPostOpened(data.is_opened);
+            let i = 0;
+            let tmpTitle: string = data.title.split(' ')[i];
+            while (tmpTitle.length < 15) {
+              i++;
+              tmpTitle += ` ${data.title.split(' ')[i]}`
+            }
+            document.title = `${tmpTitle}... (${data.id}) - Deverie`;
           }
         });
     } else {
@@ -315,7 +322,7 @@ export default function PostViewPage() {
             </div>
             <p className="md:py-2 text-justify text-base md:text-xl"
               dangerouslySetInnerHTML={{__html: (data.content
-                                                .replace(/(<a href=")?((https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)))(">(.*)<\/a>)?/gi,
+                                                .replace(/(<a href=")?((https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)))(">(.*)<\/a>)?/gi,
                                                   function () {
                                                     return (`<a href="${arguments[2]}" target="_blank">${(arguments[7] || arguments[2])}</a>`);
                                                   })
@@ -490,7 +497,6 @@ export default function PostViewPage() {
         <PostClosureWindow
           setIsSelfOpened={setIsPostClosureWindowOpened}
           data={data}
-          setData={setData}
           webcontent={webcontent}
         />
       )}

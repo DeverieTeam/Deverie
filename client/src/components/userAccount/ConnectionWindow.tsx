@@ -10,6 +10,8 @@ export default function ConnectionWindow({
   setIsConnectionWindowDisplayed,
   webcontent,
 }: Props) {
+  const serverAddress: string = import.meta.env.VITE_SERVER_ADDRESS;
+
   const navigate = useNavigate();
   const { setTags } = useTags();
   const { setAuth } = useAuth();
@@ -51,7 +53,7 @@ export default function ConnectionWindow({
     };
 
     try {
-      const response = await fetch("http://localhost:3000/auth/login", {
+      const response = await fetch(`${serverAddress}/auth/login`, {
         method: "POST",
         headers: {
           Accept: "application/json",

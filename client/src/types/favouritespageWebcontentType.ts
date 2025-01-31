@@ -4,6 +4,6 @@ import { mainCommonsWebcontentType } from 'samples/mainCommonsWebcontentType.ts'
 export type favouritespageWebcontentType = {
   commons: mainCommonsWebcontentType;
   page: {
-    favouritesPageTitle: webcontentObjectType;
+    title: webcontentObjectType;
   };
 };

@@ -9,7 +9,10 @@ export default function FavouriteTagsWindow({
   previousTags,
   webcontent,
 }: Props) {
-  const [tempTags, setTempTags] = useState<
+  const serverAddress: string = import.meta.env.VITE_SERVER_ADDRESS;
+  const { auth } = useAuth();
+
+  const [tmpTags, setTmpTags] = useState<
     {
       id: number;
       name: string;
@@ -17,8 +20,6 @@ export default function FavouriteTagsWindow({
       family: string;
     }[]
   >(previousTags);
-
-  const { auth } = useAuth();
 
   useEffect(() => {
     if (auth && auth.role && auth.role === "client") {
@@ -31,7 +32,7 @@ export default function FavouriteTagsWindow({
   };
 
   const buttonState = () => {
-    if (tempTags.length > 0) {
+    if (tmpTags.length > 0) {
       return false;
     } else {
       return true;
@@ -41,7 +42,7 @@ export default function FavouriteTagsWindow({
   const handleConfirmButton = async () => {
     if (auth && auth.id) {
       const bodyTags = [];
-      for (const tag of tempTags) {
+      for (const tag of tmpTags) {
         const newTag = { id: tag.id };
         bodyTags.push(newTag);
       }
@@ -59,7 +60,7 @@ export default function FavouriteTagsWindow({
           path: "/",
         });
         const jwt = cookies.get("JWT");
-        const response = await fetch("http://localhost:3000/member", {
+        const response = await fetch(`${serverAddress}/member`, {
           method: "PUT",
           headers: {
             Accept: "application/json",
@@ -102,8 +103,8 @@ export default function FavouriteTagsWindow({
                     <TagSelectionDisplayer
                       key={family}
                       tagFamily={family}
-                      tempTags={tempTags}
-                      setTempTags={setTempTags}
+                      tmpTags={tmpTags}
+                      setTmpTags={setTmpTags}
                       webcontent={webcontent}
                     />
                   );

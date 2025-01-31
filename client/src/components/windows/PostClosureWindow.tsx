@@ -7,11 +7,12 @@ import Cookies from "universal-cookie";
 export default function PostClosureWindow({
   setIsSelfOpened,
   data,
-  setData,
   webcontent,
 }: Props) {
-  const navigate = useNavigate();
+  const serverAddress: string = import.meta.env.VITE_SERVER_ADDRESS;
   const { auth } = useAuth();
+  
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (auth && auth.role && auth.role === "client") {
@@ -41,7 +42,7 @@ export default function PostClosureWindow({
           path: "/",
         });
         const jwt = cookies.get("JWT");
-        const response = await fetch("http://localhost:3000/post", {
+        const response = await fetch(`${serverAddress}/post`, {
           method: "PUT",
           headers: {
             Accept: "application/json",
@@ -132,34 +133,5 @@ type Props = {
     results_length: null | number;
     replies: null | { id: number }[];
   };
-  setData: (
-    arg0: null | {
-      id: number;
-      author: {
-        id: number;
-        name: string;
-        profile_picture: string;
-        is_banned: boolean;
-        role: "member" | "moderator" | "administrator";
-      };
-      tags: {
-        id: number;
-        name: string;
-        icon: string;
-      }[];
-      creation_date: string;
-      type: "topic" | "question";
-      title: string;
-      content: string;
-      is_opened: boolean;
-      is_readable: boolean;
-      is_favourited_by: null | number[];
-      modification_date: string;
-      modification_author: null | string;
-      emergency: null | number;
-      results_length: null | number;
-      replies: null | { id: number }[];
-    }
-  ) => void;
   webcontent: postViewPageWebcontentType;
 };

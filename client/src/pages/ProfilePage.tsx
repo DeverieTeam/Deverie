@@ -10,6 +10,13 @@ import ProfilePictureEditWindow from "../components/windows/ProfilePictureEditWi
 import ContentEditWindow from "../components/windows/ContentEditWindow";
 
 export default function ProfilePage() {
+  const serverAddress: string = import.meta.env.VITE_SERVER_ADDRESS;
+  const { auth, setAuth } = useAuth();
+  const navigate = useNavigate();
+  
+  const webcontent = useLoaderData() as profilepageWebcontentType;
+  document.title = `${webcontent.page.title.content} - Deverie`;
+
   const [isDescriptionEditWindowOpened, setIsDescriptionEditWindowOpened] = useState<boolean>(false);
   const [isDisplayedNameEditWindowOpened, setIsDisplayedNameEditWindowOpened] = useState<boolean>(false);
   const [isPronounsEditWindowOpened, setIsPronounsEditWindowOpened] = useState<boolean>(false);
@@ -30,10 +37,6 @@ export default function ProfilePage() {
     theme: string;
     language: string;
   }>(null);
-  const { auth, setAuth } = useAuth();
-  const navigate = useNavigate();
-  const webcontent = useLoaderData() as profilepageWebcontentType;
-
   useEffect(() => {
     if (auth && auth.role && auth.role === "client") {
       navigate("/");
@@ -46,7 +49,7 @@ export default function ProfilePage() {
     });
     const jwt = cookies.get("JWT");
 
-    fetch(`http://localhost:3000/member/profile/${auth.id}`, {
+    fetch(`${serverAddress}/member/profile/${auth.id}`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${jwt}`,
@@ -126,7 +129,7 @@ export default function ProfilePage() {
     <div className="w-full relative flex flex-col pb-20">
       <div className="md:mx-auto md:w-[600px] xl:w-[1200px] flex flex-col">
         <p className="mx-auto mt-4 text-center text-indigo-500 text-4xl md:text-5xl font-bold drop-shadow">
-          {webcontent.page.profileTitle.content}
+          {webcontent.page.title.content}
         </p>
         <div className="mt-6 flex flex-col xl:flex-row xl:flex-wrap">
           <div className="px-2 xl:px-6 xl:w-[50%] gap-3 flex flex-col">

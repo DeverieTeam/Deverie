@@ -7,11 +7,13 @@ import { useAuth } from "../../contexts/useAuth";
 import useWindowDimensions from "../../scripts/useWindowDimensions";
 
 export default function BackOfficeTagsManagement() {
+  const serverAddress: string = import.meta.env.VITE_SERVER_ADDRESS;
+  const { auth } = useAuth();
+  const navigate = useNavigate();
+  const { windowWidth } = useWindowDimensions();
 
   const webcontent = useLoaderData() as backOfficeTagsManagementWebcontentType;
-  const navigate = useNavigate();
-  const { auth } = useAuth();
-  const { windowWidth } = useWindowDimensions();
+  document.title = `${webcontent.page.title.content} - Deverie`;
 
   const maximumEffectiveDetailsWidth = 768;
   
@@ -34,7 +36,7 @@ export default function BackOfficeTagsManagement() {
   >(null);
 
   async function fetchAllTheTags() {
-    const url = 'http://localhost:3000/tag';
+    const url: string = `${serverAddress}/tag`;
 
     const languageTagsPromise = fetch(`${url}/${tagsFamilies[0]}`,
       {
@@ -174,7 +176,7 @@ export default function BackOfficeTagsManagement() {
   }
 
   async function action(args: {type: 'add' | 'modify' | 'delete'}) {
-    const url: string = 'http://localhost:3000/tag';
+    const url: string = `${serverAddress}/tag`;
 
     // only usefull with delete
     const endpoint: string = (args.type === 'delete' ? `?id=${deleteTagId.toString()}` : '');
@@ -246,7 +248,7 @@ export default function BackOfficeTagsManagement() {
         }
       }
 
-      const response = await fetch(`${url}${endpoint}`, {
+      fetch(`${url}${endpoint}`, {
         method: httpVerb,
         headers: {
           Accept: 'application/json',

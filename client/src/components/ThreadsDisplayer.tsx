@@ -15,6 +15,9 @@ export default function ThreadsDisplayer({
   setIsMemberViewWindowOpened,
   setIsConnectionNeededClicked,
 }: Props) {
+  const serverAddress: string = import.meta.env.VITE_SERVER_ADDRESS;
+  const { auth } = useAuth();
+
   const [data, setData] = useState<
     | null
     | {
@@ -44,8 +47,6 @@ export default function ThreadsDisplayer({
   const handleUpdate = () => {
     setUpdateCount(updateCount+1);
   }
-
-  const { auth } = useAuth();
 
   useEffect(() => {
     if (auth) {
@@ -90,7 +91,7 @@ export default function ThreadsDisplayer({
           break;
       }
 
-      fetch(`http://localhost:3000/post/${fetchType}`)
+      fetch(`${serverAddress}/post/${fetchType}`)
         .then((response) => {
           if (!response.ok) {
             throw new Error("Something went wrong");
@@ -124,7 +125,6 @@ export default function ThreadsDisplayer({
             handleUpdate={handleUpdate}
             key={post.id}
             post={post}
-            setData={setData}
             setMemberId={setMemberId}
             setIsMemberViewWindowOpened={setIsMemberViewWindowOpened}
             setIsConnectionNeededClicked={setIsConnectionNeededClicked}

@@ -10,6 +10,9 @@ export default function TagEditWindow({
   setData,
   webcontent,
 }: Props) {
+  const serverAddress: string = import.meta.env.VITE_SERVER_ADDRESS;
+  const { auth } = useAuth();
+
   const [tmpTags, setTmpTags] = useState<
     {
       id: number;
@@ -18,8 +21,6 @@ export default function TagEditWindow({
       family: string;
     }[]
   >(data.tags);
-
-  const { auth } = useAuth();
 
   useEffect(() => {
     if (auth && auth.role && auth.role === "client") {
@@ -62,7 +63,7 @@ export default function TagEditWindow({
           path: "/",
         });
         const jwt = cookies.get("JWT");
-        const response = await fetch("http://localhost:3000/post", {
+        const response = await fetch(`${serverAddress}/post`, {
           method: "PUT",
           headers: {
             Accept: "application/json",

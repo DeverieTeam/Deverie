@@ -9,27 +9,31 @@ import "./index.css";
 import HomePage from "./pages/HomePage.tsx";
 import ThreadsPage from "./pages/ThreadsPage.tsx";
 import NewPostPage from "./pages/NewPostPage.tsx";
-import RegisterPage from "./pages/RegisterPage.tsx";
 import PostViewPage from "./pages/PostViewPage.tsx";
+import RegisterPage from "./pages/RegisterPage.tsx";
+import ProfilePage from "./pages/ProfilePage.tsx";
+import FavouritesPage from "./pages/FavouritesPage.tsx";
 
 import BackOfficeHomepage from "./pages/backOffice/BackOfficeHomepage.tsx";
 import BackOfficeTagsManagement from "./pages/backOffice/BackOfficeTagsManagement.tsx";
 import BackOfficeMembersManagement from "./pages/backOffice/BackOfficeMembersManagement.tsx";
 
-import WIPage from "./pages/WIPage.tsx";
-import PageNotFound404 from "./pages/PageNotFound404.tsx";
+import WIPAndNotFoundPage from "./pages/WIPAndNotFoundPage.tsx";
 
 import AuthProvider from "./contexts/AuthProvider.tsx";
 import TagsProvider from "./contexts/TagsProvider.tsx";
-import ProfilePage from "./pages/ProfilePage.tsx";
-import FavouritesPage from "./pages/FavouritesPage.tsx";
+
+const language: string = 'fr';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
     loader: async () => {
-      return await fetchWebContent({ page: "header", lang: "fr" });
+      return await fetchWebContent({
+        page: "header",
+        lang: language,
+      });
     },
     children: [
       {
@@ -38,7 +42,7 @@ const router = createBrowserRouter([
         loader: async () => {
           return await fetchWebContent({
             page: "homepage",
-            lang: "fr",
+            lang: language,
             hasPosts: true,
           });
         },
@@ -49,7 +53,7 @@ const router = createBrowserRouter([
         loader: async () => {
           return await fetchWebContent({
             page: "topic",
-            lang: "fr",
+            lang: language,
             hasPosts: true,
           });
         },
@@ -60,23 +64,29 @@ const router = createBrowserRouter([
         loader: async () => {
           return await fetchWebContent({
             page: "question",
-            lang: "fr",
+            lang: language,
             hasPosts: true,
           });
         },
       },
       {
         path: "chat",
-        element: <WIPage />,
+        element: <WIPAndNotFoundPage type="wip" />,
         loader: async () => {
-          return await fetchWebContent({ page: "wip", lang: "fr" });
+          return await fetchWebContent({
+            page: "wip",
+            lang: language,
+          });
         },
       },
       {
         path: "register",
         element: <RegisterPage />,
         loader: async () => {
-          return await fetchWebContent({ page: "register", lang: "fr" });
+          return await fetchWebContent({
+            page: "register",
+            lang: language,
+          });
         },
       },
       {
@@ -85,7 +95,7 @@ const router = createBrowserRouter([
         loader: async () => {
           return await fetchWebContent({
             page: "newPost",
-            lang: "fr",
+            lang: language,
             hasPosts: true,
           });
         },
@@ -96,7 +106,7 @@ const router = createBrowserRouter([
         loader: async () => {
           return await fetchWebContent({
             page: "newPost",
-            lang: "fr",
+            lang: language,
             hasPosts: true,
           });
         },
@@ -107,7 +117,7 @@ const router = createBrowserRouter([
         loader: async () => {
           return await fetchWebContent({
             page: "postView",
-            lang: "fr",
+            lang: language,
             hasPosts: true,
           });
         },
@@ -118,7 +128,7 @@ const router = createBrowserRouter([
         loader: async () => {
           return await fetchWebContent({
             page: "favourites",
-            lang: "fr",
+            lang: language,
             hasPosts: true,
           });
         },
@@ -129,7 +139,7 @@ const router = createBrowserRouter([
         loader: async () => {
           return await fetchWebContent({
             page: "profile",
-            lang: "fr",
+            lang: language,
             hasPosts: true,
           });
         },
@@ -142,7 +152,7 @@ const router = createBrowserRouter([
     loader: async () => {
       return await fetchWebContent({
         page: "header",
-        lang: "fr",
+        lang: language,
         isBackOffice: true,
       });
     },
@@ -153,18 +163,18 @@ const router = createBrowserRouter([
         loader: async () => {
           return await fetchWebContent({
             page: "homepage",
-            lang: "fr",
+            lang: language,
             isBackOffice: true,
           });
         },
       },
       {
         path: "chats",
-        element: <WIPage />,
+        element: <WIPAndNotFoundPage type="wip" />,
         loader: async () => {
           return await fetchWebContent({
             page: "wip",
-            lang: "fr",
+            lang: language,
             isBackOffice: false,
           });
         },
@@ -175,18 +185,18 @@ const router = createBrowserRouter([
         loader: async () => {
           return await fetchWebContent({
             page: "tags",
-            lang: "fr",
+            lang: language,
             isBackOffice: true,
           });
         },
       },
       {
         path: "threads",
-        element: <WIPage />,
+        element: <WIPAndNotFoundPage type="wip" />,
         loader: async () => {
           return await fetchWebContent({
             page: "wip",
-            lang: "fr",
+            lang: language,
             isBackOffice: false,
           });
         },
@@ -197,29 +207,29 @@ const router = createBrowserRouter([
         loader: async () => {
           return await fetchWebContent({
             page: "members",
-            lang: "fr",
+            lang: language,
             isBackOffice: true,
           });
         },
       },
       {
         path: "moderation",
-        element: <WIPage />,
+        element: <WIPAndNotFoundPage type="wip" />,
         loader: async () => {
           return await fetchWebContent({
             page: "wip",
-            lang: "fr",
+            lang: language,
             isBackOffice: false,
           });
         },
       },
       {
         path: "interface",
-        element: <WIPage />,
+        element: <WIPAndNotFoundPage type="wip" />,
         loader: async () => {
           return await fetchWebContent({
             page: "wip",
-            lang: "fr",
+            lang: language,
             isBackOffice: false,
           });
         },
@@ -228,9 +238,12 @@ const router = createBrowserRouter([
   },
   {
     path: "*",
-    element: <PageNotFound404 />,
+    element: <WIPAndNotFoundPage type="notFound" />,
     loader: async () => {
-      return await fetchWebContent({ page: "404", lang: "fr" });
+      return await fetchWebContent({
+        page: "404",
+        lang: language,
+      });
     },
   },
 ]);
