@@ -331,9 +331,10 @@ export class MemberService {
               );
           },
         );
+        const serverAddress: string = import.meta.env.VITE_SERVER_ADDRESS;
         const updatedMember = {
           id: member.id,
-          profile_picture: `http://localhost:3000/public/uploads/profilePictures/${newPPName}`,
+          profile_picture: `${serverAddress}/public/uploads/profilePictures/${newPPName}`,
         };
         returnedValue = await this.memberRepository.save(updatedMember);
       }
