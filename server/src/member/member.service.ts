@@ -331,7 +331,7 @@ export class MemberService {
               );
           },
         );
-        const serverAddress: string = import.meta.env.VITE_SERVER_ADDRESS;
+        const serverAddress: string = process.env.SERVER_ADDRESS;
         const updatedMember = {
           id: member.id,
           profile_picture: `${serverAddress}/public/uploads/profilePictures/${newPPName}`,

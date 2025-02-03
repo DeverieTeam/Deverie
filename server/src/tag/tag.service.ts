@@ -70,7 +70,7 @@ export class TagService {
   }
 
   async createTag(tag) {
-    const serverAddress: string = import.meta.env.SERVER_ADDRESS;
+    const serverAddress: string = process.env.SERVER_ADDRESS;
     const iconsURL = `${serverAddress}/public/uploads/tagIcons`;
 
     const allTagNames = await this.tagRepository.find({ select: ['name'] });
@@ -102,7 +102,7 @@ export class TagService {
   }
 
   async updateTag(tag) {
-    const serverAddress: string = import.meta.env.SERVER_ADDRESS;
+    const serverAddress: string = process.env.SERVER_ADDRESS;
     const iconsURL = `${serverAddress}/public/uploads/tagIcons`;
     
     const allTheTags = await this.tagRepository.find({ select: ['id', 'name', 'icon'] });
