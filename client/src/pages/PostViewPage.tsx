@@ -191,7 +191,8 @@ export default function PostViewPage() {
           return response.json();
         })
         .then((data) => {
-          if (data.author.is_banned || !data.is_readable) {
+          if (data.author.is_banned || !data.is_readable ||
+            (data.type !== 'topic' && data.type !== 'question')) {
             navigate(-1);
           } else {
             setData(data);
