@@ -9,7 +9,7 @@ export default function TagSelectionWindow({
   setTags,
   webcontent,
 }: Props) {
-  const [tempTags, setTempTags] = useState<
+  const [tmpTags, setTmpTags] = useState<
     {
       id: number;
       name: string;
@@ -20,7 +20,7 @@ export default function TagSelectionWindow({
 
   useEffect(() => {
     if (tags !== null) {
-      setTempTags(tags);
+      setTmpTags(tags);
     }
   }, [tags]);
 
@@ -29,7 +29,7 @@ export default function TagSelectionWindow({
   };
 
   const buttonState = () => {
-    if (tempTags.length > 0 && tempTags.length <= 4) {
+    if (tmpTags.length > 0 && tmpTags.length <= 4) {
       return false;
     } else {
       return true;
@@ -37,7 +37,7 @@ export default function TagSelectionWindow({
   };
 
   const handleConfirmButton = () => {
-    setTags(tempTags);
+    setTags(tmpTags);
     setIsTagButtonClicked(!isTagButtonClicked);
   };
 
@@ -65,8 +65,8 @@ export default function TagSelectionWindow({
                     <TagSelectionDisplayer
                       key={family}
                       tagFamily={family}
-                      tempTags={tempTags}
-                      setTempTags={setTempTags}
+                      tmpTags={tmpTags}
+                      setTmpTags={setTmpTags}
                       webcontent={webcontent}
                     />
                   );

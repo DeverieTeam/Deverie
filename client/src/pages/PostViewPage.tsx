@@ -200,7 +200,11 @@ export default function PostViewPage() {
             let tmpTitle: string = data.title.split(' ')[i];
             while (tmpTitle.length < 15) {
               i++;
-              tmpTitle += ` ${data.title.split(' ')[i]}`
+              if (data.title.split(' ')[i]) {
+                tmpTitle += ` ${data.title.split(' ')[i]}`
+              } else {
+                break;
+              }
             }
             document.title = `${tmpTitle}... (${data.id}) - Deverie`;
           }
