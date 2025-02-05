@@ -49,12 +49,13 @@ export default function ProfilePage() {
     });
     const jwt = cookies.get("JWT");
 
-    fetch(`${serverAddress}/member/profile/${auth.id}`, {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${jwt}`,
-      },
-    })
+    if(auth?.id) {
+      fetch(`${serverAddress}/member/profile/${auth.id}`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${jwt}`,
+        },
+      })
       .then((response) => {
         if (!response.ok) {
           throw new Error("Something went wrong");
@@ -64,7 +65,8 @@ export default function ProfilePage() {
       .then((data) => {
         setData(data);
       });
-  }, []);
+    }
+  }, [auth]);
 
   const handleDescriptionEditButton = () => {
     if (data && auth !== undefined && auth.role !== "client") {
@@ -122,7 +124,7 @@ export default function ProfilePage() {
   };
 
   const handleReturnButton = () => {
-    navigate("/");
+    navigate(-1);
   };
 
   return (
@@ -482,7 +484,7 @@ export default function ProfilePage() {
       )}
       {data && auth && auth.selected_tags && isFavouriteTagsWindowOpened && (
         <FavouriteTagsWindow
-          setIsFavouriteTagsWindowOpened={setIsFavouriteTagsWindowOpened}
+          setIsSelfOpened={setIsFavouriteTagsWindowOpened}
           previousTags={auth.selected_tags}
           webcontent={{
             buttons: webcontent.commons.buttons,
