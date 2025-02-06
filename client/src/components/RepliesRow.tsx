@@ -99,7 +99,7 @@ export default function RepliesRow({
     <div>
       <div className="w-full py-2 md:px-0 self-center gap-2 md:gap-4 flex flex-col">
         {data !== null && (
-          <div className="bg-neutral-100 gap-2 p-1 md:p-4 rounded-lg shadow-sm shadow-neutral-400 flex flex-col">
+          <div className="bg-neutral-100 gap-2 p-1 md:p-4 mr-2 rounded-lg shadow-sm shadow-neutral-400 flex flex-col">
             <button
               className="h-16 md:h-[104px] bg-neutral-200 px-1 hover:bg-white gap-2 md:gap-4 rounded-full shadow-sm shadow-neutral-500 flex"
               onClick={handleMemberButton}
@@ -127,7 +127,7 @@ export default function RepliesRow({
                 {data.creation_date}
               </div>
             </div>
-            <p className="md:py-2 text-justify text-base md:text-xl"
+            <p className="postContent"
               dangerouslySetInnerHTML={{__html: (data.content
                                                 .replace(/(<a href=")?((https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)))(">(.*)<\/a>)?/gi,
                                                   function () {

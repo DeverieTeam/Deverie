@@ -20,9 +20,9 @@ export default function BackOfficeNavbar({ webcontent }: Props) {
   return (
     <nav className="w-[20%] min-w-48 max-w-72 float-left fixed md:relative z-10">
       {windowWidth >= maximumBurgerMenuWidth || isBurgerMenuDisplayed ? (
-        <div className=" h-[calc(100vh-4rem)] bg-gray-300 p-3 pb-6 flex flex-col gap-4 overflow-y-scroll">
+        <div className="inset-0 h-[calc(100vh-4rem)] bg-gray-300 p-3 pb-6 flex flex-col gap-4 overflow-y-scroll">
           {windowWidth < maximumBurgerMenuWidth ? (
-            <button className="h-12 w-12" onClick={handleBurgerMenuClicked}>
+            <button className="mt-3 h-12 w-12" onClick={handleBurgerMenuClicked}>
               <img src="/icons/cross.svg" />
             </button>
           ) : (
@@ -108,7 +108,7 @@ export default function BackOfficeNavbar({ webcontent }: Props) {
         </div>
       ) : (
         <button
-          className="m-3 h-12 w-12 float-left fixed z-10"
+          className="m-3 mt-6 h-12 w-12 float-left fixed z-10"
           onClick={handleBurgerMenuClicked}
         >
           <img src="/icons/burgerMenu.svg" />

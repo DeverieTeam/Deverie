@@ -246,7 +246,7 @@ export default function PostViewPage() {
             {auth &&
               data &&
               ((auth.id && auth.id === data.author.id) ||
-                auth.role === "moderator" ||
+                (auth.role === "moderator" && data.author.role !== "administrator") ||
                 auth.role === "administrator") && (
                 <button
                   className="absolute right-0 w-7 md:w-8 h-7 md:h-8 bg-indigo-400 hover:bg-indigo-600 self-center hover:text-white text-center rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900 translate-x-[36px] md:translate-x-[40px]"
@@ -324,7 +324,7 @@ export default function PostViewPage() {
                 </div>
               )}
             </div>
-            <p className="md:py-2 text-justify text-base md:text-xl"
+            <p className="postContent"
               dangerouslySetInnerHTML={{__html: (data.content
                                                 .replace(/(<a href=")?((https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)))(">(.*)<\/a>)?/gi,
                                                   function () {
