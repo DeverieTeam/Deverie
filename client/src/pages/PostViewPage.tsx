@@ -133,7 +133,6 @@ export default function PostViewPage() {
 
   const handleEditButton = () => {
     if (data && auth && auth.role !== "client") {
-      setPostContent(data.content);
       setIsPostEditWindowOpened(true);
     }
   };

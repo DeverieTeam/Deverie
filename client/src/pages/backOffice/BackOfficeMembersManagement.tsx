@@ -156,25 +156,30 @@ export default function BackOfficeMembersManagement() {
 
   async function fetchMemberStatistics(args: {
     endopint: 'post' | 'rating';
-    type: 'all' | 'question' | 'answer' | 'topic' | 'response';
+    type: 'all' | 'question' | 'answer' | 'topic' | 'response' | 'favourites';
     isClosed? : boolean;
     isReadable? : boolean;
   }) {
     try {
-      let queries = (args.endpoint.toString() === 'post' ? '?authorId' : '?raterId');
-      queries += `=${selectedMember.toString()}`;
-      if (args.isClosed !== undefined) {
-        queries += `&isClosed=${args.isClosed}`;
-      }
-      if (args.isReadable !== undefined) {
-        queries += `&isReadable=${args.isReadable}`;
-      }
+      const queryHandler = () => {
+        const queriesArray: Array<string> = [];
+        queriesArray.push((args.endpoint.toString() === 'post' ? 'authorId' : 'raterId') + `=${selectedMember.toString()}`);
+        if (args.isClosed) {
+          queriesArray.push(`isClosed=${args.isClosed}`);
+        }
+        if (args.isReadable) {
+          queriesArray.push(`isReadable=${args.isReadable}`);
+        }
+        return `?${queriesArray.join('&')}`;
+      };
 
       const cookies = new Cookies(null, {
         path: "/",
       });
+      const url = `${serverAddress}/${args.endpoint.toString()}` +
+                  (args.type === 'favourites' ? `/favourites/${selectedMember.toString()}` : `/number/${args.type}${queryHandler()}`)
       const jwt = cookies.get("JWT");
-      fetch(`${serverAddress}/${args.endpoint.toString()}/number/${args.type}${queries}`,
+      const response = await fetch(url,
         {
           headers: {
             Accept: "application/json",
@@ -182,12 +187,17 @@ export default function BackOfficeMembersManagement() {
             Authorization: `Bearer ${jwt}`,
           },
         }
-      ).then(async (response) => {
-        if (response.ok) {
-          const responseData = await response.json();
+      );
+
+      if (response.ok) {
+        const responseData = await response.json();
+        if (args.type === 'favourites') {
+          return responseData.length;
+        } else {
           return responseData.number;
         }
-      });
+      }
+
     } catch (error) {
       console.error("Something went wrong: ", error);
     }
@@ -264,6 +274,8 @@ export default function BackOfficeMembersManagement() {
         (value) => { setMemberUpvotedNumber(value); });
       fetchMemberStatistics({ endpoint: 'rating', type: 'down' }).then(
         (value) => { setMemberDownvotedNumber(value); });
+      fetchMemberStatistics({ endpoint: 'post', type: 'favourites' }).then(
+        (value) => { setMemberFavoritesNumber(value); });
 
       fetchMemberStatistics({ endpoint: 'post', type: 'question' }).then(
         (value) => { setMemberQuestionsNumber(value); });
