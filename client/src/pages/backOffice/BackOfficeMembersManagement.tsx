@@ -177,7 +177,7 @@ export default function BackOfficeMembersManagement() {
         path: "/",
       });
       const url = `${serverAddress}/${args.endpoint.toString()}` +
-                  (args.type === 'favourites' ? `/favourites/${selectedMember.toString()}` : `/number/${args.type}${queryHandler()}`)
+                  (args.type === 'favourites' ? `/${args.type}/${selectedMember.toString()}` : `/number/${args.type}${queryHandler()}`)
       const jwt = cookies.get("JWT");
       const response = await fetch(url,
         {

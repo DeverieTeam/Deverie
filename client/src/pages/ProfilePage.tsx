@@ -478,7 +478,7 @@ export default function ProfilePage() {
       )}
       {data && isPasswordEditWindowOpened && (
         <PasswordEditWindow
-          setIsPasswordEditWindowOpened={setIsPasswordEditWindowOpened}
+          setIsSelfOpened={setIsPasswordEditWindowOpened}
           webcontent={webcontent}
         />
       )}

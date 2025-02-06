@@ -206,7 +206,7 @@ export default function PostViewPage() {
                 break;
               }
             }
-            document.title = `${tmpTitle}... (${data.id}) - Deverie`;
+            document.title = `${tmpTitle}${tmpTitle.length >= 15 ? '...' : ''} (${data.id}) - Deverie`;
           }
         });
     } else {
@@ -518,7 +518,7 @@ export default function PostViewPage() {
       )}
       {isConnectionWindowDisplayed && (
         <ConnectionWindow
-          setIsConnectionWindowDisplayed={setIsConnectionWindowDisplayed}
+          setIsSelfOpened={setIsConnectionWindowDisplayed}
           webcontent={{
             hypertexts: webcontent.commons.hypertexts,
             buttons: webcontent.commons.buttons,

@@ -4,7 +4,7 @@ import Cookies from "universal-cookie";
 import { profilePageWebcontentType } from "../../types/profilePageWebcontentType";
 
 export default function PasswordEditWindow({
-  setIsPasswordEditWindowOpened,
+  setIsSelfOpened,
   webcontent,
 }: Props) {
   const serverAddress: string = import.meta.env.VITE_SERVER_ADDRESS;
@@ -16,12 +16,12 @@ export default function PasswordEditWindow({
 
   useEffect(() => {
     if (auth && auth.role && auth.role === "client") {
-      setIsPasswordEditWindowOpened(false);
+      setIsSelfOpened(false);
     }
-  }, [auth, setIsPasswordEditWindowOpened]);
+  }, [auth, setIsSelfOpened]);
 
-  const exitWindow = () => {
-    setIsPasswordEditWindowOpened(false);
+  const closeWindow = () => {
+    setIsSelfOpened(false);
   };
 
   const handleContentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -75,7 +75,7 @@ export default function PasswordEditWindow({
           });
 
           if (response.ok) {
-            setIsPasswordEditWindowOpened(false);
+            setIsSelfOpened(false);
           }
         } catch (error) {
           console.error("Something went wrong: ", error);
@@ -87,7 +87,7 @@ export default function PasswordEditWindow({
   return (
     <div
       className="inset-0 absolute h-[120%] w-[100%] bg-gray-400/60 z-20 -translate-y-16"
-      onClick={exitWindow}
+      onClick={closeWindow}
     >
       <div className="h-[100%] w-[100%] relative">
         <div className="h-screen w-screen sticky top-16">
@@ -129,7 +129,7 @@ export default function PasswordEditWindow({
             <div className="justify-center gap-4 md:gap-8 flex">
               <button
                 className="py-1 px-4 md:px-8 text-center text-lg md:text-xl hover:text-white bg-indigo-400 hover:bg-indigo-600 rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900"
-                onClick={exitWindow}
+                onClick={closeWindow}
                 title={webcontent.commons.buttons.backButton.hover.content}
               >
                 {webcontent.commons.buttons.backButton.text.content}
@@ -150,6 +150,6 @@ export default function PasswordEditWindow({
 }
 
 type Props = {
-  setIsPasswordEditWindowOpened: (arg0: boolean) => void;
+  setIsSelfOpened: (arg0: boolean) => void;
   webcontent: profilePageWebcontentType;
 };
