@@ -11,7 +11,7 @@ type MockType<T> = {
 };
 
 describe('TagService', () => {
-  process.env.SERVER_ADDRESS;
+  process.env.SERVER_ADDRESS = 'http://testhost:3000';
   let service: TagService;
   let repositoryMock: MockType<Repository<any>>;
 
@@ -210,7 +210,7 @@ describe('TagService', () => {
     });
 
     it('should update the icon if a new one is provided', async () => {
-      const serverAddress: string = process.env.SERVER_ADDRESS;
+      const serverAddress: string = 'http://testhost:3000';
       const newTag = { id: 1, name: 'test-tag', icon: 'new-icon.png', family: 'language' };
 
       repositoryMock.find.mockResolvedValue([ mockTag ]);

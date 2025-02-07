@@ -1,0 +1,41 @@
+name: Continous Integration
+
+on:
+  push:
+    branches:
+      - main
+      - backend/unitTest
+  pull_request:
+    branches:
+      - develop
+
+jobs:
+  backend-test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: server/src
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        steps:
+          - name: Test Tag Service
+            run: npm test tag/tag.service.spec.ts
+              
+          - name: Test Web Content Service
+            run: npm test web-content/web-content.service.spec.ts
+
+          - name: Test Web Content Back Office Service
+            run: npm test web-content/back-office/web-content-back-office.service.spec.ts
+
