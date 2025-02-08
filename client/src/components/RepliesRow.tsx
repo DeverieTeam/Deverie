@@ -231,6 +231,7 @@ export default function RepliesRow({
                 data={data}
                 sort={sort}
                 isPostOpened={isPostOpened}
+                setIsConnectionNeededClicked={setIsConnectionNeededClicked}
                 webcontent={webcontent}
               />
               </div>
