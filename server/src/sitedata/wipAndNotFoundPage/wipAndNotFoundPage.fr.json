@@ -14,7 +14,7 @@
     },
     "imgSrc": {
       "name": "Source de l'image d'une page en travaux",
-      "content": "WIP.png"
+      "content": "WIP.svg"
     }
   },
   "notFound": {
@@ -32,7 +32,7 @@
     },
     "imgSrc": {
       "name": "Source de l'image d'une page absente",
-      "content": "error-404.png"
+      "content": "error-404.svg"
     }
   }
 }
