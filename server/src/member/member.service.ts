@@ -331,9 +331,10 @@ export class MemberService {
               );
           },
         );
+        const serverAddress: string = process.env.SERVER_ADDRESS;
         const updatedMember = {
           id: member.id,
-          profile_picture: `http://localhost:3000/public/uploads/profilePictures/${newPPName}`,
+          profile_picture: `${serverAddress}/public/uploads/profilePictures/${newPPName}`,
         };
         returnedValue = await this.memberRepository.save(updatedMember);
       }

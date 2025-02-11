@@ -10,7 +10,7 @@ export default function WIPAndNotFoundPage({ type }: Props) {
       <p className="my-8 text-xl lg:text-5xl font-bold">
         {webcontent.page[type].title.content}
       </p>
-      <div className="m-auto lg:w-[50%] lg:max-w-[600px]">
+      <div className={"m-auto " + (type === 'wip' ? 'w-[240px] h-[240px] lg:w-[400px] lg:h-[400px]' : 'w-[300px] h-[200px] lg:w-[500px] lg:h-[350px]')}>
         <img
           src={
             webcontent.commons.img.imgPath.content +

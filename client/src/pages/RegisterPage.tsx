@@ -14,7 +14,7 @@ export default function RegisterPage() {
   document.title = `${webcontent.page.tabTitle.content} - Deverie`;
 
   const minimumFieldLength: number = 4;
-  const maximumFieldLength: number = 100;
+  const maximumFieldLength: number = 50;
   const maximumPasswordFieldLength: number = 25;
   const emailRegex = /^[a-zA-Z0-9]([.-]?[a-zA-Z0-9])*@[a-zA-Z]([_-]?[a-zA-Z])*\.[a-zA-Z]{2,4}$/;
 
@@ -274,7 +274,7 @@ export default function RegisterPage() {
   }, [auth, navigate]);
 
   return (
-    <div className="w-full relative pb-60 flex flex-col">
+    <div className="w-full relative xl:pb-60 flex flex-col">
       <p className="mx-auto my-4 text-center text-indigo-500 text-3xl md:text-4xl font-bold drop-shadow">
         {webcontent.page.title.content}
       </p>

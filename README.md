@@ -6,7 +6,7 @@ $ npm install
 
 ## Docker Database Initiation
 
-In the server workspace, create your .env file, which is a copy of .env.sample, but with your own environment values.
+**In the server and client workspace**, create your .env file, which is a copy of .env.sample, but with your own environment values.
 
 ```bash
 $ cd server

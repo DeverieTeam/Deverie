@@ -158,8 +158,7 @@ export default function FavouritesPage() {
         envTags !== null &&
         technoTags !== null && (
           <TagFilterWindow
-            isTagButtonClicked={isTagButtonClicked}
-            setIsTagButtonClicked={setIsTagButtonClicked}
+            setIsSelfOpened={setIsTagButtonClicked}
             tags={tags}
             setTags={setTags}
             langTags={langTags}
@@ -173,7 +172,7 @@ export default function FavouritesPage() {
         )}
       {isConnectionWindowDisplayed && (
         <ConnectionWindow
-          setIsConnectionWindowDisplayed={setIsConnectionWindowDisplayed}
+          setIsSelfOpened={setIsConnectionWindowDisplayed}
           webcontent={{
             hypertexts: webcontent.commons.hypertexts,
             buttons: webcontent.commons.buttons,

@@ -7,7 +7,7 @@ import Cookies from "universal-cookie";
 import { useTags } from "../../contexts/useTags";
 
 export default function ConnectionWindow({
-  setIsConnectionWindowDisplayed,
+  setIsSelfOpened,
   webcontent,
 }: Props) {
   const serverAddress: string = import.meta.env.VITE_SERVER_ADDRESS;
@@ -19,14 +19,14 @@ export default function ConnectionWindow({
   const [password, setPassword] = useState<string>("");
   const [isWarningOn, setIsWarningOn] = useState<boolean>(false);
 
-  const exitConnectionWindow = (e: React.MouseEvent) => {
+  const closeWindow = (e: React.MouseEvent) => {
     e.preventDefault();
-    setIsConnectionWindowDisplayed(false);
+    setIsSelfOpened(false);
   };
 
   const handleRegisterButton = (e: React.MouseEvent) => {
     e.preventDefault();
-    setIsConnectionWindowDisplayed(false);
+    setIsSelfOpened(false);
     navigate("/register");
   };
 
@@ -72,7 +72,7 @@ export default function ConnectionWindow({
         localStorage.removeItem("Tags");
         setAuth(undefined);
         setTags(null);
-        setIsConnectionWindowDisplayed(false);
+        setIsSelfOpened(false);
       } else {
         setIsWarningOn(true);
         setLogin("");
@@ -89,7 +89,7 @@ export default function ConnectionWindow({
   return (
     <div
       className="absolute h-[120%] w-[100%] bg-gray-400/60 z-20 -translate-y-16"
-      onClick={exitConnectionWindow}
+      onClick={closeWindow}
     >
       <div className="h-[100%] w-[100%] relative">
         <div className="h-screen w-screen sticky top-16">
@@ -152,7 +152,7 @@ export default function ConnectionWindow({
               <button
                 className="py-1 px-4 md:px-8 text-center text-lg md:text-xl hover:text-white bg-indigo-400 hover:bg-indigo-600 rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900"
                 title={webcontent.buttons.cancelButton.hover.content}
-                onClick={exitConnectionWindow}
+                onClick={closeWindow}
               >
                 {webcontent.buttons.cancelButton.text.content}
               </button>
@@ -172,6 +172,6 @@ export default function ConnectionWindow({
 }
 
 type Props = {
-  setIsConnectionWindowDisplayed: (arg0: boolean) => void;
+  setIsSelfOpened: (arg0: boolean) => void;
   webcontent: connectionWindowWebcontentType;
 };

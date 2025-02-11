@@ -18,7 +18,7 @@ export class WebContentController {
     }
     return this.webContentService.getCommonsWebContent({
       lang: lang.toLowerCase(),
-      posts: posts.toLowerCase(),
+      posts: (posts.toLowerCase() === 'true'),
     });
   }
 

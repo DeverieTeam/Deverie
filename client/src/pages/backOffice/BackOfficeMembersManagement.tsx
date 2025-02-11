@@ -156,25 +156,30 @@ export default function BackOfficeMembersManagement() {
 
   async function fetchMemberStatistics(args: {
     endopint: 'post' | 'rating';
-    type: 'all' | 'question' | 'answer' | 'topic' | 'response';
+    type: 'all' | 'question' | 'answer' | 'topic' | 'response' | 'favourites';
     isClosed? : boolean;
     isReadable? : boolean;
   }) {
     try {
-      let queries = (args.endpoint.toString() === 'post' ? '?authorId' : '?raterId');
-      queries += `=${selectedMember.toString()}`;
-      if (args.isClosed !== undefined) {
-        queries += `&isClosed=${args.isClosed}`;
-      }
-      if (args.isReadable !== undefined) {
-        queries += `&isReadable=${args.isReadable}`;
-      }
+      const queryHandler = () => {
+        const queriesArray: Array<string> = [];
+        queriesArray.push((args.endpoint.toString() === 'post' ? 'authorId' : 'raterId') + `=${selectedMember.toString()}`);
+        if (args.isClosed) {
+          queriesArray.push(`isClosed=${args.isClosed}`);
+        }
+        if (args.isReadable) {
+          queriesArray.push(`isReadable=${args.isReadable}`);
+        }
+        return `?${queriesArray.join('&')}`;
+      };
 
       const cookies = new Cookies(null, {
         path: "/",
       });
+      const url = `${serverAddress}/${args.endpoint.toString()}` +
+                  (args.type === 'favourites' ? `/${args.type}/${selectedMember.toString()}` : `/number/${args.type}${queryHandler()}`)
       const jwt = cookies.get("JWT");
-      fetch(`${serverAddress}/${args.endpoint.toString()}/number/${args.type}${queries}`,
+      const response = await fetch(url,
         {
           headers: {
             Accept: "application/json",
@@ -182,12 +187,17 @@ export default function BackOfficeMembersManagement() {
             Authorization: `Bearer ${jwt}`,
           },
         }
-      ).then(async (response) => {
-        if (response.ok) {
-          const responseData = await response.json();
+      );
+
+      if (response.ok) {
+        const responseData = await response.json();
+        if (args.type === 'favourites') {
+          return responseData.length;
+        } else {
           return responseData.number;
         }
-      });
+      }
+
     } catch (error) {
       console.error("Something went wrong: ", error);
     }
@@ -264,6 +274,8 @@ export default function BackOfficeMembersManagement() {
         (value) => { setMemberUpvotedNumber(value); });
       fetchMemberStatistics({ endpoint: 'rating', type: 'down' }).then(
         (value) => { setMemberDownvotedNumber(value); });
+      fetchMemberStatistics({ endpoint: 'post', type: 'favourites' }).then(
+        (value) => { setMemberFavoritesNumber(value); });
 
       fetchMemberStatistics({ endpoint: 'post', type: 'question' }).then(
         (value) => { setMemberQuestionsNumber(value); });
@@ -334,7 +346,7 @@ export default function BackOfficeMembersManagement() {
       <p className="mx-auto text-center text-indigo-500 text-2xl md:text-4xl font-semibold drop-shadow">
         {webcontent.page.title.content}
       </p>
-      <div className="mx-auto h-8 md:h-10 md:w-full max-w-80 md:max-w-xl p-6 flex flex-row md:gap-1 bg-neutral-100 rounded-lg shadow-sm shadow-neutral-400 items-center justify-between">
+      <div className="mt-2 mx-auto h-8 md:h-10 md:w-full max-w-80 md:max-w-xl p-6 flex flex-row md:gap-1 bg-neutral-100 rounded-lg shadow-sm shadow-neutral-400 items-center justify-between">
         <label
           htmlFor="selectAMember"
           className="pl-4 md:pl-0 flex-1 xl:text-lg">
@@ -502,7 +514,7 @@ export default function BackOfficeMembersManagement() {
                       )}
                       {(selectedPublicationInfos.type === 'answer' || selectedPublicationInfos.type === 'comment') && selectedPublicationReplyTreeInfos !== null && (
                         <div className="flex flex-col gap-2 mx-auto w-full p-3 px-1 bg-white rounded-lg shadow-sm shadow-neutral-400">
-                          <p className="text-center"
+                          <p className="backOfficeSourcePostLink"
                             dangerouslySetInnerHTML={{__html: (webcontent.page.fields.replyTo.content
                                                               .replace('{link_start}', `<a href="/postView?id=${selectedPublicationReplyTreeInfos.original_publication_id}">`)
                                                               .replace('{publication_id}', selectedPublicationReplyTreeInfos.direct_reply.id.toString())
@@ -599,11 +611,11 @@ export default function BackOfficeMembersManagement() {
                     {selectedPublicationInfos.title !== null && (
                       <a
                         href={"/postView?id=" + selectedPublication}
-                        className="mb-4 text-center text-indigo-500 text-xl md:text-3xl font-bold drop-shadow">
+                        className="mb-4 text-center text-indigo-500 text-xl md:text-3xl font-bold hover:underline drop-shadow">
                         {selectedPublicationInfos.title}
                       </a>
                     )}
-                    <p className="text-justify text-base md:text-lg"
+                    <p className="postContent"
                       dangerouslySetInnerHTML={{__html: (selectedPublicationInfos.content
                                                         .replace(/(<a href=")?((https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)))(">(.*)<\/a>)?/gi,
                                                           function () {

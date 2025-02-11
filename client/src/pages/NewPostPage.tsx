@@ -238,8 +238,7 @@ export default function NewPostPage({ threadType }: Props) {
       </form>
       {isTagButtonClicked && (
         <TagSelectionWindow
-          isTagButtonClicked={isTagButtonClicked}
-          setIsTagButtonClicked={setIsTagButtonClicked}
+          setIsSelfOpened={setIsTagButtonClicked}
           tags={tags}
           setTags={setTags}
           webcontent={{

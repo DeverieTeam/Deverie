@@ -178,7 +178,7 @@ export default function ThreadsPage({ threadType }: Props) {
       </div>
       {isConnectionWindowDisplayed && (
         <ConnectionWindow
-          setIsConnectionWindowDisplayed={setIsConnectionWindowDisplayed}
+          setIsSelfOpened={setIsConnectionWindowDisplayed}
           webcontent={{
             hypertexts: webcontent.commons.hypertexts,
             buttons: webcontent.commons.buttons,

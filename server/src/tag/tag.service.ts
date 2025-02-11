@@ -8,19 +8,6 @@ import * as fs from 'node:fs';
 export class TagService {
   constructor(@InjectRepository(Tag) private tagRepository: Repository<Tag>) {}
 
-  async getTagsByFamily(family) {
-    return await this.tagRepository.find({
-      select: ['id', 'name', 'icon', 'family'],
-      where: [{ family: family }],
-    });
-  }
-
-  async getAllTagsNames() {
-    return await this.tagRepository.find({
-      select: ['id', 'name', 'family'],
-    });
-  }
-
   async invalidPath() {
     throw new HttpException(
       {
@@ -33,6 +20,19 @@ export class TagService {
         cause: 'Invalid path',
       },
     );
+  }
+
+  async getTagsByFamily(family) {
+    return await this.tagRepository.find({
+      select: ['id', 'name', 'icon', 'family'],
+      where: [{ family: family }],
+    });
+  }
+
+  async getAllTagsNames() {
+    return await this.tagRepository.find({
+      select: ['id', 'name', 'family'],
+    });
   }
 
   async createTagIcon(tag) {
@@ -70,7 +70,8 @@ export class TagService {
   }
 
   async createTag(tag) {
-    const iconsURL = `http://localhost:3000/public/uploads/tagIcons`;
+    const serverAddress: string = process.env.SERVER_ADDRESS;
+    const iconsURL = `${serverAddress}/public/uploads/tagIcons`;
 
     const allTagNames = await this.tagRepository.find({ select: ['name'] });
 
@@ -101,7 +102,8 @@ export class TagService {
   }
 
   async updateTag(tag) {
-    const iconsURL = `http://localhost:3000/public/uploads/tagIcons`;
+    const serverAddress: string = process.env.SERVER_ADDRESS;
+    const iconsURL = `${serverAddress}/public/uploads/tagIcons`;
     
     const allTheTags = await this.tagRepository.find({ select: ['id', 'name', 'icon'] });
 

@@ -4,10 +4,51 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --main-elements-color: #818cf8;
+  --secondary-elements-color: #4338ca;
+  --unvisited-link-color: #1d4ed8;
+  --visited-link-color: #4c51bf;
+}
+
 @layer base {
   html {
     background-color: #fafafa;
     font-family: "Poppins", sans-serif;
     line-height: 1.3;
+  }
+
+  .postContent {
+    text-align: justify;
+    font-size: 1rem;
+
+    @media (min-width: 768px) {
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+      font-size: 1.25rem;
+    }
+  }
+
+  .backOfficeSourcePostLink {
+    text-align: center;
+  }
+
+  .postContent > a,
+  .backOfficeSourcePostLink > a {
+    color: var(--unvisited-link-color);
+    text-decoration: none;
+    overflow-wrap: break-word;
+  }
+
+  .postContent > a:hover,
+  .postContent > a:focus,
+  .backOfficeSourcePostLink > a:hover,
+  .backOfficeSourcePostLink > a:focus {
+    text-decoration: underline;
+  }
+
+  .postContent > a:visited,
+  .backOfficeSourcePostLink > a:visited {
+    color: var(--visited-link-color);
   }
 }

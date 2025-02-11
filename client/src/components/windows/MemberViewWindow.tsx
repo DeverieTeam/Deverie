@@ -99,7 +99,7 @@ export default function MemberViewWindow({
                     </p>
                   )}
                   {data?.is_email_displayed && (
-                    <p className="text-center px-4 md:text-2xl">{data?.email}</p>
+                    <p className="text-center px-4 md:text-2xl break-words">{data?.email}</p>
                   )}
                   <p className="text-center px-4 md:text-2xl">
                     {webcontent.memberWindow.messageCount.content}

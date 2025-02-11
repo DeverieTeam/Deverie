@@ -5,12 +5,12 @@ import { useAuth } from "../../contexts/useAuth";
 import Cookies from "universal-cookie";
 
 export default function FavouriteTagsWindow({
-  setIsFavouriteTagsWindowOpened,
+  setIsSelfOpened,
   previousTags,
   webcontent,
 }: Props) {
   const serverAddress: string = import.meta.env.VITE_SERVER_ADDRESS;
-  const { auth } = useAuth();
+  const { auth, setAuth } = useAuth();
 
   const [tmpTags, setTmpTags] = useState<
     {
@@ -23,12 +23,12 @@ export default function FavouriteTagsWindow({
 
   useEffect(() => {
     if (auth && auth.role && auth.role === "client") {
-      setIsFavouriteTagsWindowOpened(false);
+      setIsSelfOpened(false);
     }
-  }, [auth, setIsFavouriteTagsWindowOpened]);
+  }, [auth, setIsSelfOpened]);
 
-  const exitTagWindow = () => {
-    setIsFavouriteTagsWindowOpened(false);
+  const closeWindow = () => {
+    setIsSelfOpened(false);
   };
 
   const buttonState = () => {
@@ -71,7 +71,10 @@ export default function FavouriteTagsWindow({
         });
 
         if (response.ok) {
-          setIsFavouriteTagsWindowOpened(false);
+          const tmpUpdatedAuth = auth;
+          tmpUpdatedAuth.selected_tags = tmpTags;
+          setAuth(tmpUpdatedAuth);
+          setIsSelfOpened(false);
         }
       } catch (error) {
         console.error("Something went wrong: ", error);
@@ -82,7 +85,7 @@ export default function FavouriteTagsWindow({
   return (
     <div
       className="inset-0 absolute h-[120%] w-[100%] bg-gray-400/60 z-20 -translate-y-16"
-      onClick={exitTagWindow}
+      onClick={closeWindow}
     >
       <div className="h-[100%] w-[100%] relative">
         <div className="h-screen w-screen sticky top-16">
@@ -118,7 +121,7 @@ export default function FavouriteTagsWindow({
               <div className="justify-center gap-4 flex">
                 <button
                   className="py-1 px-4 md:px-8 text-center text-lg md:text-xl hover:text-white bg-indigo-400 hover:bg-indigo-600 rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900"
-                  onClick={exitTagWindow}
+                  onClick={closeWindow}
                   title={webcontent.buttons.cancelButton.hover.content}
                 >
                   {webcontent.buttons.cancelButton.text.content}
@@ -141,7 +144,7 @@ export default function FavouriteTagsWindow({
 }
 
 type Props = {
-  setIsFavouriteTagsWindowOpened: (arg0: boolean) => void;
+  setIsSelfOpened: (arg0: boolean) => void;
   previousTags: {
     id: number;
     name: string;

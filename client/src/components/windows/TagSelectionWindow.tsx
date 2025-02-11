@@ -3,13 +3,12 @@ import TagSelectionDisplayer from "../TagSelectionDisplayer";
 import { tagSelectionWindowWebcontentType } from "../../types/components/windows/tagSelectionWindowWebcontentType";
 
 export default function TagSelectionWindow({
-  isTagButtonClicked,
-  setIsTagButtonClicked,
+  setIsSelfOpened,
   tags,
   setTags,
   webcontent,
 }: Props) {
-  const [tempTags, setTempTags] = useState<
+  const [tmpTags, setTmpTags] = useState<
     {
       id: number;
       name: string;
@@ -20,16 +19,16 @@ export default function TagSelectionWindow({
 
   useEffect(() => {
     if (tags !== null) {
-      setTempTags(tags);
+      setTmpTags(tags);
     }
   }, [tags]);
 
-  const exitTagWindow = () => {
-    setIsTagButtonClicked(!isTagButtonClicked);
+  const closeWindow = () => {
+    setIsSelfOpened(false);
   };
 
   const buttonState = () => {
-    if (tempTags.length > 0 && tempTags.length <= 4) {
+    if (tmpTags.length > 0 && tmpTags.length <= 4) {
       return false;
     } else {
       return true;
@@ -37,14 +36,14 @@ export default function TagSelectionWindow({
   };
 
   const handleConfirmButton = () => {
-    setTags(tempTags);
-    setIsTagButtonClicked(!isTagButtonClicked);
+    setTags(tmpTags);
+    setIsSelfOpened(false);
   };
 
   return (
     <div
       className="inset-0 absolute h-[120%] w-[100%] bg-gray-400/60 z-20 -translate-y-16"
-      onClick={exitTagWindow}
+      onClick={closeWindow}
     >
       <div className="h-[100%] w-[100%] relative">
         <div className="h-screen w-screen sticky top-16">
@@ -65,8 +64,8 @@ export default function TagSelectionWindow({
                     <TagSelectionDisplayer
                       key={family}
                       tagFamily={family}
-                      tempTags={tempTags}
-                      setTempTags={setTempTags}
+                      tmpTags={tmpTags}
+                      setTmpTags={setTmpTags}
                       webcontent={webcontent}
                     />
                   );
@@ -80,7 +79,7 @@ export default function TagSelectionWindow({
               <div className="justify-center gap-4 flex">
                 <button
                   className="py-1 px-4 md:px-8 text-center text-lg md:text-xl hover:text-white bg-indigo-400 hover:bg-indigo-600 rounded-full shadow-sm shadow-indigo-700 hover:shadow-indigo-900"
-                  onClick={exitTagWindow}
+                  onClick={closeWindow}
                   title={webcontent.buttons.cancelButton.hover.content}
                 >
                   {webcontent.buttons.cancelButton.text.content}
@@ -103,8 +102,7 @@ export default function TagSelectionWindow({
 }
 
 type Props = {
-  isTagButtonClicked: boolean;
-  setIsTagButtonClicked: (arg0: boolean) => void;
+  setIsSelfOpened: (arg0: boolean) => void;
   tags:
     | {
         id: number;

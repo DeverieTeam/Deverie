@@ -25,7 +25,7 @@ const httpError = (customMessage: string) => {
 
 @Injectable()
 export class WebContentService {
-  getCommonsWebContent(params: { lang: string; posts: string }) {
+  getCommonsWebContent(params: { lang: string; posts: boolean }) {
     if (params.lang !== 'default') {
       let currentLangData: any;
       switch (params.lang) {
@@ -36,7 +36,7 @@ export class WebContentService {
           httpError('Language not handled');
           break;
       }
-      if (params.posts == 'true') {
+      if (params.posts) {
         return currentLangData;
       } else {
         return {
@@ -51,27 +51,23 @@ export class WebContentService {
         };
       }
     } else {
-      switch (params.posts) {
-        case 'true':
-          return {
-            fr: commonsFr,
-          };
-          break;
-        case 'false':
-        default:
-          return {
-            fr: {
-              logo: commonsFr.logo,
-              img: commonsFr.img,
-              buttons: commonsFr.buttons,
-              hypertexts: commonsFr.hypertexts,
-              sections: commonsFr.sections,
-              connection: commonsFr.connection,
-              dropDownMenu: commonsFr.dropDownMenu,
-              memberWindow: commonsFr.memberWindow,
-            },
-          };
-          break;
+      if (params.posts) {
+        return {
+          fr: commonsFr,
+        };
+      } else {
+        return {
+          fr: {
+            logo: commonsFr.logo,
+            img: commonsFr.img,
+            buttons: commonsFr.buttons,
+            hypertexts: commonsFr.hypertexts,
+            sections: commonsFr.sections,
+            connection: commonsFr.connection,
+            dropDownMenu: commonsFr.dropDownMenu,
+            memberWindow: commonsFr.memberWindow,
+          },
+        };
       }
     }
   }

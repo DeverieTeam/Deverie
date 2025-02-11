@@ -148,7 +148,7 @@ export default function Header({ webcontent, isBackOfficeHeader }: Props) {
       </div>
       {isConnectionWindowDisplayed && (
         <ConnectionWindow
-          setIsConnectionWindowDisplayed={setIsConnectionWindowDisplayed}
+          setIsSelfOpened={setIsConnectionWindowDisplayed}
           webcontent={{
             hypertexts: webcontent.hypertexts,
             buttons: webcontent.buttons,

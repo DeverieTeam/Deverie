@@ -132,7 +132,7 @@ export default function HomePage() {
       )}
       {isConnectionWindowDisplayed && (
         <ConnectionWindow
-          setIsConnectionWindowDisplayed={setIsConnectionWindowDisplayed}
+          setIsSelfOpened={setIsConnectionWindowDisplayed}
           webcontent={{
             hypertexts: webcontent.commons.hypertexts,
             buttons: webcontent.commons.buttons,

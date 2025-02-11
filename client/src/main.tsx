@@ -1,6 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { ErrorBoundary } from "react-error-boundary";
 import fetchWebContent from "./scripts/fetchWebContent.tsx";
 
 import App from "./App.tsx";
@@ -19,16 +20,24 @@ import BackOfficeTagsManagement from "./pages/backOffice/BackOfficeTagsManagemen
 import BackOfficeMembersManagement from "./pages/backOffice/BackOfficeMembersManagement.tsx";
 
 import WIPAndNotFoundPage from "./pages/WIPAndNotFoundPage.tsx";
+import ErrorHandlerPage from "./pages/ErrorHandlerPage.tsx";
 
 import AuthProvider from "./contexts/AuthProvider.tsx";
 import TagsProvider from "./contexts/TagsProvider.tsx";
 
 const language: string = 'fr';
 
+const logErrors = (error, info) => {
+  console.log('Something went wrong');
+  console.error(error);
+  console.error(JSON.stringify(info));
+};
+
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    errorElement: <ErrorHandlerPage language={language}/>,
     loader: async () => {
       return await fetchWebContent({
         page: "header",
@@ -239,6 +248,7 @@ const router = createBrowserRouter([
   {
     path: "*",
     element: <WIPAndNotFoundPage type="notFound" />,
+    errorElement: <ErrorHandlerPage language={language}/>,
     loader: async () => {
       return await fetchWebContent({
         page: "404",
@@ -250,10 +260,12 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <AuthProvider>
-      <TagsProvider>
-        <RouterProvider router={router} />
-      </TagsProvider>
-    </AuthProvider>
+    <ErrorBoundary fallback={<ErrorHandlerPage language={language}/>} onError={logErrors}>
+      <AuthProvider>
+        <TagsProvider>
+          <RouterProvider router={router} />
+        </TagsProvider>
+      </AuthProvider>
+    </ErrorBoundary>
   </StrictMode>
 );
