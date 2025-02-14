@@ -28,7 +28,7 @@ export default function ConnectionNeeded({
       <div className="h-[100%] w-[100%] relative">
         <div className="h-screen w-screen sticky top-16">
           <div
-            className="mx-auto p-4 h-[190px] md:h-[250px] w-[310px] md:w-[400px] bg-neutral-50 translate-y-[150%] md:translate-y-[100%] xl:translate-y-[100%] rounded-lg shadow-sm shadow-gray-700 flex flex-col justify-evenly items-center"
+            className="mx-auto p-4 h-[190px] md:h-[250px] w-[320px] md:w-[400px] bg-neutral-50 translate-y-[150%] md:translate-y-[100%] xl:translate-y-[100%] rounded-lg shadow-sm shadow-gray-700 flex flex-col justify-evenly items-center"
             onClick={(e) => {
               e.stopPropagation();
             }}>
